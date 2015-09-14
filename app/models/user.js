@@ -1,36 +1,37 @@
 var mongoose = require('mongoose');
 
-var Schema = mongoose.Schema; 
-
-var bcrypt = require('bcrypt-nodejs');
+var Schema = mongoose.Schema;
+var bcrypt = require('bcrypt-nodejs'); //library used to hash password
 
 var UserSchema = new Schema({
-
-	name: String, 
+	
+	name: String,
 	username: { type: String, required: true, index: { unique: true }},
-	password: { type: String, required: true, select: false}
+	password: { type: String, required: true, select: false} //we dont want to query password as well
 
-}); 
+});
 
 UserSchema.pre('save', function(next) {
 
 	var user = this;
 
-	if(!user.isModified('password')) return next(); 
+	if(!user.isModified('password')) return next();
 
 	bcrypt.hash(user.password, null, null, function(err, hash) {
+		console.log(user)
 		if(err) return next(err);
 
-		user.password = hash; 
-		next(); 
-	}); 
-}); 
+		user.password = hash;
+		next();
 
-UserSchema.methods.comparePassword = function(password) {
+	});
+});
 
-	var user = this; 
+UserSchema.methods.comparePassword = function(password) { //create custome method called compare password
+
+	var user = this;
+
 	return bcrypt.compareSync(password, user.password);
 }
 
-module.exports = mongoose.model('userService', UserSchema); 
-
+module.exports = mongoose.model('User', UserSchema);
