@@ -18,7 +18,7 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 				} else {
 		
 				$scope.processing = false;
-				$rootScope.loggedIn= true; 
+				$rootScope.loggedIn = true; 
 
 					$state.go('dashboard'); 
 
