@@ -2,14 +2,6 @@ var app = angular.module('QueuePlate')
 
 app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 
-//??
-	// signupService.all()
-	// 	.success(function(data) {
-	// 		$scope.users = data;
-	// 		console.log($scope.users)
-	// 	})
-//??
-
 	$scope.signupUser = function() {
 		$scope.message = '';
 
