@@ -35,29 +35,21 @@ $locationProvider.html5Mode(true);
 
 });
 
-
 app.run(function($state, $rootScope, $window) {
 
-   $rootScope.$on('$stateChangeStart', function(event, toState) {  
+   $rootScope.$on('$stateChangeStart', function(event, toState) {
        var token = false;
        var safeStates = ['home', 'signup', 'login'];
-       
+
        var protected = safeStates.indexOf(toState.name) === -1;
        console.log(protected)
-    
-     if (protected) {   
+
+     if (protected) {
          if (!$window.localStorage.token) {
            console.log('protected state, no token')
            event.preventDefault();
            return $state.go('home');
-         } 
-      }       
+         }
+      }
    });
 })
-
-
-
-
-
-
-
