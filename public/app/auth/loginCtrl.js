@@ -10,7 +10,7 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 
 		loginService.login($scope.loginData.username, $scope.loginData.password)
 			.success(function(data) {
-				debugger
+
 
 				if (data.message === "Invalid Password") {
 					console.log(data.message)
@@ -20,8 +20,8 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 				$scope.processing = false;
 				$rootScope.loggedIn= true; 
 
+					$state.go('dashboard'); 
 
-					$state.go('dashboard'); //home????
 				}
 			});
 	}
@@ -29,14 +29,10 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 	$scope.doLogout = function() {
 		loginService.logout();
 		$rootScope.loggedIn = false; 
-		$state.go('home'); //// maybe a 'logout page'
+
+		$state.go('home'); 
 	}
 
 
 });
 
-
-// loginService.getUser()
-// 					.then(function(data) {
-// 						$scope.user = data.data;
-// 					});

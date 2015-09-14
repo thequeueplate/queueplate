@@ -9,12 +9,6 @@ app.service('signupService', function($http) {
 	}
 
 
-//??
-	// signupService.all = function() {
-	// 	return $http.get('/api/users');
-	// }
-//??
-
 	return signupService;
 
 });

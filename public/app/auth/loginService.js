@@ -80,21 +80,3 @@ app.factory('AuthInterceptor', function($q, $location, authTokenService) {
 	return interceptorService;
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

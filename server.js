@@ -7,8 +7,11 @@ var config = require('./config');
 var mongoose = require('mongoose'); //how you call your database
 var app = express(); 
 
+<<<<<<< HEAD
+=======
 // var http = require('http').Server(app);
 
+>>>>>>> 911a18f49414759588f1f540d952bd6b9254430f
 mongoose.connect(config.database, function(err) {
 	if(err) {
 		console.log(err);		
