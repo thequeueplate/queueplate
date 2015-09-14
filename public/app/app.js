@@ -33,25 +33,27 @@ $urlRouterProvider.otherwise('/');
 
 $locationProvider.html5Mode(true);
 
-
-
 });
 
-// app.run(function($stateProvider, $rootScope) {
 
-//   $rootScope.$on('$stateChangeStart', function() {
+app.run(function($state, $rootScope, $window) {
 
-
-//     loginService.getUser()
-//       .then(function(data) {  
-//         $scope.user = data.data;
-//       });
-//   });
-// )
-// })
-
-
-
+   $rootScope.$on('$stateChangeStart', function(event, toState) {  
+       var token = false;
+       var safeStates = ['home', 'signup', 'login'];
+       
+       var protected = safeStates.indexOf(toState.name) === -1;
+       console.log(protected)
+    
+     if (protected) {   
+         if (!$window.localStorage.token) {
+           console.log('protected state, no token')
+           event.preventDefault();
+           return $state.go('home');
+         } 
+      }       
+   });
+})
 
 
 

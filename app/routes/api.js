@@ -30,22 +30,22 @@ module.exports = function(app, express) {
 			password: req.body.password
 		});
 
-
 		user.save(function(err) {
+			console.log(err)
 			if(err) {
-				res.send(err);
+				res.send({message: "user not created", error: err});
 				return;
 			}
 
 			User.findOne({ 
 			username: req.body.username
-		}).select('name username password').exec(function(err, user) {
 
+		}).select('name username password').exec(function(err, user) {
 			if(err) throw err;
 
 			if(!user) {
 
-				res.send({ message: "userService doesn't exist"});
+				res.send({ message: "User doesn't exist"});
 			} else if(user) {
 
 				var validPassword = user.comparePassword(req.body.password);
