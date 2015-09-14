@@ -1,51 +1,58 @@
 <!DOCTYPE html>
+
 <html ng-app="QueuePlate">
 <head>
   <base href='/'>
   <title>QueuePlate</title>
 
-<!-- Compiled and minified CSS -->
+   <!-- JQUERY -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+
+  <!-- MATERIALIZE -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
-
-  <!-- Compiled and minified JavaScript  -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-  <!-- Angular -->
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js"></script>
 
-<!--   <link rel="stylesheet" href="/assets/styles.css"/> -->
+  <!-- ANGULAR -->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
+
+  <!-- ANGULAR UI-ROUTER -->
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+
 
 </head>
 
 <header>
       
-  <ul>
+  <ul ng-controller="loginCtrl">
+    <li ng-if="$root.loggedIn"><a href="#">hello</a></li>
     <li ng-if="!$root.loggedIn"><a ui-sref="login">Login</a></li>
     <li ng-if="!$root.loggedIn"><a ui-sref="signup">Signup</a></li>
+    <li ng-if="$root.loggedIn"><a ui-sref="dashboard">Dashboard</a></li>
     <li ng-if="$root.loggedIn"><a ui-sref="home" ng-click="doLogout()">Logout</a></li> 
    </ul>      
 
 </header>
    
-  <body ng-controller="authCtrl">
+   <body> 
 
-      <main class="container">
+    <main class="container">
         <div ui-view></div>
-      </main>
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+    </main>
   
-    <!-- JavaScript Files -->
-    
-    <script type="text/javascript" src="./public/app/app.js"></script>
+  <!-- JAVASCRIPT FILES -->
+  
+  <script type="text/javascript" src="app/app.js"></script>
 
-    <!-- Services -->
-    // <!-- <script type="text/javascript" src="app/services/authService.js"></script>
-    // <script type="text/javascript" src="app/services/userService.js"></script>
 
-    // Controllers
-    // <script type="text/javascript" src="app/controllers/authCtrl.js"></script>
-    // <script type="text/javascript" src="app/controllers/userCtrl.js"></script> -->
+  <!-- SERVICES -->
+<script type="text/javascript" src="app/auth/loginService.js"></script>
+<script type="text/javascript" src="app/auth/signupService.js"></script>
+
+  <!-- CONTROLLERS -->
+  <script type="text/javascript" src="app/auth/loginCtrl.js"></script>
+  <script type="text/javascript" src="app/auth/signupCtrl.js"></script>
 
   </body>
 </html>
+
