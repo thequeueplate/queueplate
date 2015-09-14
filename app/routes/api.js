@@ -30,6 +30,7 @@ module.exports = function(app, express) {
 			password: req.body.password
 		});
 
+
 		user.save(function(err) {
 			if(err) {
 				res.send(err);
@@ -66,6 +67,7 @@ module.exports = function(app, express) {
 
 			});
 		});
+
 
 	api.get('/users', function(req, res) {
 
@@ -131,6 +133,7 @@ module.exports = function(app, express) {
  				res.status(403).send({success: false, message: "No Token Provided" });
  			}
 		}); 
+
 	 
  api.get('/me', function(req, res) {  //seperate api so we can fetch login user data. we can call it from the fron t end
 		res.json(req.decoded); 
@@ -138,6 +141,7 @@ module.exports = function(app, express) {
  }); 
 
 return api 
+
 
 }
 
