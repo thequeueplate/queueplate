@@ -43,19 +43,9 @@ $locationProvider.html5Mode(true);
 
 
 //     loginService.getUser()
-//       .then(function(data) {  
+//       .then(function(data) {
 //         $scope.user = data.data;
 //       });
 //   });
 // )
 // })
-
-
-
-
-
-
-
-
-
-
