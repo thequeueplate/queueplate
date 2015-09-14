@@ -1,14 +1,6 @@
 var app = angular.module('QueuePlate')
 
-app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
-
-//??
-	// signupService.all()
-	// 	.success(function(data) {
-	// 		$scope.users = data;
-	// 		console.log($scope.users)
-	// 	})
-//??
+app.controller('signupCtrl', function($rootScope, signupService, $state, $window, $scope) {
 
 	$scope.signupUser = function() {
 		$scope.message = '';
@@ -16,15 +8,22 @@ app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 
 		signupService.create($scope.userData)
 			.then(function(response) {
+				debugger
 
 				$scope.userData = {};
+
 				$scope.message = response.data.message;
+				$rootScope.loggedIn = true; 
+
+				if(!response.data.success) {
+					alert("Unsuccessful sign up")
+				} else {
 
 				$window.localStorage.setItem('token', response.data.token);
-				console.log('token')
-				console.log(response.data.token)
 
 				$state.go('dashboard');
+				// $scope.$apply();
+				}
 			})
 	}
 

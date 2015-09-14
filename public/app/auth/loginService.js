@@ -49,7 +49,6 @@ app.service('authTokenService', function($window) {
 			$window.localStorage.setItem('token', token);
 		else
 			$window.localStorage.removeItem('token');
-
 	}
 
 })
@@ -79,22 +78,4 @@ app.factory('AuthInterceptor', function($q, $location, authTokenService) {
 
 	return interceptorService;
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

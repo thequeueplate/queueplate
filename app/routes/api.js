@@ -30,22 +30,22 @@ module.exports = function(app, express) {
 			password: req.body.password
 		});
 
-// 		var token = createToken(user);
 		user.save(function(err) {
+			console.log(err)
 			if(err) {
-				res.send(err);
+				res.send({message: "user not created", error: err});
 				return;
 			}
 
 			User.findOne({ 
 			username: req.body.username
-		}).select('name username password').exec(function(err, user) {
 
+		}).select('name username password').exec(function(err, user) {
 			if(err) throw err;
 
 			if(!user) {
 
-				res.send({ message: "userService doesn't exist"});
+				res.send({ message: "User doesn't exist"});
 			} else if(user) {
 
 				var validPassword = user.comparePassword(req.body.password);
@@ -67,7 +67,7 @@ module.exports = function(app, express) {
 
 			});
 		});
-// 	});
+
 
 	api.get('/users', function(req, res) {
 
@@ -134,16 +134,14 @@ module.exports = function(app, express) {
  			}
 		}); 
 
- // api.route('/')
-
-
 	 
  api.get('/me', function(req, res) {  //seperate api so we can fetch login user data. we can call it from the fron t end
 		res.json(req.decoded); 
 
  }); 
 
-return api //see if api is working
+return api 
+
 
 }
 

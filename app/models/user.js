@@ -6,7 +6,7 @@ var bcrypt = require('bcrypt-nodejs'); //library used to hash password
 var UserSchema = new Schema({
 	
 	name: String,
-	username: { type: String, required: true, index: { unique: true }},
+	username: { type: String, required: true, unique: true },
 	password: { type: String, required: true, select: false} //we dont want to query password as well
 
 });

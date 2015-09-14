@@ -8,13 +8,6 @@ app.service('signupService', function($http) {
 		return $http.post('/api/signup', userData);
 	}
 
-
-//??
-	// signupService.all = function() {
-	// 	return $http.get('/api/users');
-	// }
-//??
-
 	return signupService;
 
 });
