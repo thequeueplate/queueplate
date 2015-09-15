@@ -28,7 +28,7 @@
 
   <ul ng-controller="loginCtrl">
     <a ui-sref="home"><img src="assets/qlogo.png" /></a>
-    <li ng-if="$root.loggedIn"><a href="#">hello</a></li>
+    <li ng-if="$root.loggedIn"><a href="#">Welcome {{userInfo.name}}</a></li>
     <li ng-if="!$root.loggedIn"><a ui-sref="login">Login</a></li>
     <li ng-if="!$root.loggedIn"><a ui-sref="signup">Signup</a></li>
     <li ng-if="$root.loggedIn"><a ui-sref="dashboard">Dashboard</a></li>

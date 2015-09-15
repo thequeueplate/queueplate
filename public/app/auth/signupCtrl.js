@@ -8,7 +8,6 @@ app.controller('signupCtrl', function($rootScope, signupService, $state, $window
 
 		signupService.create($scope.userData)
 			.then(function(response) {
-				debugger
 
 				$scope.userData = {};
 
@@ -16,7 +15,8 @@ app.controller('signupCtrl', function($rootScope, signupService, $state, $window
 				$rootScope.loggedIn = true; 
 
 				if(!response.data.success) {
-					alert("Unsuccessful sign up")
+					Materialize.toast('username is already taken', 2000)
+
 				} else {
 
 				$window.localStorage.setItem('token', response.data.token);

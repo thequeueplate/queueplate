@@ -11,15 +11,20 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 		loginService.login($scope.loginData.username, $scope.loginData.password)
 			.success(function(data) {
 
-
 				if (data.message === "Invalid Password") {
 					console.log(data.message)
-					alert(data.message)
+					Materialize.toast('Invalid Password', 1000)
+					
 				} else {
 		
+		loginService.getUser()
+			.then(function(data) {
+				$rootScope.userInfo = data.data;
+				});
+
 				$scope.processing = false;
 				$rootScope.loggedIn = true; 
-
+				
 					$state.go('dashboard'); 
 
 				}

@@ -26,7 +26,7 @@ $urlRouterProvider.otherwise('/');
 
 	})
 
-.state('dashboard', {
+  .state('dashboard', {
 		url: '/dashboard',
 		templateUrl: 'app/dashboard/dashboard.html'
 	})
@@ -35,20 +35,27 @@ $locationProvider.html5Mode(true);
 
 });
 
-app.run(function($state, $rootScope, $window) {
+app.run(function($state, $rootScope, $window, loginService) {
 
    $rootScope.$on('$stateChangeStart', function(event, toState) {
        var token = false;
        var safeStates = ['home', 'signup', 'login'];
 
        var protected = safeStates.indexOf(toState.name) === -1;
-       console.log(protected)
 
      if (protected) {
-         if (!$window.localStorage.token) {
+      var token = $window.localStorage.token
+         if (!token) {
            console.log('protected state, no token')
            event.preventDefault();
            return $state.go('home');
+         } else {
+          $rootScope.loggedIn = true;
+          loginService.getUser()
+          .then(function(data) {
+            $rootScope.userInfo = data.data;
+          });
+
          }
       }
    });
