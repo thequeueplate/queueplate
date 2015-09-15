@@ -26,6 +26,7 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 				$rootScope.loggedIn = true; 
 				
 					$state.go('dashboard'); 
+
 				}
 			});
 	}

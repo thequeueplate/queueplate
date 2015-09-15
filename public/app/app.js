@@ -29,7 +29,6 @@ $urlRouterProvider.otherwise('/');
   .state('dashboard', {
 		url: '/dashboard',
 		templateUrl: 'app/dashboard/dashboard.html'
-
 	})
 
 $locationProvider.html5Mode(true);
@@ -56,6 +55,7 @@ app.run(function($state, $rootScope, $window, loginService) {
           .then(function(data) {
             $rootScope.userInfo = data.data;
           });
+
          }
       }
    });
