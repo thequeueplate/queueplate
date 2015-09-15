@@ -1,0 +1,23 @@
+{
+  "name": "QueuePlate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lindsey Brown",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.13.3",
+    "cors": "^2.7.1",
+    "express": "^4.13.3",
+    "jsonwebtoken": "^5.0.5",
+    "mongojs": "^1.3.0",
+    "mongoose": "^4.1.3",
+    "morgan": "^1.6.1",
+    "mysql": "^2.9.0",
+    "sequelize": "^3.8.0"
+  }
+}

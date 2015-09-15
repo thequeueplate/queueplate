@@ -1,0 +1,156 @@
+html, body{
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+/*
+.container {
+  margin-top: 120px !important;
+}*/
+
+
+/*//// HEADER ////*/
+
+header {
+  background-color: #0084bb;
+  color: white;
+  display: inline-block !important;
+  width: 100%;
+  height: 65px;
+  margin: 0;
+  /*position: fixed;
+  top: 0px;
+  z-index: 100;*/
+}
+
+header li {
+  display: inline-block;
+  float: right;
+  color: white;
+  padding: 10px 15px;
+  position: relative;
+  right: 120px;
+  top: -4px;
+}
+
+header a {
+  color: white;
+}
+
+header li:hover {
+  border-bottom: 2px solid white !important;
+}
+
+header img {
+  height: 35px;
+  float: left;
+  position: relative;
+  left: 120px;
+}
+
+header img:hover {
+  opacity: .8;
+}
+
+/*//// FOOTER ////*/
+
+footer {
+  height: 50px;
+  width: 100%;
+  color: #0084bb;
+  background-color: #cbcbcb;
+  text-align: center;
+  font-size: 12px;
+}
+
+footer p {
+  position: relative;
+  top: 19px;
+}
+
+/*//// HOME PAGE ////*/
+
+
+.greeting {
+  margin-top: 120px;
+}
+
+.homeh1 {
+  text-align: center;
+  color: #666;
+  font-weight: bolder;
+}
+
+.homeh2 {
+  text-align: center;
+  color: #666;
+  font-size: 2em;
+  font-weight: lighter;
+}
+
+.homeh3 {
+  text-align: center;
+  color: #0084bb;
+  position: relative;
+  top: 60px;
+}
+
+.homecontent {
+  position: relative;
+  top: 30px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.heroimage {
+  width: 500px;
+  border: 15px solid white;
+  box-shadow: 1px 1px 5px #ccc;
+}
+
+.choosepath {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 65px 0px;
+}
+
+
+
+.hungrypath {
+  display: inline-block;
+  color: #666;
+  text-align: center;
+  float: left;
+  margin: 20px 50px;
+  font-weight: lighter;
+}
+
+
+.foodpath {
+  display: inline-block;
+  color: #666;
+  text-align: center;
+  float: right;
+  margin: 20px 50px;
+  font-weight: lighter;
+}
+
+.ihavefoodimg {
+  width: 165px;
+}
+
+.ihavefoodimg:hover {
+  opacity: .8;
+  cursor: pointer;
+}
+
+.iamhungryimg {
+  width: 165px;
+}
+
+.iamhungryimg:hover {
+  opacity: .8;
+  cursor: pointer;
+}
