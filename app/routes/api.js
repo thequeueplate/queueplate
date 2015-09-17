@@ -1,4 +1,3 @@
-// var User = require('../models/user'); //we require it bc we will be manipulating it later 
 var config = require('../../config'); // because we will need the secret Key in the next line
 var models  = require('../models');
 var secretKey = config.secretKey; 
@@ -74,80 +73,27 @@ module.exports = function(app, express) {
 			res.send({message: "Can't login", error: err})
 		})
 	})
-
-	// api.get('/users', function(req, res) {
-
-	// 	User.find({}, function(err, users) {
-	// 		if(err) {
-	// 			res.send(err);
-	// 			return;
-	// 		}
-	// 		res.json(users);
-	// 	});
-	// });
-
-	// api.post('/login', function(req, res) {
-
-	// 	User.findOne({ 
-	// 		username: req.body.username
-	// 	}).select('name username password').exec(function(err, user) {
-
-	// 		if(err) throw err;
-
-	// 		if(!user) {
-
-	// 			res.send({ message: "userService doesn't exist"});
-	// 		} else if(user) {
-
-	// 			var validPassword = user.comparePassword(req.body.password);
-				
-	// 			if(!validPassword) {
-	// 				res.status(200).send({ message: "Invalid Password" });
-	// 			} else {
-
-	// 				var token = createToken(user);
-
-	// 				res.status(200).json({
-	// 					success: true, 
-	// 					message: "Successful login!",
-	// 					token: token
-	// 				});
- // 				}
- // 			}
- // 		});
- // 	});
-
- 		api.use(function(req, res, next) { //this middleware checks to see if user has token
-
- 			console.log("Somebody just came to our app!"); 
-
- 			var token = req.body.token || req.params.token || req.headers['x-access-token']; 
-
- 			if(token) {
-
- 				jsonwebtoken.verify(token, secretKey, function(err, decoded) {
-
-					if(err) {
- 						res.status(403).send({ success: false, message: "Failed to authenticate user" });
- 					} else {
- 						//
- 						req.decoded = decoded; 
- 						next(); 
- 					}
- 				});
- 			} else {
- 				res.status(403).send({success: false, message: "No Token Provided" });
- 			}
-		}); 
-
+ 	api.use(function(req, res, next) { //this middleware checks to see if user has token
+ 		console.log("Somebody just came to our app!"); 
+ 		var token = req.body.token || req.params.token || req.headers['x-access-token']; 
+ 		if(token) {
+ 			jsonwebtoken.verify(token, secretKey, function(err, decoded) {
+				if(err) {
+ 					res.status(403).send({ success: false, message: "Failed to authenticate user" });
+ 				} else {
+ 					//
+ 					req.decoded = decoded; 
+ 					next(); 
+ 				}
+ 			});
+ 		} else {
+ 			res.status(403).send({success: false, message: "No Token Provided" });
+ 		}
+	}); 
 	 
- api.get('/me', function(req, res) {  //seperate api so we can fetch login user data. we can call it from the fron t end
+ 	api.get('/me', function(req, res) {  //seperate api so we can fetch login user data. we can call it from the fron t end
 		res.json(req.decoded); 
 
- }); 
-
+ 	}); 
 return api; 
-
-
 }
-
