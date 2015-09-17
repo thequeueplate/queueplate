@@ -9,7 +9,7 @@ function createToken(user) {
 
 	var token = jsonwebtoken.sign({
 		id: user._id, 
-		username: user.username
+		email: user.email
 	}, secretKey, {
 		expiresInMinute: 1440
 	});
