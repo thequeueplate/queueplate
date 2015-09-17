@@ -35,6 +35,7 @@ module.exports = function(app, express) {
 				res.send({message: 'Invalid Password'});
 			} else {
 
+
 			var token = createToken(user);
 			console.log('successful login')
 
@@ -49,6 +50,9 @@ module.exports = function(app, express) {
 	  		if (err) { return console.error(err); }
 	  		console.log(json);
 			});
+
+				var token = createToken(user);
+				console.log('successful login')
 
 				res.json({
 					success: true, 
