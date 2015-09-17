@@ -1,6 +1,6 @@
-var config = require('../../config'); // because we will need the secret Key in the next line
+var config = require('../../config');
 var SGKey = config.SG_API_KEY;
-var sendgrid  = require('sendgrid')('SGKey')
+var sendgrid  = require('sendgrid')(SGKey)
 
 var models  = require('../models');
 var secretKey = config.secretKey; 
@@ -40,7 +40,7 @@ module.exports = function(app, express) {
 			console.log('successful login')
 
 			var email = new sendgrid.Email({
-			  to:       'lindseybrown4@gmail.com',
+			  to:       user.email,
 			  from:     'queueplate.com@gmail.com',
 			  subject:  'Welcome to QueuePlate!',
 			  text:     'Click on the link to confirm your registration http://localhost:3000/verify/' + user._id
@@ -58,7 +58,7 @@ module.exports = function(app, express) {
 					success: true, 
 					message: "Successful login!",
 					token: token
-				})
+				})	 
 			}
 		}).catch(function(err) {
 			res.send({message: "User not created", error: err});
