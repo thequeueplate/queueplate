@@ -36,6 +36,11 @@ $urlRouterProvider.otherwise('/');
 		templateUrl: 'app/RestDash/RestLanding.html'
 	})
 
+  .state('RestaurantCtrl', {
+		url: '/RestaurantCtrl',
+		templateUrl: 'app/RestDash/RestaurantTmpl.html'
+	})
+
 $locationProvider.html5Mode(true);
 
 });
