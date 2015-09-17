@@ -16,7 +16,8 @@ app.controller('signupCtrl', function($rootScope, signupService, $state, $window
 
 				if(!response.data.success) {
 
-					alert('username is already taken')
+					Materialize.toast('username is already taken', 2000)
+
 
 				} else {
 
