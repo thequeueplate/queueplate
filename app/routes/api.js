@@ -47,11 +47,15 @@ module.exports = function(app, express) {
 	});
 
 	api.get('/users', function(req, res) {
-		models.User.findAll();
+		models.User.findAll()
+		.then(function(users) {
+			res.send(users);
+		})
 	});
 
 	api.post('/login', function(req, res) {
-		models.User.find({ where: { email: req.body.email }}).then(function(user) {
+		models.User.find({ where: { email: req.body.email }})
+		.then(function(user) {
 			var validPassword = user.comparePassword(req.body.password);
 			console.log('login hit');
 
