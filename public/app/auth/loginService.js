@@ -2,10 +2,10 @@ var app = angular.module('QueuePlate')
 
 app.service('loginService', function($http, $q, authTokenService) {
 
-	this.login = function(username, password) {
+	this.login = function(email, password) {
 		
 		return $http.post('/api/login', {
-			username: username, 
+			email: email, 
 			password: password
 
 		})
