@@ -2,8 +2,10 @@ var express = require('express');
 var bodyParser = require('body-parser'); 
 var morgan = require('morgan'); 
 
-
 var config = require('./config');
+var sendgrid  = require('sendgrid')('config.sendgrid_API_KEY')
+
+
 var mongoose = require('mongoose'); //how you call your database
 var app = express(); 
 
@@ -30,6 +32,19 @@ app.get('*', function(req, res) { //the asterisk will make every url go to index
 	res.sendFile(__dirname + '/public/index.html');
 });
 
+var email = new sendgrid.Email({
+  to:       'lindseybrown4@gmail.com',
+  from:     'queueplate.com@gmail.com',
+  subject:  'Hello World',
+  text:     'My first email through SendGrid.'
+});
+
+sendgrid.send(email, function(err, json) {
+  if (err) { return console.error(err); }
+  console.log(json);
+});
+
+
 app.listen(config.port, function(err){
 	if(err) {
 		console.log(err);
@@ -37,3 +52,5 @@ app.listen(config.port, function(err){
 		console.log("Listening on port 3000");
 	}
 });
+
+
