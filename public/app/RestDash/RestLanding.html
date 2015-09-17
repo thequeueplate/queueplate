@@ -1,0 +1,63 @@
+<md-tabs>
+  <md-tab>
+    Cool Tab
+  </md-tab>
+  <md-tab>
+    Cooler Tab
+  </md-tab>
+</md-tabs>
+
+  <md-tab label="Restaurant Information">
+    <div>
+      <md-content layout='column' layout-sm='column'>
+        <md-input-container style="50%">
+          <label>Owner Name</label>
+          <input ng-model="restaurant.owner.name">
+        </md-input-container>
+        <md-input-container style="50%">
+          <label>Restaurant Name</label>
+          <input ng-model="restaurant.rest.name">
+        </md-input-container>
+        <md-input-container style="50%">
+          <label>Address</label>
+          <input ng-model="restaurant.address">
+        </md-input-container>
+        <md-input-container style="50%">
+          <label>Phone Number</label>
+          <input ng-model="restaurant.phone">
+        </md-input-container>
+      </md-content>
+    </div>
+  </md-tab>
+
+  <md-tab label="Menu">
+    <div>
+      <md-content>
+        <md-input-container>
+          <label>Item Name</label>
+          <input ng-model="menu.name">
+        </md-input-container>
+        <md-input-container>
+          <label>Item Description</label>
+          <input ng-model="menu.description">
+        </md-input-container>
+        <md-input-container>
+          <label>Item Price</label>
+          <input type="Number" ng-model="menu.price">
+        </md-input-container>
+        <md-button ng-click="removeMenuItem(idx)">
+          Remove Menu Item
+        </md-button>
+      </md-content>
+    </div>
+    <md-button ng-click="addMenuItem()" class="md-primary md-raised">
+      Add Menue Item
+    </md-button>
+  </md-tab>
+
+</md-tabs>
+
+<md-button ng-click="saveData()" class="md-accent md-hue-1" style="width: 100%; margin-bottom: 0;">
+  Save
+</md-button>
+

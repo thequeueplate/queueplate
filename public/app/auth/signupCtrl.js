@@ -8,13 +8,14 @@ app.controller('signupCtrl', function($rootScope, signupService, $state, $window
 
 		signupService.create($scope.userData)
 			.then(function(response) {
+				console.log(response)
 
 				$scope.userData = {};
 
 				$scope.message = response.data.message;
-				$rootScope.loggedIn = true; 
 
 				if(!response.data.success) {
+
 					Materialize.toast('username is already taken', 2000)
 
 				} else {
@@ -22,7 +23,7 @@ app.controller('signupCtrl', function($rootScope, signupService, $state, $window
 				$window.localStorage.setItem('token', response.data.token);
 
 				$state.go('dashboard');
-				// $scope.$apply();
+
 				}
 			})
 	}

@@ -8,7 +8,7 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 
 		$scope.error = '';
 
-		loginService.login($scope.loginData.username, $scope.loginData.password)
+		loginService.login($scope.loginData.email, $scope.loginData.password)
 			.success(function(data) {
 
 				if (data.message === "Invalid Password") {
@@ -37,7 +37,5 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 
 		$state.go('home'); 
 	}
-
-
 });
 

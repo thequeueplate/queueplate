@@ -2,19 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser'); 
 var morgan = require('morgan'); 
 
-
 var config = require('./config');
-var mongoose = require('mongoose'); //how you call your database
 var app = express(); 
-
-
-mongoose.connect(config.database, function(err) {
-	if(err) {
-		console.log(err);		
-	} else {
-		console.log('Connected to the database');
-	}
-}); 
 
 ///////     MIDDLEWARE     /////
 app.use(bodyParser.urlencoded({ extended: true })); //extended makes it accept videos and photos and strings etc

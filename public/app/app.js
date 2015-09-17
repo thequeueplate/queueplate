@@ -1,4 +1,5 @@
- var app = angular.module('QueuePlate', ['ui.router']);
+
+var app = angular.module('QueuePlate', ['ngAnimate', 'ngAria', 'ngMaterial','ui.router']);
 
 app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
 
@@ -30,6 +31,17 @@ $urlRouterProvider.otherwise('/');
 		url: '/dashboard',
 		templateUrl: 'app/dashboard/dashboard.html'
 	})
+
+  .state('RestLanding', {
+		url: '/RestLanding',
+		templateUrl: 'app/RestDash/RestLanding.html'
+	})
+
+  .state('RestaurantCtrl', {
+		url: '/RestaurantCtrl',
+		templateUrl: 'app/RestDash/RestaurantTmpl.html'
+	})
+
 
 $locationProvider.html5Mode(true);
 
