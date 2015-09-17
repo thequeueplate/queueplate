@@ -13,7 +13,7 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 
 				if (data.message === "Invalid Password") {
 					console.log(data.message)
-					Materialize.toast('Invalid Password', 1000)
+					alert('Invalid Password')
 					
 				} else {
 		

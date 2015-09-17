@@ -18,6 +18,7 @@ app.controller('signupCtrl', function($rootScope, signupService, $state, $window
 
 					Materialize.toast('username is already taken', 2000)
 
+
 				} else {
 
 				$window.localStorage.setItem('token', response.data.token);
