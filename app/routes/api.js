@@ -30,30 +30,36 @@ module.exports = function(app, express) {
 			password: req.body.password
 		}).then(function(user){
 			console.log('success hit')
+
+
+			//maybe take out unncessary code
 			var validPassword = user.comparePassword(req.body.password);
 
 			if(!validPassword) {
 				res.send({message: 'Invalid Password'});
 			} else {
 
-			console.log("LKLLJ::K:LJK:LJK:LJ:LJ:J:LJKJL:JK")
-			console.log(user.password)
-			console.log(user.userid)
-			console.log(user.email)
+				console.log("LKLLJ::K:LJK:LJK:LJ:LJ:J:LJKJL:JK")
+				console.log(user.password)
+				console.log(user.userid)
+				console.log(user.email)
 
-			var email = new sendgrid.Email({
-			  to:       'lindseybrown4@gmail.com',
-			  from:     'queueplate.com@gmail.com',
-			  subject:  'Welcome to QueuePlate!',
-			  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + user.password 
-			});
+				var email = new sendgrid.Email({
+				  to:       'lindseybrown4@gmail.com',
+				  from:     'queueplate.com@gmail.com',
+				  subject:  'Welcome to QueuePlate!',
+				  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + user.userid 
+				});
 
-			// + user.userid
+				// + user.userid
 
-			sendgrid.send(email, function(err, json) {
-	  		if (err) { return console.error(err); }
-	  		console.log(json);
-			});
+				sendgrid.send(email, function(err, json) {
+			  		if (err) { 
+			  			return console.error(err); 
+			  		}
+			  		
+			  		console.log(json);
+				});
 
 				var token = createToken(user);
 				console.log('successful login')
@@ -89,24 +95,6 @@ module.exports = function(app, express) {
 // 				}
 // 		});
 // });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	api.get('/users', function(req, res) {
 		models.User.findAll()

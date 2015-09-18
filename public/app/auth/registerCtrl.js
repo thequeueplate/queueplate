@@ -1,14 +1,15 @@
 var app = angular.module('QueuePlate')
 
-app.controller('registerCtrl', function($rootScope, registerService, $state, $window, $scope) {
+app.controller('registerCtrl', function($rootScope, registerService, $state, $scope) {
 
-$scope.registerUser = function() {
+$scope.registerUser = function(user) {
 
+	registerService.register(user).then(function() {
 
-	registerService.register = function() {
+//promise
 
-	}
-		$state.go('dashboard');
+	})
+		$state.go('login');
 		
 	}
 
@@ -20,4 +21,5 @@ $scope.registerUser = function() {
 // 		    $scope.productData = productService.sockData;
 // 		  }
 
-//$stateParams
+
+// $stateParams.id

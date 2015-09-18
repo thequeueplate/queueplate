@@ -43,9 +43,14 @@ $urlRouterProvider.otherwise('/');
 	// })
 
   .state('registerCustomer', {
-    url: '/registerCustomer', 
+    url: '/registerCustomer/:id', 
     templateUrl: 'app/auth/registerCustomer.html',
-    controller: 'registerCtrl'
+    controller: 'registerCtrl', 
+    resolve: {
+      customerId: function(registerService){
+        return registerService.register()
+      }
+    }
 
   })
 
@@ -63,7 +68,7 @@ app.run(function($state, $rootScope, $window, loginService) {
 
    $rootScope.$on('$stateChangeStart', function(event, toState) {
     
-       var safeStates = ['home', 'signup', 'login'];
+       var safeStates = ['home', 'signup', 'login', 'verify'];
 
        var protected = safeStates.indexOf(toState.name) === -1;
 

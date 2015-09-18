@@ -20,9 +20,9 @@ app.controller('signupCtrl', function($rootScope, signupService, $state, $window
 
 				} else {
 
-				$window.localStorage.setItem('token', response.data.token);
-
 				$state.go('verify');
+				// $window.localStorage.setItem('token', response.data.token);
+
 
 				}
 			})
