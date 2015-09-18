@@ -18,12 +18,13 @@
 				Confirm Password:<input type="text" id="passwordCheck" name="passwordCheck" class="form-control" ng-model="confirmpassword">
 				</div>
 
-				<div ng-show="!showpassword">
+				<div ng-show="!showpassword" >
 				Confirm Password:<input type="password" id= "passwordCheck" name="passwordCheck" class="form-control" ng-model="confirmpassword">
 				</div>
 
-				<a href="#"><i class="material-icons eye" ng-click="see()">visibility</i></a>
-				<a href="#"><i class="material-icons eye" ng-click="hide()">visibility_off</i></a> <br><br>
+
+				<a href="#"><i class="material-icons eye" title="show password" name="show password" ng-click="see()">visibility</i></a>
+				<a href="#"><i class="material-icons eye" title="hide password" ng-click="hide()">visibility_off</i></a> <br><br>
 
 				<button type="submit" class="btn btn-danger">Sign Up</button>
 
