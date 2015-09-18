@@ -40,6 +40,7 @@ module.exports = function(sequelize, DataTypes) {
     role: {
       type: DataTypes.ENUM,
       values: ['admin', 'owner', 'customer']
+    }
   }, {
   	hooks: {
   		beforeCreate: function(user, options, cb) {
