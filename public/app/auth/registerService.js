@@ -6,16 +6,16 @@ app.service('registerService', function($http, $q) {
 		var deferred = $q.defer()
 
 		$http.post('/api/registerCustomer', {
-			firstName: firstName, 
-			lastName: lastName,
-			age: age, 
-			gender: gender,
+			firstName: user.firstName, 
+			lastName: user.lastName,
+			age: user.age, 
+			gender: user.gender,
 			// street: street,
 			// apt: apt, 
 			// city: city, 
-			zip: zip, 
-			state: state, 
-			phone: phone
+			zip: user.zip, 
+			state: user.state, 
+			phone: user.phone
 			// cardNumber: cardNumber, 
 			// securityDigits: securityDigits, 
 			// dateOfExp: dateOfExp, 
