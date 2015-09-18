@@ -51,7 +51,7 @@ module.exports = function(app, express) {
 				  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + user.userid 
 				});
 
-				// + user.userid
+				// + user.useridd
 
 				sendgrid.send(email, function(err, json) {
 			  		if (err) { 
