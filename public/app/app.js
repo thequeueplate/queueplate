@@ -42,6 +42,13 @@ $urlRouterProvider.otherwise('/');
 		templateUrl: 'app/RestDash/RestaurantTmpl.html'
 	})
 
+  // .state('register', {
+  //   url: '/register', 
+  //   templateUrl: 'app/auth/register.html'
+  //   controller: 'registerCtrl'
+
+  // })
+
 
 $locationProvider.html5Mode(true);
 

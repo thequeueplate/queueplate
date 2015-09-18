@@ -24,6 +24,7 @@ module.exports = function(app, express) {
 	var api = express.Router(); 
 
 	api.post('/signup', function(req, res) {
+
 		models.User.create({
 			email: req.body.email,
 			password: req.body.password
@@ -35,12 +36,10 @@ module.exports = function(app, express) {
 				res.send({message: 'Invalid Password'});
 			} else {
 
-
-			var token = createToken(user);
-			console.log('successful login')
+			console.log(req.body)
 
 			var email = new sendgrid.Email({
-			  to:       user.email,
+			  to:       'lindseybrown4@gmail.com',
 			  from:     'queueplate.com@gmail.com',
 			  subject:  'Welcome to QueuePlate!',
 			  text:     'Click on the link to confirm your registration http://localhost:3000/verify/' + user._id
@@ -65,6 +64,46 @@ module.exports = function(app, express) {
 			return;
 		})
 	});
+
+api.put('/api/register', function(req, res) {
+	models.User.findAndModify({
+	    query: { 
+	    	_id: mongojs.ObjectId(req.query.id) 
+	    },
+	    update: { 
+	    	$set: { 
+	    		name: req.query.name,
+	    		order: req.query.order,
+	    		status: req.query.status
+	    	}
+	    },
+	    new: true
+		}, function (err, updated) {
+				if(!err) {
+					res.status(200).json(updated); 
+				} else {
+					res.status(500).json(err);
+				}
+		});
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	api.get('/users', function(req, res) {
 		models.User.findAll()

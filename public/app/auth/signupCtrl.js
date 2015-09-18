@@ -16,7 +16,7 @@ app.controller('signupCtrl', function($rootScope, signupService, $state, $window
 
 				if(!response.data.success) {
 
-					alert('username is already taken')
+					Materialize.toast('username is already taken', 2000)
 
 				} else {
 
@@ -28,4 +28,52 @@ app.controller('signupCtrl', function($rootScope, signupService, $state, $window
 			})
 	}
 
-})
+	$scope.password = document.getElementById("password")
+
+	$scope.passwordCheck = document.getElementById("passwordCheck");
+
+
+	$scope.validatePassword = function(){
+
+	        if (password.value == "") {
+	            Materialize.toast("Enter password!", 1500);
+	            var passwordconfirmed = false; 
+	        }
+	        
+	        if (passwordCheck.value !== password.value || passwordCheck.value == "") {
+					Materialize.toast("Confirm Password doesn't match", 1000); 
+					var passwordconfirmed = false;
+					
+				} else {
+					passwordCheck.value === password.value; 
+					var passwordconfirmed = true;
+				}
+
+			if 	(passwordconfirmed === true) {
+				   $scope.signupUser()
+			}
+	    }
+	})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
