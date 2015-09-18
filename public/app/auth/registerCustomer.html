@@ -1,8 +1,11 @@
-<h1>Welcome to QueuePlate {{UserRegistration.First}}!</h1>
+<h1>Welcome to QueuePlate!</h1>
 
+<div class="container">
+	<div class="row">
+		<div>
+		<h1 class="grey-text darken-2">Register Customer</h1>
+			<form class="form-register" method="post" ng-submit="registerUser()">
 
-
-<h3>Customer</h3>
 First Name: <input type="text"> 
 Last Name: <input type="text"> 
 Age: <input type="text">
@@ -28,3 +31,10 @@ Date of Expiration: <input type="text">
 <h3>Food Allergies</h3>
 
 
+
+				<button type="submit" class="btn btn-danger">Register</button>
+
+			</form>
+		</div>
+	</div>
+</div>

@@ -36,14 +36,19 @@ module.exports = function(app, express) {
 				res.send({message: 'Invalid Password'});
 			} else {
 
-			console.log(req.body)
+			console.log("LKLLJ::K:LJK:LJK:LJ:LJ:J:LJKJL:JK")
+			console.log(user.password)
+			console.log(user.userid)
+			console.log(user.email)
 
 			var email = new sendgrid.Email({
 			  to:       'lindseybrown4@gmail.com',
 			  from:     'queueplate.com@gmail.com',
 			  subject:  'Welcome to QueuePlate!',
-			  text:     'Click on the link to confirm your registration http://localhost:3000/verify/' + user._id
+			  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + user.password 
 			});
+
+			// + user.userid
 
 			sendgrid.send(email, function(err, json) {
 	  		if (err) { return console.error(err); }

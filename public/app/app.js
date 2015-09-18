@@ -42,12 +42,12 @@ $urlRouterProvider.otherwise('/');
 	// 	templateUrl: 'app/RestDash/RestaurantTmpl.html'
 	// })
 
-  // .state('register', {
-  //   url: '/register', 
-  //   templateUrl: 'app/auth/register.html'
-  //   controller: 'registerCtrl'
+  .state('registerCustomer', {
+    url: '/registerCustomer', 
+    templateUrl: 'app/auth/registerCustomer.html',
+    controller: 'registerCtrl'
 
-  // })
+  })
 
   .state('verify', {
       url: '/verify',
@@ -62,7 +62,7 @@ $locationProvider.html5Mode(true);
 app.run(function($state, $rootScope, $window, loginService) {
 
    $rootScope.$on('$stateChangeStart', function(event, toState) {
-       var token = false;
+    
        var safeStates = ['home', 'signup', 'login'];
 
        var protected = safeStates.indexOf(toState.name) === -1;
