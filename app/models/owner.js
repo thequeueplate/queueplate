@@ -1,8 +1,8 @@
 var bcrypt = require('bcrypt-nodejs'); //library used to hash password
 
 module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define("User", {
-  	userid: {
+  var Owner = sequelize.define("Owner", {
+  	ownerid: {
   		type: DataTypes.INTEGER,
   		primaryKey: true,
   		autoIncrement: true
