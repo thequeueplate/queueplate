@@ -45,10 +45,10 @@ module.exports = function(app, express) {
 				console.log(user.email)
 
 				var email = new sendgrid.Email({
-				  to:       'lindseybrown4@gmail.com',
+				  to:       user.email,
 				  from:     'queueplate.com@gmail.com',
 				  subject:  'Welcome to QueuePlate!',
-				  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + user.email 
+				  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + user.userid 
 				});
 
 				// + user.userid
