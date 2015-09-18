@@ -59,6 +59,7 @@ module.exports = function(app, express) {
 			console.log('login hit');
 
 			if(!validPassword) {
+				console.log('not valid pw');
 				res.send({message: 'Invalid Password'});
 			} else {
 				var token = createToken(user);
