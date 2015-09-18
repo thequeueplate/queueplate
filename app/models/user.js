@@ -20,6 +20,26 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false
+    },
+    firstName: {
+      type: DataTypes.STRING()
+    },
+    lastName: {
+      type:DataTypes.STRING()
+    },
+    age: {
+      type: DataTypes.INTEGER.UNSIGNED
+    },
+    gender: {
+      type: DataTypes.ENUM,
+      values: ['Male', 'Female', 'N/A']
+    },
+    phoneNumber: {
+      type: DataTypes.STRING()
+    },
+    role: {
+      type: DataTypes.ENUM,
+      values: ['admin', 'owner', 'customer']
     }
   }, {
   	hooks: {
