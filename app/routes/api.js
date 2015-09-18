@@ -45,7 +45,7 @@ module.exports = function(app, express) {
 				console.log(user.email)
 
 				var email = new sendgrid.Email({
-				  to:       user.email,
+				  to:       'lindseybrown4@gmail.com',
 				  from:     'queueplate.com@gmail.com',
 				  subject:  'Welcome to QueuePlate!',
 				  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + user.userid 
@@ -76,7 +76,7 @@ module.exports = function(app, express) {
 		})
 	});
 
-// api.post('/registerCustomer:/id', function(req, res) {
+// api.put('/registerCustomer:/id', function(req, res) {
 // 	models.User.findAndModify({
 // 	    query: { 
 // 	    	userid: mongojs.ObjectId(req.query.userid) 
@@ -95,6 +95,9 @@ module.exports = function(app, express) {
 // 				}
 // 		});
 // });
+
+
+
 
 	api.get('/users', function(req, res) {
 		models.User.findAll()
