@@ -70,27 +70,25 @@ module.exports = function(app, express) {
 		})
 	});
 
-api.put('/api/register', function(req, res) {
-	models.User.findAndModify({
-	    query: { 
-	    	_id: mongojs.ObjectId(req.query.id) 
-	    },
-	    update: { 
-	    	$set: { 
-	    		name: req.query.name,
-	    		order: req.query.order,
-	    		status: req.query.status
-	    	}
-	    },
-	    new: true
-		}, function (err, updated) {
-				if(!err) {
-					res.status(200).json(updated); 
-				} else {
-					res.status(500).json(err);
-				}
-		});
-});
+// api.post('/registerCustomer:/id', function(req, res) {
+// 	models.User.findAndModify({
+// 	    query: { 
+// 	    	userid: mongojs.ObjectId(req.query.userid) 
+// 	    },
+// 	    update: { 
+// 	    	$set: { 
+// 	    		verify: true,
+// 	    	}
+// 	    },
+// 	    new: true
+// 		}, function (err, updated) {
+// 				if(!err) {
+// 					res.status(200).json(updated); 
+// 				} else {
+// 					res.status(500).json(err);
+// 				}
+// 		});
+// });
 
 
 

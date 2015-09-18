@@ -33,21 +33,24 @@ app.controller('signupCtrl', function($rootScope, signupService, $state, $window
 	$scope.passwordCheck = document.getElementById("passwordCheck");
 
 
-	$scope.validatePassword = function(){
+	$scope.validatePassword = function(p, cp){
+	
 
-	        if (password.value == "") {
+	        if (p == "") {
+
+
 	            Materialize.toast("Enter password!", 1500);
 	            var passwordconfirmed = false; 
 	        }
 	        
-	        if (passwordCheck.value !== password.value || passwordCheck.value == "") {
+	        if (cp !== p || cp == "") {
 					Materialize.toast("Confirm Password doesn't match", 1000); 
 					var passwordconfirmed = false;
-					
-				} else {
-					passwordCheck.value === password.value; 
-					var passwordconfirmed = true;
-				}
+				
+			} else if (cp === p) {
+				
+				var passwordconfirmed = true;
+			}
 
 			if 	(passwordconfirmed === true) {
 
@@ -66,4 +69,3 @@ app.controller('signupCtrl', function($rootScope, signupService, $state, $window
 	    }
 
 	})
-

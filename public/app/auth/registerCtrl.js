@@ -13,3 +13,11 @@ $scope.registerUser = function() {
 	}
 
 })
+
+// if($stateParams.password === user.password){
+// 		    $scope.productData = productService.shoeData;
+// 		  } else if ($stateParams.id === 'socks'){
+// 		    $scope.productData = productService.sockData;
+// 		  }
+
+//$stateParams
