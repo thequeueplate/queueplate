@@ -22,7 +22,7 @@ app.controller('signupCtrl', function($rootScope, signupService, $state, $window
 
 				$window.localStorage.setItem('token', response.data.token);
 
-				$state.go('dashboard');
+				$state.go('verify');
 
 				}
 			})
@@ -50,30 +50,20 @@ app.controller('signupCtrl', function($rootScope, signupService, $state, $window
 				}
 
 			if 	(passwordconfirmed === true) {
+
 				   $scope.signupUser()
 			}
 	    }
+
+	    $scope.see = function() {
+	    	$scope.showpassword = true;	
+
+	    }
+
+	    $scope.hide = function() {
+	    	$scope.showpassword = false; 
+	    	
+	    }
+
 	})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

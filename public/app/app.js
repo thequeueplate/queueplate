@@ -32,15 +32,15 @@ $urlRouterProvider.otherwise('/');
 		templateUrl: 'app/dashboard/dashboard.html'
 	})
 
-  .state('RestLanding', {
-		url: '/RestLanding',
-		templateUrl: 'app/RestDash/RestLanding.html'
-	})
+ //  .state('RestLanding', {
+	// 	url: '/RestLanding',
+	// 	templateUrl: 'app/RestDash/RestLanding.html'
+	// })
 
-  .state('RestaurantCtrl', {
-		url: '/RestaurantCtrl',
-		templateUrl: 'app/RestDash/RestaurantTmpl.html'
-	})
+ //  .state('RestaurantCtrl', {
+	// 	url: '/RestaurantCtrl',
+	// 	templateUrl: 'app/RestDash/RestaurantTmpl.html'
+	// })
 
   // .state('register', {
   //   url: '/register', 
@@ -48,6 +48,11 @@ $urlRouterProvider.otherwise('/');
   //   controller: 'registerCtrl'
 
   // })
+
+  .state('verify', {
+      url: '/verify',
+      templateUrl: 'app/auth/verify.html'
+    })
 
 
 $locationProvider.html5Mode(true);
