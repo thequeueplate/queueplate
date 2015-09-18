@@ -24,32 +24,42 @@ module.exports = function(app, express) {
 	var api = express.Router(); 
 
 	api.post('/signup', function(req, res) {
+
 		models.User.create({
 			email: req.body.email,
 			password: req.body.password
 		}).then(function(user){
 			console.log('success hit')
+
+
+			//maybe take out unncessary code
 			var validPassword = user.comparePassword(req.body.password);
 
 			if(!validPassword) {
 				res.send({message: 'Invalid Password'});
 			} else {
 
+				console.log("LKLLJ::K:LJK:LJK:LJ:LJ:J:LJKJL:JK")
+				console.log(user.password)
+				console.log(user.userid)
+				console.log(user.email)
 
-			var token = createToken(user);
-			console.log('successful login')
+				var email = new sendgrid.Email({
+				  to:       'lindseybrown4@gmail.com',
+				  from:     'queueplate.com@gmail.com',
+				  subject:  'Welcome to QueuePlate!',
+				  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + user.userid 
+				});
 
-			var email = new sendgrid.Email({
-			  to:       user.email,
-			  from:     'queueplate.com@gmail.com',
-			  subject:  'Welcome to QueuePlate!',
-			  text:     'Click on the link to confirm your registration http://localhost:3000/verify/' + user._id
-			});
+				// + user.userid
 
-			sendgrid.send(email, function(err, json) {
-	  		if (err) { return console.error(err); }
-	  		console.log(json);
-			});
+				sendgrid.send(email, function(err, json) {
+			  		if (err) { 
+			  			return console.error(err); 
+			  		}
+			  		
+			  		console.log(json);
+				});
 
 				var token = createToken(user);
 				console.log('successful login')
@@ -65,6 +75,26 @@ module.exports = function(app, express) {
 			return;
 		})
 	});
+
+// api.post('/registerCustomer:/id', function(req, res) {
+// 	models.User.findAndModify({
+// 	    query: { 
+// 	    	userid: mongojs.ObjectId(req.query.userid) 
+// 	    },
+// 	    update: { 
+// 	    	$set: { 
+// 	    		verify: true,
+// 	    	}
+// 	    },
+// 	    new: true
+// 		}, function (err, updated) {
+// 				if(!err) {
+// 					res.status(200).json(updated); 
+// 				} else {
+// 					res.status(500).json(err);
+// 				}
+// 		});
+// });
 
 	api.get('/users', function(req, res) {
 		models.User.findAll()

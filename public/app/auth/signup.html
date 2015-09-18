@@ -2,13 +2,29 @@
 	<div class="row">
 		<div>
 		<h1 class="grey-text darken-2">Sign Up</h1>
-			<form class="form-signin" method="post" ng-submit="signupUser()">
+			<form class="form-signin" method="post" ng-submit="validatePassword(userData.password, confirmpassword)">
 
-				<!-- Name:<input type="text" name="name" class="form-control" ng-model="userData.name"> -->
+				Email:<input type="email" name="username" class="form-control" ng-model="userData.email">
 
-				Email:<input type="text" name="username" class="form-control" ng-model="userData.email">
+				<div ng-show="showpassword">
+				Password:<input type="text" id="password" name="password" class="form-control" ng-model="userData.password">
+				</div>
+				
+				<div ng-show="!showpassword">
+				Password:<input  type="password" id="password" name="password" class="form-control" ng-model="userData.password">
+				</div>
 
-				Password:<input type="password" name="password" class="form-control" ng-model="userData.password">
+				<div ng-show="showpassword">
+				Confirm Password:<input type="text" id="passwordCheck" name="passwordCheck" class="form-control" ng-model="confirmpassword">
+				</div>
+
+				<div ng-show="!showpassword" >
+				Confirm Password:<input type="password" id= "passwordCheck" name="passwordCheck" class="form-control" ng-model="confirmpassword">
+				</div>
+
+
+				<a href="#"><i class="material-icons eye" title="show password" name="show password" ng-click="see()">visibility</i></a>
+				<a href="#"><i class="material-icons eye" title="hide password" ng-click="hide()">visibility_off</i></a> <br><br>
 
 				<button type="submit" class="btn btn-danger">Sign Up</button>
 
