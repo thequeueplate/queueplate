@@ -30,6 +30,7 @@ $urlRouterProvider.otherwise('/');
   .state('dashboard', {
 		url: '/dashboard',
 		templateUrl: 'app/dashboard/dashboard.html'
+
 	})
 
  //  .state('RestLanding', {
@@ -45,12 +46,12 @@ $urlRouterProvider.otherwise('/');
   .state('registerCustomer', {
     url: '/registerCustomer/:id', 
     templateUrl: 'app/auth/registerCustomer.html',
-    controller: 'registerCtrl', 
-    resolve: {
-      customerId: function(registerService){
-        return registerService.register()
-      }
-    }
+    controller: 'registerCtrl'
+    // resolve: {
+    //   customerId: function(registerService){
+    //     return registerService.register()
+    //   }
+    // }
 
   })
 
@@ -68,7 +69,7 @@ app.run(function($state, $rootScope, $window, loginService) {
 
    $rootScope.$on('$stateChangeStart', function(event, toState) {
     
-       var safeStates = ['home', 'signup', 'login', 'verify'];
+       var safeStates = ['home', 'signup', 'login', 'verify', 'registerCustomer'];
 
        var protected = safeStates.indexOf(toState.name) === -1;
 

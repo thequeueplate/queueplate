@@ -10,9 +10,9 @@ app.service('registerService', function($http, $q) {
 			lastName: lastName,
 			age: age, 
 			gender: gender,
-			street: street,
-			apt: apt, 
-			city: city, 
+			// street: street,
+			// apt: apt, 
+			// city: city, 
 			zip: zip, 
 			state: state, 
 			phone: phone
