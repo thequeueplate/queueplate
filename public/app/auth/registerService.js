@@ -2,19 +2,34 @@ var app = angular.module('QueuePlate')
 
 app.service('registerService', function($http, $q) {
 
-	this.register = function(user) {
-		var deferred = $q.defer()
 
-		$http.post('/api/registerCustomer', {
+	this.checkVerified = function(id) {
+		var deferred = $q.defer();
+		$http({
+			method: "GET", 
+			url: "/api/users/" + id
+		}).then(function(response) {
+			deferred.resolve(response.data)
+			console.log(response)
+		})
+		    return deferred.promise
+	}
+
+	this.register = function(user, UID) {
+		var deferred = $q.defer()
+		console.log(user)
+		console.log(UID)
+
+		$http.put('/api/users/' + UID + '/pref', {
 			firstName: user.firstName, 
 			lastName: user.lastName,
 			age: user.age, 
-			gender: user.gender,
+			// gender: user.gender,
 			// street: street,
 			// apt: apt, 
 			// city: city, 
-			zip: user.zip, 
-			state: user.state, 
+			// zip: user.zip, 
+			// state: user.state, 
 			phone: user.phone
 			// cardNumber: cardNumber, 
 			// securityDigits: securityDigits, 
@@ -29,14 +44,4 @@ app.service('registerService', function($http, $q) {
 		return deferred.promise
 	}
 
-	this.checkVerified = function(id) {
-		var deferred = $q.defer();
-		$http({
-			method: "GET", 
-			url: "/api/registerCustomer?userid=" + id
-		}).then(function(response) {
-			deferred.resolve(response.data)
-		})
-		    return dfd.promise
-	}
 })
