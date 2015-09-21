@@ -1,9 +1,12 @@
-var express = require('express'); 
-var bodyParser = require('body-parser'); 
-var morgan = require('morgan'); 
+var express = require('express');
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
 
 var config = require('./config');
-var app = express(); 
+var stripe = require("stripe")("sk_test_GOrufKljADFLhu6YHA75r0AB");
+var request = require('request');
+
+var app = express();
 
 ///////     MIDDLEWARE     /////
 app.use(bodyParser.urlencoded({ extended: true })); //extended makes it accept videos and photos and strings etc
@@ -17,6 +20,24 @@ app.use('/api', api); // /api is the prefix in all api.js files files
 
 app.get('*', function(req, res) { //the asterisk will make every url go to index.html
 	res.sendFile(__dirname + '/public/index.html');
+});
+
+app.post('/charge', function(req, res) {
+    var stripeToken = req.body.stripeToken;
+    var amount = 1000;
+
+    stripe.charges.create({
+        card: stripeToken,
+        currency: 'usd',
+        amount: amount
+    },
+    function(err, charge) {
+        if (err) {
+            res.send(500, err);
+        } else {
+            res.send(204);
+        }
+    });
 });
 
 app.listen(config.port, function(err){
