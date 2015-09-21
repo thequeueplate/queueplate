@@ -47,12 +47,16 @@ $urlRouterProvider.otherwise('/');
   .state('registerCustomer', {
     url: '/registerCustomer/:id', 
     templateUrl: 'app/auth/registerCustomer.html',
-    controller: 'registerCtrl'
-    // resolve: {
-    //   customerId: function(registerService) {
-    //     return registerService.checkVerified(id)
-    //   }
-    // }
+    controller: 'registerCtrl',
+    resolve: {
+      customerId: function(registerService, $stateParams) {
+        return $stateParams.id
+      },
+      publishData: function(registerService, $stateParams) {
+        return registerService.checkVerified($stateParams.id)
+      }
+
+    }
 
   })
 

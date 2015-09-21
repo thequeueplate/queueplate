@@ -12,9 +12,9 @@ app.service('loginService', function($http, $q, authTokenService) {
 
 		})
 		.success(function(data) {
-			
-			// this.testMessage = "krang"
-			// console.log("als;dfjLKJSLDFJFLSJFL:SDJFLS:FJSDL" + testMessage) 
+			console.log(data)
+			this.testMessage = "krang"
+			console.log("als;dfjLKJSLDFJFLSJFL:SDJFLS:FJSDL" + testMessage) 
 			
 			authTokenService.setToken(data.token)
 			return data;
