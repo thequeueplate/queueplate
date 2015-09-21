@@ -1,37 +1,69 @@
-var mongoose = require('mongoose');
-
-var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs'); //library used to hash password
 
-var UserSchema = new Schema({
-	
-	name: String,
-	username: { type: String, required: true, unique: true },
-	password: { type: String, required: true, select: false} //we dont want to query password as well
+module.exports = function(sequelize, DataTypes) {
+  var User = sequelize.define("User", {
+  	userid: {
+  		type: DataTypes.INTEGER,
+  		primaryKey: true,
+  		autoIncrement: true
+  	},
+  	email: {
+  		type: DataTypes.STRING(255),
+  		allowNull: false,
+      unique: true
+  	},
+  	password: {
+  		type: DataTypes.CHAR(60),
+  		allowNull: false
+  	},
+    verify: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    firstName: {
+      type: DataTypes.STRING()
+    },
+    lastName: {
+      type:DataTypes.STRING()
+    },
+    age: {
+      type: DataTypes.INTEGER.UNSIGNED
+    },
+    gender: {
+      type: DataTypes.ENUM,
+      values: ['Male', 'Female', 'N/A']
+    },
+    phoneNumber: {
+      type: DataTypes.STRING()
+    },
+    role: {
+      type: DataTypes.ENUM,
+      values: ['admin', 'owner', 'customer']
+    }
+  }, {
+  	hooks: {
+  		beforeCreate: function(user, options, cb) {
+  			bcrypt.hash(user.password, null, null, function(err, hash) {
+  				user.password = hash;
+          return cb(null, options);
+  			})
+  		}
+  	},
+  	instanceMethods: {
+  		comparePassword: function(password) {
+        console.log("compare hit");
+  			return bcrypt.compareSync(password, this.password)
+  		}
+  	}
 
-});
+  // }, {
+  //   classMethods: {
+  //     associate: function(models) {
+  //       User.hasMany(models.Favorite)	USE LATER
+  //     }
+  //   }
+  });
 
-UserSchema.pre('save', function(next) {
-
-	var user = this;
-
-	if(!user.isModified('password')) return next();
-
-	bcrypt.hash(user.password, null, null, function(err, hash) {
-		console.log(user)
-		if(err) return next(err);
-
-		user.password = hash;
-		next();
-
-	});
-});
-
-UserSchema.methods.comparePassword = function(password) { //create custome method called compare password
-
-	var user = this;
-
-	return bcrypt.compareSync(password, user.password);
-}
-
-module.exports = mongoose.model('User', UserSchema);
+  return User;
+};

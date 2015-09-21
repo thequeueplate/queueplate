@@ -154,3 +154,26 @@ footer p {
   opacity: .8;
   cursor: pointer;
 }
+
+
+
+.eye {
+
+  float: right;
+  margin: 10px;
+}
+.eye:hover {
+
+  color: black;
+ 
+}
+
+
+
+
+
+
+
+
+
+}

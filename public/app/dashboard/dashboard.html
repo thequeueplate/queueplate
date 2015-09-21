@@ -1,39 +1,13 @@
-<h1>{{userInfo.name}}'s Dashboard!</h1>
+<h1>{{userInfo.email}}'s Dashboard!</h1>
 
-<md-content layout-padding>
-    <form name="deliveryAddress" ng-submit="deliveryAddress(delivery)">
-      <div layout layout-sm="column">
-        <md-input-container flex>
-          <label>First name</label>
-          <input ng-model="delivery.firstName">
-        </md-input-container>
-        <md-input-container flex>
-          <label>Last Name</label>
-          <input ng-model="theMax">
-        </md-input-container>
-      </div>
-      <md-input-container flex>
-        <label>Address</label>
-        <input ng-model="delivery.address">
-      </md-input-container>
-      <md-input-container md-no-float>
-        <input ng-model="delivery.address2" placeholder="Address 2">
-      </md-input-container>
-      <div layout layout-sm="column">
-        <md-input-container flex>
-          <label>City</label>
-          <input ng-model="delivery.city">
-        </md-input-container>
-        <md-input-container flex>
-          <label>State</label>
-          <input ng-model="delivery.state">
-        </md-input-container>
-        <md-input-container flex>
-          <label>Postal Code</label>
-          <input ng-model="delivery.postalCode">
-        </md-input-container>
-      </div>
-      <md-button class="md-raised md-primary" ng-click="deliveryAddress(delivery)">Add Delivery Info</md-button>
-    </form>
-  </md-content>
-</div>
+<form method="post" enctype="multipart/form-data">
+<table width="350" border="0" cellpadding="1" cellspacing="1" class="box">
+<tr>
+<td width="246">
+<input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+<input name="userfile" type="file" id="userfile">
+</td>
+<td width="80"><input name="upload" type="submit" class="box" id="upload" value=" Upload "></td>
+</tr>
+</table>
+</form>
