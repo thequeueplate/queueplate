@@ -31,19 +31,6 @@ module.exports = function(app, express) {
 		}).then(function(user){
 			console.log('success hit')
 
-
-			//maybe take out unncessary code
-			var validPassword = user.comparePassword(req.body.password);
-
-			if(!validPassword) {
-				res.send({message: 'Invalid Password'});
-			} else {
-
-				console.log("LKLLJ::K:LJK:LJK:LJ:LJ:J:LJKJL:JK")
-				console.log(user.password)
-				console.log(user.userid)
-				console.log(user.email)
-
 				var email = new sendgrid.Email({
 				  to:       'lindseybrown4@gmail.com',
 				  from:     'queueplate.com@gmail.com',
@@ -58,7 +45,7 @@ module.exports = function(app, express) {
 			  			return console.error(err); 
 			  		}
 			  		
-			  		console.log(json);
+			  		// console.log("WHAT IS LINE 48???????????????", json);
 				});
 
 				var token = createToken(user);
@@ -69,12 +56,26 @@ module.exports = function(app, express) {
 					message: "Successful login!",
 					token: token
 				})	 
-			}
+			
 		}).catch(function(err) {
 			res.send({message: "User not created", error: err});
 			return;
 		})
 	});
+
+
+	api.put('/users/:userid/pref', function(req, res) {
+        models.User.find({ where: { userid: req.params.userid}})
+        .then(function(user) {
+            user.firstName = req.body.firstName;
+            user.lastName = req.body.lastName;
+            user.age = req.body.age;
+            user.gender = req.body.gender;
+            user.save().then(function(){
+                res.json({message: "User preferences updated"})
+            })
+        })
+    })
 
 // api.put('/registerCustomer:/id', function(req, res) {
 // 	models.User.findAndModify({
@@ -97,8 +98,6 @@ module.exports = function(app, express) {
 // });
 
 
-
-
 	api.get('/users', function(req, res) {
 		models.User.findAll()
 		.then(function(users) {
@@ -106,7 +105,7 @@ module.exports = function(app, express) {
 		})
 	});
 
-	api.post('/login', function(req, res) {
+	api.post('/users', function(req, res) {
 		models.User.find({ where: { email: req.body.email }})
 		.then(function(user) {
 			var validPassword = user.comparePassword(req.body.password);

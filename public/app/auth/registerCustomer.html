@@ -6,7 +6,7 @@
 	<div class="row">
 		<div>
 		<h1 class="grey-text darken-2">Register Customer</h1>
-			<form class="form-register" method="post" ng-submit="registerUser(user)">
+			<form class="form-register" ng-submit="registerUser(user)">
 
 	First Name: <input type="text" ng-model="user.firstName" required> 
 	Last Name: <input type="text" ng-model="user.lastName" required> 
@@ -24,7 +24,9 @@
 	Zip: <input type="text" ng-model="user.zip">
 	State:  -->
 
-	<select ng-model="user.state">
+
+
+	<select name="state" ng-model="user.state">
 		<option value="AL">Alabama</option>
 		<option value="AK">Alaska</option>
 		<option value="AZ">Arizona</option>

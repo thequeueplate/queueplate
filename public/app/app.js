@@ -30,6 +30,7 @@ $urlRouterProvider.otherwise('/');
   .state('dashboard', {
 		url: '/dashboard',
 		templateUrl: 'app/dashboard/dashboard.html'
+    // controller: 'dashboardCtrl'
 
 	})
 
@@ -46,10 +47,10 @@ $urlRouterProvider.otherwise('/');
   .state('registerCustomer', {
     url: '/registerCustomer/:id', 
     templateUrl: 'app/auth/registerCustomer.html',
-    controller: 'registerCtrl',
+    controller: 'registerCtrl'
     // resolve: {
-    //   customerId: function(registerService){
-    //     return registerService.register()
+    //   customerId: function(registerService) {
+    //     return registerService.checkVerified(id)
     //   }
     // }
 

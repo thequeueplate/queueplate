@@ -4,8 +4,10 @@ app.service('registerService', function($http, $q) {
 
 	this.register = function(user) {
 		var deferred = $q.defer()
+		console.log(user)
+		console.log(deferred)
 
-		$http.post('/api/registerCustomer', {
+		$http.put('/api/users/pref', {
 			firstName: user.firstName, 
 			lastName: user.lastName,
 			age: user.age, 
