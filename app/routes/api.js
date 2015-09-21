@@ -31,19 +31,6 @@ module.exports = function(app, express) {
 		}).then(function(user){
 			console.log('success hit')
 
-
-			//maybe take out unncessary code
-			var validPassword = user.comparePassword(req.body.password);
-
-			if(!validPassword) {
-				res.send({message: 'Invalid Password'});
-			} else {
-
-				console.log("LKLLJ::K:LJK:LJK:LJ:LJ:J:LJKJL:JK")
-				console.log(user.password)
-				console.log(user.userid)
-				console.log(user.email)
-
 				var email = new sendgrid.Email({
 				  to:       'lindseybrown4@gmail.com',
 				  from:     'queueplate.com@gmail.com',
@@ -58,7 +45,7 @@ module.exports = function(app, express) {
 			  			return console.error(err); 
 			  		}
 			  		
-			  		console.log(json);
+			  		// console.log("WHAT IS LINE 48???????????????", json);
 				});
 
 				var token = createToken(user);
@@ -67,37 +54,56 @@ module.exports = function(app, express) {
 				res.json({
 					success: true, 
 					message: "Successful login!",
-					token: token
+					token: token,
+					userID: user.userid
 				})	 
-			}
+			
 		}).catch(function(err) {
 			res.send({message: "User not created", error: err});
 			return;
 		})
 	});
 
-// api.put('/registerCustomer:/id', function(req, res) {
-// 	models.User.findAndModify({
-// 	    query: { 
-// 	    	userid: mongojs.ObjectId(req.query.userid) 
-// 	    },
-// 	    update: { 
-// 	    	$set: { 
-// 	    		verify: true,
-// 	    	}
-// 	    },
-// 	    new: true
-// 		}, function (err, updated) {
-// 				if(!err) {
-// 					res.status(200).json(updated); 
-// 				} else {
-// 					res.status(500).json(err);
-// 				}
-// 		});
-// });
+
+	// api.put('/users/:userid/pref', function(req, res) {
+	// 	console.log('REQ.BODY asldkfjaosdifjasdfojasdofjiasd', req.body)
+ //        models.User.find({ where: { userid: req.params.userid}})
+ //        .then(function(user) {
+ //        	console.log("INSIDE FUNCTION!@#$!@#$")
+ //            user.firstName = req.body.firstName;
+ //            user.lastName = req.body.lastName;
+ //            user.age = req.body.age;
+ //            user.gender = req.body.gender;
+ //            user.save().then(function(){
+ //                res.json({message: "User preferences updated"})
+ //            })
+ //        })
+ //    })
 
 
-
+	api.put('/users/:userid/pref', function(req, res) {
+		// console.log('REQ.BODY asldkfjaosdifjasdfojasdofjiasd', req.body)
+        models.User.update(
+	        	{
+	        		firstName: req.body.firstName,
+	        		lastName: req.body.lastName,
+	        		age: req.body.age,
+	        		gender: req.body.gender,
+	        		verify: true
+	        	}, 
+	        	{ where: { userid: req.params.userid}
+        	})
+        // console.log("RES RES RES RES RES 12341892347192834", res.body)
+        .then(function(user) {
+        	console.log("INSIDE FUNCTION!@#$!@#$")
+            // user.firstName = req.body.firstName;
+            // user.lastName = req.body.lastName;
+            // user.age = req.body.age;
+            // user.gender = req.body.gender;
+            // user.save().then(function(){
+                res.json({message: "User preferences updated"})
+            })
+        })
 
 	api.get('/users', function(req, res) {
 		models.User.findAll()
@@ -106,7 +112,15 @@ module.exports = function(app, express) {
 		})
 	});
 
-	api.post('/login', function(req, res) {
+
+	api.get('/users/:userid', function(req, res) {
+        models.User.find({ where: { userid: req.params.userid}})
+        .then(function(users) {
+            res.send(users);
+        })
+    });
+
+	api.post('/users', function(req, res) {
 		models.User.find({ where: { email: req.body.email }})
 		.then(function(user) {
 			var validPassword = user.comparePassword(req.body.password);
@@ -122,7 +136,8 @@ module.exports = function(app, express) {
 				res.json({
 					success: true, 
 					message: "Successful login!",
-					token: token
+					token: token, 
+					userID: user.userid
 				})
 			}
 		}).catch(function(err) {

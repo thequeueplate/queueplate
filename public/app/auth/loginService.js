@@ -1,15 +1,20 @@
 var app = angular.module('QueuePlate')
 
 app.service('loginService', function($http, $q, authTokenService) {
+		this.testMessage;
+
 
 	this.login = function(email, password) {
 		
-		return $http.post('/api/login', {
+		return $http.post('/api/users', {
 			email: email, 
 			password: password
 
 		})
 		.success(function(data) {
+			console.log(data)
+			this.testMessage = "krang"
+			console.log("als;dfjLKJSLDFJFLSJFL:SDJFLS:FJSDL" + testMessage) 
 			
 			authTokenService.setToken(data.token)
 			return data;
