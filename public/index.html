@@ -16,6 +16,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 
+  <!-- STRIPE -->
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script type="text/javascript">
+  // This identifies your website in the createToken call below
+  Stripe.setPublishableKey('pk_test_FxAxWIRgqdOHZVz8zNH1F21p');
+  // ...
+</script>
+
   <!-- ANGULAR -->
   <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script> -->
 </head>
@@ -55,6 +63,7 @@
   <script type="text/javascript" src="app/auth/loginService.js"></script>
   <script type="text/javascript" src="app/auth/signupService.js"></script>
   <script type="text/javascript" src="app/auth/registerService.js"></script>
+  <script type="text/javascript" src="app/checkout/checkoutService.js"></script>
 
   <!-- CONTROLLERS -->
   <script type="text/javascript" src="app/auth/loginCtrl.js"></script>
@@ -63,6 +72,7 @@
   <script type="text/javascript" src="app/dashboard/dashboardCtrl.js"></script>
   <script type="text/javascript" src="app/RestDash/RestaurantCtrl.js"></script>
    <script type="text/javascript" src="app/auth/registerCtrl.js"></script>
+  <script type="text/javascript" src="app/checkout/checkoutCtrl.js"></script>
 
 
   </body>

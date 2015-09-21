@@ -17,7 +17,9 @@
     "jsonwebtoken": "^5.0.5",
     "morgan": "^1.6.1",
     "mysql": "^2.9.0",
+    "request": "^2.63.0",
     "sendgrid": "^1.9.2",
-    "sequelize": "^3.8.0"
+    "sequelize": "^3.8.0",
+    "stripe": "^4.0.0"
   }
 }

@@ -33,6 +33,12 @@ $urlRouterProvider.otherwise('/');
 
 	})
 
+  .state('checkout', {
+    url: '/checkout',
+    templateUrl: 'app/checkout/checkout.html',
+    controller: 'checkoutCtrl'
+  })
+
  //  .state('RestLanding', {
 	// 	url: '/RestLanding',
 	// 	templateUrl: 'app/RestDash/RestLanding.html'
@@ -44,7 +50,7 @@ $urlRouterProvider.otherwise('/');
 	// })
 
   .state('registerCustomer', {
-    url: '/registerCustomer/:id', 
+    url: '/registerCustomer/:id',
     templateUrl: 'app/auth/registerCustomer.html',
     controller: 'registerCtrl',
     // resolve: {
@@ -68,7 +74,7 @@ $locationProvider.html5Mode(true);
 app.run(function($state, $rootScope, $window, loginService) {
 
    $rootScope.$on('$stateChangeStart', function(event, toState) {
-    
+
        var safeStates = ['home', 'signup', 'login', 'verify', 'registerCustomer'];
 
        var protected = safeStates.indexOf(toState.name) === -1;

@@ -4,11 +4,10 @@ html, body{
   height: 100%;
   width: 100%;
 }
-/*
-.container {
-  margin-top: 120px !important;
-}*/
 
+h1, h2, h3 {
+  color: #666;
+}
 
 /*//// HEADER ////*/
 
