@@ -4,11 +4,10 @@ html, body{
   height: 100%;
   width: 100%;
 }
-/*
-.container {
-  margin-top: 120px !important;
-}*/
 
+h1, h2, h3 {
+  color: #666;
+}
 
 /*//// HEADER ////*/
 
@@ -153,4 +152,27 @@ footer p {
 .iamhungryimg:hover {
   opacity: .8;
   cursor: pointer;
+}
+
+
+
+.eye {
+
+  float: right;
+  margin: 10px;
+}
+.eye:hover {
+
+  opacity: .6;
+
+}
+
+
+
+
+
+
+
+
+
 }

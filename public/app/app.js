@@ -30,17 +30,46 @@ $urlRouterProvider.otherwise('/');
   .state('dashboard', {
 		url: '/dashboard',
 		templateUrl: 'app/dashboard/dashboard.html'
+    // controller: 'dashboardCtrl'
+
 	})
 
-  .state('RestLanding', {
-		url: '/RestLanding',
-		templateUrl: 'app/RestDash/RestLanding.html'
-	})
+  .state('checkout', {
+    url: '/checkout',
+    templateUrl: 'app/checkout/checkout.html',
+    controller: 'checkoutCtrl'
+  })
 
-  .state('RestaurantCtrl', {
-		url: '/RestaurantCtrl',
-		templateUrl: 'app/RestDash/RestaurantTmpl.html'
-	})
+ //  .state('RestLanding', {
+	// 	url: '/RestLanding',
+	// 	templateUrl: 'app/RestDash/RestLanding.html'
+	// })
+
+ //  .state('RestaurantCtrl', {
+	// 	url: '/RestaurantCtrl',
+	// 	templateUrl: 'app/RestDash/RestaurantTmpl.html'
+	// })
+
+  .state('registerCustomer', {
+    url: '/registerCustomer/:id',
+    templateUrl: 'app/auth/registerCustomer.html',
+    controller: 'registerCtrl',
+    resolve: {
+      customerId: function(registerService, $stateParams) {
+        return $stateParams.id
+      },
+      publishData: function(registerService, $stateParams) {
+        return registerService.checkVerified($stateParams.id)
+      }
+
+    }
+
+  })
+
+  .state('verify', {
+      url: '/verify',
+      templateUrl: 'app/auth/verify.html'
+    })
 
 
 $locationProvider.html5Mode(true);
@@ -50,8 +79,8 @@ $locationProvider.html5Mode(true);
 app.run(function($state, $rootScope, $window, loginService) {
 
    $rootScope.$on('$stateChangeStart', function(event, toState) {
-       var token = false;
-       var safeStates = ['home', 'signup', 'login'];
+
+       var safeStates = ['home', 'signup', 'login', 'verify', 'registerCustomer'];
 
        var protected = safeStates.indexOf(toState.name) === -1;
 

@@ -8,13 +8,39 @@ module.exports = function(sequelize, DataTypes) {
   		autoIncrement: true
   	},
   	email: {
-  		type: DataTypes.STRING(320),
-  		allowNull: false
+  		type: DataTypes.STRING(255),
+  		allowNull: false,
+      unique: true
   	},
   	password: {
   		type: DataTypes.CHAR(60),
   		allowNull: false
-  	}
+  	},
+    verify: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    firstName: {
+      type: DataTypes.STRING()
+    },
+    lastName: {
+      type:DataTypes.STRING()
+    },
+    age: {
+      type: DataTypes.INTEGER.UNSIGNED
+    },
+    gender: {
+      type: DataTypes.ENUM,
+      values: ['Male', 'Female', 'N/A']
+    },
+    phoneNumber: {
+      type: DataTypes.STRING()
+    },
+    role: {
+      type: DataTypes.ENUM,
+      values: ['admin', 'owner', 'customer']
+    }
   }, {
   	hooks: {
   		beforeCreate: function(user, options, cb) {

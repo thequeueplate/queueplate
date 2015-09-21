@@ -1,6 +1,6 @@
-var config = require('../../config'); // because we will need the secret Key in the next line
+var config = require('../../config');
 var SGKey = config.SG_API_KEY;
-var sendgrid  = require('sendgrid')('SGKey')
+var sendgrid  = require('sendgrid')(SGKey)
 
 var models  = require('../models');
 var secretKey = config.secretKey; 
@@ -24,32 +24,29 @@ module.exports = function(app, express) {
 	var api = express.Router(); 
 
 	api.post('/signup', function(req, res) {
+
 		models.User.create({
 			email: req.body.email,
 			password: req.body.password
 		}).then(function(user){
 			console.log('success hit')
-			var validPassword = user.comparePassword(req.body.password);
 
-			if(!validPassword) {
-				res.send({message: 'Invalid Password'});
-			} else {
+				var email = new sendgrid.Email({
+				  to:       'lindseybrown4@gmail.com',
+				  from:     'queueplate.com@gmail.com',
+				  subject:  'Welcome to QueuePlate!',
+				  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + user.userid 
+				});
 
+				// + user.useridd
 
-			var token = createToken(user);
-			console.log('successful login')
-
-			var email = new sendgrid.Email({
-			  to:       'lindseybrown4@gmail.com',
-			  from:     'queueplate.com@gmail.com',
-			  subject:  'Welcome to QueuePlate!',
-			  text:     'Click on the link to confirm your registration http://localhost:3000/verify/' + user._id
-			});
-
-			sendgrid.send(email, function(err, json) {
-	  		if (err) { return console.error(err); }
-	  		console.log(json);
-			});
+				sendgrid.send(email, function(err, json) {
+			  		if (err) { 
+			  			return console.error(err); 
+			  		}
+			  		
+			  		// console.log("WHAT IS LINE 48???????????????", json);
+				});
 
 				var token = createToken(user);
 				console.log('successful login')
@@ -57,14 +54,56 @@ module.exports = function(app, express) {
 				res.json({
 					success: true, 
 					message: "Successful login!",
-					token: token
-				})
-			}
+					token: token,
+					userID: user.userid
+				})	 
+			
 		}).catch(function(err) {
 			res.send({message: "User not created", error: err});
 			return;
 		})
 	});
+
+
+	// api.put('/users/:userid/pref', function(req, res) {
+	// 	console.log('REQ.BODY asldkfjaosdifjasdfojasdofjiasd', req.body)
+ //        models.User.find({ where: { userid: req.params.userid}})
+ //        .then(function(user) {
+ //        	console.log("INSIDE FUNCTION!@#$!@#$")
+ //            user.firstName = req.body.firstName;
+ //            user.lastName = req.body.lastName;
+ //            user.age = req.body.age;
+ //            user.gender = req.body.gender;
+ //            user.save().then(function(){
+ //                res.json({message: "User preferences updated"})
+ //            })
+ //        })
+ //    })
+
+
+	api.put('/users/:userid/pref', function(req, res) {
+		// console.log('REQ.BODY asldkfjaosdifjasdfojasdofjiasd', req.body)
+        models.User.update(
+	        	{
+	        		firstName: req.body.firstName,
+	        		lastName: req.body.lastName,
+	        		age: req.body.age,
+	        		gender: req.body.gender,
+	        		verify: true
+	        	}, 
+	        	{ where: { userid: req.params.userid}
+        	})
+        // console.log("RES RES RES RES RES 12341892347192834", res.body)
+        .then(function(user) {
+        	console.log("INSIDE FUNCTION!@#$!@#$")
+            // user.firstName = req.body.firstName;
+            // user.lastName = req.body.lastName;
+            // user.age = req.body.age;
+            // user.gender = req.body.gender;
+            // user.save().then(function(){
+                res.json({message: "User preferences updated"})
+            })
+        })
 
 	api.get('/users', function(req, res) {
 		models.User.findAll()
@@ -73,13 +112,22 @@ module.exports = function(app, express) {
 		})
 	});
 
-	api.post('/login', function(req, res) {
+
+	api.get('/users/:userid', function(req, res) {
+        models.User.find({ where: { userid: req.params.userid}})
+        .then(function(users) {
+            res.send(users);
+        })
+    });
+
+	api.post('/users', function(req, res) {
 		models.User.find({ where: { email: req.body.email }})
 		.then(function(user) {
 			var validPassword = user.comparePassword(req.body.password);
 			console.log('login hit');
 
 			if(!validPassword) {
+				console.log('not valid pw');
 				res.send({message: 'Invalid Password'});
 			} else {
 
@@ -88,7 +136,8 @@ module.exports = function(app, express) {
 				res.json({
 					success: true, 
 					message: "Successful login!",
-					token: token
+					token: token, 
+					userID: user.userid
 				})
 			}
 		}).catch(function(err) {
