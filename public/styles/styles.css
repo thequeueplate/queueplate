@@ -164,8 +164,8 @@ footer p {
 }
 .eye:hover {
 
-  color: black;
- 
+  opacity: .6;
+
 }
 
 
