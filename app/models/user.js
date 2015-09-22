@@ -21,12 +21,34 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: false
     },
+    //PREFERENCES
     firstName: {
       type: DataTypes.STRING()
     },
     lastName: {
       type:DataTypes.STRING()
     },
+
+    //ADDRESS INFO
+    addLine1: {
+      type: DataTypes.STRING(75)
+    },
+    addLine2: {
+      type: DataTypes.STRING(75)
+    },
+    addLine3: {
+      type: DataTypes.STRING(75)
+    },
+    addCity: {
+      type: DataTypes.STRING(30)
+    },
+    addState: {
+      type: DataTypes.CHAR(2)
+    },
+    addZip: {
+      type: DataTypes.INTEGER(5)
+    },
+
     age: {
       type: DataTypes.INTEGER.UNSIGNED
     },
@@ -37,6 +59,7 @@ module.exports = function(sequelize, DataTypes) {
     phoneNumber: {
       type: DataTypes.STRING()
     },
+    //END PREFERENCES
     role: {
       type: DataTypes.ENUM,
       values: ['admin', 'owner', 'customer']

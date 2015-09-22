@@ -1,18 +1,13 @@
 var app = angular.module('QueuePlate')
 
-app.controller('registerCtrl', function($rootScope, publishData, customerId, registerService, $state, $scope, loginService) {
-	console.log(publishData.userid)
-	console.log(customerId)
+app.controller('registerCtrl', function($rootScope, registerService, $state, $scope, loginService) {
 
-
-	$scope.registerUser = function(user) {
-
-		registerService.register(user, customerId).then(function(response) {		
-			
-			console.log(publishData.userid)
-			$scope.customerData = response.data; 			
+	$scope.registerUser = function(user, publishData) {
+		registerService.register(user, publishData).then(function(response) {
+			console.log(response); 
+			$scope.customerData = response.data; 
+			console.log(response.data)
 			$state.go('login');
-
 		});	
 
 			
@@ -37,3 +32,7 @@ app.controller('registerCtrl', function($rootScope, publishData, customerId, reg
 
 
 // $stateParams.id
+
+
+
+

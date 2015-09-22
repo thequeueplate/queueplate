@@ -1,8 +1,8 @@
 var bcrypt = require('bcrypt-nodejs'); //library used to hash password
 
 module.exports = function(sequelize, DataTypes) {
-  var Owner = sequelize.define("Owner", {
-    ownerid: {
+  var Restaurant = sequelize.define("Restaurant", {
+    restid: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
@@ -46,13 +46,13 @@ module.exports = function(sequelize, DataTypes) {
     },
     role: {
       type: DataTypes.ENUM,
-      values: ['admin', 'owner', 'customer']
+      values: ['admin', 'restaurant', 'customer']
     }
   }, {
     hooks: {
-      beforeCreate: function(owner, options, cb) {
-        bcrypt.hash(owner.password, null, null, function(err, hash) {
-          owner.password = hash;
+      beforeCreate: function(rest, options, cb) {
+        bcrypt.hash(rest.password, null, null, function(err, hash) {
+          rest.password = hash;
           return cb(null, options);
         })
       }
@@ -72,5 +72,5 @@ module.exports = function(sequelize, DataTypes) {
   //   }
   });
 
-  return Owner;
+  return Restaurant;
 };
