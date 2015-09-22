@@ -21,42 +21,31 @@ $urlRouterProvider.otherwise('/');
    })
 
   .state('signup', {
-		url: '/signup',
-		templateUrl: 'app/auth/signup.html',
-		controller: 'signupCtrl'
+    url: '/signup',
+    templateUrl: 'app/auth/signup.html',
+    controller: 'signupCtrl'
 
-	})
+  })
 
   .state('dashboard', {
-		url: '/dashboard',
-		templateUrl: 'app/dashboard/dashboard.html', 
-    controller: 'dashboardCtrl', 
-    resolve: {
-      userData: function(loginService) {
-        return loginService.userData;
-      }
-    }
+    url: '/dashboard',
+    templateUrl: 'app/dashboard/dashboard.html'
+    // controller: 'dashboardCtrl'
 
-	})
-
-  .state('checkout', {
-    url: '/checkout',
-    templateUrl: 'app/checkout/checkout.html',
-    controller: 'checkoutCtrl'
   })
 
  //  .state('RestLanding', {
-	// 	url: '/RestLanding',
-	// 	templateUrl: 'app/RestDash/RestLanding.html'
-	// })
+  //  url: '/RestLanding',
+  //  templateUrl: 'app/RestDash/RestLanding.html'
+  // })
 
  //  .state('RestaurantCtrl', {
-	// 	url: '/RestaurantCtrl',
-	// 	templateUrl: 'app/RestDash/RestaurantTmpl.html'
-	// })
+  //  url: '/RestaurantCtrl',
+  //  templateUrl: 'app/RestDash/RestaurantTmpl.html'
+  // })
 
   .state('registerCustomer', {
-    url: '/registerCustomer/:id',
+    url: '/registerCustomer/:id', 
     templateUrl: 'app/auth/registerCustomer.html',
     controller: 'registerCtrl',
     resolve: {
@@ -84,7 +73,7 @@ $locationProvider.html5Mode(true);
 app.run(function($state, $rootScope, $window, loginService) {
 
    $rootScope.$on('$stateChangeStart', function(event, toState) {
-
+    
        var safeStates = ['home', 'signup', 'login', 'verify', 'registerCustomer'];
 
        var protected = safeStates.indexOf(toState.name) === -1;
@@ -99,10 +88,11 @@ app.run(function($state, $rootScope, $window, loginService) {
           $rootScope.loggedIn = true;
           loginService.getUser()
           .then(function(data) {
-            // $rootScope.userInfo = data.data;
+            $rootScope.userInfo = data.data;
           });
 
          }
       }
    });
 })
+

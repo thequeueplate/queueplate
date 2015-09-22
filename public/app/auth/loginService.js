@@ -1,6 +1,8 @@
 var app = angular.module('QueuePlate')
 
 app.service('loginService', function($http, $q, authTokenService) {
+		this.testMessage;
+
 
 	this.login = function(email, password) {
 		
@@ -10,8 +12,10 @@ app.service('loginService', function($http, $q, authTokenService) {
 
 		})
 		.success(function(data) {
-			this.userData = data; 
-			console.log(userData)
+			console.log(data)
+			this.testMessage = "krang"
+			console.log("als;dfjLKJSLDFJFLSJFL:SDJFLS:FJSDL" + testMessage) 
+			
 			authTokenService.setToken(data.token)
 			return data;
 		})
@@ -32,13 +36,6 @@ app.service('loginService', function($http, $q, authTokenService) {
 	this.getUser = function() {
 		if(authTokenService.getToken())
 			return $http.get('/api/me');
-		else
-			return $q.reject({message: "User has no token"})
-	}
-
-	this.getUserById = function(id) {
-		if(authTokenService.getToken())
-			return $http.get('/api/users?userID=' + id);
 		else
 			return $q.reject({message: "User has no token"})
 	}
@@ -86,4 +83,5 @@ app.factory('AuthInterceptor', function($q, $location, authTokenService) {
 
 	return interceptorService;
 });
+
 

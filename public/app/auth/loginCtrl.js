@@ -10,11 +10,8 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 
 		loginService.login($scope.loginData.email, $scope.loginData.password)
 			.success(function(data) {
-
-				
-				loginService.userData = data; 
-
-
+				// console.log("DATAR", data)
+				// loginService.testMessage = "hi there";
 				if (data.message === "Invalid Password") {
 					console.log(data.message)
 					Materialize.toast('Invalid Password', 1000)
