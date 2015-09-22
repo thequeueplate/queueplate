@@ -32,7 +32,7 @@ module.exports = function(app, express) {
 			console.log('success hit')
 
 				var email = new sendgrid.Email({
-				  to:       'lindseybrown4@gmail.com',
+				  to:       'rspicer@razegroup.com',
 				  from:     'queueplate.com@gmail.com',
 				  subject:  'Welcome to QueuePlate!',
 				  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + user.userid
@@ -64,7 +64,24 @@ module.exports = function(app, express) {
 		})
 	});
 
-	api.put('/users/:userid/pref', function(req, res) {
+
+	// api.put('/users/:userid/pref', function(req, res) {
+	// 	console.log('REQ.BODY asldkfjaosdifjasdfojasdofjiasd', req.body)
+ //        models.User.find({ where: { userid: req.params.userid}})
+ //        .then(function(user) {
+ //        	console.log("INSIDE FUNCTION!@#$!@#$")
+ //            user.firstName = req.body.firstName;
+ //            user.lastName = req.body.lastName;
+ //            user.age = req.body.age;
+ //            user.gender = req.body.gender;
+ //            user.save().then(function(){
+ //                res.json({message: "User preferences updated"})
+ //            })
+ //        })
+ //    })
+
+
+	api.put('/:userid/pref', function(req, res) {
 		// console.log('REQ.BODY asldkfjaosdifjasdfojasdofjiasd', req.body)
         models.User.update(
 	        	{
@@ -72,6 +89,13 @@ module.exports = function(app, express) {
 	        		lastName: req.body.lastName,
 	        		age: req.body.age,
 	        		gender: req.body.gender,
+	        		addLine1: req.body.addLine1,
+	        		addLine2: req.body.addLine2,
+	        		addLine3: req.body.addLine3,
+	        		addCity: req.body.addCity,
+	        		addState: req.body.addState,
+	        		addZip: req.body.addZip,
+	        		phoneNumber: req.body.phoneNumber,
 	        		verify: true
 	        	},
 	        	{ where: { userid: req.params.userid}
@@ -88,7 +112,7 @@ module.exports = function(app, express) {
             })
         })
 
-	api.get('/users', function(req, res) {
+	api.get('/', function(req, res) {
 		models.User.findAll()
 		.then(function(users) {
 			res.send(users);
@@ -96,14 +120,14 @@ module.exports = function(app, express) {
 	});
 
 
-	api.get('/users/:userid', function(req, res) {
+	api.get('/:userid', function(req, res) {
         models.User.find({ where: { userid: req.params.userid}})
         .then(function(users) {
             res.send(users);
         })
     });
 
-	api.post('/users', function(req, res) {
+	api.post('/login', function(req, res) {
 		models.User.find({ where: { email: req.body.email }})
 		.then(function(user) {
 			var validPassword = user.comparePassword(req.body.password);
@@ -150,4 +174,4 @@ module.exports = function(app, express) {
 
  	});
 return api;
-};
+}
