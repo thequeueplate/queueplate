@@ -21,34 +21,28 @@ $urlRouterProvider.otherwise('/');
    })
 
   .state('signup', {
-		url: '/signup',
-		templateUrl: 'app/auth/signup.html',
-		controller: 'signupCtrl'
+    url: '/signup',
+    templateUrl: 'app/auth/signup.html',
+    controller: 'signupCtrl'
 
-	})
+  })
 
   .state('dashboard', {
-		url: '/dashboard',
-		templateUrl: 'app/dashboard/dashboard.html'
+    url: '/dashboard',
+    templateUrl: 'app/dashboard/dashboard.html'
     // controller: 'dashboardCtrl'
 
-	})
-
-  .state('checkout', {
-    url: '/checkout',
-    templateUrl: 'app/checkout/checkout.html',
-    controller: 'checkoutCtrl'
   })
 
  //  .state('RestLanding', {
-	// 	url: '/RestLanding',
-	// 	templateUrl: 'app/RestDash/RestLanding.html'
-	// })
+  //  url: '/RestLanding',
+  //  templateUrl: 'app/RestDash/RestLanding.html'
+  // })
 
  //  .state('RestaurantCtrl', {
-	// 	url: '/RestaurantCtrl',
-	// 	templateUrl: 'app/RestDash/RestaurantTmpl.html'
-	// })
+  //  url: '/RestaurantCtrl',
+  //  templateUrl: 'app/RestDash/RestaurantTmpl.html'
+  // })
 
   .state('registerCustomer', {
     url: '/registerCustomer/:id',
@@ -81,6 +75,7 @@ app.run(function($state, $rootScope, $window, loginService) {
    $rootScope.$on('$stateChangeStart', function(event, toState) {
 
        var safeStates = ['home', 'signup', 'login', 'verify', 'registerCustomer', 'registerOwner'];
+
 
        var protected = safeStates.indexOf(toState.name) === -1;
 

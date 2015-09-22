@@ -1,8 +1,8 @@
 var bcrypt = require('bcrypt-nodejs'); //library used to hash password
 
 module.exports = function(sequelize, DataTypes) {
-  var Owner = sequelize.define("Owner", {
-    ownerid: {
+  var Restaurant = sequelize.define("Restaurant", {
+    restid: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
@@ -21,18 +21,23 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: false
     },
-    firstName: {
-      type: DataTypes.STRING()
+    addLine1: {
+      type: DataTypes.STRING(75)
     },
-    lastName: {
-      type:DataTypes.STRING()
+    addLine2: {
+      type: DataTypes.STRING(75)
     },
-    age: {
-      type: DataTypes.INTEGER.UNSIGNED
+    addLine3: {
+      type: DataTypes.STRING(75)
     },
-    gender: {
-      type: DataTypes.ENUM,
-      values: ['Male', 'Female', 'N/A']
+    addCity: {
+      type: DataTypes.STRING(30)
+    },
+    addState: {
+      type: DataTypes.CHAR(2)
+    },
+    addZip: {
+      type: DataTypes.INTEGER(5)
     },
     phoneNumber: {
       type: DataTypes.STRING()
@@ -46,13 +51,13 @@ module.exports = function(sequelize, DataTypes) {
     },
     role: {
       type: DataTypes.ENUM,
-      values: ['admin', 'owner', 'customer']
+      values: ['admin', 'restaurant', 'customer']
     }
   }, {
     hooks: {
-      beforeCreate: function(owner, options, cb) {
-        bcrypt.hash(owner.password, null, null, function(err, hash) {
-          owner.password = hash;
+      beforeCreate: function(rest, options, cb) {
+        bcrypt.hash(rest.password, null, null, function(err, hash) {
+          rest.password = hash;
           return cb(null, options);
         })
       }
@@ -72,5 +77,5 @@ module.exports = function(sequelize, DataTypes) {
   //   }
   });
 
-  return Owner;
+  return Restaurant;
 };
