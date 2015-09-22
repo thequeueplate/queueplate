@@ -14,6 +14,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular-material": "~0.11.0"
+    "angular-material": "~0.11.0",
+    "angular-ui-utils": "~3.0.0"
   }
 }
