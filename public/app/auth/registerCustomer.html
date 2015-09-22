@@ -8,9 +8,9 @@
 		<h1 class="grey-text darken-2">Register Customer</h1>
 			<form class="form-register" ng-submit="registerUser(user)">
 
-	First Name: <input type="text" ng-model="user.firstName" required> 
-	Last Name: <input type="text" ng-model="user.lastName" required> 
-	Age: <input type="number" ng-model="user.age" required>
+	<!-- First Name: <input type="text" ng-model="user.firstName" required> -->
+	<!-- Last Name: <input type="text" ng-model="user.lastName" required> -->
+	<!-- Age: <input type="number" ng-model="user.age" required> -->
 	<!-- Gender: <select name="gender" ng-model="user.gender" required>
 		<option value="female">Female</option>
 	  	<option value="male">Male</option>
@@ -24,9 +24,116 @@
 	Zip: <input type="text" ng-model="user.zip">
 	State:  -->
 
+	<md-input-container>
+		<label>First Name</label>
+		<input ng-model="user.firstName">
+	</md-input-container>
+
+	<md-input-container>
+		<label>Last Name</label>
+		<input ng-model="user.lastName">
+	</md-input-container>
+
+	<md-input-container>
+		<label>Age</label>
+		<input type="Number" ng-model="user.age">
+	</md-input-container>
+
+	<md-input-container>
+		<label>Gender</label>
+		<md-select ng-model="user.gender">
+			<md-option ng-repeat="gender in genders" ng-value="gender.type">{{gender.type}}</md-option>
+		</md-select>
+	</md-input-container>
+
+	<md-input-container>
+		<label>Address</label>
+		<input ng-model="user.street">
+	</md-input-container>
+
+	<md-input-container>
+		<label>Apt #</label>
+		<input ng-model="user.apt">
+	</md-input-container>
+
+	<md-input-container>
+		<label>City</label>
+		<input ng-model="user.city">
+	</md-input-container>
+
+	<md-input-container>
+		<label>Zip Code</label>
+		<input type="Number" ng-model="user.zip">
+	</md-input-container>
+
+	<md-input-container>
+		<label>State</label>
+		<md-select ng-model="user.state">
+			<md-option ng-repeat="state in states" ng-value="state.type">{{state.type}}</md-option>
+		</md-select>
+	</md-input-container>
+
+	<md-input-container>
+		<label>Phone</label>
+		<input type="tel" ng-model="user.phone" ui-mask="{{'(999) 999-9999'}}">
+	</md-input-container>
+
+<!-- 	<h3>Contact</h3> -->
+	<!-- Phone: <input type="tel" ng-model="user.phone"> -->
+
+<!-- 	<h3>Payment Method</h3>
+	Credit Card Type: <select name="cardType" ng-model="user.cardType" required>
+		<option value="visa">Visa</option>
+	  	<option value="mastercard">MasterCard</option>
+	  	<option value="americanExpress">American Express</option>
+	  		</select> -->
+<!--
+
+	<select name='expireMM' ng-model='user.expireMM'>
+	    <option value=''>Month</option>
+	    <option value='01'>Janaury</option>
+	    <option value='02'>February</option>
+	    <option value='03'>March</option>
+	    <option value='04'>April</option>
+	    <option value='05'>May</option>
+	    <option value='06'>June</option>
+	    <option value='07'>July</option>
+	    <option value='08'>August</option>
+	    <option value='09'>September</option>
+	    <option value='10'>October</option>
+	    <option value='11'>November</option>
+	    <option value='12'>December</option>
+	</select>
+	<select name='expireYY' ng-model='user.expireYY'>
+	    <option value=''>Year</option>
+	    <option value='2015'>2015</option>
+	    <option value='2016'>2016</option>
+	    <option value='2017'>2017</option>
+	    <option value='2018'>2018</option>
+	    <option value='2019'>2019</option>
+	    <option value='2020'>2020</option>
+	    <option value='2021'>2021</option>
+	    <option value='2022'>2022</option>
+	    <option value='2023'>2023</option>
+	    <option value='2024'>2024</option>
+	    <option value='2025'>2025</option>
 
 
-	<select name="state" ng-model="user.state">
+	</select>  -->
+
+
+<!-- <h3>Food Allergies</h3> -->
+
+				<button type="submit" class="btn btn-danger">Register</button>
+
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+	<!-- <select name="state" ng-model="user.state">
 		<option value="AL">Alabama</option>
 		<option value="AK">Alaska</option>
 		<option value="AZ">Arizona</option>
@@ -78,58 +185,4 @@
 		<option value="WV">West Virginia</option>
 		<option value="WI">Wisconsin</option>
 		<option value="WY">Wyoming</option>
-	</select>				
-
-
-<!-- 	<h3>Contact</h3> -->
-	Phone: <input type="tel" ng-model="user.phone">
-
-<!-- 	<h3>Payment Method</h3>
-	Credit Card Type: <select name="cardType" ng-model="user.cardType" required>
-		<option value="visa">Visa</option>
-	  	<option value="mastercard">MasterCard</option>
-	  	<option value="americanExpress">American Express</option>
-	  		</select> -->
-<!-- 
-
-	<select name='expireMM' ng-model='user.expireMM'>
-	    <option value=''>Month</option>
-	    <option value='01'>Janaury</option>
-	    <option value='02'>February</option>
-	    <option value='03'>March</option>
-	    <option value='04'>April</option>
-	    <option value='05'>May</option>
-	    <option value='06'>June</option>
-	    <option value='07'>July</option>
-	    <option value='08'>August</option>
-	    <option value='09'>September</option>
-	    <option value='10'>October</option>
-	    <option value='11'>November</option>
-	    <option value='12'>December</option>
-	</select> 
-	<select name='expireYY' ng-model='user.expireYY'>
-	    <option value=''>Year</option>
-	    <option value='2015'>2015</option>
-	    <option value='2016'>2016</option>
-	    <option value='2017'>2017</option>
-	    <option value='2018'>2018</option>
-	    <option value='2019'>2019</option>
-	    <option value='2020'>2020</option>
-	    <option value='2021'>2021</option>
-	    <option value='2022'>2022</option>
-	    <option value='2023'>2023</option>
-	    <option value='2024'>2024</option>
-	    <option value='2025'>2025</option>
-	   
-
-	</select>  -->
-
-
-<!-- <h3>Food Allergies</h3> -->
-
-				<button type="submit" class="btn btn-danger">Register</button>
-
-			</form>
-		</div>
-	</div>
-</div>
+	</select>				 -->
