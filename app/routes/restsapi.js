@@ -30,9 +30,8 @@ module.exports = function(app, express) {
 			password: req.body.password
 		}).then(function(rest){
 			console.log('success hit')
-
 				var email = new sendgrid.Email({
-				  to:       'rspicer@razegroup.com',
+				  to:       'lindseybrown4@gmail.com',
 				  from:     'queueplate.com@gmail.com',
 				  subject:  'Welcome to QueuePlate!',
 				  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + rest.restid 
