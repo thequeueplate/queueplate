@@ -1,6 +1,6 @@
 var app = angular.module('QueuePlate')
 
-app.service('registerService', function($http, $q, loginService) {
+app.service('registerService', function($http, $q) {
 
 
 	this.checkVerified = function(id) {
@@ -16,7 +16,6 @@ app.service('registerService', function($http, $q, loginService) {
 	}
 
 	this.register = function(user, UID) {
-		loginService.user = user;
 		var deferred = $q.defer()
 		console.log(user)
 		console.log(UID)
@@ -46,3 +45,5 @@ app.service('registerService', function($http, $q, loginService) {
 	}
 
 })
+
+
