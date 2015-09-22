@@ -15,8 +15,10 @@ app.use(morgan('dev')); //will log all requests to the console
 
 app.use(express.static(__dirname + '/public')); //middleware to render all of public files - anyfiles css or html will be rendered if we want to use one of them. if we dont put it then there is no way for index.html to render thethe files later on
 
-var api = require('./app/routes/api')(app, express);
-app.use('/api', api); // /api is the prefix in all api.js files files
+var usersapi = require('./app/routes/usersapi')(app, express);
+var restsapi = require('./app/routes/restsapi')(app, express);
+app.use('/api/users', usersapi); // /api is the prefix in all api.js files files
+app.use('/api/rests', restsapi);
 
 app.get('*', function(req, res) { //the asterisk will make every url go to index.html
 	res.sendFile(__dirname + '/public/index.html');
