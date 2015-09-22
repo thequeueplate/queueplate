@@ -66,22 +66,19 @@ module.exports = function(app, express) {
 
 
 	api.put('/users/:userid/pref', function(req, res) {
-	
-        models.User.update(
-	        	{
-	        		firstName: req.body.firstName,
-	        		lastName: req.body.lastName,
-	        		age: req.body.age,
-	        		gender: req.body.gender,
-	        		verify: true
-	        	}, 
-	        	{ where: { userid: req.params.userid}
-        	})
 
+        models.User.update({
+	        firstName: req.body.firstName,
+	        lastName: req.body.lastName,
+	        age: req.body.age,
+	        gender: req.body.gender,
+	        verify: true
+	    }, 
+	    { where: { userid: req.params.userid}}
+	    )
         .then(function(user) {
-        	console.log("INSIDE FUNCTION!@#$!@#$")
- 
-                res.json({message: "User preferences updated"})
+            res.json({message: "User preferences updated"})
+
             })
         })
 
@@ -99,6 +96,28 @@ module.exports = function(app, express) {
             res.send(users);
         })
     });
+
+    api.put('/users/:userid/role', function(req, res) {
+    	models.User.update({
+	        role: 'customer'
+	    }, 
+	    { where: { userid: req.params.userid }}
+	    )
+        .then(function(user) {
+            res.json({message: "User role updated"})
+            })
+        })
+
+	api.put('/rest/:restid/role', function(req, res) {
+    	models.Restaurant.update({
+	        role: 'restaurant'
+	    }, 
+	    { where: { userid: req.params.userid }}
+	    )
+        .then(function(user) {
+            res.json({message: "Restaurant role updated"})
+            })
+        })
 
 	api.post('/users', function(req, res) {
 		models.User.find({ where: { email: req.body.email }})
