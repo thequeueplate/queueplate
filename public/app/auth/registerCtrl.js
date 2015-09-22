@@ -7,16 +7,76 @@ app.controller('registerCtrl', function($rootScope, publishData, customerId, reg
 
 	$scope.registerUser = function(user) {
 
-		registerService.register(user, customerId).then(function(response) {		
-			
+		registerService.register(user, customerId).then(function(response) {
+
 			console.log(publishData.userid)
-			$scope.customerData = response.data; 			
+			$scope.customerData = response.data;
 			$state.go('login');
 
-		});	
+		});
 
-			
+
 	}
+
+	$scope.genders = [
+		{type: "Male"},
+		{type: "Female"},
+		{type: "N/A"}
+	]
+
+	$scope.states = [
+		{type: "AL"},
+		{type: "AK"},
+		{type: "AZ"},
+		{type: "AR"},
+		{type: "CA"},
+		{type: "CO"},
+		{type: "CT"},
+		{type: "DE"},
+		{type: "DC"},
+		{type: "FL"},
+		{type: "GA"},
+		{type: "HI"},
+		{type: "ID"},
+		{type: "IL"},
+		{type: "IN"},
+		{type: "IA"},
+		{type: "KS"},
+		{type: "KY"},
+		{type: "LA"},
+		{type: "ME"},
+		{type: "MD"},
+		{type: "MA"},
+		{type: "MI"},
+		{type: "MN"},
+		{type: "MS"},
+		{type: "MO"},
+		{type: "MT"},
+		{type: "NE"},
+		{type: "NV"},
+		{type: "NH"},
+		{type: "NJ"},
+		{type: "NM"},
+		{type: "NY"},
+		{type: "NC"},
+		{type: "ND"},
+		{type: "OH"},
+		{type: "OK"},
+		{type: "OR"},
+		{type: "PA"},
+		{type: "RI"},
+		{type: "SC"},
+		{type: "SD"},
+		{type: "TN"},
+		{type: "TX"},
+		{type: "UT"},
+		{type: "VT"},
+		{type: "VA"},
+		{type: "WA"},
+		{type: "WV"},
+		{type: "WI"},
+		{type: "WY"}
+	]
 
 
 	// registerService.checkVerified(id)
@@ -26,7 +86,7 @@ app.controller('registerCtrl', function($rootScope, publishData, customerId, reg
 	// 		} else {
 	// 			$state.go('registerCustomer')
 	// 		  }
-	// 	})		 
+	// 	})
 });
 
 // if ($stateParams.userid === user.userid){
