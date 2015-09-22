@@ -29,8 +29,13 @@ $urlRouterProvider.otherwise('/');
 
   .state('dashboard', {
 		url: '/dashboard',
-		templateUrl: 'app/dashboard/dashboard.html'
-    // controller: 'dashboardCtrl'
+		templateUrl: 'app/dashboard/dashboard.html', 
+    controller: 'dashboardCtrl', 
+    resolve: {
+      userData: function(loginService) {
+        return loginService.userData;
+      }
+    }
 
 	})
 
@@ -94,7 +99,7 @@ app.run(function($state, $rootScope, $window, loginService) {
           $rootScope.loggedIn = true;
           loginService.getUser()
           .then(function(data) {
-            $rootScope.userInfo = data.data;
+            // $rootScope.userInfo = data.data;
           });
 
          }

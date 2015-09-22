@@ -65,24 +65,8 @@ module.exports = function(app, express) {
 	});
 
 
-	// api.put('/users/:userid/pref', function(req, res) {
-	// 	console.log('REQ.BODY asldkfjaosdifjasdfojasdofjiasd', req.body)
- //        models.User.find({ where: { userid: req.params.userid}})
- //        .then(function(user) {
- //        	console.log("INSIDE FUNCTION!@#$!@#$")
- //            user.firstName = req.body.firstName;
- //            user.lastName = req.body.lastName;
- //            user.age = req.body.age;
- //            user.gender = req.body.gender;
- //            user.save().then(function(){
- //                res.json({message: "User preferences updated"})
- //            })
- //        })
- //    })
-
-
 	api.put('/users/:userid/pref', function(req, res) {
-		// console.log('REQ.BODY asldkfjaosdifjasdfojasdofjiasd', req.body)
+	
         models.User.update(
 	        	{
 	        		firstName: req.body.firstName,
@@ -93,14 +77,10 @@ module.exports = function(app, express) {
 	        	}, 
 	        	{ where: { userid: req.params.userid}
         	})
-        // console.log("RES RES RES RES RES 12341892347192834", res.body)
+
         .then(function(user) {
         	console.log("INSIDE FUNCTION!@#$!@#$")
-            // user.firstName = req.body.firstName;
-            // user.lastName = req.body.lastName;
-            // user.age = req.body.age;
-            // user.gender = req.body.gender;
-            // user.save().then(function(){
+ 
                 res.json({message: "User preferences updated"})
             })
         })
