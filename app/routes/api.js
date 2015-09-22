@@ -65,8 +65,22 @@ module.exports = function(app, express) {
 	});
 
 
-	api.put('/users/:userid/pref', function(req, res) {
+	// api.put('/users/:userid/pref', function(req, res) {
+	// 	console.log('REQ.BODY asldkfjaosdifjasdfojasdofjiasd', req.body)
+ //        models.User.find({ where: { userid: req.params.userid}})
+ //        .then(function(user) {
+ //        	console.log("INSIDE FUNCTION!@#$!@#$")
+ //            user.firstName = req.body.firstName;
+ //            user.lastName = req.body.lastName;
+ //            user.age = req.body.age;
+ //            user.gender = req.body.gender;
+ //            user.save().then(function(){
+ //                res.json({message: "User preferences updated"})
+ //            })
+ //        })
+ //    })
 
+<<<<<<< HEAD
 		// console.log('REQ.BODY asldkfjaosdifjasdfojasdofjiasd', req.body)
         models.User.update(
 	        	{
@@ -92,6 +106,27 @@ module.exports = function(app, express) {
         .then(function(user) {
             res.json({message: "User preferences updated"})
 
+	api.put('/users/:userid/pref', function(req, res) {
+		// console.log('REQ.BODY asldkfjaosdifjasdfojasdofjiasd', req.body)
+        models.User.update(
+	        	{
+	        		firstName: req.body.firstName,
+	        		lastName: req.body.lastName,
+	        		age: req.body.age,
+	        		gender: req.body.gender,
+	        		verify: true
+	        	},
+	        	{ where: { userid: req.params.userid}
+        	})
+        // console.log("RES RES RES RES RES 12341892347192834", res.body)
+        .then(function(user) {
+        	console.log("INSIDE FUNCTION!@#$!@#$")
+            // user.firstName = req.body.firstName;
+            // user.lastName = req.body.lastName;
+            // user.age = req.body.age;
+            // user.gender = req.body.gender;
+            // user.save().then(function(){
+                res.json({message: "User preferences updated"})
             })
         })
 
@@ -110,6 +145,7 @@ module.exports = function(app, express) {
         })
     });
 
+<<<<<<< HEAD
     api.put('/users/:userid/role', function(req, res) {
     	models.User.update({
 	        role: 'customer'
@@ -132,6 +168,8 @@ module.exports = function(app, express) {
             })
         })
 
+=======
+>>>>>>> 88d9611f6ffb367edea5f83fe7d56c0518e01bdd
 	api.post('/users', function(req, res) {
 		models.User.find({ where: { email: req.body.email }})
 		.then(function(user) {
@@ -177,6 +215,14 @@ module.exports = function(app, express) {
  	api.get('/me', function(req, res) {  //seperate api so we can fetch login user data. we can call it from the fron t end
 		res.json(req.decoded);
 
+<<<<<<< HEAD
  	});
 return api;
 }
+=======
+ 	});
+return api;
+}
+
+
+>>>>>>> 88d9611f6ffb367edea5f83fe7d56c0518e01bdd
