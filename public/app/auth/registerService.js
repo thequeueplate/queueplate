@@ -29,8 +29,8 @@ app.service('registerService', function($http, $q) {
 			// apt: apt, 
 			// city: city, 
 			// zip: user.zip, 
-			// state: user.state, 
-			phone: user.phone
+			addState: user.addState, 
+			phoneNumber: user.phoneNumber
 			// cardNumber: cardNumber, 
 			// securityDigits: securityDigits, 
 			// dateOfExp: dateOfExp, 

@@ -89,6 +89,8 @@ module.exports = function(app, express) {
 	        		lastName: req.body.lastName,
 	        		age: req.body.age,
 	        		gender: req.body.gender,
+	        		addState: req.body.addState,
+	        		phoneNumber: req.body.phoneNumber,
 	        		verify: true
 	        	}, 
 	        	{ where: { userid: req.params.userid}
