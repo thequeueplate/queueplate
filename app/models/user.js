@@ -28,6 +28,7 @@ module.exports = function(sequelize, DataTypes) {
     lastName: {
       type:DataTypes.STRING()
     },
+
     //ADDRESS INFO
     addLine1: {
       type: DataTypes.STRING(75)
@@ -47,7 +48,7 @@ module.exports = function(sequelize, DataTypes) {
     addZip: {
       type: DataTypes.INTEGER(5)
     },
-    //END ADDRESS INFO
+
     age: {
       type: DataTypes.INTEGER.UNSIGNED
     },
