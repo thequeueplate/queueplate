@@ -21,18 +21,23 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: false
     },
-    firstName: {
-      type: DataTypes.STRING()
+    addLine1: {
+      type: DataTypes.STRING(75)
     },
-    lastName: {
-      type:DataTypes.STRING()
+    addLine2: {
+      type: DataTypes.STRING(75)
     },
-    age: {
-      type: DataTypes.INTEGER.UNSIGNED
+    addLine3: {
+      type: DataTypes.STRING(75)
     },
-    gender: {
-      type: DataTypes.ENUM,
-      values: ['Male', 'Female', 'N/A']
+    addCity: {
+      type: DataTypes.STRING(30)
+    },
+    addState: {
+      type: DataTypes.CHAR(2)
+    },
+    addZip: {
+      type: DataTypes.INTEGER(5)
     },
     phoneNumber: {
       type: DataTypes.STRING()

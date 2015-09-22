@@ -6,7 +6,7 @@ app.service('loginService', function($http, $q, authTokenService) {
 
 	this.login = function(email, password) {
 		
-		return $http.post('/api/users', {
+		return $http.post('/api/users/login', {
 			email: email, 
 			password: password
 
@@ -35,7 +35,7 @@ app.service('loginService', function($http, $q, authTokenService) {
 
 	this.getUser = function() {
 		if(authTokenService.getToken())
-			return $http.get('/api/me');
+			return $http.get('/api/users/me');
 		else
 			return $q.reject({message: "User has no token"})
 	}
