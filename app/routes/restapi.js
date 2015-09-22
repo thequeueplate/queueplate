@@ -7,11 +7,11 @@ var secretKey = config.secretKey;
 
 var jsonwebtoken = require('jsonwebtoken');
 
-function createToken(user) {
+function createToken(rest) {
 
 	var token = jsonwebtoken.sign({
-		id: user._id, 
-		email: user.email
+		id: rest._id, 
+		email: rest.email
 	}, secretKey, {
 		expiresInMinute: 1440
 	});
@@ -25,20 +25,20 @@ module.exports = function(app, express) {
 
 	api.post('/signup', function(req, res) {
 
-		models.User.create({
+		models.Restaurant.create({
 			email: req.body.email,
 			password: req.body.password
-		}).then(function(user){
+		}).then(function(rest){
 			console.log('success hit')
 
 				var email = new sendgrid.Email({
-				  to:       'lindseybrown4@gmail.com',
+				  to:       'rspicer@razegroup.com',
 				  from:     'queueplate.com@gmail.com',
 				  subject:  'Welcome to QueuePlate!',
-				  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + user.userid 
+				  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + rest.restid 
 				});
 
-				// + user.useridd
+				// + rest.restidd
 
 				sendgrid.send(email, function(err, json) {
 			  		if (err) { 
@@ -48,82 +48,61 @@ module.exports = function(app, express) {
 			  		// console.log("WHAT IS LINE 48???????????????", json);
 				});
 
-				var token = createToken(user);
+				var token = createToken(rest);
 				console.log('successful login')
 
 				res.json({
 					success: true, 
 					message: "Successful login!",
 					token: token,
-					userID: user.userid
+					restID: rest.restid
 				})	 
 			
 		}).catch(function(err) {
-			res.send({message: "User not created", error: err});
+			res.send({message: "Restaurant not created", error: err});
 			return;
 		})
 	});
 
-
-	// api.put('/users/:userid/pref', function(req, res) {
-	// 	console.log('REQ.BODY asldkfjaosdifjasdfojasdofjiasd', req.body)
- //        models.User.find({ where: { userid: req.params.userid}})
- //        .then(function(user) {
- //        	console.log("INSIDE FUNCTION!@#$!@#$")
- //            user.firstName = req.body.firstName;
- //            user.lastName = req.body.lastName;
- //            user.age = req.body.age;
- //            user.gender = req.body.gender;
- //            user.save().then(function(){
- //                res.json({message: "User preferences updated"})
- //            })
- //        })
- //    })
-
-
-	api.put('/users/:userid/pref', function(req, res) {
+	api.put('/:restid/pref', function(req, res) {
 		// console.log('REQ.BODY asldkfjaosdifjasdfojasdofjiasd', req.body)
-        models.User.update(
+        models.Restaurant.update(
 	        	{
-	        		firstName: req.body.firstName,
-	        		lastName: req.body.lastName,
-	        		age: req.body.age,
-	        		gender: req.body.gender,
 	        		verify: true
 	        	}, 
-	        	{ where: { userid: req.params.userid}
+	        	{ where: { restid: req.params.restid}
         	})
         // console.log("RES RES RES RES RES 12341892347192834", res.body)
-        .then(function(user) {
+        .then(function(rest) {
         	console.log("INSIDE FUNCTION!@#$!@#$")
-            // user.firstName = req.body.firstName;
-            // user.lastName = req.body.lastName;
-            // user.age = req.body.age;
-            // user.gender = req.body.gender;
-            // user.save().then(function(){
-                res.json({message: "User preferences updated"})
+            // rest.firstName = req.body.firstName;
+            // rest.lastName = req.body.lastName;
+            // rest.age = req.body.age;
+            // rest.gender = req.body.gender;
+            // rest.save().then(function(){
+                res.json({message: "Restaurant preferences updated"})
             })
         })
 
-	api.get('/users', function(req, res) {
-		models.User.findAll()
-		.then(function(users) {
-			res.send(users);
+	api.get('/', function(req, res) {
+		models.Restaurant.findAll()
+		.then(function(rests) {
+			res.send(rests);
 		})
 	});
 
 
-	api.get('/users/:userid', function(req, res) {
-        models.User.find({ where: { userid: req.params.userid}})
-        .then(function(users) {
-            res.send(users);
+	api.get('/:restid', function(req, res) {
+        models.Restaurant.find({ where: { restid: req.params.restid}})
+        .then(function(rest) {
+            res.send(rest);
         })
     });
 
-	api.post('/users', function(req, res) {
-		models.User.find({ where: { email: req.body.email }})
-		.then(function(user) {
-			var validPassword = user.comparePassword(req.body.password);
+	api.post('/login', function(req, res) {
+		models.Restaurant.find({ where: { email: req.body.email }})
+		.then(function(rest) {
+			var validPassword = rest.comparePassword(req.body.password);
 			console.log('login hit');
 
 			if(!validPassword) {
@@ -131,13 +110,13 @@ module.exports = function(app, express) {
 				res.send({message: 'Invalid Password'});
 			} else {
 
-				var token = createToken(user);
+				var token = createToken(rest);
 
 				res.json({
 					success: true, 
 					message: "Successful login!",
 					token: token, 
-					userID: user.userid
+					restID: rest.restid
 				})
 			}
 		}).catch(function(err) {
@@ -150,7 +129,7 @@ module.exports = function(app, express) {
  		if(token) {
  			jsonwebtoken.verify(token, secretKey, function(err, decoded) {
 				if(err) {
- 					res.status(403).send({ success: false, message: "Failed to authenticate user" });
+ 					res.status(403).send({ success: false, message: "Failed to authenticate restaurant" });
  				} else {
  					//
  					req.decoded = decoded; 
