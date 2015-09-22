@@ -1,5 +1,5 @@
 
-var app = angular.module('QueuePlate', ['ngAnimate', 'ngAria', 'ngMaterial','ui.router']);
+var app = angular.module('QueuePlate', ['ngAnimate', 'ngAria', 'ngMaterial','ui.router', 'ui.mask']);
 
 app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
 
@@ -45,7 +45,7 @@ $urlRouterProvider.otherwise('/');
   // })
 
   .state('registerCustomer', {
-    url: '/registerCustomer/:id', 
+    url: '/registerCustomer/:id',
     templateUrl: 'app/auth/registerCustomer.html',
     controller: 'registerCtrl',
     resolve: {
@@ -73,8 +73,9 @@ $locationProvider.html5Mode(true);
 app.run(function($state, $rootScope, $window, loginService) {
 
    $rootScope.$on('$stateChangeStart', function(event, toState) {
-    
-       var safeStates = ['home', 'signup', 'login', 'verify', 'registerCustomer'];
+
+       var safeStates = ['home', 'signup', 'login', 'verify', 'registerCustomer', 'registerOwner'];
+
 
        var protected = safeStates.indexOf(toState.name) === -1;
 
@@ -95,4 +96,3 @@ app.run(function($state, $rootScope, $window, loginService) {
       }
    });
 })
-
