@@ -9,6 +9,11 @@ h1, h2, h3 {
   color: #666;
 }
 
+.container {
+  margin: 0 auto;
+  width: 80%;
+}
+
 /*//// HEADER ////*/
 
 header {
@@ -35,6 +40,8 @@ header li {
 
 header a {
   color: white;
+  text-decoration: none;
+  font-size: lighter;
 }
 
 header li:hover {
@@ -72,27 +79,31 @@ footer p {
 
 
 .greeting {
-  margin-top: 120px;
+  margin-top: 75px;
 }
 
 .homeh1 {
   text-align: center;
   color: #666;
   font-weight: bolder;
+  font-size: 4em;
+  margin-bottom: 0;
 }
 
 .homeh2 {
   text-align: center;
   color: #666;
-  font-size: 2em;
+  font-size: 2.1em;
   font-weight: lighter;
+  margin-top: 5px;
 }
 
 .homeh3 {
   text-align: center;
   color: #0084bb;
   position: relative;
-  top: 60px;
+  top: 30px;
+  font-size: 2.3em;
 }
 
 .homecontent {
@@ -124,6 +135,7 @@ footer p {
   float: left;
   margin: 20px 50px;
   font-weight: lighter;
+  font-size: 2em;
 }
 
 
@@ -134,6 +146,7 @@ footer p {
   float: right;
   margin: 20px 50px;
   font-weight: lighter;
+  font-size: 2em;
 }
 
 .ihavefoodimg {
@@ -154,10 +167,31 @@ footer p {
   cursor: pointer;
 }
 
+/*//// Sign Up Page ////*/
 
+.sign-up {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.customer-sign-up {
+  margin: 20px;
+  padding: 10px;
+  height: 100%;
+  width: 40%;
+  padding-right: 40px;
+}
+
+.restaurant-sign-up {
+  margin: 20px;
+  padding: 10px;
+  height: 100%;
+  width: 40%;
+}
 
 .eye {
-
+  color: #0084bb;
   float: right;
   margin: 10px;
 }
