@@ -1,3 +1,4 @@
+
 var config = require('../../config');
 var SGKey = config.SG_API_KEY;
 var sendgrid  = require('sendgrid')(SGKey)
