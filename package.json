@@ -9,6 +9,7 @@
   "author": "Lindsey Brown",
   "license": "ISC",
   "dependencies": {
+    "angular": "^1.4.6",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.13.3",
     "bower": "^1.5.2",
@@ -17,6 +18,7 @@
     "jsonwebtoken": "^5.0.5",
     "morgan": "^1.6.1",
     "mysql": "^2.9.0",
+    "ng-cookies": "^1.0.2",
     "request": "^2.63.0",
     "sendgrid": "^1.9.2",
     "sequelize": "^3.8.0",

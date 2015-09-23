@@ -142,6 +142,7 @@ module.exports = function(app, express) {
 	 
  	api.get('/me', function(req, res) {  //seperate api so we can fetch login user data. we can call it from the fron t end
 		res.json(req.decoded); 
+		console.log(req)
 
  	}); 
 return api; 

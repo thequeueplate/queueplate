@@ -1,16 +1,15 @@
 var app = angular.module('QueuePlate')
 
 app.controller('registerCtrl', function($rootScope, publishData, customerId, registerService, $state, $scope, loginService) {
-	console.log(publishData.userid)
-	console.log(customerId)
+	
 
 
 	$scope.registerUser = function(user) {
 
 		registerService.register(user, customerId).then(function(response) {
 
-			console.log(publishData.userid)
 			$scope.customerData = response.data;
+			console.log(response.config.data.firstName)
 			$state.go('login');
 
 		});

@@ -144,7 +144,9 @@ module.exports = function(app, express) {
 					success: true, 
 					message: "Successful login!",
 					token: token, 
-					userID: user.userid
+					userID: user.userid,
+					firstName: user.firstName,
+					lastName: user.lastName
 				})
 			}
 		}).catch(function(err) {
