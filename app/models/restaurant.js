@@ -27,9 +27,6 @@ module.exports = function(sequelize, DataTypes) {
     addLine2: {
       type: DataTypes.STRING(75)
     },
-    addLine3: {
-      type: DataTypes.STRING(75)
-    },
     addCity: {
       type: DataTypes.STRING(30)
     },
@@ -44,7 +41,9 @@ module.exports = function(sequelize, DataTypes) {
     },
     buisnessEmail: {
       type: DataTypes.STRING(320),
-      allowNull: false
+    },
+    website: {
+      type: DataTypes.STRING(2083)
     },
     stripeAccount: {
       type: DataTypes.INTEGER()
@@ -69,12 +68,12 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
 
-  // }, {
-  //   classMethods: {
-  //     associate: function(models) {
-  //       User.hasMany(models.Favorite)  USE LATER
-  //     }
-  //   }
+  }, {
+    classMethods: {
+      associate: function(models) {
+        Restaurant.hasMany(models.MenuItem)
+      }
+    }
   });
 
   return Restaurant;
