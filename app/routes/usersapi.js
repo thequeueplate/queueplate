@@ -56,8 +56,7 @@ module.exports = function(app, express) {
 					success: true,
 					message: "Successful login!",
 					token: token,
-					userID: user.userid,
-					verify: false
+					userID: user.userid
 				})	 
 
 		}).catch(function(err) {
