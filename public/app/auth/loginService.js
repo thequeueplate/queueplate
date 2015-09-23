@@ -1,9 +1,7 @@
 var app = angular.module('QueuePlate')
 
-app.service('loginService', function($http, $q, authTokenService) {
-		this.testMessage;
-
-
+app.service('loginService', function($http, $q, $cookies, authTokenService) {
+		
 	this.login = function(email, password) {
 		
 		return $http.post('/api/users/login', {
@@ -12,12 +10,14 @@ app.service('loginService', function($http, $q, authTokenService) {
 
 		})
 		.success(function(data) {
-			console.log(data)
-			this.testMessage = "krang"
-			console.log("als;dfjLKJSLDFJFLSJFL:SDJFLS:FJSDL" + testMessage) 
-			
 			authTokenService.setToken(data.token)
+			console.log(data)
+
+			$cookies.putObject("firstName", data.firstName);
+			$cookies.putObject("lastName", data.lastName);
+
 			return data;
+
 		})
 	}
 
@@ -75,7 +75,7 @@ app.factory('AuthInterceptor', function($q, $location, authTokenService) {
 
 	interceptorService.responseError = function(response) {
 		if(response.status == 403)
-			$location.path('/login');
+			$locaton.path('/login');
 
 		return $q.reject(response);
 

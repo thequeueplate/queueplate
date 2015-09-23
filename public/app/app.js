@@ -1,5 +1,5 @@
 
-var app = angular.module('QueuePlate', ['ngAnimate', 'ngAria', 'ngMaterial','ui.router', 'ui.mask']);
+var app = angular.module('QueuePlate', ['ngAnimate', 'ngAria', 'ngMaterial','ui.router', 'ui.mask', 'ngCookies']);
 
 app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
 
@@ -29,9 +29,8 @@ $urlRouterProvider.otherwise('/');
 
   .state('dashboard', {
     url: '/dashboard',
-    templateUrl: 'app/dashboard/dashboard.html'
-    // controller: 'dashboardCtrl'
-
+    templateUrl: 'app/dashboard/dashboard.html', 
+    controller: 'dashboardCtrl'
   })
 
  //  .state('RestLanding', {
@@ -89,7 +88,7 @@ app.run(function($state, $rootScope, $window, loginService) {
           $rootScope.loggedIn = true;
           loginService.getUser()
           .then(function(data) {
-            $rootScope.userInfo = data.data;
+            // $rootScope.welcomeUser = data.config.data.firstName;
           });
 
          }
