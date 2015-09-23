@@ -34,10 +34,17 @@ $urlRouterProvider.otherwise('/');
 
   })
 
- //  .state('RestLanding', {
-  //  url: '/RestLanding',
-  //  templateUrl: 'app/RestDash/RestLanding.html'
-  // })
+  .state('registerRestaurant', {
+    url: '/registerRestaurant',
+    templateUrl: 'app/auth/registerRestaurant.html'
+  })
+
+
+  .state('RestLanding', {
+   url: '/RestLanding',
+   templateUrl: 'app/RestDash/RestLanding.html',
+   controller: 'RestLanding'
+  })
 
  //  .state('RestaurantCtrl', {
   //  url: '/RestaurantCtrl',
