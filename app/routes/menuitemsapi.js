@@ -1,6 +1,12 @@
+
+
+
 var models = require('../models');
 
 module.exports = function(app, express) {
+
+	var api = express.Router() 
+
 	api.post('/', function(req, res) {
 		models.MenuItem.create({
 			name: req.body.name,
@@ -39,4 +45,5 @@ module.exports = function(app, express) {
 		{ where: { itemid: req.params.itemid }}
 		)
 	});
+	return api;
 }
