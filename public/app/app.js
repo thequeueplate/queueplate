@@ -1,5 +1,5 @@
 
-var app = angular.module('QueuePlate', ['ngAnimate', 'ngAria', 'ngMaterial','ui.router', 'ui.mask']);
+var app = angular.module('QueuePlate', ['ngAnimate', 'ngAria', 'ngMaterial','ui.router', 'ui.mask', 'ngCookies']);
 
 // 'ngCookies'
 
@@ -66,7 +66,6 @@ $urlRouterProvider.otherwise('/');
       templateUrl: 'app/auth/verify.html'
     })
 
-
 $locationProvider.html5Mode(true);
 
 });
@@ -85,12 +84,14 @@ app.run(function($state, $rootScope, $window, loginService) {
          if (!token) {
            console.log('protected state, no token')
            event.preventDefault();
-           return $state.go('home');
+            $rootScope.loggedIn = false;
+           alert("Username does not exist")
+           return $state.go('login');
          } else {
           $rootScope.loggedIn = true;
           loginService.getUser()
           .then(function(data) {
-            // $rootScope.welcomeUser = data.config.data.firstName;
+            
           });
 
          }
