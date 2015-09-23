@@ -34,7 +34,7 @@ module.exports = function(app, express) {
 				  to:       'lindseybrown4@gmail.com',
 				  from:     'queueplate.com@gmail.com',
 				  subject:  'Welcome to QueuePlate!',
-				  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + rest.restid 
+				  text:     'Click on the link to confirm your registration http://localhost:3000/registerRestaurant/' + rest.restid 
 				});
 
 				// + rest.restidd

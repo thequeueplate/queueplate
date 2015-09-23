@@ -7,14 +7,14 @@ app.service('loginService', function($http, $q, $state, authTokenService, $cooki
 		return $http.post('/api/users/login', {
 			email: email, 
 			password: password
-
+		
 		})
 		.success(function(data) {
 			authTokenService.setToken(data.token)
 
 			$cookies.putObject("firstName", data.firstName)
 			$cookies.putObject("lastName", data.lastName)
-			
+			$cookies.putObject("verify", data.verify)
 			return data
 			
 		})

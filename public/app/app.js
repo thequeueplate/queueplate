@@ -1,8 +1,6 @@
 
 var app = angular.module('QueuePlate', ['ngAnimate', 'ngAria', 'ngMaterial','ui.router', 'ui.mask', 'ngCookies']);
 
-// 'ngCookies'
-
 app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
 
 $httpProvider.interceptors.push('AuthInterceptor');
