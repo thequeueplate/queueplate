@@ -1,0 +1,9 @@
+{
+  "name": "queueplate",
+  "version": "0.0.0",
+  "homepage": "https://github.com/thequeueplate/queueplate",
+  "authors": [
+    "Mark Keysor <markkeysor@gmail.com>"
+  ],
+  "license": "MIT"
+}

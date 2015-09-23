@@ -27,9 +27,6 @@ module.exports = function(sequelize, DataTypes) {
     addLine2: {
       type: DataTypes.STRING(75)
     },
-    addLine3: {
-      type: DataTypes.STRING(75)
-    },
     addCity: {
       type: DataTypes.STRING(30)
     },
@@ -44,7 +41,9 @@ module.exports = function(sequelize, DataTypes) {
     },
     buisnessEmail: {
       type: DataTypes.STRING(320),
-      allowNull: false
+    },
+    website: {
+      type: DataTypes.STRING(2083)
     },
     stripeAccount: {
       type: DataTypes.INTEGER()
@@ -56,25 +55,25 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     hooks: {
       beforeCreate: function(rest, options, cb) {
-        bcrypt.hash(rest.password, null, null, function(err, hash) {
-          rest.password = hash;
+        bcrypt.hash(rest.passwordRest, null, null, function(err, hash) {
+          rest.passwordRest = hash;
           return cb(null, options);
         })
       }
     },
     instanceMethods: {
-      comparePassword: function(password) {
+      comparePasswordRest: function(passwordRest) {
         console.log("compare hit");
-        return bcrypt.compareSync(password, this.password)
+        return bcrypt.compareSync(passwordRest, this.passwordRest)
       }
     }
 
-  // }, {
-  //   classMethods: {
-  //     associate: function(models) {
-  //       User.hasMany(models.Favorite)  USE LATER
-  //     }
-  //   }
+  }, {
+    classMethods: {
+      associate: function(models) {
+        Restaurant.hasMany(models.MenuItem)
+      }
+    }
   });
 
   return Restaurant;

@@ -1,5 +1,5 @@
 
-var app = angular.module('QueuePlate', ['ngAnimate', 'ngAria', 'ngMaterial','ui.router', 'ui.mask']);
+var app = angular.module('QueuePlate', ['ngAnimate', 'ngAria', 'ngMaterial','ui.router', 'ui.mask', 'ngCookies']);
 
 app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
 
@@ -14,13 +14,13 @@ $urlRouterProvider.otherwise('/');
      templateUrl: 'app/home/home.html',
    })
 
-   .state('login', {
+   .state('loginBoth', {
      url: '/login',
      templateUrl: 'app/auth/login.html',
      controller: 'loginCtrl'
    })
 
-  .state('signup', {
+  .state('signUpBoth', {
     url: '/signup',
     templateUrl: 'app/auth/signup.html',
     controller: 'signupCtrl'
@@ -29,9 +29,8 @@ $urlRouterProvider.otherwise('/');
 
   .state('dashboard', {
     url: '/dashboard',
-    templateUrl: 'app/dashboard/dashboard.html'
-    // controller: 'dashboardCtrl'
-
+    templateUrl: 'app/dashboard/dashboard.html',
+    controller: 'dashboardCtrl'
   })
 
   .state('registerRestaurant', {
@@ -72,16 +71,28 @@ $urlRouterProvider.otherwise('/');
       templateUrl: 'app/auth/verify.html'
     })
 
+  .state('signUpCustomer', {
+    url: '/signupcustomer',
+    templateUrl: 'app/auth/customersignup.html',
+    controller: 'signupCtrl'
+  })
+
+  .state('signUpRestaurant', {
+    url: '/signuprestaurant',
+    templateUrl: 'app/auth/restsignup.html',
+    controller: 'signupCtrl'
+  })
 
 $locationProvider.html5Mode(true);
 
 });
 
+
 app.run(function($state, $rootScope, $window, loginService) {
 
    $rootScope.$on('$stateChangeStart', function(event, toState) {
 
-       var safeStates = ['home', 'signup', 'login', 'verify', 'registerCustomer', 'registerOwner'];
+       var safeStates = ['home', 'signUpBoth', 'loginBoth', 'verify', 'registerCustomer', 'registerRestaurant', 'signUpCustomer', 'signUpRestaurant'];
 
 
        var protected = safeStates.indexOf(toState.name) === -1;
@@ -91,12 +102,13 @@ app.run(function($state, $rootScope, $window, loginService) {
          if (!token) {
            console.log('protected state, no token')
            event.preventDefault();
-           return $state.go('home');
+            $rootScope.loggedIn = false;
+           return $state.go('login');
          } else {
           $rootScope.loggedIn = true;
           loginService.getUser()
           .then(function(data) {
-            $rootScope.userInfo = data.data;
+
           });
 
          }

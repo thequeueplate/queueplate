@@ -1,3 +1,4 @@
+
 var config = require('../../config');
 var SGKey = config.SG_API_KEY;
 var sendgrid  = require('sendgrid')(SGKey)
@@ -32,6 +33,7 @@ module.exports = function(app, express) {
 			console.log('success hit')
 
 				var email = new sendgrid.Email({
+
 				  to:       'bunker.logan@gmail.com',
 				  from:     'queueplate.com@gmail.com',
 				  subject:  'Welcome to QueuePlate!',
@@ -57,6 +59,7 @@ module.exports = function(app, express) {
 					token: token,
 					userID: user.userid
 				})
+
 
 		}).catch(function(err) {
 			res.send({message: "User not created", error: err});
@@ -91,7 +94,6 @@ module.exports = function(app, express) {
 	        		gender: req.body.gender,
 	        		addLine1: req.body.addLine1,
 	        		addLine2: req.body.addLine2,
-	        		addLine3: req.body.addLine3,
 	        		addCity: req.body.addCity,
 	        		addState: req.body.addState,
 	        		addZip: req.body.addZip,
@@ -144,7 +146,10 @@ module.exports = function(app, express) {
 					success: true,
 					message: "Successful login!",
 					token: token,
-					userID: user.userid
+					userID: user.userid,
+					firstName: user.firstName,
+					lastName: user.lastName
+
 				})
 			}
 		}).catch(function(err) {

@@ -17,30 +17,32 @@ app.use(express.static(__dirname + '/public')); //middleware to render all of pu
 
 var usersapi = require('./app/routes/usersapi')(app, express);
 var restsapi = require('./app/routes/restsapi')(app, express);
+var menuitemsapi = require ('./app/routes/menuitemsapi')(app, express);
 app.use('/api/users', usersapi); // /api is the prefix in all api.js files files
 app.use('/api/rests', restsapi);
+app.use('/api/menuitems', menuitemsapi);
 
 app.get('*', function(req, res) { //the asterisk will make every url go to index.html
 	res.sendFile(__dirname + '/public/index.html');
 });
 
-app.post('/charge', function(req, res) {
-    var stripeToken = req.body.stripeToken;
-    var amount = 1000;
+// app.post('/charge', function(req, res) {
+//     var stripeToken = req.body.stripeToken;
+//     var amount = 1000;
 
-    stripe.charges.create({
-        card: stripeToken,
-        currency: 'usd',
-        amount: amount
-    },
-    function(err, charge) {
-        if (err) {
-            res.send(500, err);
-        } else {
-            res.send(204);
-        }
-    });
-});
+//     stripe.charges.create({
+//         card: stripeToken,
+//         currency: 'usd',
+//         amount: amount
+//     },
+//     function(err, charge) {
+//         if (err) {
+//             res.send(500, err);
+//         } else {
+//             res.send(204);
+//         }
+//     });
+// });
 
 app.listen(config.port, function(err){
 	if(err) {

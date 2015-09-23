@@ -23,19 +23,21 @@ module.exports = function(app, express) {
 
 	var api = express.Router();
 
+
 	api.post('/signup', function(req, res) {
+		console.log(req.body)
 
 		models.Restaurant.create({
 			email: req.body.email,
-			password: req.body.password
+			password: req.body.passwordRest
 		}).then(function(rest){
 			console.log('success hit')
-
 				var email = new sendgrid.Email({
-				  to:       'rspicer@razegroup.com',
+				  to:       'lindseybrown4@gmail.com',
 				  from:     'queueplate.com@gmail.com',
 				  subject:  'Welcome to QueuePlate!',
-				  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + rest.restid
+				  text:     'Click on the link to confirm your registration http://localhost:3000/registerRestaurant/' + rest.restid
+
 				});
 
 				// + rest.restidd
@@ -84,10 +86,17 @@ module.exports = function(app, express) {
             })
         })
 
+
+
 	api.get('/', function(req, res) {
+		// console.log("HHJHJHHHJJHHJ", models.User)
+		// res.send("HELLO")
 		models.Restaurant.findAll()
+
 		.then(function(rests) {
 			res.send(rests);
+		}).catch(function(err) {
+			res.send(err)
 		})
 	});
 
@@ -102,10 +111,10 @@ module.exports = function(app, express) {
 	api.post('/login', function(req, res) {
 		models.Restaurant.find({ where: { email: req.body.email }})
 		.then(function(rest) {
-			var validPassword = rest.comparePassword(req.body.password);
+			var validPasswordRest = rest.comparePasswordRest(req.body.passwordRest);
 			console.log('login hit');
 
-			if(!validPassword) {
+			if(!validPasswordRest) {
 				console.log('not valid pw');
 				res.send({message: 'Invalid Password'});
 			} else {
@@ -142,8 +151,9 @@ module.exports = function(app, express) {
 	});
 
  	api.get('/me', function(req, res) {  //seperate api so we can fetch login user data. we can call it from the fron t end
-		res.json(req.decoded);
 
+		res.json(req.decoded);
+			
  	});
 return api;
 }

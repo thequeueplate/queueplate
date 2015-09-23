@@ -1,16 +1,17 @@
 <div class="container">
-	<div class="row">
-		<div>
+		<div class="login">
 		<h1 class="grey-text darken-2">Log In</h1>
+
 			<form class="form-signin" method="post" ng-submit="doLogin()">
-
-				Email:<input type="text" name="username" class="form-control" ng-model="loginData.email">
-
-				Password:<input type="password" name="password" class="form-control" ng-model="loginData.password">
-
-				<button type="submit" class="btn btn-success light-blue darken-2">Login</button>
-
+				<md-input-container>
+					<label>Email</label>
+					<input type="text" name="username" class="form-control" ng-model="loginData.email"></input>
+				</md-input-container>
+				<md-input-container>
+					<label>Password</label>
+					<input type="password" name="password" class="form-control" ng-model="loginData.password"></input>
+				</md-input-container>
+				<md-button type="submit" class="md-raised md-primary">Login</button>
 			</form>
 		</div>
-	</div>
 </div>

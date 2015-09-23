@@ -1,6 +1,6 @@
 var app = angular.module('QueuePlate')
 
-app.controller('signupCtrl', function($rootScope, signupService, $state, $window, $scope) {
+app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 
 	$scope.signupUser = function() {
 		$scope.message = '';
@@ -8,7 +8,6 @@ app.controller('signupCtrl', function($rootScope, signupService, $state, $window
 
 		signupService.create($scope.userData)
 			.then(function(response) {
-				console.log(response)
 
 				$scope.userData = {};
 
@@ -16,7 +15,7 @@ app.controller('signupCtrl', function($rootScope, signupService, $state, $window
 
 				if(!response.data.success) {
 
-					Materialize.toast('username is already taken', 2000)
+					alert('username is already taken')
 
 				} else {
 
@@ -31,18 +30,20 @@ app.controller('signupCtrl', function($rootScope, signupService, $state, $window
 	$scope.signupRestaurant = function() {
 		$scope.message = '';
 
+		console.log($scope.restData)
+		signupService.createRest($scope.restData)
 
-		signupService.create($scope.restData)
 			.then(function(response) {
 				console.log(response)
 
-				$scope.userData = {};
+
+				$scope.restData = {};
 
 				$scope.message = response.data.message;
 
 				if(!response.data.success) {
 
-					Materialize.toast('username is already taken', 2000)
+					alert('Restaraunt username is already taken')
 
 				} else {
 
@@ -65,12 +66,12 @@ app.controller('signupCtrl', function($rootScope, signupService, $state, $window
 	        if (p == "") {
 
 
-	            Materialize.toast("Enter password!", 1500);
+	            alert("Enter password user validate");
 	            var passwordconfirmed = false;
 	        }
 
 	        if (cp !== p || cp == "") {
-					Materialize.toast("Confirm Password doesn't match", 1000);
+					alert("Confirm Password doesn't match user validate");
 					var passwordconfirmed = false;
 
 			} else if (cp === p) {
@@ -84,6 +85,34 @@ app.controller('signupCtrl', function($rootScope, signupService, $state, $window
 			}
 	    }
 
+
+	$scope.passwordRest = document.getElementById("passwordRest")
+
+	$scope.passwordCheckRest = document.getElementById("passwordCheckRest");
+
+	$scope.validatePasswordRest = function(pr, cpw){
+
+	        if (pr == "") {
+
+	            alert("Enter password signUP CTRL line 95!");
+	            var passwordrestconfirmed = false;
+	        }
+
+	        if (cpw !== pr || cpw == "") {
+					alert("Confirm Password doesn't match signUP CTRL line 100");
+					var passwordrestconfirmed = false;
+
+			} else if (cpw === pr) {
+
+				var passwordrestconfirmed = true;
+			}
+
+			if 	(passwordrestconfirmed === true) {
+
+				   $scope.signupRestaurant()
+			}
+	    }
+
 	    $scope.see = function() {
 	    	$scope.showpassword = true;
 
@@ -91,6 +120,16 @@ app.controller('signupCtrl', function($rootScope, signupService, $state, $window
 
 	    $scope.hide = function() {
 	    	$scope.showpassword = false;
+
+	    }
+
+	    $scope.seeRest = function() {
+	    	$scope.showpasswordRest = true;
+
+	    }
+
+	    $scope.hideRest = function() {
+	    	$scope.showpasswordRest = false;
 
 	    }
 

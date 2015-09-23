@@ -5,6 +5,11 @@ html, body{
   width: 100%;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 h1, h2, h3 {
   color: #666;
 }
@@ -201,12 +206,8 @@ footer p {
 
 }
 
+/*////// Login Page //////*/
 
-
-
-
-
-
-
-
+.login {
+  margin: 120px 0;
 }
