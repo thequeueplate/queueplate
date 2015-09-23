@@ -33,7 +33,8 @@ module.exports = function(app, express) {
 			console.log('success hit')
 
 				var email = new sendgrid.Email({
-				  to:       'lindseybrown4@gmail.com',
+
+				  to:       'bunker.logan@gmail.com',
 				  from:     'queueplate.com@gmail.com',
 				  subject:  'Welcome to QueuePlate!',
 				  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + user.userid
@@ -57,7 +58,8 @@ module.exports = function(app, express) {
 					message: "Successful login!",
 					token: token,
 					userID: user.userid
-				})	 
+				})
+
 
 		}).catch(function(err) {
 			res.send({message: "User not created", error: err});
@@ -147,6 +149,7 @@ module.exports = function(app, express) {
 					userID: user.userid,
 					firstName: user.firstName,
 					lastName: user.lastName
+
 				})
 			}
 		}).catch(function(err) {
