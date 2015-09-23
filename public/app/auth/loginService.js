@@ -10,11 +10,14 @@ app.service('loginService', function($http, $q, $state, authTokenService, $cooki
 		
 		})
 		.success(function(data) {
+
+			console.log(data)
 			authTokenService.setToken(data.token)
 
 			$cookies.putObject("firstName", data.firstName)
 			$cookies.putObject("lastName", data.lastName)
 			$cookies.putObject("verify", data.verify)
+
 			return data
 			
 		})

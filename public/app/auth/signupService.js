@@ -6,4 +6,8 @@ app.service('signupService', function($http) {
 		return $http.post('/api/users/signup', userData);
 	}
 
+	this.createRest = function(restData) {
+		return $http.post('/api/rests/signup', restData); 
+	}
+
 });

@@ -23,11 +23,13 @@ module.exports = function(app, express) {
 
 	var api = express.Router(); 
 
+
 	api.post('/signup', function(req, res) {
+		console.log(req.body)
 
 		models.Restaurant.create({
 			email: req.body.email,
-			password: req.body.password
+			password: req.body.passwordRest
 		}).then(function(rest){
 			console.log('success hit')
 				var email = new sendgrid.Email({
@@ -83,10 +85,17 @@ module.exports = function(app, express) {
             })
         })
 
+
+
 	api.get('/', function(req, res) {
+		// console.log("HHJHJHHHJJHHJ", models.User)
+		// res.send("HELLO")
 		models.Restaurant.findAll()
+
 		.then(function(rests) {
 			res.send(rests);
+		}).catch(function(err) {
+			res.send(err)
 		})
 	});
 
@@ -101,10 +110,10 @@ module.exports = function(app, express) {
 	api.post('/login', function(req, res) {
 		models.Restaurant.find({ where: { email: req.body.email }})
 		.then(function(rest) {
-			var validPassword = rest.comparePassword(req.body.password);
+			var validPasswordRest = rest.comparePasswordRest(req.body.passwordRest);
 			console.log('login hit');
 
-			if(!validPassword) {
+			if(!validPasswordRest) {
 				console.log('not valid pw');
 				res.send({message: 'Invalid Password'});
 			} else {
