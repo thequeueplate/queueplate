@@ -77,13 +77,6 @@ module.exports = function(sequelize, DataTypes) {
   			return bcrypt.compareSync(password, this.password)
   		}
   	}
-
-  // }, {
-  //   classMethods: {
-  //     associate: function(models) {
-  //       User.hasMany(models.Favorite)	USE LATER
-  //     }
-  //   }
   });
 
   return User;
