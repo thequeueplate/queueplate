@@ -8,7 +8,6 @@ app.controller('signupCtrl', function($rootScope, signupService, $state, $window
 
 		signupService.create($scope.userData)
 			.then(function(response) {
-				console.log(response)
 
 				$scope.userData = {};
 
