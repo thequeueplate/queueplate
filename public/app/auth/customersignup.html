@@ -1,0 +1,39 @@
+<div class="sign-up">
+  <div class="customer-sign-up">
+    <h2 class="grey-text darken-2">Customer Sign Up</h2>
+      <form class="form-signin" method="post" ng-submit="validatePassword(userData.password, confirmpassword)">
+
+        <md-input-container type="email">
+          <label>Email</label>
+          <input ng-model="userData.email"></input>
+        </md-input-container>
+
+        <md-input-container ng-show="showpassword">
+          <label>Password</label>
+          <input type="text" id="password" ng-model="userData.password"></input>
+        </md-input-container>
+
+        <md-input-container ng-show="!showpassword">
+          <label>Password</label>
+          <input  type="password" id="password" ng-model="userData.password"></input>
+        </md-input-container>
+
+        <md-input-container ng-show="showpassword">
+          <label>Confirm Password</label>
+          <input type="text" id="passwordCheck" name="passwordCheck" class="form-control" ng-model="confirmpassword"></input>
+        </md-input-container>
+
+        <md-input-container ng-show="!showpassword">
+          <label>Confirm Password</label>
+          <input type="password" id= "passwordCheck" name="passwordCheck" class="form-control" ng-model="confirmpassword"></input>
+        </md-input-container>
+
+
+        <a href="#"><i class="material-icons eye" title="show password" name="show password" ng-click="see()">visibility</i></a>
+        <a href="#"><i class="material-icons eye" title="hide password" ng-click="hide()">visibility_off</i></a> <br><br>
+
+        <md-button type="submit" class="md-raised md-primary">Sign Up</button>
+
+      </form>
+  </div>
+</div>  
