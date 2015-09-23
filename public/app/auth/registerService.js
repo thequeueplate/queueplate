@@ -35,8 +35,6 @@ app.service('registerService', function($http, $q, $rootScope) {
 		})
 		.then(function(data) {
 			deferred.resolve(data) //this passes everything back to controller
-			
-			$rootScope.welcomeUser = data.config.data.firstName;
 
 		});
 		

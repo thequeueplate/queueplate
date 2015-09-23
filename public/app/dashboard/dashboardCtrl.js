@@ -1,22 +1,14 @@
 var app = angular.module('QueuePlate')
 
-app.controller('dashboardCtrl', function($scope, dashboardService, $cookies) {
-	
+app.controller('dashboardCtrl', function($scope, $cookies) {
+  
 	$scope.cookiesFirstName = $cookies.getObject("firstName");
 	$scope.cookiesLastName = $cookies.getObject("lastName");
-	console.log($scope.cookiesFirstName)
+  $scope.cookiesVerify = $cookies.getObject("verify");
+  console.log($scope.cookiesVerify)
 
 }); 
 
-
-
-
-
-
-
-
-
-	
   // $scope.deliveryAddress = function(delivery) {
   //   // console.log(delivery);
   //   firstName= delivery.firstName,
