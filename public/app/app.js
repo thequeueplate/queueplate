@@ -29,7 +29,7 @@ $urlRouterProvider.otherwise('/');
 
   .state('dashboard', {
     url: '/dashboard',
-    templateUrl: 'app/dashboard/dashboard.html', 
+    templateUrl: 'app/dashboard/dashboard.html',
     controller: 'dashboardCtrl'
   })
 
@@ -63,6 +63,19 @@ $urlRouterProvider.otherwise('/');
       url: '/verify',
       templateUrl: 'app/auth/verify.html'
     })
+
+
+  .state('custsignup', {
+    url: '/customersignup',
+    templateUrl: 'app/auth/customersignup.html',
+    controller: 'signupCtrl'
+  })
+
+  .state('restsignup', {
+    url: '/restsignup',
+    templateUrl: 'app/auth/restsignup.html',
+    controller: 'signupCtrl'
+  })
 
 $locationProvider.html5Mode(true);
 
