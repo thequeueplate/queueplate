@@ -1,22 +1,39 @@
 var app = angular.module('QueuePlate')
 
-app.controller('registerCtrl', function($rootScope, publishData, customerId, registerService, $state, $scope, loginService) {
-	console.log(publishData.userid)
-	console.log(customerId)
+app.controller('registerCtrl', function(publishData, customerId, registerService, $state, $scope, loginService, $cookies) {
 
+	// $scope.verifiyUserNow = $cookies.getObject("verify")
+
+	// $scope.checkIfVerified = function() {
+
+	// 	loginService.getUser(response) {
+	// 		console.log(response)
+
+	// 	}
+
+	// }
+	
+	
+	// registerService.checkVerified(id)
+	// 	.then(function(response) {
+	// 		if (response.verify === true) {
+	// 			$state.go('login')
+	// 		} else {
+	// 			$state.go('registerCustomer')
+	// 		  }
+	// 	})
 
 	$scope.registerUser = function(user) {
 
 		registerService.register(user, customerId).then(function(response) {
 
-			console.log(publishData.userid)
 			$scope.customerData = response.data;
 			$state.go('login');
 
 		});
-
-
 	}
+
+
 
 	$scope.genders = [
 		{type: "Male"},
@@ -89,11 +106,6 @@ app.controller('registerCtrl', function($rootScope, publishData, customerId, reg
 	// 	})
 });
 
-// if ($stateParams.userid === user.userid){
-// 		    $scope.productData = productService.shoeData;
-// 		  } else if ($stateParams.id === $stateParams.id) {
-// 		    $scope.productData = productService.sockData;
-// 		  }
 
 
 // $stateParams.id

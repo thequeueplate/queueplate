@@ -1,6 +1,6 @@
 var app = angular.module('QueuePlate')
 
-app.service('registerService', function($http, $q) {
+app.service('registerService', function($http, $q, $rootScope) {
 
 
 	this.checkVerified = function(id) {
@@ -10,15 +10,13 @@ app.service('registerService', function($http, $q) {
 			url: "/api/users/" + id
 		}).then(function(response) {
 			deferred.resolve(response.data)
-			console.log(response)
 		})
 		    return deferred.promise
+		    console.log(deferred.promise)
 	}
 
 	this.register = function(user, UID) {
 		var deferred = $q.defer()
-		console.log(user)
-		console.log(UID)
 
 		$http.put('/api/users/' + UID + '/pref', {
 			firstName: user.firstName, 

@@ -1,5 +1,5 @@
 
-var app = angular.module('QueuePlate', ['ngAnimate', 'ngAria', 'ngMaterial','ui.router', 'ui.mask']);
+var app = angular.module('QueuePlate', ['ngAnimate', 'ngAria', 'ngMaterial','ui.router', 'ui.mask', 'ngCookies']);
 
 app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
 
@@ -29,9 +29,8 @@ $urlRouterProvider.otherwise('/');
 
   .state('dashboard', {
     url: '/dashboard',
-    templateUrl: 'app/dashboard/dashboard.html'
-    // controller: 'dashboardCtrl'
-
+    templateUrl: 'app/dashboard/dashboard.html',
+    controller: 'dashboardCtrl'
   })
 
  //  .state('RestLanding', {
@@ -66,6 +65,18 @@ $urlRouterProvider.otherwise('/');
     })
 
 
+  .state('custsignup', {
+    url: '/customersignup',
+    templateUrl: 'app/auth/customersignup.html',
+    controller: 'signupCtrl'
+  })
+
+  .state('restsignup', {
+    url: '/restsignup',
+    templateUrl: 'app/auth/restsignup.html',
+    controller: 'signupCtrl'
+  })
+
 $locationProvider.html5Mode(true);
 
 });
@@ -74,7 +85,7 @@ app.run(function($state, $rootScope, $window, loginService) {
 
    $rootScope.$on('$stateChangeStart', function(event, toState) {
 
-       var safeStates = ['home', 'signup', 'login', 'verify', 'registerCustomer', 'registerOwner'];
+       var safeStates = ['home', 'signup', 'login', 'verify', 'registerCustomer', 'registerRestaurant', 'restsignup'];
 
 
        var protected = safeStates.indexOf(toState.name) === -1;
@@ -84,12 +95,13 @@ app.run(function($state, $rootScope, $window, loginService) {
          if (!token) {
            console.log('protected state, no token')
            event.preventDefault();
-           return $state.go('home');
+            $rootScope.loggedIn = false;
+           return $state.go('login');
          } else {
           $rootScope.loggedIn = true;
           loginService.getUser()
           .then(function(data) {
-            $rootScope.userInfo = data.data;
+            
           });
 
          }
