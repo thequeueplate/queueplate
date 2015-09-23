@@ -1,13 +1,13 @@
-<md-tabs>
+<!-- <md-tabs>
   <md-tab>
     Cool Tab
   </md-tab>
   <md-tab>
     Cooler Tab
   </md-tab>
-</md-tabs>
-
-  <md-tab label="Restaurant Information">
+</md-tabs> -->
+<!-- <md-tabs> -->
+  <!-- <md-tab label="Restaurant Information">
     <div>
       <md-content layout='column' layout-sm='column'>
         <md-input-container style="50%">
@@ -28,11 +28,17 @@
         </md-input-container>
       </md-content>
     </div>
-  </md-tab>
+  </md-tab> -->
 
-  <md-tab label="Menu">
+  <!-- <md-tab label="Menu"> -->
     <div>
       <md-content>
+        <md-input-container>
+          <label>Item Type</label>
+          <md-select ng-model="menu.Course">
+            <md-option ng-repeat="course in courses" ng-value="course.type">{{course.type}}</md-option>
+          </md-select>
+        </md-input-container>
         <md-input-container>
           <label>Item Name</label>
           <input ng-model="menu.name">
@@ -51,11 +57,11 @@
       </md-content>
     </div>
     <md-button ng-click="addMenuItem()" class="md-primary md-raised">
-      Add Menue Item
+      Add Menu Item
     </md-button>
-  </md-tab>
+  <!-- </md-tab> -->
 
-</md-tabs>
+<!-- </md-tabs> -->
 
 <md-button ng-click="saveData()" class="md-accent md-hue-1" style="width: 100%; margin-bottom: 0;">
   Save
