@@ -13,7 +13,7 @@ app.controller('registerCtrl', function(publishData, customerId, registerService
 
 	// }
 	
-	
+
 	// registerService.checkVerified(id)
 	// 	.then(function(response) {
 	// 		if (response.verify === true) {
@@ -26,9 +26,7 @@ app.controller('registerCtrl', function(publishData, customerId, registerService
 	$scope.registerUser = function(user) {
 
 		registerService.register(user, customerId).then(function(response) {
-
-			$scope.customerData = response.data;
-			$state.go('login');
+			$state.go('loginBoth');
 
 		});
 	}
