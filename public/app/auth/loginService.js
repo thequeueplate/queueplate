@@ -1,23 +1,25 @@
 var app = angular.module('QueuePlate')
 
-app.service('loginService', function($http, $q, $cookies, authTokenService) {
+app.service('loginService', function($http, $q, $state, authTokenService, $cookies) {
 		
 	this.login = function(email, password) {
 		
 		return $http.post('/api/users/login', {
 			email: email, 
 			password: password
-
+		
 		})
 		.success(function(data) {
-			authTokenService.setToken(data.token)
+
 			console.log(data)
+			authTokenService.setToken(data.token)
 
-			$cookies.putObject("firstName", data.firstName);
-			$cookies.putObject("lastName", data.lastName);
+			$cookies.putObject("firstName", data.firstName)
+			$cookies.putObject("lastName", data.lastName)
+			$cookies.putObject("verify", data.verify)
 
-			return data;
-
+			return data
+			
 		})
 	}
 
@@ -39,7 +41,6 @@ app.service('loginService', function($http, $q, $cookies, authTokenService) {
 		else
 			return $q.reject({message: "User has no token"})
 	}
-
 });
 
 app.service('authTokenService', function($window) {
@@ -55,10 +56,9 @@ app.service('authTokenService', function($window) {
 		else
 			$window.localStorage.removeItem('token');
 	}
-
 })
 
-app.factory('AuthInterceptor', function($q, $location, authTokenService) {
+app.factory('AuthInterceptor', function($q, authTokenService) {
 
 	var interceptorService = {};
 
@@ -75,10 +75,9 @@ app.factory('AuthInterceptor', function($q, $location, authTokenService) {
 
 	interceptorService.responseError = function(response) {
 		if(response.status == 403)
-			$locaton.path('/login');
+			$state.go('login');
 
 		return $q.reject(response);
-
 	}
 
 	return interceptorService;

@@ -95,12 +95,13 @@ app.run(function($state, $rootScope, $window, loginService) {
          if (!token) {
            console.log('protected state, no token')
            event.preventDefault();
-           return $state.go('home');
+            $rootScope.loggedIn = false;
+           return $state.go('login');
          } else {
           $rootScope.loggedIn = true;
           loginService.getUser()
           .then(function(data) {
-            // $rootScope.welcomeUser = data.config.data.firstName;
+
           });
 
          }
