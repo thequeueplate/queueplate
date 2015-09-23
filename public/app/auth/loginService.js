@@ -1,7 +1,8 @@
 var app = angular.module('QueuePlate')
 
-app.service('loginService', function($http, $q, $cookies, authTokenService) {
+app.service('loginService', function($http, $q, authTokenService) {
 		
+		 // $cookies,
 	this.login = function(email, password) {
 		
 		return $http.post('/api/users/login', {
@@ -13,8 +14,8 @@ app.service('loginService', function($http, $q, $cookies, authTokenService) {
 			authTokenService.setToken(data.token)
 			console.log(data)
 
-			$cookies.putObject("firstName", data.firstName);
-			$cookies.putObject("lastName", data.lastName);
+			// $cookies.putObject("firstName", data.firstName);
+			// $cookies.putObject("lastName", data.lastName);
 
 			return data;
 

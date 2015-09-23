@@ -1,5 +1,7 @@
 
-var app = angular.module('QueuePlate', ['ngAnimate', 'ngAria', 'ngMaterial','ui.router', 'ui.mask', 'ngCookies']);
+var app = angular.module('QueuePlate', ['ngAnimate', 'ngAria', 'ngMaterial','ui.router', 'ui.mask']);
+
+// 'ngCookies'
 
 app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
 
