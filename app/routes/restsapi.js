@@ -23,10 +23,8 @@ module.exports = function(app, express) {
 
 	var api = express.Router(); 
 
-
+	//RESTAURANT SIGNUP
 	api.post('/signup', function(req, res) {
-		console.log(req.body)
-
 		models.Restaurant.create({
 			email: req.body.email,
 			password: req.body.passwordRest
@@ -36,17 +34,13 @@ module.exports = function(app, express) {
 				  to:       'lindseybrown4@gmail.com',
 				  from:     'queueplate.com@gmail.com',
 				  subject:  'Welcome to QueuePlate!',
-				  text:     'Click on the link to confirm your registration http://localhost:3000/registerRestaurant/' + rest.restid 
+				  text:     'Click on the link to confirm your registration http://localhost:3000/registerRestaurant/' + rest.id 
 				});
-
-				// + rest.restidd
 
 				sendgrid.send(email, function(err, json) {
 			  		if (err) { 
 			  			return console.error(err); 
 			  		}
-			  		
-			  		// console.log("WHAT IS LINE 48???????????????", json);
 				});
 
 				var token = createToken(rest);
@@ -56,57 +50,28 @@ module.exports = function(app, express) {
 					success: true, 
 					message: "Successful login!",
 					token: token,
-					restID: rest.restid
+					id: rest.id
 				})	 
-			
-		}).catch(function(err) {
-			res.send({message: "Restaurant not created", error: err});
-			return;
-		})
+			}).catch(function(err) {
+				res.send({message: "Restaurant not created", error: err});
+				return;
+			})
 	});
 
+	//RESTAURANT REGISTRATION - WIP
 	api.put('/:restid/pref', function(req, res) {
-		// console.log('REQ.BODY asldkfjaosdifjasdfojasdofjiasd', req.body)
         models.Restaurant.update(
 	        	{
 	        		verify: true
 	        	}, 
-	        	{ where: { restid: req.params.restid}
+	        	{ where: { id: req.params.restid}
         	})
-        // console.log("RES RES RES RES RES 12341892347192834", res.body)
         .then(function(rest) {
-        	console.log("INSIDE FUNCTION!@#$!@#$")
-            // rest.firstName = req.body.firstName;
-            // rest.lastName = req.body.lastName;
-            // rest.age = req.body.age;
-            // rest.gender = req.body.gender;
-            // rest.save().then(function(){
                 res.json({message: "Restaurant preferences updated"})
             })
         })
 
-
-
-	api.get('/', function(req, res) {
-		// console.log("HHJHJHHHJJHHJ", models.User)
-		// res.send("HELLO")
-		models.Restaurant.findAll()
-
-		.then(function(rests) {
-			res.send(rests);
-		}).catch(function(err) {
-			res.send(err)
-		})
-	});
-
-
-	api.get('/:restid', function(req, res) {
-        models.Restaurant.find({ where: { restid: req.params.restid}})
-        .then(function(rest) {
-            res.send(rest);
-        })
-    });
-
+	//RESTAURANT LOGIN
 	api.post('/login', function(req, res) {
 		models.Restaurant.find({ where: { email: req.body.email }})
 		.then(function(rest) {
@@ -124,14 +89,58 @@ module.exports = function(app, express) {
 					success: true, 
 					message: "Successful login!",
 					token: token, 
-					restID: rest.restid
+					id: rest.id
 				})
 			}
 		}).catch(function(err) {
 			res.send({message: "Can't login", error: err})
 		})
 	})
- 	api.use(function(req, res, next) { //this middleware checks to see if user has token
+	//GET ALL RESTAURANTS
+	api.get('/', function(req, res) {
+		models.Restaurant.findAll()
+		.then(function(rests) {
+			res.send(rests);
+		}).catch(function(err) {
+			res.send(err)
+		})
+	});
+
+	//GET SINGLE RESTAURANT
+	api.get('/:restid', function(req, res) {
+        models.Restaurant.find({ where: { id: req.params.restid}})
+        .then(function(rest) {
+            res.send(rest);
+        })
+    });
+
+	//CREATE NEW MENU ITEM
+    api.post('/:restid/menu', function(req, res) {
+		models.MenuItem.create({
+			name: req.body.name,
+			description: req.body.description,
+			price: req.body.price,
+			section: req.body.section,
+			comments: req.body.comments,
+			Restaurantid: req.params.restid
+		}).then(function(item) {
+			console.log('item created');
+		}).catch(function(err) {
+			res.send({message: 'Item not created.', error: err});
+			return;
+		})
+	});
+
+	//GET FULL MENU
+	api.get('/:restid/menu', function(req, res) {
+		models.MenuItem.findAll({ where: { Restaurantid: req.params.restid }})
+		.then(function(items) {
+			res.send(items);
+		})
+	})
+
+	//MIDDLEWARE - CHECKS TOKEN
+ 	api.use(function(req, res, next) {
  		console.log("Somebody just came to our app!"); 
  		var token = req.body.token || req.params.token || req.headers['x-access-token']; 
  		if(token) {
@@ -139,7 +148,6 @@ module.exports = function(app, express) {
 				if(err) {
  					res.status(403).send({ success: false, message: "Failed to authenticate restaurant" });
  				} else {
- 					//
  					req.decoded = decoded; 
  					next(); 
  				}
@@ -149,7 +157,8 @@ module.exports = function(app, express) {
  		}
 	}); 
 	 
- 	api.get('/me', function(req, res) {  //seperate api so we can fetch login user data. we can call it from the fron t end
+	//GET INDIVIDUAL USER FROM FRONTEND ??
+ 	api.get('/me', function(req, res) {
 		res.json(req.decoded); 
 		console.log(req)
 

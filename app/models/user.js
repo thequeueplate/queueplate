@@ -2,7 +2,7 @@ var bcrypt = require('bcrypt-nodejs'); //library used to hash password
 
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("User", {
-  	userid: {
+  	id: {
   		type: DataTypes.INTEGER,
   		primaryKey: true,
   		autoIncrement: true
@@ -33,9 +33,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(75)
     },
     addLine2: {
-      type: DataTypes.STRING(75)
-    },
-    addLine3: {
       type: DataTypes.STRING(75)
     },
     addCity: {
@@ -71,6 +68,11 @@ module.exports = function(sequelize, DataTypes) {
   			})
   		}
   	},
+    classMethods: {
+      associate: function(models) {
+        User.belongsToMany(models.MenuItem, {through: "FavoritePlates"});
+      }
+    },
   	instanceMethods: {
   		comparePassword: function(password) {
         console.log("compare hit");
