@@ -113,7 +113,7 @@ app.run(function($state, $rootScope, $window, loginService) {
            console.log('protected state, no token')
            event.preventDefault();
             $rootScope.loggedIn = false;
-           return $state.go('login');
+           return $state.go('loginBoth');
          } else {
           $rootScope.loggedIn = true;
           loginService.getUser()
