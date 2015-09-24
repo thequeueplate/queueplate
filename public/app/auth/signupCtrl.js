@@ -40,6 +40,7 @@ app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 				$scope.restData = {};
 
 				$scope.message = response.data.message;
+				console.log($scope.message)
 
 				if(!response.data.success) {
 

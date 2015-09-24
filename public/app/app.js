@@ -34,8 +34,18 @@ $urlRouterProvider.otherwise('/');
   })
 
   .state('registerRestaurant', {
-    url: '/registerRestaurant',
-    templateUrl: 'app/auth/registerRestaurant.html'
+    url: '/registerRestaurant/:id',
+    templateUrl: 'app/auth/registerRestaurant.html',
+    controller: 'registerCtrl',
+    resolve: {
+      UID: function(registerService, $stateParams) {
+        return $stateParams.id
+      },
+      publishData: function(registerService, $stateParams) {
+        return registerService.checkVerifiedRestaurant($stateParams.id)
+      }
+
+    }
   })
 
 
@@ -55,7 +65,7 @@ $urlRouterProvider.otherwise('/');
     templateUrl: 'app/auth/registerCustomer.html',
     controller: 'registerCtrl',
     resolve: {
-      customerId: function(registerService, $stateParams) {
+      UID: function(registerService, $stateParams) {
         return $stateParams.id
       },
       publishData: function(registerService, $stateParams) {
@@ -103,7 +113,7 @@ app.run(function($state, $rootScope, $window, loginService) {
            console.log('protected state, no token')
            event.preventDefault();
             $rootScope.loggedIn = false;
-           return $state.go('login');
+           return $state.go('loginBoth');
          } else {
           $rootScope.loggedIn = true;
           loginService.getUser()
