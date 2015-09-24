@@ -39,12 +39,10 @@ module.exports = function(sequelize, DataTypes) {
     phoneNumber: {
       type: DataTypes.STRING()
     },
-    buisnessEmail: {
-      type: DataTypes.STRING(320),
-    },
-    website: {
-      type: DataTypes.STRING(2083)
-    },
+    // businessEmail: {
+    //   type: DataTypes.STRING(320),
+    //   allowNull: false
+    // },
     stripeAccount: {
       type: DataTypes.INTEGER()
     },
@@ -68,12 +66,12 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
 
-  }, {
-    classMethods: {
-      associate: function(models) {
-        Restaurant.hasMany(models.MenuItem)
-      }
-    }
+  // }, {
+  //   classMethods: {
+  //     associate: function(models) {
+  //       User.hasMany(models.Favorite)  USE LATER
+  //     }
+  //   }
   });
 
   return Restaurant;

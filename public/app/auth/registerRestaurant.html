@@ -1,0 +1,153 @@
+<h1>Welcome to QueuePlate {{UserRegistration.First}}!</h1>
+
+<h3>Restaraunt Owner</h3>
+<!-- First Name: <input type="text">
+Last Name: <input type="text">
+Age: <input type="text">
+Gender: <input type="text"> -->
+
+<!-- <h3>Restaraunt Location</h3> -->
+
+<!-- Street: <input type="text">
+Apt #: <input type="text">
+City: <input type="text">
+Zip: <input type="text">
+State: <input type="text"> -->
+
+<!-- <h3>Contact</h3> -->
+<!-- Owner Phone: <input type="text">
+Company Phone: <input type="text">
+Business Email: <input type="text"> -->
+
+
+<!-- <h3>Stripe Acct Information</h3> -->
+
+<!-- Acct Number: <input type="text"> -->
+
+<!-- Associated URL's for Restaraunt -->
+
+<!-- Type of Cuisine: <input type="dropdown"> -->
+
+<!-- How many tables? -->
+
+<!-- Hours of operation: -->
+
+
+<md-input-container>
+  <label>First name</label>
+  <input ng-model="owner.firstName">
+</md-input-container>
+
+<md-input-container>
+  <label>Last Name</label>
+  <input ng-model="owner.lastName">
+</md-input-container>
+
+<md-input-container>
+  <label>Business Phone</label>
+  <input type="tel" ng-model="owner.phone" ui-mask="{{'(999) 999-9999'}}">
+</md-input-container>
+
+<!-- <md-input-container>
+  <label>Gender</label>
+  <md-select ng-model="owner.gender">
+    <md-option ng-repeat="gender in genders" ng-value="gender.type">{{gender.type}}</md-option>
+  </md-select>
+</md-input-container> -->
+
+<md-input-container>
+  <label>Address Line 1</label>
+  <input ng-model="owner.addLine1">
+</md-input-container>
+
+<md-input-container>
+  <label>Address Line 2</label>
+  <input ng-model="owner.addLine2">
+</md-input-container>
+
+<md-input-container>
+  <label>City</label>
+  <input ng-model="owner.city">
+</md-input-container>
+
+<md-input-container>
+  <label>Zip Code</label>
+  <input type="Number" ng-model="owner.zip">
+</md-input-container>
+
+<md-input-container>
+  <label>State</label>
+  <md-select ng-model="owner.state">
+    <md-option ng-repeat="state in states" ng-value="state.type">{{state.type}}</md-option>
+  </md-select>
+</md-input-container>
+
+<md-input-container>
+  <label># of Tables</label>
+  <input type="Number" ng-model="owner.tables">
+</md-input-container>
+
+<md-checkbox ng-model="owner.cuisine.American">
+  <label>American</label>
+</md-checkbox>
+<md-checkbox ng-model="owner.cuisine.Cajun">
+  <label>Cajun</label>
+</md-checkbox>
+<md-checkbox ng-model="owner.cuisine.Caribbean">
+  <label>Caribbean</label>
+</md-checkbox>
+<md-checkbox ng-model="owner.cuisine.Chinese">
+  <label>Chinese</label>
+</md-checkbox>
+<md-checkbox ng-model="owner.cuisine.French">
+  <label>French</label>
+</md-checkbox>
+<md-checkbox ng-model="owner.cuisine.German">
+  <label>German</label>
+</md-checkbox>
+<md-checkbox ng-model="owner.cuisine.Greek">
+  <label>Greek</label>
+</md-checkbox>
+<md-checkbox ng-model="owner.cuisine.indian">
+  <label>indian</label>
+</md-checkbox>
+<md-checkbox ng-model="owner.cuisine.Italian">
+  <label>Italian</label>
+</md-checkbox>
+<md-checkbox ng-model="owner.cuisine.Korean">
+  <label>Korean</label>
+</md-checkbox>
+<md-checkbox ng-model="owner.cuisine.Lebanese">
+  <label>Lebanese</label>
+</md-checkbox>
+<md-checkbox ng-model="owner.cuisine.Mediterranean">
+  <label>Mediterranean</label>
+</md-checkbox>
+<md-checkbox ng-model="owner.cuisine.Mexican">
+  <label>Mexican</label>
+</md-checkbox>
+<md-checkbox ng-model="owner.cuisine.Moroccan">
+  <label>Moroccan</label>
+</md-checkbox>
+<md-checkbox ng-model="owner.cuisine.Soul">
+  <label>Soul</label>
+</md-checkbox>
+<md-checkbox ng-model="owner.cuisine.Spanish">
+  <label>Spanish</label>
+</md-checkbox>
+<md-checkbox ng-model="owner.cuisine.Thai">
+  <label>Thai</label>
+</md-checkbox>
+<md-checkbox ng-model="owner.cuisine.Turkish">
+  <label>Turkish</label>
+</md-checkbox>
+<md-checkbox ng-model="owner.cuisine.Vietnamese">
+  <label>Vietnamese</label>
+</md-checkbox>
+<md-checkbox ng-model="owner.cuisine.Other">
+  <label>Other</label>
+</md-checkbox>
+
+
+
+<md-button type="Submit">Register</md-button>
