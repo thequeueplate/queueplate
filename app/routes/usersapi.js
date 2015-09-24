@@ -27,7 +27,9 @@ module.exports = function(app, express) {
 	api.post('/signup', function(req, res) {
 
 		//IF ADMIN...
-		if(req.body.email = 'rspicer@razegroup.com' || 'lindseybrown4@gmail.com' || 'bunker.logan@gmail.com' || 'markkeysor@gmail.com') {
+
+		var adminArray = ['rspicer@razegroup.com', 'lindseybrown4@gmail.com','bunker.logan@gmail.com', 'markkeysor@gmail.com']
+		if (adminArray.indexOf(req.body.email) !== -1) {
 			models.User.create({
 				email: req.body.email,
 				password: req.body.password,
@@ -36,7 +38,7 @@ module.exports = function(app, express) {
 			console.log('success hit')
 				var email = new sendgrid.Email({
 
-				  to:       'rspicer@razegroup.com',
+				  to:       'lindseybrown4@gmail.com',
 				  from:     'queueplate.com@gmail.com',
 				  subject:  'Welcome to QueuePlate!',
 				  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + user.id
