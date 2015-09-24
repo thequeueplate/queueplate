@@ -128,6 +128,26 @@ module.exports = function(app, express) {
         })
     });
 
+    //ADD NEW FAVORITE PLATE
+    api.post('/:userid/:itemid', function(req, res) {
+    	models.FavoritePlate.create({
+    		Userid: req.params.userid,
+    		MenuItemid: req.params.itemid
+    	}).then(function(favplate) {
+    		res.json({ message: 'New favorite plate added.'})
+    	}).catch(function(err) {
+    		res.send({ message: 'Could not add favorite.', error: err})
+    	})
+    })
+
+	//GET FAVORITE PLATES
+	api.get('/:userid', function(req, res) {
+		models.FavoritePlate.findAll({ where: { Userid: req.params.userid}})
+		.then(function(plates) {
+			res.send(plates);
+		})
+	})
+
 	//MIDDLEWARE - CHECKS TOKENS
  	api.use(function(req, res, next) {
  		console.log("Somebody just came to our app!");

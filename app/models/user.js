@@ -52,12 +52,12 @@ module.exports = function(sequelize, DataTypes) {
       values: ['Male', 'Female', 'N/A']
     },
     phoneNumber: {
-      type: DataTypes.STRING()
+      type: DataTypes.STRING(10)
     },
     //END PREFERENCES
     role: {
       type: DataTypes.ENUM,
-      values: ['admin', 'owner', 'customer']
+      values: ['admin', 'restaurant', 'customer']
     }
   }, {
   	hooks: {
