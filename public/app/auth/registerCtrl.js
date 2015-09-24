@@ -1,6 +1,6 @@
 var app = angular.module('QueuePlate')
 
-app.controller('registerCtrl', function(publishData, customerId, registerService, $state, $scope, loginService, $cookies) {
+app.controller('registerCtrl', function(publishData, UID, registerService, $state, $scope, loginService, $cookies) {
 
 	// $scope.verifiyUserNow = $cookies.getObject("verify")
 
@@ -25,7 +25,15 @@ app.controller('registerCtrl', function(publishData, customerId, registerService
 
 	$scope.registerUser = function(user) {
 
-		registerService.register(user, customerId).then(function(response) {
+		registerService.register(user, UID).then(function(response) {
+			$state.go('loginBoth');
+
+		});
+	}
+
+	$scope.registerRest = function(rest) {
+
+		registerService.registerRestaurant(rest, UID).then(function(response) {
 			$state.go('loginBoth');
 
 		});

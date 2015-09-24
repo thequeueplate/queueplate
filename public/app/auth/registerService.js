@@ -41,6 +41,44 @@ app.service('registerService', function($http, $q, $rootScope) {
 		return deferred.promise
 	}
 
+		this.checkVerifiedRestaurant = function(id) {
+		var deferred = $q.defer();
+		$http({
+			method: "GET", 
+			url: "/api/rests/" + id
+		}).then(function(response) {
+			deferred.resolve(response.data)
+		})
+		    return deferred.promise
+		    console.log(deferred.promise)
+	}
+
+	this.registerRestaurant = function(rest, RID) {
+		var deferred = $q.defer()
+
+		$http.put('/api/rests/' + RID + '/pref', {
+			firstName: rest.firstName, 
+			lastName: rest.lastName,
+			age: rest.age, 
+			gender: rest.gender,
+			addLine1: rest.addLine1,
+			addCity: rest.addCity, 
+			addZip: rest.addZip, 
+			addState: rest.addState, 
+			phoneNumber: rest.phoneNumber
+			// cardNumber: cardNumber, 
+			// securityDigits: securityDigits, 
+			// dateOfExp: dateOfExp, 
+			
+		})
+		.then(function(data) {
+			deferred.resolve(data) //this passes everything back to controller
+
+		});
+		
+		return deferred.promise
+	}
+
 })
 
 

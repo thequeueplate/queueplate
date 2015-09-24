@@ -52,8 +52,9 @@ module.exports = function(app, express) {
 					token: token,
 					id: rest.id
 				})	 
+				console.log(err)
 			}).catch(function(err) {
-				res.send({message: "Restaurant not created", error: err});
+				res.send({message: "Restaurant not created error:", err});
 				return;
 			})
 	});
