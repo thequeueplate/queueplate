@@ -62,7 +62,8 @@ module.exports = function(app, express) {
 	api.put('/:restid/pref', function(req, res) {
         models.Restaurant.update(
 	        	{
-	        		verify: true
+	        		verify: true,
+	        		role: 'owner'
 	        	}, 
 	        	{ where: { id: req.params.restid}
         	})
