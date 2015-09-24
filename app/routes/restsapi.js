@@ -97,6 +97,7 @@ module.exports = function(app, express) {
 			res.send({message: "Can't login", error: err})
 		})
 	})
+
 	//GET ALL RESTAURANTS
 	api.get('/', function(req, res) {
 		models.Restaurant.findAll()
@@ -123,9 +124,9 @@ module.exports = function(app, express) {
 			price: req.body.price,
 			section: req.body.section,
 			comments: req.body.comments,
-			Restaurantid: req.params.restid
+			RestaurantId: req.params.restid
 		}).then(function(item) {
-			console.log('item created');
+			res.send(item);
 		}).catch(function(err) {
 			res.send({message: 'Item not created.', error: err});
 			return;
