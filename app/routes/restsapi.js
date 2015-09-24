@@ -62,8 +62,19 @@ module.exports = function(app, express) {
 	api.put('/:restid/pref', function(req, res) {
         models.Restaurant.update(
 	        	{
+	        		name: req.body.name,
+	        		firstName: req.body.firstName,
+	        		lastName: req.body.lastName,
+	        		addLine1: req.body.addLine1,
+	        		addLine2: req.body.addLine2,
+	        		addCity: req.body.addCity,
+	        		addState: req.body.addState,
+	        		addZip: req.body.addZip,
+	        		businessEmail: req.body.businessEmail,
+	        		phoneNumber: req.body.phoneNumber,
+	        		stripeAccount: req.body.stripeAccount,
 	        		verify: true,
-	        		role: 'owner'
+	        		role: 'restaurant'
 	        	}, 
 	        	{ where: { id: req.params.restid}
         	})

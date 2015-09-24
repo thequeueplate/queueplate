@@ -57,7 +57,7 @@ module.exports = function(sequelize, DataTypes) {
     //END PREFERENCES
     role: {
       type: DataTypes.ENUM,
-      values: ['admin', 'owner', 'customer']
+      values: ['admin', 'restaurant', 'customer']
     }
   }, {
   	hooks: {

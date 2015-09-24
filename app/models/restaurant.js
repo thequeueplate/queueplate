@@ -24,10 +24,10 @@ module.exports = function(sequelize, DataTypes) {
     name: {
       type: DataTypes.STRING(50)
     },
-    contactFirstName: {
+    firstName: {
       type: DataTypes.STRING(30)
     },
-    contactLastName: {
+    lastName: {
       type: DataTypes.STRING(30)
     },
     contactPhone: {
