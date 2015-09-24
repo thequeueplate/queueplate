@@ -7,8 +7,10 @@ app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 
 
 		signupService.create($scope.userData)
-			.then(function(response) {
 
+
+			.then(function(response) {
+			console.log(response)
 				$scope.userData = {};
 
 				$scope.message = response.data.message;
