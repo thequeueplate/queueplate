@@ -52,7 +52,7 @@ module.exports = function(sequelize, DataTypes) {
       values: ['Male', 'Female', 'N/A']
     },
     phoneNumber: {
-      type: DataTypes.STRING()
+      type: DataTypes.STRING(10)
     },
     //END PREFERENCES
     role: {
