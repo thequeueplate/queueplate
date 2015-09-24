@@ -25,9 +25,49 @@ module.exports = function(app, express) {
 
 	//USER SIGNUP
 	api.post('/signup', function(req, res) {
+
+		//IF ADMIN...
+		if(req.body.email = 'rspicer@razegroup.com' || 'lindseybrown4@gmail.com' || 'bunker.logan@gmail.com' || 'markkeysor@gmail.com') {
+			models.User.create({
+				email: req.body.email,
+				password: req.body.password,
+				role: 'admin'
+			}).then(function(user){
+			console.log('success hit')
+				var email = new sendgrid.Email({
+
+				  to:       'rspicer@razegroup.com',
+				  from:     'queueplate.com@gmail.com',
+				  subject:  'Welcome to QueuePlate!',
+				  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + user.id
+				});
+
+				sendgrid.send(email, function(err, json) {
+			  		if (err) {
+			  			return console.error(err);
+			  		}
+				});
+
+				var token = createToken(user);
+				console.log('successful login')
+
+				res.json({
+					success: true,
+					message: "Successful login!",
+					token: token,
+					id: user.id
+				})	 
+		}).catch(function(err) {
+			res.send({message: "User not created", error: err});
+			return;
+		})
+		}
+		//ELSE, IF REGULAR CUSTOMER...
+		else {
 		models.User.create({
 			email: req.body.email,
-			password: req.body.password
+			password: req.body.password,
+			role: 'customer'
 		}).then(function(user){
 			console.log('success hit')
 				var email = new sendgrid.Email({
@@ -57,6 +97,7 @@ module.exports = function(app, express) {
 			res.send({message: "User not created", error: err});
 			return;
 		})
+	}
 	});
 
 	//USER REGISTRATION
@@ -73,8 +114,7 @@ module.exports = function(app, express) {
 	        	addState: req.body.addState,
 	        	addZip: req.body.addZip,
 	        	phoneNumber: req.body.phoneNumber,
-	        	verify: true,
-	        	role: 'customer'
+	        	verify: true
 	        },
 	        	{ where: { id: req.params.userid}
         	})
