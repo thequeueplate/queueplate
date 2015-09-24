@@ -21,6 +21,18 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: false
     },
+    name: {
+      type: DataTypes.STRING(50)
+    },
+    firstName: {
+      type: DataTypes.STRING(30)
+    },
+    lastName: {
+      type: DataTypes.STRING(30)
+    },
+    contactPhone: {
+      type: DataTypes.STRING(10)
+    },
     addLine1: {
       type: DataTypes.STRING(75)
     },
@@ -37,12 +49,11 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER(5)
     },
     phoneNumber: {
-      type: DataTypes.STRING()
+      type: DataTypes.STRING(10)
     },
-    // businessEmail: {
-    //   type: DataTypes.STRING(320),
-    //   allowNull: false
-    // },
+    businessEmail: {
+      type: DataTypes.STRING(320)
+    },
     stripeAccount: {
       type: DataTypes.INTEGER()
     },
