@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var MenuItem = sequelize.define("MenuItem", {
-    itemid: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
@@ -33,6 +33,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
           }
         });
+        MenuItem.belongsToMany(models.User, {through: 'FavoritePlates'});
       }
     }
   }

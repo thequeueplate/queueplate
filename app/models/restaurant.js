@@ -2,7 +2,7 @@ var bcrypt = require('bcrypt-nodejs'); //library used to hash password
 
 module.exports = function(sequelize, DataTypes) {
   var Restaurant = sequelize.define("Restaurant", {
-    restid: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true

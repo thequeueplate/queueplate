@@ -1,4 +1,3 @@
-
 var config = require('../../config');
 var SGKey = config.SG_API_KEY;
 var sendgrid  = require('sendgrid')(SGKey)
@@ -24,30 +23,25 @@ module.exports = function(app, express) {
 
 	var api = express.Router();
 
+	//USER SIGNUP
 	api.post('/signup', function(req, res) {
-
 		models.User.create({
 			email: req.body.email,
 			password: req.body.password
 		}).then(function(user){
 			console.log('success hit')
-
 				var email = new sendgrid.Email({
 
-				  to:       'bunker.logan@gmail.com',
+				  to:       'rspicer@razegroup.com',
 				  from:     'queueplate.com@gmail.com',
 				  subject:  'Welcome to QueuePlate!',
-				  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + user.userid
+				  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + user.id
 				});
-
-				// + user.useridd
 
 				sendgrid.send(email, function(err, json) {
 			  		if (err) {
 			  			return console.error(err);
 			  		}
-
-			  		// console.log("WHAT IS LINE 48???????????????", json);
 				});
 
 				var token = createToken(user);
@@ -57,78 +51,39 @@ module.exports = function(app, express) {
 					success: true,
 					message: "Successful login!",
 					token: token,
-					userID: user.userid
-				})
-
-
+					id: user.id
+				})	 
 		}).catch(function(err) {
 			res.send({message: "User not created", error: err});
 			return;
 		})
 	});
 
-
-	// api.put('/users/:userid/pref', function(req, res) {
-	// 	console.log('REQ.BODY asldkfjaosdifjasdfojasdofjiasd', req.body)
- //        models.User.find({ where: { userid: req.params.userid}})
- //        .then(function(user) {
- //        	console.log("INSIDE FUNCTION!@#$!@#$")
- //            user.firstName = req.body.firstName;
- //            user.lastName = req.body.lastName;
- //            user.age = req.body.age;
- //            user.gender = req.body.gender;
- //            user.save().then(function(){
- //                res.json({message: "User preferences updated"})
- //            })
- //        })
- //    })
-
-
+	//USER REGISTRATION
 	api.put('/:userid/pref', function(req, res) {
-		// console.log('REQ.BODY asldkfjaosdifjasdfojasdofjiasd', req.body)
         models.User.update(
-	        	{
-	        		firstName: req.body.firstName,
-	        		lastName: req.body.lastName,
-	        		age: req.body.age,
-	        		gender: req.body.gender,
-	        		addLine1: req.body.addLine1,
-	        		addLine2: req.body.addLine2,
-	        		addCity: req.body.addCity,
-	        		addState: req.body.addState,
-	        		addZip: req.body.addZip,
-	        		phoneNumber: req.body.phoneNumber,
-	        		verify: true
-	        	},
-	        	{ where: { userid: req.params.userid}
+	        {
+	        	firstName: req.body.firstName,
+	        	lastName: req.body.lastName,
+	        	age: req.body.age,
+	        	gender: req.body.gender,
+	        	addLine1: req.body.addLine1,
+	        	addLine2: req.body.addLine2,
+	        	addCity: req.body.addCity,
+	        	addState: req.body.addState,
+	        	addZip: req.body.addZip,
+	        	phoneNumber: req.body.phoneNumber,
+	        	verify: true,
+	        	role: 'customer'
+	        },
+	        	{ where: { id: req.params.userid}
         	})
-        // console.log("RES RES RES RES RES 12341892347192834", res.body)
         .then(function(user) {
-        	console.log("INSIDE FUNCTION!@#$!@#$")
-            // user.firstName = req.body.firstName;
-            // user.lastName = req.body.lastName;
-            // user.age = req.body.age;
-            // user.gender = req.body.gender;
-            // user.save().then(function(){
-                res.json({message: "User preferences updated"})
+            res.json({message: "User preferences updated"})
             })
         })
 
-	api.get('/', function(req, res) {
-		models.User.findAll()
-		.then(function(users) {
-			res.send(users);
-		})
-	});
-
-
-	api.get('/:userid', function(req, res) {
-        models.User.find({ where: { userid: req.params.userid}})
-        .then(function(users) {
-            res.send(users);
-        })
-    });
-
+	//USER LOGIN
 	api.post('/login', function(req, res) {
 		models.User.find({ where: { email: req.body.email }})
 		.then(function(user) {
@@ -146,7 +101,7 @@ module.exports = function(app, express) {
 					success: true,
 					message: "Successful login!",
 					token: token,
-					userID: user.userid,
+					id: user.id,
 					firstName: user.firstName,
 					lastName: user.lastName
 
@@ -156,7 +111,25 @@ module.exports = function(app, express) {
 			res.send({message: "Can't login", error: err})
 		})
 	})
- 	api.use(function(req, res, next) { //this middleware checks to see if user has token
+
+	//GET ALL USERS
+	api.get('/', function(req, res) {
+		models.User.findAll()
+		.then(function(users) {
+			res.send(users);
+		})
+	});
+
+ 	//GET SINGLE USER
+	api.get('/:userid', function(req, res) {
+        models.User.find({ where: { id: req.params.userid}})
+        .then(function(users) {
+            res.send(users);
+        })
+    });
+
+	//MIDDLEWARE - CHECKS TOKENS
+ 	api.use(function(req, res, next) {
  		console.log("Somebody just came to our app!");
  		var token = req.body.token || req.params.token || req.headers['x-access-token'];
  		if(token) {
@@ -174,9 +147,9 @@ module.exports = function(app, express) {
  		}
 	});
 
- 	api.get('/me', function(req, res) {  //seperate api so we can fetch login user data. we can call it from the fron t end
+ 	//GET INDIVIDUAL USER FROM FRONTEND ??
+ 	api.get('/me', function(req, res) {
 		res.json(req.decoded);
-
  	});
 return api;
 }
