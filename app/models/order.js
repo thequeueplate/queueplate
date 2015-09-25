@@ -1,14 +1,18 @@
 module.exports = function(sequelize, DataTypes) {
-  var Menu = sequelize.define("Menu", {
+  var Order = sequelize.define("Order", {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
+    },
+    status: {
+      type: DataTypes.ENUM,
+      values: ['Placed', 'Received', 'Started', 'Completed', 'Delivery', 'Delivered']
     }
   }, {
     classMethods: {
       associate: function(models) {
-        Menu.hasMany(models.Section);
+        Order.hasMany(models.OrderItem);
       }
     }
   }
@@ -19,5 +23,5 @@ module.exports = function(sequelize, DataTypes) {
   //       User.hasMany(models.Favorite)  USE LATER
   //     }
   //   }
-  return Menu;
+  return Order;
 };

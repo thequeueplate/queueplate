@@ -57,6 +57,9 @@ module.exports = function(sequelize, DataTypes) {
     stripeAccount: {
       type: DataTypes.INTEGER()
     },
+    cuisine: {
+      type: DataTypes.STRING(30)
+    },
     role: {
       type: DataTypes.ENUM,
       values: ['admin', 'restaurant', 'customer']
@@ -73,6 +76,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         Restaurant.hasMany(models.Menu);
+        Restaurant.hasMany(models.Order);
       }
     },
     instanceMethods: {
