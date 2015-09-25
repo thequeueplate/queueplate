@@ -51,6 +51,7 @@ module.exports = function(app, express) {
 					message: "Successful login!",
 					token: token,
 					id: rest.id
+					
 				})	 
 				console.log(err)
 			}).catch(function(err) {
@@ -138,8 +139,10 @@ module.exports = function(app, express) {
 					message: "Successful login!",
 					token: token,
 					id: rest.id,
-					role: rest.role
-					
+					role: rest.role,
+					firstName: rest.firstName,
+					lastName: rest.lastName, 
+					verify: rest.verify	
 
 				})
 			}
