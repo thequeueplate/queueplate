@@ -58,8 +58,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER()
     },
     cuisine: {
-      type: DataTypes.ENUM,
-      values: ['American', 'Cajun', 'Caribbean', 'Chinese', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Korean', 'Lebanese', 'Mediterranean', 'Mexican', 'Moroccan', 'Soul', 'Spanish', 'Thai', 'Turkish', 'Vietnamese', 'Other']
+      type: DataTypes.STRING(30)
     }
     role: {
       type: DataTypes.ENUM,
