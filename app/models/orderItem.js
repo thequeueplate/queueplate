@@ -1,14 +1,20 @@
 module.exports = function(sequelize, DataTypes) {
-  var Menu = sequelize.define("Menu", {
+  var OrderItem = sequelize.define("OrderItem", {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
+    },
+    quantity: {
+      type: DataTypes.INTEGER(3)
+    },
+    comments: {
+      type: DataTypes.STRING(200)
     }
   }, {
     classMethods: {
       associate: function(models) {
-        Menu.hasMany(models.Section);
+        OrderItem.belongsTo(models.Order);
       }
     }
   }
@@ -19,5 +25,5 @@ module.exports = function(sequelize, DataTypes) {
   //       User.hasMany(models.Favorite)  USE LATER
   //     }
   //   }
-  return Menu;
+  return OrderItem;
 };

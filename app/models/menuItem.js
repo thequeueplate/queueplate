@@ -17,6 +17,10 @@ module.exports = function(sequelize, DataTypes) {
     },
     pictureURL: {
       type: DataTypes.STRING(2083)
+    },
+    type: {
+      type: DataTypes.ENUM,
+      values: ['Dine-in', 'Take-out']
     }
   }, {
     classMethods: {
@@ -27,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
           }
         });
-        MenuItem.belongsToMany(models.User, {through: 'FavoritePlates'});
+        MenuItem.hasMany(models.OrderItem);
       }
     }
   }
