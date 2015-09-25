@@ -1,6 +1,6 @@
 var app = angular.module('QueuePlate')
 
-app.service('loginService', function($http, $q, $state, authTokenService, $cookies) {
+app.service('loginService', function($http, $q, $state, $rootScope, authTokenService, $cookies) {
 		
 	this.login = function(email, password) {
 		
@@ -12,16 +12,25 @@ app.service('loginService', function($http, $q, $state, authTokenService, $cooki
 		.success(function(data) {
 
 			console.log(data)
+
+			if (data.success === false) {
+				alert("Please Check your email to confirm your account")
+				$rootScope.loggedIn = false;
+				$state.go('loginBoth')
+			} else {
+
 			authTokenService.setToken(data.token)
 
 			$cookies.putObject("firstName", data.firstName)
 			$cookies.putObject("lastName", data.lastName)
 			$cookies.putObject("verify", data.verify)
 
+			$state.go('dashboard')
 			return data
 			
-		})
-	}
+	        }
+	    })
+   }
 
 	this.loginRest = function(email, password) {
 		
@@ -33,10 +42,21 @@ app.service('loginService', function($http, $q, $state, authTokenService, $cooki
 		.success(function(data) {
 
 			console.log(data)
-			authTokenService.setToken(data.token)
 
+			if (data.success === false) {
+				alert("Please Check your email to confirm your account")
+				$rootScope.loggedIn = false;
+				$state.go('loginBoth')
+			} else {
+			authTokenService.setToken(data.token)
+			$cookies.putObject("firstName", data.firstName)
+			$cookies.putObject("lastName", data.lastName)
+			$cookies.putObject("verify", data.verify)
+
+			$state.go('RestLanding')
 			return data
-			
+
+			  }
 		})
 	}
 
