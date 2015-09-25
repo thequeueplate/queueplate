@@ -34,13 +34,6 @@ $urlRouterProvider.otherwise('/');
     
   })
 
-  .state('restaurantDashboard', {
-    url: '/restaurantDashboard', 
-    templateUrl: 'app/dashboard/RestaurantTmpl.html', 
-    controller: 'RestaurantCtrl'
-
-  })
-
   .state('registerRestaurant', {
     url: '/registerRestaurant/:id',
     templateUrl: 'app/auth/registerRestaurant.html',
@@ -55,12 +48,19 @@ $urlRouterProvider.otherwise('/');
     } 
   })
 
-  .state('RestLanding', {
+
+  .state('RestaurantLanding', {
    url: '/RestaurantLanding',
    templateUrl: 'app/RestDash/RestaurantTmpl.html',
    controller: 'RestLandingCtrl'
   })
 
+ 
+  .state('ManageMenu', {
+   url: '/ManageMenu',
+   templateUrl: 'app/RestDash/Menu.html',
+   controller: 'MenuController'
+  })
 
    .state('registerCustomer', {
     url: '/registerCustomer/:id',
@@ -103,7 +103,7 @@ app.run(function($state, $rootScope, $window, loginService) {
 
    $rootScope.$on('$stateChangeStart', function(event, toState) {
 
-       var safeStates = ['home', 'signUpBoth', 'loginBoth', 'verify', 'registerCustomer', 'registerRestaurant', 'signUpCustomer', 'signUpRestaurant', 'RestLanding'];
+       var safeStates = ['home', 'signUpBoth', 'loginBoth', 'verify', 'registerCustomer', 'registerRestaurant', 'signUpCustomer', 'signUpRestaurant', 'RestaurantLanding', 'ManageMenu'];
 
 
        var protected = safeStates.indexOf(toState.name) === -1;

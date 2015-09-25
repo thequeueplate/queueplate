@@ -21,9 +21,7 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 
 			authTokenService.setToken(data.token)
 
-			$cookies.putObject("firstName", data.firstName)
-			$cookies.putObject("lastName", data.lastName)
-			$cookies.putObject("verify", data.verify)
+			$cookies.putObject("userName", data.firstName)
 
 			$state.go('dashboard')
 			return data
@@ -49,9 +47,9 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 				$state.go('loginBoth')
 			} else {
 			authTokenService.setToken(data.token)
-			$cookies.putObject("firstName", data.firstName)
-			$cookies.putObject("lastName", data.lastName)
-			$cookies.putObject("verify", data.verify)
+			
+			$cookies.putObject("restFirstName", data.firstName)
+		
 
 			$state.go('RestLanding')
 			return data
