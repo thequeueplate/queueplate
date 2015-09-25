@@ -1,4 +1,4 @@
-app.controller('RestLanding', function($scope, $rootScope, registerService, $state, loginService){
+app.controller('RestLandingCtrl', function($scope, $rootScope, registerService, $state, loginService){
 
   $scope.getMenu = function() {
     mainService.getMenu()
@@ -18,8 +18,6 @@ app.controller('RestLanding', function($scope, $rootScope, registerService, $sta
     price: 0,
     addCourse: ''
   }
-
-
 
 
   $scope.courses = [

@@ -132,6 +132,13 @@ module.exports = function(app, express) {
 	api.post('/login', function(req, res) {
 		models.User.find({ where: { email: req.body.email }})
 		.then(function(user) {
+
+			if (!user.verify) {
+				res.json({
+					success: false, 
+					message: "Please check your email to confirm your account before login"
+				})
+			}
 			var validPassword = user.comparePassword(req.body.password);
 			console.log('login hit');
 

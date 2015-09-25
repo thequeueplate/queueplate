@@ -10,7 +10,7 @@ app.service('registerService', function($http, $q, $rootScope) {
 			url: "/api/users/" + id
 		}).then(function(response) {
 			deferred.resolve(response.data)
-		})
+		   })
 		    return deferred.promise
 		    console.log(deferred.promise)
 	}
@@ -41,7 +41,7 @@ app.service('registerService', function($http, $q, $rootScope) {
 		return deferred.promise
 	}
 
-		this.checkVerifiedRestaurant = function(id) {
+	this.checkVerifiedRestaurant = function(id) {
 		var deferred = $q.defer();
 		$http({
 			method: "GET", 
@@ -51,7 +51,7 @@ app.service('registerService', function($http, $q, $rootScope) {
 		})
 		    return deferred.promise
 		    console.log(deferred.promise)
-	}
+    }
 
 	this.registerRestaurant = function(rest, RID) {
 		var deferred = $q.defer()
@@ -73,7 +73,6 @@ app.service('registerService', function($http, $q, $rootScope) {
 		})
 		.then(function(data) {
 			deferred.resolve(data) //this passes everything back to controller
-
 		});
 		
 		return deferred.promise

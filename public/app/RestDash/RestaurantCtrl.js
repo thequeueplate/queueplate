@@ -1,3 +1,3 @@
-app.controller('RestaurantCtrl', function($scope, mainService, $location, orders){  //// check on $location and orders
+app.controller('RestaurantCtrl', function($scope, $location, orders){  //// check on $location and orders
   $scope
 })
