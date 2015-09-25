@@ -154,7 +154,7 @@ module.exports = function(app, express) {
 				})
 			}
 		}).catch(function(err) {
-			res.send({message: "Can't login error:", err})
+			res.send({message: "Can't login error:", error: err})
 		})
 	})
 

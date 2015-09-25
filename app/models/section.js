@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var MenuItem = sequelize.define("MenuItem", {
+  var Section = sequelize.define("Section", {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -9,25 +9,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(),
       allowNull: false
     },
-    description: {
+    comments: {
       type: DataTypes.TEXT()
-    },
-    price: {
-      type: DataTypes.DECIMAL(4, 2)
-    },
-    pictureURL: {
-      type: DataTypes.STRING(2083)
     }
   }, {
     classMethods: {
       associate: function(models) {
-        MenuItem.belongsTo(models.Restaurant, {
-          onDelete: "CASCADE",
-          foreignKey: {
-            allowNull: false
-          }
-        });
-        MenuItem.belongsToMany(models.User, {through: 'FavoritePlates'});
+        Section.hasMany(models.MenuItem);
+        Section.belongsTo(models.Restaurant);
       }
     }
   }
@@ -38,5 +27,5 @@ module.exports = function(sequelize, DataTypes) {
   //       User.hasMany(models.Favorite)  USE LATER
   //     }
   //   }
-  return MenuItem;
+  return Section;
 };

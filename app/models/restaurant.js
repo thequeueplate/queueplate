@@ -70,6 +70,11 @@ module.exports = function(sequelize, DataTypes) {
         })
       }
     },
+    classMethods: {
+      associate: function(models) {
+        Restaurant.hasMany(models.Menu);
+      }
+    },
     instanceMethods: {
       comparePassword: function(password) {
         console.log("compare hit");
