@@ -76,6 +76,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         Restaurant.hasMany(models.Menu);
+        Restaurant.hasMany(models.Order);
       }
     },
     instanceMethods: {

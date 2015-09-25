@@ -76,6 +76,7 @@ module.exports = function(app, express) {
 	        		phoneNumber: req.body.phoneNumber,
 	        		stripeAccount: req.body.stripeAccount,
 	        		verify: true,
+	        		cuisine: req.body.cuisine,
 	        		role: 'restaurant'
 	        	}, 
 	        	{ where: { id: req.params.restid}

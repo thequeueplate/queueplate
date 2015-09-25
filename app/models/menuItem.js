@@ -31,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
           }
         });
-        MenuItem.belongsToMany(models.User, {through: 'FavoritePlates'});
+        MenuItem.hasMany(models.OrderItem);
       }
     }
   }
