@@ -69,7 +69,8 @@ module.exports = function(app, express) {
 		models.User.create({
 			email: req.body.email,
 			password: req.body.password,
-			role: 'customer'
+			role: 'customer',
+			verify: 'false'
 		}).then(function(user){
 			console.log('success hit')
 				var email = new sendgrid.Email({
@@ -93,7 +94,9 @@ module.exports = function(app, express) {
 					success: true,
 					message: "Successful login!",
 					token: token,
-					id: user.id
+					id: user.id,
+					role: user.role,
+					verify: user.verify
 				})	 
 		}).catch(function(err) {
 			res.send({message: "User not created", error: err});
@@ -145,12 +148,13 @@ module.exports = function(app, express) {
 					token: token,
 					id: user.id,
 					firstName: user.firstName,
-					lastName: user.lastName
-
+					lastName: user.lastName, 
+					verify: user.verify,
+					role: user.role
 				})
 			}
 		}).catch(function(err) {
-			res.send({message: "Can't login", error: err})
+			res.send({message: "Can't login error:", err})
 		})
 	})
 

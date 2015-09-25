@@ -31,7 +31,13 @@ $urlRouterProvider.otherwise('/');
     url: '/dashboard',
     templateUrl: 'app/dashboard/dashboard.html',
     controller: 'dashboardCtrl'
-  })
+    // resolve: {
+    //   checkVerification: function(registerService, $stateParams) {
+    //     return registerService.checkVerified($stateParams.id)
+    //   }
+
+    })
+
 
   .state('registerRestaurant', {
     url: '/registerRestaurant/:id',
@@ -102,7 +108,7 @@ app.run(function($state, $rootScope, $window, loginService) {
 
    $rootScope.$on('$stateChangeStart', function(event, toState) {
 
-       var safeStates = ['home', 'signUpBoth', 'loginBoth', 'verify', 'registerCustomer', 'registerRestaurant', 'signUpCustomer', 'signUpRestaurant'];
+       var safeStates = ['home', 'signUpBoth', 'loginBoth', 'verify', 'registerCustomer', 'registerRestaurant', 'signUpCustomer', 'signUpRestaurant', 'RestLanding'];
 
 
        var protected = safeStates.indexOf(toState.name) === -1;

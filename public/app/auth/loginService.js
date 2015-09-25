@@ -23,6 +23,23 @@ app.service('loginService', function($http, $q, $state, authTokenService, $cooki
 		})
 	}
 
+	this.loginRest = function(email, password) {
+		
+		return $http.post('/api/rests/login', {
+			email: email, 
+			password: password
+		
+		})
+		.success(function(data) {
+
+			console.log(data)
+			authTokenService.setToken(data.token)
+
+			return data
+			
+		})
+	}
+
 	this.logout = function() {
 		authTokenService.setToken();
 		
@@ -40,6 +57,15 @@ app.service('loginService', function($http, $q, $state, authTokenService, $cooki
 			return $http.get('/api/users/me');
 		else
 			return $q.reject({message: "User has no token"})
+	}
+
+	this.getRest = function() {
+
+		if(authTokenService.getToken())
+			return $http.get('/api/rests/me');
+		else
+			return $q.reject({message: "Rest has no token"})
+
 	}
 });
 

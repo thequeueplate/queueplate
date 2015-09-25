@@ -24,7 +24,6 @@ app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 				$state.go('verify');
 				// $window.localStorage.setItem('token', response.data.token);
 
-
 				}
 			})
 	}
