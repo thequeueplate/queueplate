@@ -5,10 +5,10 @@ app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 	$scope.signupUser = function() {
 		$scope.message = '';
 
-
 		signupService.create($scope.userData)
-			.then(function(response) {
 
+			.then(function(response) {
+			console.log(response)
 				$scope.userData = {};
 
 				$scope.message = response.data.message;
@@ -21,7 +21,6 @@ app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 
 				$state.go('verify');
 				// $window.localStorage.setItem('token', response.data.token);
-
 
 				}
 			})
@@ -51,7 +50,6 @@ app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 				$state.go('verify');
 				// $window.localStorage.setItem('token', response.data.token);
 
-
 				}
 			})
 	}
@@ -59,7 +57,6 @@ app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 	$scope.password = document.getElementById("password")
 
 	$scope.passwordCheck = document.getElementById("passwordCheck");
-
 
 	$scope.validatePassword = function(p, cp){
 
@@ -85,7 +82,6 @@ app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 				   $scope.signupUser()
 			}
 	    }
-
 
 	$scope.passwordRest = document.getElementById("passwordRest")
 

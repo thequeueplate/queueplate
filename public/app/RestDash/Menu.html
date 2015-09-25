@@ -1,3 +1,36 @@
+<!-- 
+OWNER: LOGAN
+BACKING CONTROLLER: MenuCtrl
+TODO:
+- Button for Add a section
+- 
+
+DATA ON CONTROLLER: 
+   $scope.sections = []
+   section = {
+        id,
+        name,
+        description
+    }
+   $scope.newSection = {
+
+    }
+
+HTML PSEUDO CODE: 
+  div .newSection
+        input name  ng-model->newSection.name
+        input description ng-model -> newSection.description
+        button Add -> posts newSection to 
+
+  div .orderContainer
+      repeat section on sections
+        input name
+        input description
+        save changes button -> PUTs changes to server (takes in section)
+        manage section items button -> change route to the manageItemsPage
+-->
+
+
 <!-- <md-tabs>
   <md-tab>
     Cool Tab

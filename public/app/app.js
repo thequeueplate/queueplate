@@ -31,6 +31,7 @@ $urlRouterProvider.otherwise('/');
     url: '/dashboard',
     templateUrl: 'app/dashboard/dashboard.html',
     controller: 'dashboardCtrl'
+
   })
 
   .state('registerRestaurant', {
@@ -44,23 +45,25 @@ $urlRouterProvider.otherwise('/');
       publishData: function(registerService, $stateParams) {
         return registerService.checkVerifiedRestaurant($stateParams.id)
       }
-
     }
   })
 
 
-  .state('RestLanding', {
-   url: '/RestLanding',
-   templateUrl: 'app/RestDash/RestLanding.html',
+
+  .state('RestaurantLanding', {
+   url: '/RestaurantLanding',
+   templateUrl: 'app/RestDash/RestaurantTmpl.html',
    controller: 'RestLandingCtrl'
   })
 
- //  .state('RestaurantCtrl', {
-  //  url: '/RestaurantCtrl',
-  //  templateUrl: 'app/RestDash/RestaurantTmpl.html'
-  // })
 
-  .state('registerCustomer', {
+  .state('ManageMenu', {
+   url: '/ManageMenu',
+   templateUrl: 'app/RestDash/Menu.html',
+   controller: 'MenuController'
+  })
+
+   .state('registerCustomer', {
     url: '/registerCustomer/:id',
     templateUrl: 'app/auth/registerCustomer.html',
     controller: 'registerCtrl',
@@ -97,12 +100,11 @@ $locationProvider.html5Mode(true);
 
 });
 
-
 app.run(function($state, $rootScope, $window, loginService) {
 
    $rootScope.$on('$stateChangeStart', function(event, toState) {
 
-       var safeStates = ['home', 'signUpBoth', 'loginBoth', 'verify', 'registerCustomer', 'registerRestaurant', 'signUpCustomer', 'signUpRestaurant'];
+       var safeStates = ['home', 'signUpBoth', 'loginBoth', 'verify', 'registerCustomer', 'registerRestaurant', 'signUpCustomer', 'signUpRestaurant', 'RestaurantLanding', 'ManageMenu'];
 
 
        var protected = safeStates.indexOf(toState.name) === -1;

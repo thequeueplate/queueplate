@@ -52,6 +52,7 @@ module.exports = function(app, express) {
 					token: token,
 					id: rest.id
 				})
+
 				console.log(err)
 			}).catch(function(err) {
 				res.send({message: "Restaurant not created error:", error: err});
@@ -85,13 +86,48 @@ module.exports = function(app, express) {
         })
 
 	//RESTAURANT LOGIN
+	// api.post('/login', function(req, res) {
+	// 	models.Restaurant.find({ where: { email: req.body.email }})
+	// 	.then(function(rest) {
+	// 		var validPasswordRest = rest.comparePasswordRest(req.body.passwordRest);
+	// 		console.log('login hit');
+
+	// 		if(!validPasswordRest) {
+	// 			console.log('not valid pw');
+	// 			res.send({message: 'Invalid Password'});
+	// 		} else {
+
+	// 			var token = createToken(rest);
+
+	// 			res.json({
+	// 				success: true,
+	// 				message: "Successful login!",
+	// 				token: token,
+	// 				id: rest.id
+	// 			})
+	// 		}
+	// 		console.log(err)
+	// 	}).catch(function(err) {
+	// 		res.send({message: "Can't login error", err})
+	// 		console.log(err)
+	// 	})
+	// })
+
 	api.post('/login', function(req, res) {
 		models.Restaurant.find({ where: { email: req.body.email }})
 		.then(function(rest) {
-			var validPasswordRest = rest.comparePasswordRest(req.body.passwordRest);
+
+			if (!rest.verify) {
+				res.json({
+					success: false,
+					message: "Please check your email to confirm your account before login"
+				})
+			}
+
+			var validPassword = rest.comparePassword(req.body.password);
 			console.log('login hit');
 
-			if(!validPasswordRest) {
+			if(!validPassword) {
 				console.log('not valid pw');
 				res.send({message: 'Invalid Password'});
 			} else {
@@ -102,11 +138,17 @@ module.exports = function(app, express) {
 					success: true,
 					message: "Successful login!",
 					token: token,
-					id: rest.id
+					id: rest.id,
+					role: rest.role,
+					firstName: rest.firstName,
+					lastName: rest.lastName,
+					verify: rest.verify
+
 				})
 			}
 		}).catch(function(err) {
-			res.send({message: "Can't login error", error: err})
+			res.send({message: "Can't login error:", error: err})
+
 		})
 	})
 
@@ -128,22 +170,43 @@ module.exports = function(app, express) {
         })
     });
 
-	//CREATE NEW MENU ITEM
-    api.post('/:restid/menu', function(req, res) {
-		models.MenuItem.create({
-			name: req.body.name,
+    api.post('/:restid/menus', function(req, res) {
+    	models.Menu.create({
+    		RestaurantId: req.params.restid,
+    		name: req.body.name
+    	}).then(function(menu) {
+    		res.send(menu);
+    	}).catch(function(err) {
+    		res.send({message: 'Menu not created.', error: err});
+    	})
+    });
+
+    api.post('/:restid/sections/:menuid', function(req, res) {
+    	models.Section.create({
+    		RestaurantId: req.params.restid,
+    		MenuId: req.params.menuid,
+    		name: req.body.name,
+    		comments: req.body.comments
+    	}).then(function(section) {
+    		res.send(section);
+    	}).catch(function(err) {
+    		res.send({message: 'Section not created', error: err});
+    	})
+    });
+
+    api.post('/:restid/items/:sectionid',function(req,res) {
+    	models.MenuItem.create({
+    		RestaurantId: req.params.restid,
+    		SectionId: req.params.sectionid,
+    		name: req.body.name,
 			description: req.body.description,
 			price: req.body.price,
-			section: req.body.section,
-			comments: req.body.comments,
-			RestaurantId: req.params.restid
 		}).then(function(item) {
 			res.send(item);
 		}).catch(function(err) {
-			res.send({message: 'Item not created.', error: err});
-			return;
+			res.send({message: 'Item not created', error: err});
 		})
-	});
+    })
 
 	//GET FULL MENU
 	api.get('/:restid/menu', function(req, res) {

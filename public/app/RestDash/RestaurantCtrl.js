@@ -1,3 +1,1 @@
-app.controller('RestaurantCtrl', function($scope, mainService, $location, orders){  //// check on $location and orders
-  $scope
-})
+///This file is defunct if you see it delete it !

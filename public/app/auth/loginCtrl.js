@@ -26,8 +26,36 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 				$rootScope.loggedIn = true; 
 				
 					$state.go('dashboard'); 
-
 				}
+			});
+	}
+
+	$scope.doLoginRest = function() {
+
+	$scope.processing = true;
+
+		$scope.error = '';
+
+		loginService.loginRest($scope.loginData.email, $scope.loginData.password)
+			.success(function(data) {
+			
+				if (data.message === "Invalid Password") {
+					console.log(data.message)
+					Materialize.toast('Invalid Password', 1000)
+					
+				} else {
+		
+		loginService.getRest()
+			.then(function(data) {
+				console.log(data)
+				});
+
+				$scope.processing = false;
+				$rootScope.loggedIn = true; 
+				
+					$state.go('RestLanding'); 
+
+				 }
 			});
 	}
 

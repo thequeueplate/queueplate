@@ -64,16 +64,21 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     hooks: {
       beforeCreate: function(rest, options, cb) {
-        bcrypt.hash(rest.passwordRest, null, null, function(err, hash) {
-          rest.passwordRest = hash;
+        bcrypt.hash(rest.password, null, null, function(err, hash) {
+          rest.password = hash;
           return cb(null, options);
         })
       }
     },
+    classMethods: {
+      associate: function(models) {
+        Restaurant.hasMany(models.Menu);
+      }
+    },
     instanceMethods: {
-      comparePasswordRest: function(passwordRest) {
+      comparePassword: function(password) {
         console.log("compare hit");
-        return bcrypt.compareSync(passwordRest, this.passwordRest)
+        return bcrypt.compareSync(password, this.password)
       }
     }
 

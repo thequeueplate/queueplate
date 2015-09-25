@@ -2,26 +2,18 @@ var app = angular.module('QueuePlate')
 
 app.controller('registerCtrl', function(publishData, UID, registerService, $state, $scope, loginService, $cookies) {
 
-	// $scope.verifiyUserNow = $cookies.getObject("verify")
-
-	// $scope.checkIfVerified = function() {
-
-	// 	loginService.getUser(response) {
-	// 		console.log(response)
-
-	// 	}
-
-	// }
 	
+	$scope.checkVerifiedUser = function() {
 
-	// registerService.checkVerified(id)
-	// 	.then(function(response) {
-	// 		if (response.verify === true) {
-	// 			$state.go('login')
-	// 		} else {
-	// 			$state.go('registerCustomer')
-	// 		  }
-	// 	})
+	registerService.checkVerified(id)
+		.then(function(response) {
+			if (response.verify === true) {
+				$state.go('dashboard')
+			} else {
+				$state.go('registerCustomer/:' + id)
+			  }
+		})
+	}
 
 	$scope.registerUser = function(user) {
 
@@ -35,7 +27,6 @@ app.controller('registerCtrl', function(publishData, UID, registerService, $stat
 
 		registerService.registerRestaurant(rest, UID).then(function(response) {
 			$state.go('loginBoth');
-
 		});
 	}
 
@@ -101,17 +92,5 @@ app.controller('registerCtrl', function(publishData, UID, registerService, $stat
 		{type: "WY"}
 	]
 
-
-	// registerService.checkVerified(id)
-	// 	.then(function(response) {
-	// 		if (response.verify === true) {
-	// 			$state.go('login')
-	// 		} else {
-	// 			$state.go('registerCustomer')
-	// 		  }
-	// 	})
 });
 
-
-
-// $stateParams.id

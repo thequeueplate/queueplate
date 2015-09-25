@@ -1,6 +1,6 @@
 var app = angular.module('QueuePlate')
 
-app.service('loginService', function($http, $q, $state, authTokenService, $cookies) {
+app.service('loginService', function($http, $q, $state, $rootScope, authTokenService, $cookies) {
 		
 	this.login = function(email, password) {
 		
@@ -12,14 +12,49 @@ app.service('loginService', function($http, $q, $state, authTokenService, $cooki
 		.success(function(data) {
 
 			console.log(data)
+
+			if (data.success === false) {
+				alert("Please Check your email to confirm your account")
+				$rootScope.loggedIn = false;
+				$state.go('loginBoth')
+			} else {
+
 			authTokenService.setToken(data.token)
 
-			$cookies.putObject("firstName", data.firstName)
-			$cookies.putObject("lastName", data.lastName)
-			$cookies.putObject("verify", data.verify)
+			$cookies.putObject("userName", data.firstName)
 
+			$state.go('dashboard')
 			return data
 			
+	        }
+	    })
+   }
+
+	this.loginRest = function(email, password) {
+		
+		return $http.post('/api/rests/login', {
+			email: email, 
+			password: password
+		
+		})
+		.success(function(data) {
+
+			console.log(data)
+
+			if (data.success === false) {
+				alert("Please Check your email to confirm your account")
+				$rootScope.loggedIn = false;
+				$state.go('loginBoth')
+			} else {
+			authTokenService.setToken(data.token)
+			
+			$cookies.putObject("restFirstName", data.firstName)
+		
+
+			$state.go('RestLanding')
+			return data
+
+			  }
 		})
 	}
 
@@ -40,6 +75,15 @@ app.service('loginService', function($http, $q, $state, authTokenService, $cooki
 			return $http.get('/api/users/me');
 		else
 			return $q.reject({message: "User has no token"})
+	}
+
+	this.getRest = function() {
+
+		if(authTokenService.getToken())
+			return $http.get('/api/rests/me');
+		else
+			return $q.reject({message: "Rest has no token"})
+
 	}
 });
 
