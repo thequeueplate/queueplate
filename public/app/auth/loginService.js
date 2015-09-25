@@ -47,11 +47,10 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 				$state.go('loginBoth')
 			} else {
 			authTokenService.setToken(data.token)
-			
+
 			$cookies.putObject("restFirstName", data.firstName)
 		
-
-			$state.go('RestLanding')
+			$rootScope.loggedIn = true;
 			return data
 
 			  }
