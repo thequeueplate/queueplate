@@ -31,31 +31,37 @@
   </md-tab> -->
 
   <!-- <md-tab label="Menu"> -->
-    <div>
+  <div>
+    <div ng-repeat="(idx, MenuItem) in MenuItems track by $index">
       <md-content>
         <md-input-container>
-          <label>Item Type</label>
-          <md-select ng-model="menu.Course">
+          <label>Menu Section</label>
+          <md-select ng-model="MenuItem.section">
             <md-option ng-repeat="course in courses" ng-value="course.type">{{course.type}}</md-option>
           </md-select>
         </md-input-container>
         <md-input-container>
-          <label>Item Name</label>
-          <input ng-model="menu.name">
+          <label>Section Comments</label>
+          <input ng-model="MenuItem.comments">
         </md-input-container>
         <md-input-container>
-          <label>Item Description</label>
-          <input ng-model="menu.description">
+          <label>Dish Name</label>
+          <input ng-model="MenuItem.name">
         </md-input-container>
         <md-input-container>
-          <label>Item Price</label>
-          <input type="Number" ng-model="menu.price">
+          <label>Dish Description</label>
+          <input ng-model="MenuItem.description">
+        </md-input-container>
+        <md-input-container>
+          <label>Dish Price</label>
+          <input type="Number" ng-model="MenuItem.price">
         </md-input-container>
         <md-button ng-click="removeMenuItem(idx)">
           Remove Menu Item
         </md-button>
       </md-content>
     </div>
+  </div>
     <md-button ng-click="addMenuItem()" class="md-primary md-raised">
       Add Menu Item
     </md-button>
@@ -63,6 +69,6 @@
 
 <!-- </md-tabs> -->
 
-<md-button ng-click="saveData()" class="md-accent md-hue-1" style="width: 100%; margin-bottom: 0;">
+<md-button ng-click="saveMenuData(MenuItem)" class="md-accent md-hue-1" style="width: 100%; margin-bottom: 0;">
   Save
 </md-button>

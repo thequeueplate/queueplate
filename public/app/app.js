@@ -52,7 +52,7 @@ $urlRouterProvider.otherwise('/');
   .state('RestLanding', {
    url: '/RestLanding',
    templateUrl: 'app/RestDash/RestLanding.html',
-   controller: 'RestLanding'
+   controller: 'RestLandingCtrl'
   })
 
  //  .state('RestaurantCtrl', {

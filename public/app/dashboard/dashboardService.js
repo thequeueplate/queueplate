@@ -5,5 +5,3 @@ app.service('dashboardService', function($http, $q) {
 
 
 })
-
-
