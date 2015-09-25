@@ -4,13 +4,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
-    },
-    name: {
-      type: DataTypes.ENUM,
-      values: ['Dine-in', "Take-out"]
     }
-  }
-  , {
+  }, {
     classMethods: {
       associate: function(models) {
         Menu.hasMany(models.Section);
