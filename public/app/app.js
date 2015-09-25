@@ -34,13 +34,6 @@ $urlRouterProvider.otherwise('/');
     
   })
 
-  .state('restaurantDashboard', {
-    url: '/restaurantDashboard', 
-    templateUrl: 'app/dashboard/RestaurantTmpl.html', 
-    controller: 'RestaurantCtrl'
-
-  })
-
   .state('registerRestaurant', {
     url: '/registerRestaurant/:id',
     templateUrl: 'app/auth/registerRestaurant.html',
@@ -54,6 +47,7 @@ $urlRouterProvider.otherwise('/');
       }
     } 
   })
+
 
   .state('RestLanding', {
    url: '/RestaurantLanding',
