@@ -1,1 +1,50 @@
 <h1>{{restFirst}}'s Restaurant</h1>
+
+This is the Restaurant Dashboard.
+
+<!-- 
+OWNER: MARK
+BACKING CONTROLLER: RestLandingCtrl
+TODO:
+- Add a link to manage a menu
+- Show Incoming Orders
+
+DATA ON CONTROLLER: 
+    $scope.incomingOrders = []
+
+    order = {
+        name,
+        address,
+        phone,
+        dishes: [],
+        special comments
+    }
+
+HTML PSEUDO CODE: 
+ div
+    div .orderList
+        fixed width (min Width)
+        repeat order on incomingOrders
+            name & time
+            click (order)
+                on controller -> set $scope.selectedOrder
+        [BONUS: Show 'indicator' for 'started']
+
+    [BONUS: Send order status updates]
+
+    div .orderDetails
+        div
+            visible only if started
+            ready button inside
+            once ready
+                -> Shows delivery address & name & phone
+        
+        div .orderDishes
+            repeat on selectedOrder.dishes
+                dish name
+                special comments
+    
+        div
+            visible only if order.status === 'open'
+                started
+-->
