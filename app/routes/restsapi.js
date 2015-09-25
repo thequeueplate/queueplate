@@ -3,14 +3,14 @@ var SGKey = config.SG_API_KEY;
 var sendgrid  = require('sendgrid')(SGKey)
 
 var models  = require('../models');
-var secretKey = config.secretKey; 
+var secretKey = config.secretKey;
 
 var jsonwebtoken = require('jsonwebtoken');
 
 function createToken(rest) {
 
 	var token = jsonwebtoken.sign({
-		id: rest._id, 
+		id: rest._id,
 		email: rest.email
 	}, secretKey, {
 		expiresInMinute: 1440
@@ -21,7 +21,7 @@ function createToken(rest) {
 
 module.exports = function(app, express) {
 
-	var api = express.Router(); 
+	var api = express.Router();
 
 	//RESTAURANT SIGNUP
 	api.post('/signup', function(req, res) {
@@ -31,15 +31,15 @@ module.exports = function(app, express) {
 		}).then(function(rest){
 			console.log('success hit')
 				var email = new sendgrid.Email({
-				  to:       'lindseybrown4@gmail.com',
+				  to:       'bunker.logan@gmail.com',
 				  from:     'queueplate.com@gmail.com',
 				  subject:  'Welcome to QueuePlate!',
-				  text:     'Click on the link to confirm your registration http://localhost:3000/registerRestaurant/' + rest.id 
+				  text:     'Click on the link to confirm your registration http://localhost:3000/registerRestaurant/' + rest.id
 				});
 
 				sendgrid.send(email, function(err, json) {
-			  		if (err) { 
-			  			return console.error(err); 
+			  		if (err) {
+			  			return console.error(err);
 			  		}
 				});
 
@@ -47,14 +47,14 @@ module.exports = function(app, express) {
 				console.log('successful login')
 
 				res.json({
-					success: true, 
+					success: true,
 					message: "Successful login!",
 					token: token,
 					id: rest.id
-				})	 
+				})
 				console.log(err)
 			}).catch(function(err) {
-				res.send({message: "Restaurant not created error:", err});
+				res.send({message: "Restaurant not created error:", error: err});
 				return;
 			})
 	});
@@ -76,7 +76,7 @@ module.exports = function(app, express) {
 	        		stripeAccount: req.body.stripeAccount,
 	        		verify: true,
 	        		role: 'restaurant'
-	        	}, 
+	        	},
 	        	{ where: { id: req.params.restid}
         	})
         .then(function(rest) {
@@ -99,14 +99,14 @@ module.exports = function(app, express) {
 				var token = createToken(rest);
 
 				res.json({
-					success: true, 
+					success: true,
 					message: "Successful login!",
-					token: token, 
+					token: token,
 					id: rest.id
 				})
 			}
 		}).catch(function(err) {
-			res.send({message: "Can't login error", err})
+			res.send({message: "Can't login error", error: err})
 		})
 	})
 
@@ -155,27 +155,27 @@ module.exports = function(app, express) {
 
 	//MIDDLEWARE - CHECKS TOKEN
  	api.use(function(req, res, next) {
- 		console.log("Somebody just came to our app!"); 
- 		var token = req.body.token || req.params.token || req.headers['x-access-token']; 
+ 		console.log("Somebody just came to our app!");
+ 		var token = req.body.token || req.params.token || req.headers['x-access-token'];
  		if(token) {
  			jsonwebtoken.verify(token, secretKey, function(err, decoded) {
 				if(err) {
  					res.status(403).send({ success: false, message: "Failed to authenticate restaurant" });
  				} else {
- 					req.decoded = decoded; 
- 					next(); 
+ 					req.decoded = decoded;
+ 					next();
  				}
  			});
  		} else {
  			res.status(403).send({success: false, message: "No Token Provided" });
  		}
-	}); 
-	 
+	});
+
 	//GET INDIVIDUAL USER FROM FRONTEND ??
  	api.get('/me', function(req, res) {
-		res.json(req.decoded); 
+		res.json(req.decoded);
 		console.log(req)
 
- 	}); 
-return api; 
+ 	});
+return api;
 }
