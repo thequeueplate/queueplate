@@ -2,7 +2,7 @@
 		<div class="login">
 		<h1 class="grey-text darken-2">Log In</h1>
 
-			<form class="form-signin" method="post" ng-submit="doLogin()">
+			<form class="form-signin">
 				<md-input-container>
 					<label>Email</label>
 					<input type="text" name="username" class="form-control" ng-model="loginData.email"></input>
@@ -11,7 +11,13 @@
 					<label>Password</label>
 					<input type="password" name="password" class="form-control" ng-model="loginData.password"></input>
 				</md-input-container>
-				<md-button type="submit" class="md-raised md-primary">Login</button>
+				<div>
+				<md-button type="submit" class="md-raised md-primary" ng-click="doLogin()">Login Customer</button>
+				</div>
+				<br>
+				<div>
+				<md-button type="submit" methodclass="md-raised md-primary" ng-click="doLoginRest()">Login Restaurant</button>
+				</div
 			</form>
 		</div>
 </div>

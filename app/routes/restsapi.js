@@ -85,13 +85,40 @@ module.exports = function(app, express) {
         })
 
 	//RESTAURANT LOGIN
+	// api.post('/login', function(req, res) {
+	// 	models.Restaurant.find({ where: { email: req.body.email }})
+	// 	.then(function(rest) {
+	// 		var validPasswordRest = rest.comparePasswordRest(req.body.passwordRest);
+	// 		console.log('login hit');
+
+	// 		if(!validPasswordRest) {
+	// 			console.log('not valid pw');
+	// 			res.send({message: 'Invalid Password'});
+	// 		} else {
+
+	// 			var token = createToken(rest);
+
+	// 			res.json({
+	// 				success: true, 
+	// 				message: "Successful login!",
+	// 				token: token, 
+	// 				id: rest.id
+	// 			})
+	// 		}
+	// 		console.log(err)
+	// 	}).catch(function(err) {
+	// 		res.send({message: "Can't login error", err})
+	// 		console.log(err)
+	// 	})
+	// })
+
 	api.post('/login', function(req, res) {
 		models.Restaurant.find({ where: { email: req.body.email }})
 		.then(function(rest) {
-			var validPasswordRest = rest.comparePasswordRest(req.body.passwordRest);
+			var validPassword = rest.comparePassword(req.body.password);
 			console.log('login hit');
 
-			if(!validPasswordRest) {
+			if(!validPassword) {
 				console.log('not valid pw');
 				res.send({message: 'Invalid Password'});
 			} else {
@@ -99,14 +126,17 @@ module.exports = function(app, express) {
 				var token = createToken(rest);
 
 				res.json({
-					success: true, 
+					success: true,
 					message: "Successful login!",
-					token: token, 
-					id: rest.id
+					token: token,
+					id: rest.id,
+					role: rest.role
+					
+
 				})
 			}
 		}).catch(function(err) {
-			res.send({message: "Can't login error", err})
+			res.send({message: "Can't login error:", err})
 		})
 	})
 
