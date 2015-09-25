@@ -57,6 +57,9 @@ module.exports = function(sequelize, DataTypes) {
     stripeAccount: {
       type: DataTypes.INTEGER()
     },
+    cuisine: {
+      type: DataTypes.STRING(30)
+    }
     role: {
       type: DataTypes.ENUM,
       values: ['admin', 'restaurant', 'customer']
