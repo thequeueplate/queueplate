@@ -115,6 +115,14 @@ module.exports = function(app, express) {
 	api.post('/login', function(req, res) {
 		models.Restaurant.find({ where: { email: req.body.email }})
 		.then(function(rest) {
+
+			if (!rest.verify) {
+				res.json({
+					success: false, 
+					message: "Please check your email to confirm your account before login"
+				})
+			}
+
 			var validPassword = rest.comparePassword(req.body.password);
 			console.log('login hit');
 

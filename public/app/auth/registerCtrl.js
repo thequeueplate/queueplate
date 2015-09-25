@@ -27,7 +27,6 @@ app.controller('registerCtrl', function(publishData, UID, registerService, $stat
 
 		registerService.registerRestaurant(rest, UID).then(function(response) {
 			$state.go('loginBoth');
-
 		});
 	}
 

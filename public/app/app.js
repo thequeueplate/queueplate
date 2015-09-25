@@ -31,13 +31,15 @@ $urlRouterProvider.otherwise('/');
     url: '/dashboard',
     templateUrl: 'app/dashboard/dashboard.html',
     controller: 'dashboardCtrl'
-    // resolve: {
-    //   checkVerification: function(registerService, $stateParams) {
-    //     return registerService.checkVerified($stateParams.id)
-    //   }
+    
+  })
 
-    })
+  .state('restaurantDashboard', {
+    url: '/restaurantDashboard', 
+    templateUrl: 'app/dashboard/RestaurantTmpl.html', 
+    controller: 'RestaurantCtrl'
 
+  })
 
   .state('registerRestaurant', {
     url: '/registerRestaurant/:id',
@@ -50,23 +52,17 @@ $urlRouterProvider.otherwise('/');
       publishData: function(registerService, $stateParams) {
         return registerService.checkVerifiedRestaurant($stateParams.id)
       }
-
-    }
+    } 
   })
-
 
   .state('RestLanding', {
-   url: '/RestLanding',
-   templateUrl: 'app/RestDash/RestLanding.html',
-   controller: 'RestLanding'
+   url: '/RestaurantLanding',
+   templateUrl: 'app/RestDash/RestaurantTmpl.html',
+   controller: 'RestLandingCtrl'
   })
 
- //  .state('RestaurantCtrl', {
-  //  url: '/RestaurantCtrl',
-  //  templateUrl: 'app/RestDash/RestaurantTmpl.html'
-  // })
 
-  .state('registerCustomer', {
+   .state('registerCustomer', {
     url: '/registerCustomer/:id',
     templateUrl: 'app/auth/registerCustomer.html',
     controller: 'registerCtrl',
@@ -102,7 +98,6 @@ $urlRouterProvider.otherwise('/');
 $locationProvider.html5Mode(true);
 
 });
-
 
 app.run(function($state, $rootScope, $window, loginService) {
 

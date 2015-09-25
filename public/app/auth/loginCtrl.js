@@ -26,7 +26,6 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 				$rootScope.loggedIn = true; 
 				
 					$state.go('dashboard'); 
-
 				}
 			});
 	}
@@ -56,9 +55,8 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 				
 					$state.go('RestLanding'); 
 
-				}
+				 }
 			});
-
 	}
 
 	$scope.doLogout = function() {
