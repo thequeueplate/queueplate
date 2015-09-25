@@ -206,9 +206,17 @@ module.exports = function(app, express) {
 
 	//GET FULL MENU
 	api.get('/:restid/menu', function(req, res) {
-		models.MenuItem.findAll({ where: { Restaurantid: req.params.restid }})
-		.then(function(items) {
-			res.send(items);
+		models.Menu.findAll({ 
+			where: { Restaurantid: req.params.restid },
+			include: [
+			{model: models.Section, include: [
+				{model: models.MenuItem}]}
+			]
+		})
+		.then(function(fullMenu) {
+			res.send(fullMenu);
+		}).catch(function(err) {
+			res.send({message: 'Could not get menu.', error: err});
 		})
 	})
 
