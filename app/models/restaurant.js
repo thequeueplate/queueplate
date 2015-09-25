@@ -57,6 +57,10 @@ module.exports = function(sequelize, DataTypes) {
     stripeAccount: {
       type: DataTypes.INTEGER()
     },
+    cuisine: {
+      type: DataTypes.ENUM,
+      values: ['American', 'Cajun', 'Caribbean', 'Chinese', 'French', 'German', 'Greek', 'Indian', 'Italian', 'Korean', 'Lebanese', 'Mediterranean', 'Mexican', 'Moroccan', 'Soul', 'Spanish', 'Thai', 'Turkish', 'Vietnamese', 'Other']
+    }
     role: {
       type: DataTypes.ENUM,
       values: ['admin', 'restaurant', 'customer']
