@@ -5,6 +5,9 @@ var app = angular.module('QueuePlate')
 
 app.controller('RestLandingCtrl', function($scope, $cookies, $rootScope, registerService, $state, loginService, restLandingService){
 
+  $scope.goManage = function(){
+    $state.go('ManageMenu')
+  }
 
   $scope.restFirst = $cookies.getObject("restFirstName");
   $scope.role = $cookies.getObject("restRole")

@@ -37,41 +37,21 @@ HTML PSEUDO CODE:
   <div>
     <div>
       <md-content>
-
         <md-input-container>
           <label>Menu Section</label>
-          <input ng-model="MenuItem.section"></input>
+          <input ng-model="section.name"></input>
         </md-input-container>
-
-        <!-- <md-input-container> -->
-          <!-- <label>Dish Name</label> -->
-          <!-- <input ng-model="MenuItem.name"> -->
-        <!-- </md-input-container> -->
-        <!-- <md-input-container> -->
-          <!-- <label>Dish Description</label> -->
-          <!-- <input ng-model="MenuItem.description"> -->
-        <!-- </md-input-container> -->
         <md-input-container>
           <label>Section Comments</label>
-          <input ng-model="MenuItem.comments">
+          <input ng-model="section.comments">
         </md-input-container>
-        <!-- <md-input-container>
-          <label>Dish Price</label>
-          <input type="Number" ng-model="MenuItem.price">
-        </md-input-container> -->
-        <!-- <md-button ng-click="removeMenuItem(idx)">
-          Remove Menu Item
-        </md-button> -->
       </md-content>
     </div>
   </div>
-    <md-button ng-click="addMenuItem()" class="md-primary md-raised">
-      Add Section
-    </md-button>
-  <!-- </md-tab> -->
-
-<!-- </md-tabs> -->
-
-<md-button ng-click="saveMenuData(MenuItem)" class="md-accent md-hue-1" style="width: 100%; margin-bottom: 0;">
-  Save
-</md-button>
+  <md-button ng-click="addSection()" class="md-primary md-raised">
+    Add Section
+  </md-button>
+  <hr>
+  <div ng-repeat="Section in menu.Sections">
+    Section Name: {{Section.name}} -- Section Comments: {{Section.comments}}
+  </div>

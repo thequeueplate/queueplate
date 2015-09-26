@@ -1,7 +1,10 @@
 var app = angular.module('QueuePlate')
 
 app.service('loginService', function($http, $q, $state, $rootScope, authTokenService, $cookies) {
-	this.restData;
+	var restData;
+	this.getRestData = function(){
+		return restData
+	}
 	this.login = function(email, password) {
 
 		return $http.post('/api/users/login', {
@@ -40,6 +43,7 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 		.success(function(data) {
 
 			console.log(data)
+			restData = data;
 
 			if (data.success === false) {
 				alert("Please Check your email to confirm your account")

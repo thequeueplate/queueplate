@@ -73,7 +73,15 @@ $urlRouterProvider.otherwise('/');
   .state('ManageMenu', {
    url: '/ManageMenu',
    templateUrl: 'app/RestDash/Menu.html',
-   controller: 'MenuController'
+   controller: 'MenuController',
+   resolve: {
+     restData: function(loginService){
+       return loginService.getRestData();
+     },
+    //  menu: function(menuService, loginService){
+    //    return menuService.getMenu(loginService.getRestData().id);
+    //  }
+   }
   })
 
    .state('registerCustomer', {
