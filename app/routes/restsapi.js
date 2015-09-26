@@ -31,7 +31,7 @@ module.exports = function(app, express) {
 		}).then(function(rest){
 			console.log('success hit')
 				var email = new sendgrid.Email({
-				  to:       'markkeysor@gmail.com',
+				  to:       'lindseybrown4@gmail.com',
 				  from:     'queueplate.com@gmail.com',
 				  subject:  'Welcome to QueuePlate!',
 				  text:     'Click on the link to confirm your registration http://localhost:3000/registerRestaurant/' + rest.id
@@ -148,10 +148,12 @@ module.exports = function(app, express) {
 					verify: rest.verify,
 					name: rest.name
 
+
 				})
 			}
 		}).catch(function(err) {
 			res.send({message: "Can't login error:", error: err})
+
 		})
 	})
 

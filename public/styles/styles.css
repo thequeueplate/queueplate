@@ -232,14 +232,3 @@ footer p {
   /*justify-content: center;*/
 }
 
-md-icon > .md-font {
-font-family: 'Material Icons';
-font-weight: normal;
-font-style: normal;
-font-size: 24px; /* Preferred icon size */
-display: inline-block;
-width: 1em;
-height: 1em;
-line-height: 1;
-text-transform: none;
-}

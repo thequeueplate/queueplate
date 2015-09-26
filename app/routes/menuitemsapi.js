@@ -5,12 +5,7 @@ module.exports = function(app, express) {
 	var api = express.Router();
 
 	//GET SINGLE ITEM
-	api.get('/:itemid', function(req, res) {
-		models.MenuItem.find({ where: { id: req.params.itemid }})
-		.then(function(item) {
-			res.send(item);
-		})
-	});
+
 
 	//UPDATE SINGLE ITEM
 	api.put('/:itemid', function(req, res) {
