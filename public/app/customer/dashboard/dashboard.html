@@ -1,111 +1,63 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-
-</head>
 
 <body>
 
+<div>
+  <h1>Queued Order</h1>
+</div>
+
 <h1>{{userName}}'s Favorite Plates</h1>
+
+
+<div class="container">
+  <div class="add-menu-button">
+    <md-button class="md-raised md-primary" type="button" name="button">Add New</md-button>
+  </div>
+    <div class="dashboard-container">
+      <div class="favorite-orders-container">
+        <div class="favorite-orders-list" ng-repeat="order in favoriteOrders" ng-click="selectedOrders(order)">
+          <p>{{favOrder.name}} - {{favOrder.restauraunt}}</p>
+          <hr>
+        </div>
+      </div>
+      <div ui-view></div>
+    </div>
+</div>
+
+<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
 <h1>{{role}}</h1>
 <h2>{{userName}}&nbsp{{lastName}}</h2>
 <h2>{{phoneNumber}}</h2>
 <h2>{{addLine1}}&nbsp{{addLine2}}</h2>
 <h2>{{addCity}},&nbsp{{addState}}&nbsp{{addZip}}</h2>
 
+ -->
 
 
-<div><h1>In the Queue</h1></div>
 
 
-
- <!--  <div layout="column" flex ng-controller="TestCtrl">
-    Determinate:
-    <md-progress-linear md-mode="determinate" value="20"></md-progress-linear>
-  </div> -->
 
 <div>
-<md-button type="submit" class="md-raised md-warn" style="height: 300px; width: 300px; font-size: 50px;"> Place<br> New<br>Order</button>
+<md-button type="submit" class="md-raised md-warn"> Submit Order</button>
 </div>
 
-  <div><h1>Favorite Orders</h1></div>
-<div ng-repeat="order in orders"></div>
 
-<md-button type="submit" class="md-raised md-warn"></button>
-</body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <form method="post" enctype="multipart/form-data">
-  <table width="350" border="0" cellpadding="1" cellspacing="1" class="box">
-    <tr>
-      <td width="246">
-        <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
-        <input name="userfile" type="file" id="userfile">
-      </td>
-      <td width="80">
-        <input name="upload" type="submit" class="box" id="upload" value=" Upload ">
-      </td>
-    </tr>
-  </table>
-</form>
+<md-icon md-font-icon="icon-favorite"/>

@@ -1,7 +1,13 @@
+<div ng-app="QueuePlate" class="tabsdemoDynamicHeight">
+  <md-content class="md-padding">
+    <md-tabs md-dynamic-height="" md-border-bottom="">
+      <md-tab label="Customer">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Customer Login</h1>
+          
+
 <div class="container">
 		<div class="login">
-		<h1 class="grey-text darken-2">Log In</h1>
-
 			<form class="form-signin">
 				<md-input-container>
 					<label>Email</label>
@@ -12,12 +18,48 @@
 					<input type="password" name="password" class="form-control" ng-model="loginData.password"></input>
 				</md-input-container>
 				<div>
-				<md-button type="submit" class="md-raised md-primary" ng-click="doLogin()">Login Customer</button>
+				<md-button type="submit" class="md-raised md-primary" ng-click="doLogin()">Login</button>
 				</div>
 				<br>
-				<div>
-				<md-button type="submit" methodclass="md-raised md-primary" ng-click="doLoginRest()">Login Restaurant</button>
-				</div
 			</form>
 		</div>
 </div>
+
+        </md-content>
+      </md-tab>
+    <md-tab label="Restaurant">
+ <md-content class="md-padding">
+       <h1 class="md-display-2">Restaurant Login</h1>
+         
+<div class="container">
+		<div class="login">
+		    <form class="form-signin">
+				<md-input-container>
+					<label>Email</label>
+					<input type="text" name="username" class="form-control" ng-model="loginData.email"></input>
+				</md-input-container>
+				<md-input-container>
+					<label>Password</label>
+					<input type="password" name="password" class="form-control" ng-model="loginData.password"></input>
+
+					
+				</md-input-container>
+				<div>
+				<md-button type="submit" class="md-raised md-primary" ng-click="doLoginRest()">Login</button>
+				</div>
+				
+			</form>
+		</div>
+</div>
+        </md-content>
+      </md-tab>
+   
+    </md-tabs>
+  </md-content>
+</div>
+
+
+
+
+
+

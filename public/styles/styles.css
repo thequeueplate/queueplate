@@ -211,3 +211,35 @@ footer p {
 .login {
   margin: 120px 0;
 }
+
+/*///// Restaurant Dashboard /////*/
+
+.dashboard-container {
+  display: inline-flex;
+}
+
+.incoming-orders-container {
+  min-width: 250px;
+  border-right: 1px solid gray;
+  margin: 20px;
+  padding: 10px;
+}
+
+.order-container {
+  margin: 20px;
+  padding: 10px;
+  display: inline-block;
+  /*justify-content: center;*/
+}
+
+md-icon > .md-font {
+font-family: 'Material Icons';
+font-weight: normal;
+font-style: normal;
+font-size: 24px; /* Preferred icon size */
+display: inline-block;
+width: 1em;
+height: 1em;
+line-height: 1;
+text-transform: none;
+}

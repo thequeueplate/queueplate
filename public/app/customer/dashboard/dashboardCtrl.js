@@ -14,7 +14,6 @@ app.controller('dashboardCtrl', function($scope, $cookies) {
    $scope.addZip = $cookies.getObject("addZip")
    $scope.phoneNumber = $cookies.getObject("phoneNumber")
 
-   
 
   if($scope.role ="customer") {
 
