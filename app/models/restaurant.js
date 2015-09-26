@@ -48,6 +48,9 @@ module.exports = function(sequelize, DataTypes) {
     addZip: {
       type: DataTypes.INTEGER(5)
     },
+    tables: {
+      type: DataTypes.INTEGER(5)
+    },
     phoneNumber: {
       type: DataTypes.STRING(10)
     },
@@ -58,7 +61,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(320)
     },
     stripeAccount: {
-      type: DataTypes.INTEGER()
+      type: DataTypes.INTEGER(10)
     },
     cuisine: {
       type: DataTypes.STRING(30)

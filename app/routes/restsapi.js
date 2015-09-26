@@ -73,6 +73,7 @@ module.exports = function(app, express) {
 	        		addState: req.body.addState,
 	        		addZip: req.body.addZip,
 	        		businessEmail: req.body.businessEmail,
+	        		contactPhone: req.body.contactPhone,
 	        		phoneNumber: req.body.phoneNumber,
 	        		stripeAccount: req.body.stripeAccount,
 	        		tables: req.body.tables,
@@ -144,7 +145,8 @@ module.exports = function(app, express) {
 					role: rest.role,
 					firstName: rest.firstName,
 					lastName: rest.lastName, 
-					verify: rest.verify	
+					verify: rest.verify, 
+					name: rest.name
 
 				})
 			}

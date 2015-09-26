@@ -22,6 +22,7 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 			authTokenService.setToken(data.token)
 
 			$cookies.putObject("userName", data.firstName)
+			$cookies.putObject("role", data.role)
 
 			$state.go('dashboard')
 			return data
@@ -47,11 +48,11 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 				$state.go('loginBoth')
 			} else {
 			authTokenService.setToken(data.token)
-			
-			$cookies.putObject("restFirstName", data.firstName)
-		
 
-			$state.go('RestLanding')
+			$cookies.putObject("restFirstName", data.firstName)
+			$cookies.putObject("restRole", data.role)
+		
+			$rootScope.loggedIn = true;
 			return data
 
 			  }
