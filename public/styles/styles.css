@@ -211,3 +211,23 @@ footer p {
 .login {
   margin: 120px 0;
 }
+
+/*///// Restaurant Dashboard /////*/
+
+.dashboard-container {
+  display: inline-flex;
+}
+
+.incoming-orders-container {
+  min-width: 250px;
+  border-right: 1px solid gray;
+  margin: 20px;
+  padding: 10px;
+}
+
+.order-container {
+  margin: 20px;
+  padding: 10px;
+  display: inline-block;
+  /*justify-content: center;*/
+}
