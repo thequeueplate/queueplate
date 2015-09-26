@@ -18,9 +18,11 @@ app.use(express.static(__dirname + '/public')); //middleware to render all of pu
 var usersapi = require('./app/routes/usersapi')(app, express);
 var restsapi = require('./app/routes/restsapi')(app, express);
 var menuitemsapi = require ('./app/routes/menuitemsapi')(app, express);
+var ordersapi = require ('./app/routes/ordersapi')(app, express);
 app.use('/api/users', usersapi); // /api is the prefix in all api.js files files
 app.use('/api/rests', restsapi);
 app.use('/api/menuitems', menuitemsapi);
+app.use('/api/orders', ordersapi);
 
 app.get('*', function(req, res) { //the asterisk will make every url go to index.html
 	res.sendFile(__dirname + '/public/index.html');

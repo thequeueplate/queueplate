@@ -2,8 +2,6 @@ var app = angular.module('QueuePlate')
 
 app.controller('RestLandingCtrl', function($scope, $cookies, $rootScope, registerService, $state, loginService){
 
-  $scope.restFirst = $cookies.getObject("restFirstName");
-
   // $scope.deliveryAddress = function(delivery) {
   //   // console.log(delivery);
   //   firstName= delivery.firstName,

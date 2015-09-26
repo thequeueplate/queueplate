@@ -32,7 +32,7 @@
 
   <ul ng-controller="loginCtrl">
     <a ui-sref="home"><img src="assets/qlogo.png" /></a>
-    <li ng-if="$root.loggedIn"><a href="#">Welcome {{cookiesFirstName}}</a></li>
+    <li ng-if="$root.loggedIn"><a href="#">Welcome {{role}}</a></li>
     <li ng-if="!$root.loggedIn"><a ui-sref="loginBoth">Login</a></li>
     <li ng-if="!$root.loggedIn"><a ui-sref="signUpBoth">Signup</a></li>
     <li ng-if="$root.loggedIn"><a ui-sref="dashboard">Dashboard</a></li>
@@ -68,21 +68,20 @@
   <script type="text/javascript" src="app/auth/signupService.js"></script>
   <script type="text/javascript" src="app/auth/registerService.js"></script>
   <script type="text/javascript" src="app/checkout/checkoutService.js"></script>
-  <script type="text/javascript" src="app/dashboard/dashboardService.js"></script>
-<!--   // <script type="text/javascript" src="app/dashboard/restDashService.js"></script> -->
+  <script type="text/javascript" src="app/dashboard/RestLandingService.js"></script>
 
 
   <!-- CONTROLLERS -->
+  <script type="text/javascript" src="app/auth/registerCtrl.js"></script>
   <script type="text/javascript" src="app/auth/loginCtrl.js"></script>
   <script type="text/javascript" src="app/auth/signupCtrl.js"></script>
+  <script type="text/javascript" src="app/auth/registerCtrl.js"></script>
   <script type="text/javascript" src="app/RestDash/RestLandingCtrl.js"></script>
   <script type="text/javascript" src="app/RestDash/MenuCtrl.js"></script>
   <script type="text/javascript" src="app/RestDash/MenuItemsCtrl.js"></script>
+  <script type="text/javascript" src="app/RestDash/RestaurantCtrl.js"></script>
   <script type="text/javascript" src="app/dashboard/dashboardCtrl.js"></script>
-  <script type="text/javascript" src="app/auth/registerCtrl.js"></script>
   <script type="text/javascript" src="app/checkout/checkoutCtrl.js"></script>
-  <script type="text/javascript" src="app/auth/registerCtrl.js"></script>
-  <script type="text/javascript" src="app/dashboard/dashboardCtrl.js"></script>
 
   </body>
 </html>

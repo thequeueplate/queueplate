@@ -112,7 +112,6 @@ app.run(function($state, $rootScope, $window, loginService) {
 
        var safeStates = ['home', 'signUpBoth', 'loginBoth', 'verify', 'registerCustomer', 'registerRestaurant', 'signUpCustomer', 'signUpRestaurant', 'RestaurantLanding', 'ManageMenu'];
 
-
        var protected = safeStates.indexOf(toState.name) === -1;
 
      if (protected) {

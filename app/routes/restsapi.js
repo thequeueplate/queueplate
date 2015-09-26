@@ -73,9 +73,12 @@ module.exports = function(app, express) {
 	        		addState: req.body.addState,
 	        		addZip: req.body.addZip,
 	        		businessEmail: req.body.businessEmail,
+	        		contactPhone: req.body.contactPhone,
 	        		phoneNumber: req.body.phoneNumber,
 	        		stripeAccount: req.body.stripeAccount,
+	        		tables: req.body.tables,
 	        		verify: true,
+	        		cuisine: req.body.cuisine,
 	        		role: 'restaurant'
 	        	},
 	        	{ where: { id: req.params.restid}
@@ -141,8 +144,6 @@ module.exports = function(app, express) {
 					id: rest.id,
 					role: rest.role,
 					firstName: rest.firstName,
-					lastName: rest.lastName,
-					verify: rest.verify
 
 				})
 			}
@@ -170,10 +171,10 @@ module.exports = function(app, express) {
         })
     });
 
-    api.post('/:restid/menus', function(req, res) {
+	//CREATE MENU
+    api.post('/:restid/menu', function(req, res) {
     	models.Menu.create({
-    		RestaurantId: req.params.restid,
-    		name: req.body.name
+    		RestaurantId: req.params.restid
     	}).then(function(menu) {
     		res.send(menu);
     	}).catch(function(err) {
@@ -181,6 +182,7 @@ module.exports = function(app, express) {
     	})
     });
 
+    //CREATE SECTION
     api.post('/:restid/sections/:menuid', function(req, res) {
     	models.Section.create({
     		RestaurantId: req.params.restid,
@@ -194,7 +196,10 @@ module.exports = function(app, express) {
     	})
     });
 
-    api.post('/:restid/items/:sectionid',function(req,res) {
+    api.put('/:restid')
+
+    //CREATE MENUITEM
+    api.post('/:restid/items/:sectionid', function(req,res) {
     	models.MenuItem.create({
     		RestaurantId: req.params.restid,
     		SectionId: req.params.sectionid,
@@ -210,9 +215,17 @@ module.exports = function(app, express) {
 
 	//GET FULL MENU
 	api.get('/:restid/menu', function(req, res) {
-		models.MenuItem.findAll({ where: { Restaurantid: req.params.restid }})
-		.then(function(items) {
-			res.send(items);
+		models.Menu.findAll({
+			where: { Restaurantid: req.params.restid },
+			include: [
+			{model: models.Section, include: [
+				{model: models.MenuItem}]}
+			]
+		})
+		.then(function(fullMenu) {
+			res.send(fullMenu);
+		}).catch(function(err) {
+			res.send({message: 'Could not get menu.', error: err});
 		})
 	})
 
