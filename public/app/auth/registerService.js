@@ -1,12 +1,12 @@
 var app = angular.module('QueuePlate')
 
 app.service('registerService', function($http, $q, $rootScope) {
-
+	this.restData
 
 	this.checkVerified = function(id) {
 		var deferred = $q.defer();
 		$http({
-			method: "GET", 
+			method: "GET",
 			url: "/api/users/" + id
 		}).then(function(response) {
 			deferred.resolve(response.data)
@@ -19,32 +19,32 @@ app.service('registerService', function($http, $q, $rootScope) {
 		var deferred = $q.defer()
 
 		$http.put('/api/users/' + UID + '/pref', {
-			firstName: user.firstName, 
+			firstName: user.firstName,
 			lastName: user.lastName,
-			age: user.age, 
+			age: user.age,
 			gender: user.gender,
 			addLine1: user.addLine1,
-			addCity: user.addCity, 
-			addZip: user.addZip, 
-			addState: user.addState, 
+			addCity: user.addCity,
+			addZip: user.addZip,
+			addState: user.addState,
 			phoneNumber: user.phoneNumber
-			// cardNumber: cardNumber, 
-			// securityDigits: securityDigits, 
-			// dateOfExp: dateOfExp, 
-			
+			// cardNumber: cardNumber,
+			// securityDigits: securityDigits,
+			// dateOfExp: dateOfExp,
+
 		})
 		.then(function(data) {
 			deferred.resolve(data) //this passes everything back to controller
 
 		});
-		
+
 		return deferred.promise
 	}
 
 	this.checkVerifiedRestaurant = function(id) {
 		var deferred = $q.defer();
 		$http({
-			method: "GET", 
+			method: "GET",
 			url: "/api/rests/" + id
 		}).then(function(response) {
 			deferred.resolve(response.data)
@@ -57,27 +57,31 @@ app.service('registerService', function($http, $q, $rootScope) {
 		var deferred = $q.defer()
 
 		$http.put('/api/rests/' + RID + '/pref', {
-			firstName: rest.firstName, 
+			firstName: rest.firstName,
 			lastName: rest.lastName,
-			age: rest.age, 
+			age: rest.age,
 			gender: rest.gender,
 			addLine1: rest.addLine1,
-			addCity: rest.addCity, 
-			addZip: rest.addZip, 
-			addState: rest.addState, 
+			addCity: rest.addCity,
+			addZip: rest.addZip,
+			addState: rest.addState,
 			phoneNumber: rest.phoneNumber
-			// cardNumber: cardNumber, 
-			// securityDigits: securityDigits, 
-			// dateOfExp: dateOfExp, 
-			
+			// cardNumber: cardNumber,
+			// securityDigits: securityDigits,
+			// dateOfExp: dateOfExp,
+
 		})
 		.then(function(data) {
+			$http({
+				method: "POST",
+				url: '/api/rests/' + RID + '/menu'
+			}).then(function(krang){
+				console.log(krang)
+			})
 			deferred.resolve(data) //this passes everything back to controller
 		});
-		
+
 		return deferred.promise
 	}
 
 })
-
-
