@@ -1,16 +1,41 @@
-<h1>{{restFirst}}'s Restaurant</h1>
-<h1>{{role}}</h1>
+<div class="container">
+  <h1>{{restFirst}}'s Restaurant</h1>
+  <div class="add-menu-button">
+    <md-button class="md-raised md-primary" type="button" name="button">Add New Menu</md-button>
+  </div>
+    <div class="dashboard-container">
+      <div class="incoming-orders-container">
+        <h2>Incoming Orders</h2>
+        <div class="incoming-orders-list" ng-repeat="order in sampleOrders" ng-click="selectedOrders(order)">
+          <p>{{order.name}} - {{order.phone}}</p>
+          <hr>
+        </div>
+      </div>
+      <div ui-view></div>
+      <!-- <div class="order-container">
+        <h2>Order Details</h2>
+        <div class="order-details" ng-repeat="selected in selectedOrders">
+          <p>{{selected.name}}</p>
+          <p>{{selected.address}}</p>
+          <p>{{selected.dishes}}</p>
+          <p>{{selected.comments}}</p>
+          <md-button class="md-raised md-primary" type="button" name="start-order-button" ng-hide="">Start Order</md-button>
+          <md-button class="md-raised md-primary" type="button" name="order-complete-button" ng-show="">Order Complete</md-button>
+        </div>
+      </div> -->
 
-This is the Restaurant Dashboard.
+    </div>
+</div>
 
-<!-- 
+
+<!--
 OWNER: MARK
 BACKING CONTROLLER: RestLandingCtrl
 TODO:
 - Add a link to manage a menu
 - Show Incoming Orders
 
-DATA ON CONTROLLER: 
+DATA ON CONTROLLER:
     $scope.incomingOrders = []
 
     order = {
@@ -21,7 +46,7 @@ DATA ON CONTROLLER:
         special comments
     }
 
-HTML PSEUDO CODE: 
+HTML PSEUDO CODE:
  div
     div .orderList
         fixed width (min Width)
@@ -39,12 +64,12 @@ HTML PSEUDO CODE:
             ready button inside
             once ready
                 -> Shows delivery address & name & phone
-        
+
         div .orderDishes
             repeat on selectedOrder.dishes
                 dish name
                 special comments
-    
+
         div
             visible only if order.status === 'open'
                 started

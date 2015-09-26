@@ -57,6 +57,19 @@ $urlRouterProvider.otherwise('/');
   })
 
 
+  .state('RestaurantLanding.orderDetails', {
+    url: '/:orderId',
+    templateUrl: 'app/RestDash/OrderDetailsTmpl.html',
+    controller: 'OrderDetailsCtrl'
+    // resolve: {
+    //   currentOrder: function(RestLandingService, $stateParams) {
+    //     return RestLandingService($stateParams);
+    //   }
+    // }
+  })
+
+
+
   .state('ManageMenu', {
    url: '/ManageMenu',
    templateUrl: 'app/RestDash/Menu.html',
