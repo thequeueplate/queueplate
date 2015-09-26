@@ -1,11 +1,11 @@
-<!-- 
+<!--
 OWNER: LOGAN
 BACKING CONTROLLER: MenuCtrl
 TODO:
 - Button for Add a section
-- 
+-
 
-DATA ON CONTROLLER: 
+DATA ON CONTROLLER:
    $scope.sections = []
    section = {
         id,
@@ -16,11 +16,11 @@ DATA ON CONTROLLER:
 
     }
 
-HTML PSEUDO CODE: 
+HTML PSEUDO CODE:
   div .newSection
         input name  ng-model->newSection.name
         input description ng-model -> newSection.description
-        button Add -> posts newSection to 
+        button Add -> posts newSection to
 
   div .orderContainer
       repeat section on sections
@@ -31,72 +31,42 @@ HTML PSEUDO CODE:
 -->
 
 
-<!-- <md-tabs>
-  <md-tab>
-    Cool Tab
-  </md-tab>
-  <md-tab>
-    Cooler Tab
-  </md-tab>
-</md-tabs> -->
-<!-- <md-tabs> -->
-  <!-- <md-tab label="Restaurant Information">
-    <div>
-      <md-content layout='column' layout-sm='column'>
-        <md-input-container style="50%">
-          <label>Owner Name</label>
-          <input ng-model="restaurant.owner.name">
-        </md-input-container>
-        <md-input-container style="50%">
-          <label>Restaurant Name</label>
-          <input ng-model="restaurant.rest.name">
-        </md-input-container>
-        <md-input-container style="50%">
-          <label>Address</label>
-          <input ng-model="restaurant.address">
-        </md-input-container>
-        <md-input-container style="50%">
-          <label>Phone Number</label>
-          <input ng-model="restaurant.phone">
-        </md-input-container>
-      </md-content>
-    </div>
-  </md-tab> -->
 
-  <!-- <md-tab label="Menu"> -->
+
+
   <div>
-    <div ng-repeat="(idx, MenuItem) in MenuItems track by $index">
+    <div>
       <md-content>
+
         <md-input-container>
           <label>Menu Section</label>
-          <md-select ng-model="MenuItem.section">
-            <md-option ng-repeat="course in courses" ng-value="course.type">{{course.type}}</md-option>
-          </md-select>
+          <input ng-model="MenuItem.section"></input>
         </md-input-container>
+
+        <!-- <md-input-container> -->
+          <!-- <label>Dish Name</label> -->
+          <!-- <input ng-model="MenuItem.name"> -->
+        <!-- </md-input-container> -->
+        <!-- <md-input-container> -->
+          <!-- <label>Dish Description</label> -->
+          <!-- <input ng-model="MenuItem.description"> -->
+        <!-- </md-input-container> -->
         <md-input-container>
           <label>Section Comments</label>
           <input ng-model="MenuItem.comments">
         </md-input-container>
-        <md-input-container>
-          <label>Dish Name</label>
-          <input ng-model="MenuItem.name">
-        </md-input-container>
-        <md-input-container>
-          <label>Dish Description</label>
-          <input ng-model="MenuItem.description">
-        </md-input-container>
-        <md-input-container>
+        <!-- <md-input-container>
           <label>Dish Price</label>
           <input type="Number" ng-model="MenuItem.price">
-        </md-input-container>
-        <md-button ng-click="removeMenuItem(idx)">
+        </md-input-container> -->
+        <!-- <md-button ng-click="removeMenuItem(idx)">
           Remove Menu Item
-        </md-button>
+        </md-button> -->
       </md-content>
     </div>
   </div>
     <md-button ng-click="addMenuItem()" class="md-primary md-raised">
-      Add Menu Item
+      Add Section
     </md-button>
   <!-- </md-tab> -->
 

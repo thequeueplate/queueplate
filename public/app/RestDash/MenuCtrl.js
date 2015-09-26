@@ -28,9 +28,9 @@ angular.module('QueuePlate').controller('MenuController', function($scope){
   $scope.addCourse = function(idx){
     $scope.menu.Course.push({});
   }
-  $scope.removeCourse = function(idx){
-    $scope.menu.Course.splice(idx, 1);
-  }
+  // $scope.removeCourse = function(idx){
+  //   $scope.menu.Course.splice(idx, 1);
+  // }
 
   /////////////// Name ////////////
   $scope.addName = function(idx){

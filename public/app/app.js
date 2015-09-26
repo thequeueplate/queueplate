@@ -96,6 +96,12 @@ $urlRouterProvider.otherwise('/');
     controller: 'signupCtrl'
   })
 
+  .state('MenuItems', {
+    ulr: '/MenuItems',
+    templateUrl: 'app/RestDash/MenuItems.html',
+    controller: 'MenuItemsCtrl'
+  })
+
 $locationProvider.html5Mode(true);
 
 });
