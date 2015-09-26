@@ -51,6 +51,9 @@ module.exports = function(sequelize, DataTypes) {
     phoneNumber: {
       type: DataTypes.STRING(10)
     },
+    tables: {
+      type: DataTypes.INTEGER(10)
+    },
     businessEmail: {
       type: DataTypes.STRING(320)
     },
