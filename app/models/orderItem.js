@@ -15,6 +15,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         OrderItem.belongsTo(models.Order);
+        OrderItem.belongsTo(models.MenuItem);
       }
     }
   }
