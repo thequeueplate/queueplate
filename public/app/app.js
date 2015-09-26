@@ -49,11 +49,13 @@ $urlRouterProvider.otherwise('/');
   })
 
 
+
   .state('RestaurantLanding', {
    url: '/RestaurantLanding',
    templateUrl: 'app/RestDash/RestaurantTmpl.html',
    controller: 'RestLandingCtrl'
   })
+
 
   .state('RestaurantLanding.orderDetails', {
     url: '/:orderId',
@@ -67,10 +69,19 @@ $urlRouterProvider.otherwise('/');
   })
 
 
+
   .state('ManageMenu', {
    url: '/ManageMenu',
    templateUrl: 'app/RestDash/Menu.html',
-   controller: 'MenuController'
+   controller: 'MenuController',
+   resolve: {
+     restData: function(loginService){
+       return loginService.getRestData();
+     },
+    //  menu: function(menuService, loginService){
+    //    return menuService.getMenu(loginService.getRestData().id);
+    //  }
+   }
   })
 
    .state('registerCustomer', {
@@ -104,6 +115,12 @@ $urlRouterProvider.otherwise('/');
     url: '/signuprestaurant',
     templateUrl: 'app/auth/restsignup.html',
     controller: 'signupCtrl'
+  })
+
+  .state('MenuItems', {
+    ulr: '/MenuItems',
+    templateUrl: 'app/RestDash/MenuItems.html',
+    controller: 'MenuItemsCtrl'
   })
 
 $locationProvider.html5Mode(true);

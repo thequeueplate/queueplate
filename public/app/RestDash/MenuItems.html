@@ -1,4 +1,4 @@
-<!-- 
+<!--
 OWNER: LOGAN
 BACKING CONTROLLER: MenuItemsCtrl
 TODO:
@@ -7,24 +7,24 @@ TODO:
 - Show list of existing menu items
     - Save menu item changes
 
-DATA ON CONTROLLER: 
+DATA ON CONTROLLER:
     $scope.sectionItems = []
     sectionItem = {
         name,
         price,
         description,
         image
-    } 
+    }
     $scope.newSectionItem = {
         //see sectionItem
     }
 
-HTML PSEUDO CODE: 
+HTML PSEUDO CODE:
     div .newItem
         input name  ng-model-> newSectionItem.name
         input description ng-model -> newSection.description
         //Repeat for other data on sectionItem
-        button Add -> posts newSection to 
+        button Add -> posts newSection to
 
   div .itemContainer
       repeat item on sectionItems
@@ -34,3 +34,46 @@ HTML PSEUDO CODE:
         save changes button -> PUTs changes to server (takes in item)
 
 -->
+
+<div>
+  <div>
+    <md-content>
+      <!-- <md-input-container>
+        <label>Menu Section</label>
+        <md-select ng-model="MenuItem.section">
+          <md-option ng-repeat="course in courses" ng-value="course.type">{{course.type}}</md-option>
+        </md-select>
+      </md-input-container> -->
+
+      <md-input-container>
+        <label>Section Name</label>
+        <input ng-model="MenuItem.name">
+      </md-input-container>
+      <md-input-container>
+        <label>Section Description</label>
+        <input ng-model="MenuItem.description">
+      </md-input-container>
+      <!-- <md-input-container>
+        <label>Section Comments</label>
+        <input ng-model="MenuItem.comments">
+      </md-input-container> -->
+      <!-- <md-input-container>
+        <label>Dish Price</label>
+        <input type="Number" ng-model="MenuItem.price">
+      </md-input-container> -->
+      <md-button ng-click="removeMenuItem(idx)">
+        Remove Menu Item
+      </md-button>
+    </md-content>
+  </div>
+</div>
+  <md-button ng-click="addMenuItem()" class="md-primary md-raised">
+    Add Menu Item
+  </md-button>
+<!-- </md-tab> -->
+
+<!-- </md-tabs> -->
+
+<md-button ng-click="saveMenuData(MenuItem)" class="md-accent md-hue-1" style="width: 100%; margin-bottom: 0;">
+Save
+</md-button>
