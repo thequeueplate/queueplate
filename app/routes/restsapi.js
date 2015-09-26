@@ -75,6 +75,7 @@ module.exports = function(app, express) {
 	        		businessEmail: req.body.businessEmail,
 	        		phoneNumber: req.body.phoneNumber,
 	        		stripeAccount: req.body.stripeAccount,
+	        		tables: req.body.tables,
 	        		verify: true,
 	        		cuisine: req.body.cuisine,
 	        		role: 'restaurant'
