@@ -32,7 +32,7 @@ module.exports = function(app, express) {
 			console.log('success hit')
 				var email = new sendgrid.Email({
 
-				  to:       'markkeysor@gmail.com',
+				  to:       'bunker.logan@gmail.com',
 				  from:     'queueplate.com@gmail.com',
 				  subject:  'Welcome to QueuePlate!',
 				  text:     'Click on the link to confirm your registration http://localhost:3000/registerRestaurant/' + rest.id
