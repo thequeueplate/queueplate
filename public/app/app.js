@@ -49,12 +49,18 @@ $urlRouterProvider.otherwise('/');
   })
 
 
-  .state('RestLanding', {
+  .state('RestaurantLanding', {
    url: '/RestaurantLanding',
    templateUrl: 'app/RestDash/RestaurantTmpl.html',
    controller: 'RestLandingCtrl'
   })
 
+ 
+  .state('ManageMenu', {
+   url: '/ManageMenu',
+   templateUrl: 'app/RestDash/Menu.html',
+   controller: 'MenuController'
+  })
 
    .state('registerCustomer', {
     url: '/registerCustomer/:id',
@@ -97,8 +103,7 @@ app.run(function($state, $rootScope, $window, loginService) {
 
    $rootScope.$on('$stateChangeStart', function(event, toState) {
 
-       var safeStates = ['home', 'signUpBoth', 'loginBoth', 'verify', 'registerCustomer', 'registerRestaurant', 'signUpCustomer', 'signUpRestaurant'];
-
+       var safeStates = ['home', 'signUpBoth', 'loginBoth', 'verify', 'registerCustomer', 'registerRestaurant', 'signUpCustomer', 'signUpRestaurant', 'RestaurantLanding', 'ManageMenu'];
 
        var protected = safeStates.indexOf(toState.name) === -1;
 

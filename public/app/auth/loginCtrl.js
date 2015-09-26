@@ -53,7 +53,7 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 				$scope.processing = false;
 				$rootScope.loggedIn = true; 
 				
-					$state.go('RestLanding'); 
+					$state.go('RestaurantLanding'); 
 
 				 }
 			});
