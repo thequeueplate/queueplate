@@ -19,9 +19,8 @@ module.exports = function(app, express) {
 
 	api.get('/item/:itemid', function(req, res) {
 		models.OrderItem.findAll({
-			where: { id: req.params.itemid }
-			// include: [
-			// {model: models.MenuItem}]
+			where: { id: req.params.itemid },
+			include: [ models.MenuItem ]
 		}).then(function(orderitem) {
 			res.send(orderitem);
 		}).catch(function(err){
@@ -45,7 +44,9 @@ module.exports = function(app, express) {
 		models.Order.findAll({
 			where: { RestaurantId: req.params.restid },
 			include: [
-			{model: models.OrderItem}]
+			{model: models.OrderItem, include: [{
+				model: models.MenuItem
+			}]}]
 		}).then(function(orders) {
 			console.log(orders.getMenuItem)
 			res.send(orders);
@@ -54,21 +55,14 @@ module.exports = function(app, express) {
 		})
 	})
 
-	api.get('/:orderid', function(req, res) {
-		models.OrderItem.findAll({
-			where: {id: req.params.orderid},
-		}).then(function(item) {
-			res.send(item);
-		}).catch(function(err) {
-			res.send({message: 'Could not find order item.', error: err})
-		})
-	})
 
 	api.get('/user/:userid', function(req, res) {
 		models.Order.findAll({
 			where: { UserId: req.params.userid },
 			include: [
-			{model: models.OrderItem}, {model: models.Restaurant}]
+			{model: models.OrderItem, include: [{
+				model: models.MenuItem
+			}]}]
 		}).then(function(orders) {
 			res.send(orders);
 		}).catch(function(err) {
