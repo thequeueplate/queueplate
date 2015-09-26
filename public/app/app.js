@@ -29,7 +29,7 @@ $urlRouterProvider.otherwise('/');
 
   .state('dashboard', {
     url: '/dashboard',
-    templateUrl: 'app/dashboard/dashboard.html',
+    templateUrl: 'app/customer/dashboard/dashboard.html',
     controller: 'dashboardCtrl'
     
   })

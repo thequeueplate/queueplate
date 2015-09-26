@@ -1,0 +1,115 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://rawgit.com/angular/bower-material/v0.7.0-rc1/angular-material.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular.min.js"></script>
+  <script type="text/javascript" src="https://rawgit.com/hammerjs/hammer.js/2.0.4/hammer.min.js"></script>
+  <script type="text/javascript" src="https://rawgit.com/angular/bower-material/v0.7.0-rc1/angular-material.min.js"></script>
+  <script type="text/javascript" src="https://rawgit.com/angular/bower-angular-aria/v1.3.0/angular-aria.min.js"></script>
+  <script type="text/javascript" src="https://rawgit.com/angular/bower-angular-animate/v1.3.0/angular-animate.min.js"></script>
+
+</head>
+
+<body>
+
+<h1>{{userName}}'s Favorite Plates</h1>
+<h1>{{role}}</h1>
+
+<div><h1>In the Queue</h1></div>
+
+
+
+ <!--  <div layout="column" flex ng-controller="TestCtrl">
+    Determinate:
+    <md-progress-linear md-mode="determinate" value="20"></md-progress-linear>
+  </div> -->
+
+<div>
+<md-button type="submit" class="md-raised md-warn" style="height: 300px; width: 300px; font-size: 50px;"> Place<br> New<br>Order</button>
+</div>
+
+
+  <div><h1>Favorite Orders</h1></div>
+<div ng-repeat="order in orders"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <form method="post" enctype="multipart/form-data">
+  <table width="350" border="0" cellpadding="1" cellspacing="1" class="box">
+    <tr>
+      <td width="246">
+        <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+        <input name="userfile" type="file" id="userfile">
+      </td>
+      <td width="80">
+        <input name="upload" type="submit" class="box" id="upload" value=" Upload ">
+      </td>
+    </tr>
+  </table>
+</form>
