@@ -14,3 +14,14 @@
 <md-checkbox ng-model="filter">
   <label>Location</label>
 </md-checkbox>
+
+
+<div ng-repeat="rest in restaurants">
+
+	<div><h2 ng-click="takeToMenu()"><a href="#">{{rest.firstName}}</a><h2></div>
+	<div><h4>{{rest.addCity}}</h4></div>
+	<div><h4>{{rest.cuisine}}</h4></div>
+</div>
+<md-button type="submit" ng-click="find(restaurants)" class="md-raised md-primary">Find</button>
+
+
