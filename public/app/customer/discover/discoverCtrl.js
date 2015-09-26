@@ -1,21 +1,26 @@
 var app = angular.module('QueuePlate')
 
-app.controller('discoverCtrl', function(discoverService, $state) {
+app.controller('discoverCtrl', function(discoverService, $scope) {
 
-	this.restaurantsByCuisine = function() {
-		$http.get('/api/')
+	$scope.find = function() {
+
+		discoverService.restaurantsByName($scope.restaurants)
+			.then(function(response) {
+			console.log(response)
+
+			$scope.restaurants = response;
+
+			})
 	}
 
-	this.restaurantsByName = function() {
-		$http.get('/api/')
-	}
+	$scope.takeToMenu = function() {
 
-	// this.restaurantsByDistance = function() {
-	// 	$http.get
-	// }
+		
 
-	this.addFavoriteRestaurant = function() {
-		this.post('/api/')
+
+
+
+
 	}
 
 })

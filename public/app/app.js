@@ -134,9 +134,16 @@ $urlRouterProvider.otherwise('/');
   })
 
   .state('MenuItems', {
-    ulr: '/MenuItems',
+    url: '/MenuItems',
     templateUrl: 'app/RestDash/MenuItems.html',
     controller: 'MenuItemsCtrl'
+  })
+
+  .state('RestaurantMenu', {
+    url: '/Restaurant/:restid/Menu', 
+    templateUrl: 'app/RestDash/PublicMenu.html'
+
+
   })
 
 $locationProvider.html5Mode(true);
