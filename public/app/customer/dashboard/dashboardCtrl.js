@@ -4,9 +4,17 @@ app.controller('dashboardCtrl', function($scope, $cookies) {
   
   $scope.customerView; 
 
+   $scope.userName = $cookies.getObject("userName")
+   $scope.lastName =  $cookies.getObject("lastName")
+   $scope.role = $cookies.getObject("role")
+   $scope.addLine1 = $cookies.getObject("addLine1")
+   $scope.addLine2 = $cookies.getObject("addLine2")
+   $scope.addCity = $cookies.getObject("addCity")
+   $scope.addState = $cookies.getObject("addState")
+   $scope.addZip = $cookies.getObject("addZip")
+   $scope.phoneNumber = $cookies.getObject("phoneNumber")
 
-	$scope.userName = $cookies.getObject("firstName");
-  $scope.role = $cookies.getObject("role");
+   
 
   if($scope.role ="customer") {
 
@@ -19,14 +27,6 @@ app.controller('dashboardCtrl', function($scope, $cookies) {
 
 }); 
 
-  // $scope.deliveryAddress = function(delivery) {
-  //   // console.log(delivery);
-  //   firstName= delivery.firstName,
-  //   lastName= delivery.lastName,
-  //   address= delivery.address,
-  //   city= delivery.city,
-  //   state= delivery.state,
-  //   postalCode= delivery.postalCode
-  // };
+
 
 

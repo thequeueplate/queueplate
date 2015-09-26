@@ -95,6 +95,25 @@ $urlRouterProvider.otherwise('/');
     controller: 'signupCtrl'
   })
 
+   .state('discover', {
+    url: '/discover',
+    templateUrl: 'app/customer/discover/discover.html',
+    controller: 'discoverCtrl'
+  })
+
+    .state('shoppingCart', {
+    url: '/shoppingCart',
+    templateUrl: 'app/customer/shoppingCart/shoppingCart.html',
+    controller: 'shoppingCartCtrl'
+  })
+
+   .state('checkout', {
+    url: '/checkout',
+    templateUrl: 'app/customer/checkout/checkout.html',
+    controller: 'checkoutCtrl'
+  })
+
+
 $locationProvider.html5Mode(true);
 
 });
@@ -125,3 +144,26 @@ app.run(function($state, $rootScope, $window, loginService) {
       }
    });
 })
+
+// app.filter.('phoneNumber', function() {
+//   return function(input, uppercase) {
+//     input = input || '';
+//     var phoneNumber = "";
+//     for (var i = 0; i < input.length; i++) {
+//       phoneNumber = input.charAt(0) + "(";
+//       phoneNumber = input.charAt(3) + ")"
+//       phoneNumber = input.charAt()
+//     }
+//     // conditional based on optional argument
+//     if (uppercase) {
+//       out = out.toUpperCase();
+//     }
+//     return out;
+//   };
+// })
+
+
+
+
+
+
