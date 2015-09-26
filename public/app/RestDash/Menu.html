@@ -1,11 +1,11 @@
-<!-- 
+<!--
 OWNER: LOGAN
 BACKING CONTROLLER: MenuCtrl
 TODO:
 - Button for Add a section
-- 
+-
 
-DATA ON CONTROLLER: 
+DATA ON CONTROLLER:
    $scope.sections = []
    section = {
         id,
@@ -16,11 +16,11 @@ DATA ON CONTROLLER:
 
     }
 
-HTML PSEUDO CODE: 
+HTML PSEUDO CODE:
   div .newSection
         input name  ng-model->newSection.name
         input description ng-model -> newSection.description
-        button Add -> posts newSection to 
+        button Add -> posts newSection to
 
   div .orderContainer
       repeat section on sections
@@ -30,72 +30,27 @@ HTML PSEUDO CODE:
         manage section items button -> change route to the manageItemsPage
 -->
 
-
-<!-- <md-tabs>
-  <md-tab>
-    Cool Tab
-  </md-tab>
-  <md-tab>
-    Cooler Tab
-  </md-tab>
-</md-tabs> -->
-<!-- <md-tabs> -->
-  <!-- <md-tab label="Restaurant Information">
-    <div>
-      <md-content layout='column' layout-sm='column'>
-        <md-input-container style="50%">
-          <label>Owner Name</label>
-          <input ng-model="restaurant.owner.name">
-        </md-input-container>
-        <md-input-container style="50%">
-          <label>Restaurant Name</label>
-          <input ng-model="restaurant.rest.name">
-        </md-input-container>
-        <md-input-container style="50%">
-          <label>Address</label>
-          <input ng-model="restaurant.address">
-        </md-input-container>
-        <md-input-container style="50%">
-          <label>Phone Number</label>
-          <input ng-model="restaurant.phone">
-        </md-input-container>
-      </md-content>
-    </div>
-  </md-tab> -->
-
-  <!-- <md-tab label="Menu"> -->
-    <div>
-      <md-content>
-        <md-input-container>
-          <label>Item Type</label>
-          <md-select ng-model="menu.Course">
-            <md-option ng-repeat="course in courses" ng-value="course.type">{{course.type}}</md-option>
-          </md-select>
-        </md-input-container>
-        <md-input-container>
-          <label>Item Name</label>
-          <input ng-model="menu.name">
-        </md-input-container>
-        <md-input-container>
-          <label>Item Description</label>
-          <input ng-model="menu.description">
-        </md-input-container>
-        <md-input-container>
-          <label>Item Price</label>
-          <input type="Number" ng-model="menu.price">
-        </md-input-container>
-        <md-button ng-click="removeMenuItem(idx)">
-          Remove Menu Item
-        </md-button>
-      </md-content>
-    </div>
-    <md-button ng-click="addMenuItem()" class="md-primary md-raised">
-      Add Menu Item
-    </md-button>
-  <!-- </md-tab> -->
-
-<!-- </md-tabs> -->
-
-<md-button ng-click="saveData()" class="md-accent md-hue-1" style="width: 100%; margin-bottom: 0;">
-  Save
-</md-button>
+<div>
+   <div>
+     <md-content>
+       <md-input-container>
+         <label>Menu Section</label>
+         <input ng-model="section.name"></input>
+       </md-input-container>
+       <md-input-container>
+         <label>Section Comments</label>
+         <input ng-model="section.comments">
+       </md-input-container>
+     </md-content>
+   </div>
+ </div>
+ <md-button ng-click="addSection()" class="md-primary md-raised">
+   Add Section
+ </md-button>
+ <md-button ng-click="goToItems()" class="md-primary md-raised">
+   Add Some Items, Ya Turkey
+ </md-button>
+ <hr>
+ <div ng-repeat="Section in menu.Sections">
+   Section Name: {{Section.name}} -- Section Comments: {{Section.comments}}
+ </div>

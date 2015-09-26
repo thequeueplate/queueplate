@@ -1,4 +1,4 @@
-<!-- 
+<!--
 OWNER: LOGAN
 BACKING CONTROLLER: MenuItemsCtrl
 TODO:
@@ -7,24 +7,24 @@ TODO:
 - Show list of existing menu items
     - Save menu item changes
 
-DATA ON CONTROLLER: 
+DATA ON CONTROLLER:
     $scope.sectionItems = []
     sectionItem = {
         name,
         price,
         description,
         image
-    } 
+    }
     $scope.newSectionItem = {
         //see sectionItem
     }
 
-HTML PSEUDO CODE: 
+HTML PSEUDO CODE:
     div .newItem
         input name  ng-model-> newSectionItem.name
         input description ng-model -> newSection.description
         //Repeat for other data on sectionItem
-        button Add -> posts newSection to 
+        button Add -> posts newSection to
 
   div .itemContainer
       repeat item on sectionItems
@@ -34,3 +34,43 @@ HTML PSEUDO CODE:
         save changes button -> PUTs changes to server (takes in item)
 
 -->
+
+<div>
+ <div>
+   <md-content>
+     <md-input-container>
+       <label>Menu Section</label>
+       <md-select ng-model="newItem.section">
+         <md-option ng-repeat="Section in menu.Sections" ng-value="Section.id">{{Section.name}}</md-option>
+       </md-select>
+     </md-input-container>
+
+     <md-input-container>
+       <label>Menu Item Name</label>
+       <input ng-model="newItem.name">
+     </md-input-container>
+     <md-input-container>
+       <label>Menu Item Description</label>
+       <input ng-model="newItem.description">
+     </md-input-container>
+     <md-input-container>
+       <label>Price</label>
+       <input type="Number" ng-model="newItem.price">
+     </md-input-container>
+     <md-button ng-click="removemenuItem(idx)">
+       Remove Menu Item
+     </md-button>
+   </md-content>
+ </div>
+</div>
+<md-button ng-click="addMenuItem()" class="md-primary md-raised">
+ Add Menu Item
+</md-button>
+<hr>
+<div ng-repeat="Section in menu.Sections">
+ <h1>{{Section.name}}</h1>
+ <div ng-repeat="MenuItem in Section.MenuItems">
+   <h3>{{MenuItem.name}} - ${{MenuItem.price}}</h3>
+   <p>{{MenuItem.description}}</p>
+ </div>
+</div>
