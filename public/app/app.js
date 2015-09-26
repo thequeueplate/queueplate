@@ -31,7 +31,7 @@ $urlRouterProvider.otherwise('/');
     url: '/dashboard',
     templateUrl: 'app/dashboard/dashboard.html',
     controller: 'dashboardCtrl'
-    
+
   })
 
   .state('registerRestaurant', {
@@ -45,7 +45,7 @@ $urlRouterProvider.otherwise('/');
       publishData: function(registerService, $stateParams) {
         return registerService.checkVerifiedRestaurant($stateParams.id)
       }
-    } 
+    }
   })
 
 
@@ -55,7 +55,18 @@ $urlRouterProvider.otherwise('/');
    controller: 'RestLandingCtrl'
   })
 
- 
+  .state('RestaurantLanding.orderDetails', {
+    url: '/:orderId',
+    templateUrl: 'app/RestDash/OrderDetailsTmpl.html',
+    controller: 'OrderDetailsCtrl'
+    // resolve: {
+    //   currentOrder: function(RestLandingService, $stateParams) {
+    //     return RestLandingService($stateParams);
+    //   }
+    // }
+  })
+
+
   .state('ManageMenu', {
    url: '/ManageMenu',
    templateUrl: 'app/RestDash/Menu.html',
