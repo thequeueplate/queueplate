@@ -16,6 +16,7 @@
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script> -->
 
+
   <!-- STRIPE -->
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
   <script type="text/javascript">
@@ -63,27 +64,65 @@
   <!-- JAVASCRIPT FILES -->
   <script type="text/javascript" src="app/app.js"></script>
 
-  <!-- SERVICES -->
+  <!-- ============================  SERVICES  ===================================== -->
+
+                                  <!-- AUTH -->
   <script type="text/javascript" src="app/auth/loginService.js"></script>
   <script type="text/javascript" src="app/auth/signupService.js"></script>
   <script type="text/javascript" src="app/auth/registerService.js"></script>
+
+
+                               <!-- RESTAURANT -->
+ <!--  // <script type="text/javascript" src="app/dashboard/RestLandingService.js"></script> -->
+
   <script type="text/javascript" src="app/checkout/checkoutService.js"></script>
   <script type="text/javascript" src="app/RestDash/RestLandingService.js"></script>
 
 
-  <!-- CONTROLLERS -->
+                                <!-- CUSTOMER -->
+  <script type="text/javascript" src="app/customer/checkout/checkoutService.js"></script>
+  <script type="text/javascript" src="app/customer/discover/discoverService.js"></script>
+  <script type="text/javascript" src="app/customer/shoppingCart/shoppingCartService.js"></script>
+  <script type="text/javascript" src="app/customer/dashboard/dashboardService.js"></script>
+
+                                <!-- STRIPE -->
+  <script type="text/javascript" src="app/checkout/checkoutService.js"></script>
+
+  <script type="text/javascript" src="app/RestDash/RestLandingService.js"></script>
+
+
+  <!-- ===========================  CONTROLLERS  ===================================== -->
+
+                                  <!-- AUTH -->
   <script type="text/javascript" src="app/auth/registerCtrl.js"></script>
   <script type="text/javascript" src="app/auth/loginCtrl.js"></script>
   <script type="text/javascript" src="app/auth/signupCtrl.js"></script>
   <script type="text/javascript" src="app/auth/registerCtrl.js"></script>
+
+                                <!-- RESTAURANT -->
   <script type="text/javascript" src="app/RestDash/RestLandingCtrl.js"></script>
   <script type="text/javascript" src="app/RestDash/MenuCtrl.js"></script>
   <script type="text/javascript" src="app/RestDash/MenuItemsCtrl.js"></script>
   <script type="text/javascript" src="app/RestDash/MenuService.js"></script>
   <script type="text/javascript" src="app/RestDash/RestaurantCtrl.js"></script>
+
+
+
+                                <!-- CUSTOMER -->
+  <script type="text/javascript" src="app/customer/checkout/checkoutCtrl.js"></script>
+  <script type="text/javascript" src="app/customer/discover/discoverCtrl.js"></script>
+  <script type="text/javascript" src="app/customer/shoppingCart/shoppingCartCtrl.js"></script>
+  <script type="text/javascript" src="app/customer/dashboard/dashboardCtrl.js"></script>
+
+               <!-- STRIPE (move to customers checkout controller) -->
+
   <script type="text/javascript" src="app/RestDash/OrderDetailsCtrl.js"></script>
   <script type="text/javascript" src="app/dashboard/dashboardCtrl.js"></script>
+
   <script type="text/javascript" src="app/checkout/checkoutCtrl.js"></script>
+  
+  <script type="text/javascript" src="app/RestDash/OrderDetailsCtrl.js"></script>
+  
 
   </body>
 </html>

@@ -25,7 +25,17 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 			authTokenService.setToken(data.token)
 
 			$cookies.putObject("userName", data.firstName)
+			$cookies.putObject("lastName", data.lastName)
 			$cookies.putObject("role", data.role)
+
+			$cookies.putObject("addLine1", data.addLine1)
+			$cookies.putObject("addLine2", data.addLine2)
+			$cookies.putObject("addCity", data.addCity)
+			$cookies.putObject("addState", data.addState)
+			$cookies.putObject("addZip", data.addZip)
+			$cookies.putObject("phoneNumber", data.phoneNumber)
+
+
 			$state.go('dashboard')
 			return data
 

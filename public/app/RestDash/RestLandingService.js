@@ -33,7 +33,6 @@ app.service('restLandingService', function($http, $q) {
     }
   ]
 
-
   this.setCurrentOrder = function(order) {
     var dfd = $q.defer();
     this.currentOrder = order;

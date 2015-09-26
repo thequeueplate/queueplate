@@ -1,8 +1,5 @@
 var app = angular.module('QueuePlate')
 
-
-
-
 app.controller('RestLandingCtrl', function($scope, $cookies, $rootScope, registerService, $state, loginService, restLandingService){
 
   $scope.goManage = function(){
@@ -11,9 +8,6 @@ app.controller('RestLandingCtrl', function($scope, $cookies, $rootScope, registe
 
   $scope.restFirst = $cookies.getObject("restFirstName");
   $scope.role = $cookies.getObject("restRole")
-
-
-
 
   $scope.incomingOrders = [];
 
@@ -40,7 +34,6 @@ app.controller('RestLandingCtrl', function($scope, $cookies, $rootScope, registe
   };
 
   $scope.sampleOrders = restLandingService.sampleOrders;
-
 
 
 })

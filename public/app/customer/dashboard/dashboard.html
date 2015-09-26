@@ -1,0 +1,63 @@
+
+
+<body>
+
+<div>
+  <h1>Queued Order</h1>
+</div>
+
+<h1>{{userName}}'s Favorite Plates</h1>
+
+
+<div class="container">
+  <div class="add-menu-button">
+    <md-button class="md-raised md-primary" type="button" name="button">Add New</md-button>
+  </div>
+    <div class="dashboard-container">
+      <div class="favorite-orders-container">
+        <div class="favorite-orders-list" ng-repeat="order in favoriteOrders" ng-click="selectedOrders(order)">
+          <p>{{favOrder.name}} - {{favOrder.restauraunt}}</p>
+          <hr>
+        </div>
+      </div>
+      <div ui-view></div>
+    </div>
+</div>
+
+<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<h1>{{role}}</h1>
+<h2>{{userName}}&nbsp{{lastName}}</h2>
+<h2>{{phoneNumber}}</h2>
+<h2>{{addLine1}}&nbsp{{addLine2}}</h2>
+<h2>{{addCity}},&nbsp{{addState}}&nbsp{{addZip}}</h2>
+
+ -->
+
+
+
+
+
+<div>
+<md-button type="submit" class="md-raised md-warn"> Submit Order</button>
+</div>
+
+
+<md-icon md-font-icon="icon-favorite"/>

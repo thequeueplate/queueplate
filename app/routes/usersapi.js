@@ -98,6 +98,7 @@ module.exports = function(app, express) {
 					role: user.role,
 					verify: user.verify
 				})
+
 		}).catch(function(err) {
 			res.send({message: "User not created", error: err});
 			return;
@@ -157,7 +158,14 @@ module.exports = function(app, express) {
 					firstName: user.firstName,
 					lastName: user.lastName,
 					verify: user.verify,
-					role: user.role
+					role: user.role, 
+					addLine1: user.addLine1, 
+					addLine2: user.addLine2, 
+					addCity: user.addCity, 
+					addState: user.addState, 
+					addZip: user.addZip,
+					phoneNumber: user.phoneNumber
+
 				})
 			}
 		}).catch(function(err) {
