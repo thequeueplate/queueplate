@@ -1,19 +1,15 @@
 module.exports = function(sequelize, DataTypes) {
-  var Order = sequelize.define("Order", {
+  var FavoriteOrder = sequelize.define("FavoriteOrder", {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
-    },
-    status: {
-      type: DataTypes.ENUM,
-      values: ['Placed', 'Received', 'Started', 'Completed', 'Delivery', 'Delivered']
     }
   }, {
     classMethods: {
       associate: function(models) {
-        Order.hasMany(models.OrderItem);
-        // Order.belongsTo(models.FavoriteOrder);
+        FavoriteOrder.belongsTo(models.User);
+        FavoriteOrder.hasOne(models.Order);
       }
     }
   }
@@ -24,5 +20,5 @@ module.exports = function(sequelize, DataTypes) {
   //       User.hasMany(models.Favorite)  USE LATER
   //     }
   //   }
-  return Order;
+  return FavoriteOrder;
 };

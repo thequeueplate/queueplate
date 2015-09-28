@@ -70,8 +70,8 @@ module.exports = function(sequelize, DataTypes) {
   	},
     classMethods: {
       associate: function(models) {
-        User.belongsToMany(models.MenuItem, {through: "FavoritePlates"});
         User.hasMany(models.Order);
+        User.hasMany(models.FavoriteOrder);
       }
     },
   	instanceMethods: {

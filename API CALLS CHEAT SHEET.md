@@ -25,10 +25,11 @@ user by id ---> api/users/:userid
 
 all restaurants ---> api/rests/
 restaurants by id ---> api/rests/:restid
+restaurants by cuisine ---> api/rests/:restid/type/:cuisine
 
 ----------  SECTIONS ---------- 
 
-all sections by restaurant ---> api/rests/:restid/
+all sections by restaurant ---> api/rests/:restid/menu, then dig in to object for sections
 
 ----------  ORDERS ---------- 
 
@@ -50,8 +51,9 @@ orders by restaurant ---> api/rest/:restid
 orderItem by id --->  api/orders/item/:itemid 
 orders by userid ---> api/user/:userid 
 
-----------  FAVORITE DISHES ---------- 
+----------  FAVORITE ODERS ---------- 
+:::POST:::
+new favorite order ---> api/users/fav/:userid/:orderid
 
-
-
-
+:::GET:::
+all favorite orders by user ---> api/users/fav/:userid
