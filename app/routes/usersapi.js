@@ -189,23 +189,33 @@ module.exports = function(app, express) {
         })
     });
 
-    //ADD NEW FAVORITE PLATE
-    api.post('/:userid/:itemid', function(req, res) {
-    	models.FavoritePlate.create({
-    		Userid: req.params.userid,
-    		MenuItemid: req.params.itemid
-    	}).then(function(favplate) {
-    		res.json({ message: 'New favorite plate added.'})
-    	}).catch(function(err) {
-    		res.send({ message: 'Could not add favorite.', error: err})
-    	})
-    })
+	//ADD NEW FAVORITE ORDER
+	api.post('/fav/:userid/:orderid', function(req, res) {
+		models.FavoriteOrder.create({
+			UserId: req.params.userid
+		}).then(function(fav) {
+			models.Order.update({
+				FavoriteOrderId: fav.id
+			},{where: { id: req.params.orderid }}
+			).then(function(order) {
+				res.json(order);
+			}).catch(function(err){
+				res.send({message: 'Order not updated', error: err});
+			})
+			res.send(fav);
+		}).catch(function(err) {
+			res.send({message: 'Favorite order not posted', error: err});
+		})
+	})
 
-	//GET FAVORITE PLATES
-	api.get('/:userid', function(req, res) {
-		models.FavoritePlate.findAll({ where: { Userid: req.params.userid}})
-		.then(function(plates) {
-			res.send(plates);
+	api.get('/fav/:userid', function(req, res) {
+		models.FavoriteOrder.findAll({
+			where: { UserId: req.params.userid },
+			include: [{model: models.Order, include: [{model: models.OrderItem, include: [{model: models.MenuItem}]}]}]
+		}).then(function(fav) {
+			res.send(fav);
+		}).catch(function(err) {
+			res.send({message: 'Favorites not found', error: err});
 		})
 	})
 
