@@ -66,11 +66,23 @@ HTML PSEUDO CODE:
 <md-button ng-click="addMenuItem()" class="md-primary md-raised">
  Add Menu Item
 </md-button>
-<hr>
-<div ng-repeat="Section in menu.Sections">
- <h1>{{Section.name}}</h1>
- <div ng-repeat="MenuItem in Section.MenuItems">
-   <h3>{{MenuItem.name}} - ${{MenuItem.price}}</h3>
-   <p>{{MenuItem.description}}</p>
- </div>
-</div>
+<md-divider></md-divider>
+<md-content>
+ <md-list>
+   <md-list-item class="md-4-line" ng-repeat="Section in menu.Sections">
+     <div class="md-list-item-text">
+       <div class="md-display-1">
+         {{Section.name}}
+       </div>
+       <hr style="border-top: dashed 1px;">
+       <div ng-repeat="MenuItem in Section.MenuItems">
+         <div class="md-headline">{{MenuItem.name}}</div>
+         <div class="md-subhead">${{MenuItem.price}}</div>
+         <p>{{MenuItem.description}}</p>
+         <hr class="md-accent" style="border-top: dotted 1px;">
+       </div>
+     </div>
+     <md-divider></md-divider>
+   </md-list-item>
+ </md-list>
+</md-content>

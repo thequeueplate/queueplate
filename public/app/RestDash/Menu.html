@@ -54,3 +54,24 @@ HTML PSEUDO CODE:
  <div ng-repeat="Section in menu.Sections">
    Section Name: {{Section.name}} -- Section Comments: {{Section.comments}}
  </div>
+ <md-divider></md-divider>
+
+<md-content>
+   <md-list>
+     <md-list-item class="md-2-line" ng-repeat="Section in menu.Sections">
+       <div class="md-list-item-text">
+         <div class="md-display-1">
+           {{Section.name}}
+         </div>
+         <div class="md-subhead">
+           {{Section.comments}}
+         </div>
+       </div>
+       <md-divider></md-divider>
+     </md-list-item>
+   </md-list>
+ </md-content>
+
+
+
+
