@@ -37,6 +37,19 @@ module.exports = function(app, express) {
 			res.send(order);
 		}).catch(function(err){
 			res.send({message: 'Order not created.', error: err})
+
+		})
+	})
+
+	api.put('/order/:orderid', function(req, res) {
+		models.Order.update({
+			status: req.body.status
+		},
+		{where: { id: req.params.orderid }})
+		.then(function(order) {
+			res.send(order);
+		}).catch(function(err) {
+			res.send({message: 'Order status not updated', error: err});
 		})
 	})
 
