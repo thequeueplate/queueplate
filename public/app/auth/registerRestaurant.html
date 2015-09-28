@@ -3,34 +3,7 @@
 <h1 class="grey-text darken-2">Register Restaurant</h1>
       <form class="form-register" ng-submit="registerRest(rest)">
 
-<!-- First Name: <input type="text">
-Last Name: <input type="text">
-Age: <input type="text">
-Gender: <input type="text"> -->
-
-<!-- <h3>Restaraunt Location</h3> -->
-
-<!-- Street: <input type="text">
-Apt #: <input type="text">
-City: <input type="text">
-Zip: <input type="text">
-State: <input type="text"> -->
-
-<!-- <h3>Contact</h3> -->
-<!-- Owner Phone: <input type="text">
-Company Phone: <input type="text">
-Business Email: <input type="text"> -->
-
-
-<!-- <h3>Stripe Acct Information</h3> -->
-
-<!-- Acct Number: <input type="text"> -->
-
 <!-- Associated URL's for Restaraunt -->
-
-<!-- Type of Cuisine: <input type="dropdown"> -->
-
-<!-- How many tables? -->
 
 <!-- Hours of operation: -->
 
@@ -102,67 +75,12 @@ Business Email: <input type="text"> -->
   <input type="Number" ng-model="rest.tables">
 </md-input-container>
 
-<md-checkbox ng-model="rest.cuisine.American">
-  <label>American</label>
-</md-checkbox>
-<md-checkbox ng-model="rest.cuisine.Cajun">
-  <label>Cajun</label>
-</md-checkbox>
-<md-checkbox ng-model="rest.cuisine.Caribbean">
-  <label>Caribbean</label>
-</md-checkbox>
-<md-checkbox ng-model="rest.cuisine.Chinese">
-  <label>Chinese</label>
-</md-checkbox>
-<md-checkbox ng-model="rest.cuisine.French">
-  <label>French</label>
-</md-checkbox>
-<md-checkbox ng-model="rest.cuisine.German">
-  <label>German</label>
-</md-checkbox>
-<md-checkbox ng-model="rest.cuisine.Greek">
-  <label>Greek</label>
-</md-checkbox>
-<md-checkbox ng-model="rest.cuisine.Indian">
-  <label>indian</label>
-</md-checkbox>
-<md-checkbox ng-model="rest.cuisine.Italian">
-  <label>Italian</label>
-</md-checkbox>
-<md-checkbox ng-model="rest.cuisine.Korean">
-  <label>Korean</label>
-</md-checkbox>
-<md-checkbox ng-model="rest.cuisine.Lebanese">
-  <label>Lebanese</label>
-</md-checkbox>
-<md-checkbox ng-model="rest.cuisine.Mediterranean">
-  <label>Mediterranean</label>
-</md-checkbox>
-<md-checkbox ng-model="rest.cuisine.Mexican">
-  <label>Mexican</label>
-</md-checkbox>
-<md-checkbox ng-model="rest.cuisine.Moroccan">
-  <label>Moroccan</label>
-</md-checkbox>
-<md-checkbox ng-model="rest.cuisine.Soul">
-  <label>Soul</label>
-</md-checkbox>
-<md-checkbox ng-model="rest.cuisine.Spanish">
-  <label>Spanish</label>
-</md-checkbox>
-<md-checkbox ng-model="rest.cuisine.Thai">
-  <label>Thai</label>
-</md-checkbox>
-<md-checkbox ng-model="rest.cuisine.Turkish">
-  <label>Turkish</label>
-</md-checkbox>
-<md-checkbox ng-model="rest.cuisine.Vietnamese">
-  <label>Vietnamese</label>
-</md-checkbox>
-<md-checkbox ng-model="rest.cuisine.Other">
-  <label>Other</label>
-</md-checkbox>
+<!-- <md-input-container>
+    <label>Cuisine</label>
+    <md-select ng-model="rest.cuisine">
+      <md-option ng-repeat="cuisine in cuisines" ng-value="cuisine.type">{{cuisine.type}}</md-option>
+    </md-select>
+  </md-input-container> -->
 
-
-
+</div>
 <md-button type="submit">Register</md-button>

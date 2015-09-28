@@ -30,7 +30,28 @@ app.controller('registerCtrl', function(publishData, UID, registerService, $stat
 		});
 	}
 
-
+	$scope.cuisines = [
+		{type: "American"},
+		{type: "Cajun"}, 
+		{type: "Caribbean"}, 
+		{type: "Chinese"}, 
+		{type: "French"}, 
+		{type: "German"}, 
+		{type: "Greek"}, 
+		{type: "Indian"}, 
+		{type: "Italian"}, 
+		{type: "Korean"}, 
+		{type: "Lebanese"}, 
+		{type: "Mediterranean"}, 
+		{type: "Mexican"}, 
+		{type: "Moroccan"}, 
+		{type: "Soul"}, 
+		{type: "Thai"}, 
+		{type: "Turkish"}, 
+		{type: "Vietnamese"}, 
+		{type: "Other"}
+	]
+     
 
 	$scope.genders = [
 		{type: "Male"},
@@ -93,4 +114,6 @@ app.controller('registerCtrl', function(publishData, UID, registerService, $stat
 	]
 
 });
+
+
 
