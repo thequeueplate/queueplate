@@ -222,12 +222,11 @@ footer p {
   min-width: 250px;
   border-right: 1px solid gray;
   margin: 20px;
-  padding: 10px;
+  padding-right: 45px;
 }
 
 .order-container {
   margin: 20px;
-  padding: 10px;
   display: inline-block;
   /*justify-content: center;*/
 }
