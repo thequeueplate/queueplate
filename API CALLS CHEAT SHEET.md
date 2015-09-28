@@ -28,7 +28,7 @@ restaurants by id ---> api/rests/:restid
 
 ----------  SECTIONS ---------- 
 
-all sections by restaurant ---> api/rests/:restid/
+all sections by restaurant ---> api/rests/:restid/menu, then dig in to object for sections
 
 ----------  ORDERS ---------- 
 
@@ -50,7 +50,7 @@ orders by restaurant ---> api/rest/:restid
 orderItem by id --->  api/orders/item/:itemid 
 orders by userid ---> api/user/:userid 
 
-----------  FAVORITE DISHES ---------- 
+----------  FAVORITE ODERS ---------- 
 
 
 
