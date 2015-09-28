@@ -9,8 +9,8 @@
     <div class="dashboard-container">
       <div class="incoming-orders-container">
         <h2>Incoming Orders</h2>
-        <div class="incoming-orders-list" ng-repeat="order in sampleOrders" ng-click="selectedOrders(order)">
-          <p>{{order.name}} - {{order.phone}}</p>
+        <div class="incoming-orders-list" ng-repeat="order in incomingOrders" ng-click="selectedOrders(order)">
+          <p>{{order.id}} - {{order.status}}</p>
           <hr>
         </div>
       </div>
