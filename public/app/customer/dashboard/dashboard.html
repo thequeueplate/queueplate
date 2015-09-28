@@ -5,38 +5,19 @@
 </div>
 
 <h1>{{userName}}'s Favorite Plates</h1>
-
+<div style="height: 300px; width: 600px;"></div>
 
 <div class="container">
-  <div class="add-menu-button">
-    <md-button class="md-raised md-primary" type="button" name="button">Add New</md-button>
-  </div>
+ 
     <div class="dashboard-container">
       <div class="favorite-orders-container">
-        <div class="favorite-orders-list" ng-repeat="order in favoriteOrders" ng-click="selectedOrders(order)">
-          <p>{{favOrder.name}} - {{favOrder.restauraunt}}</p>
-          <hr>
+        <div class="favorite-orders-list" ng-click="selectedOrders(order)">
+          <p>{{favOrder.name}}</p>
+          <p>{{favOrder.restauraunt}}</p>
         </div>
       </div>
-      <div ui-view></div>
     </div>
 </div>
-
-<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
-
-<body>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -46,16 +27,65 @@
 <h2>{{phoneNumber}}</h2>
 <h2>{{addLine1}}&nbsp{{addLine2}}</h2>
 <h2>{{addCity}},&nbsp{{addState}}&nbsp{{addZip}}</h2>
-
  -->
-
-
-
+ <div>
+<md-button type="submit" class="md-raised md-primary">Add New </button>
+</div>
+         
 
 
 <div>
-<md-button type="submit" class="md-raised md-warn"> Submit Order</button>
+    <md-button type="submit" class="md-raised md-warn"> Submit Order</button>
+</div>
+
+<!--//////////////////////////////-->
+<div ng-controller="dashboardCtrl" layout="column" class="chipsdemoContactChips" ng-app="QueuePlate">
+
+  <md-content class="md-padding autocomplete" layout="column">
+    <md-contact-chips ng-model="ctrl.contacts" md-contacts="ctrl.querySearch($query)" md-contact-name="name" md-contact-image="image" md-contact-email="email" md-require-match="true" md-highlight-flags="i" filter-selected="ctrl.filterSelected" placeholder="To">
+    </md-contact-chips>
+
+    <md-list class="fixedRows">
+      <md-subheader class="md-no-sticky">Contacts</md-subheader>
+      <md-list-item class="md-2-line contact-item" ng-repeat="(index, contact) in ctrl.allContacts" ng-if="ctrl.contacts.indexOf(contact) < 0">
+        <img ng-src="{{contact.image}}" class="md-avatar" alt="{{contact.name}}">
+        <div class="md-list-item-text compact">
+          <h3>{{contact.name}}</h3>
+          <p>{{contact.email}}</p>
+        </div>
+      </md-list-item>
+      <md-list-item class="md-2-line contact-item selected" ng-repeat="(index, contact) in ctrl.contacts">
+        <img ng-src="{{contact.image}}" class="md-avatar" alt="{{contact.name}}">
+        <div class="md-list-item-text compact">
+          <h3>{{rest.firstName}}</h3>
+          <p>{{rest.addCity}}</p>
+        </div>
+      </md-list-item>
+    </md-list>
+
+  </md-content>
 </div>
 
 
-<md-icon md-font-icon="icon-favorite"/>
+</body>
+
+
+         
+<div ng-repeat="rest in restaurants">
+
+  <div><h2 ng-click="takeToMenu()"><a href="#">{{rest.firstName}}</a><h2></div>
+  <div><h4>{{rest.addCity}}</h4></div>
+  <div><h4>{{rest.cuisine}}</h4></div>
+</div>
+<md-butt
+
+
+
+
+
+
+
+
+
+
+
