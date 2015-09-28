@@ -6,13 +6,13 @@ app.service('restLandingService', function($http, $q) {
     var dfd = $q.defer();
     $http({
       method: 'GET',
-      url: 'api/orders/:restid' + id
+      url: '/api/orders/rest/' + id
     }).then(function(response) {
       dfd.resolve(response.data);
-    })
+    });
       return dfd.promise;
-      console.log(dfd.promise);
   };
+
 
   this.sampleOrders = [
     {

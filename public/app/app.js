@@ -52,7 +52,15 @@ $urlRouterProvider.otherwise('/');
   .state('RestaurantLanding', {
    url: '/RestaurantLanding',
    templateUrl: 'app/RestDash/RestaurantTmpl.html',
-   controller: 'RestLandingCtrl'
+   controller: 'RestLandingCtrl',
+   resolve: {
+     restData: function(loginService){
+       return loginService.getRestData();
+     },
+     orders: function(restLandingService, loginService){
+       return restLandingService.getOrders(loginService.getRestData().id);
+     }
+   }
   })
 
   .state('RestaurantLanding.orderDetails', {
@@ -79,7 +87,7 @@ $urlRouterProvider.otherwise('/');
     //  menu: function(menuService, loginService){
     //    return menuService.getMenu(loginService.getRestData().id);
     //  }
-  
+
   })
 
    .state('registerCustomer', {
@@ -150,7 +158,7 @@ $urlRouterProvider.otherwise('/');
   })
 
   .state('RestaurantMenu', {
-    url: '/Restaurant/:restid/Menu', 
+    url: '/Restaurant/:restid/Menu',
     templateUrl: 'app/RestDash/PublicMenu.html'
 
 
@@ -203,9 +211,3 @@ app.run(function($state, $rootScope, $window, loginService) {
 //     return out;
 //   };
 // })
-
-
-
-
-
-

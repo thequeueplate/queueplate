@@ -1,7 +1,8 @@
 var app = angular.module('QueuePlate')
 
-app.controller('RestLandingCtrl', function($scope, $cookies, $rootScope, registerService, $state, loginService, restLandingService){
-
+app.controller('RestLandingCtrl', function($scope, $cookies, $rootScope, registerService, $state, loginService, restLandingService, restData, orders){
+  console.log("THIS REST IS THE BEST",restData);
+  console.log("ORDERS ORDASDFIPOJ", orders);
   $scope.goManage = function(){
     $state.go('ManageMenu')
   }
@@ -9,7 +10,7 @@ app.controller('RestLandingCtrl', function($scope, $cookies, $rootScope, registe
   $scope.restFirst = $cookies.getObject("restFirstName");
   $scope.role = $cookies.getObject("restRole")
 
-  $scope.incomingOrders = [];
+  $scope.incomingOrders = orders;
 
   // $scope.order = {
   //   name: order.name,
@@ -32,8 +33,5 @@ app.controller('RestLandingCtrl', function($scope, $cookies, $rootScope, registe
         $state.go('RestaurantLanding.orderDetails', {orderId: order.id});
       })
   };
-
-  $scope.sampleOrders = restLandingService.sampleOrders;
-
 
 })
