@@ -20,8 +20,7 @@ module.exports = function(app, express) {
 	api.get('/item/:itemid', function(req, res) {
 		models.OrderItem.findAll({
 			where: { id: req.params.itemid },
-			include: [
-			{model: models.MenuItem}]
+			include: [ models.MenuItem ]
 		}).then(function(orderitem) {
 			res.send(orderitem);
 		}).catch(function(err){
@@ -34,6 +33,10 @@ module.exports = function(app, express) {
 			RestaurantId: req.params.restid,
 			UserId: req.params.userid,
 			status: req.body.status
+		}).then(function(order) {
+			res.send(order);
+		}).catch(function(err){
+			res.send({message: 'Order not created.', error: err})
 		})
 	})
 
@@ -41,19 +44,25 @@ module.exports = function(app, express) {
 		models.Order.findAll({
 			where: { RestaurantId: req.params.restid },
 			include: [
-			{model: models.OrderItem}, {model: models.User}]
+			{model: models.OrderItem, include: [{
+				model: models.MenuItem
+			}]}]
 		}).then(function(orders) {
+			console.log(orders.getMenuItem)
 			res.send(orders);
 		}).catch(function(err) {
 			res.send({message: 'Could not find orders', error: err})
 		})
 	})
 
+
 	api.get('/user/:userid', function(req, res) {
 		models.Order.findAll({
 			where: { UserId: req.params.userid },
 			include: [
-			{model: models.OrderItem}, {model: models.Restaurant}]
+			{model: models.OrderItem, include: [{
+				model: models.MenuItem
+			}]}]
 		}).then(function(orders) {
 			res.send(orders);
 		}).catch(function(err) {

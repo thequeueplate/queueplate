@@ -10,22 +10,22 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 
 		loginService.login($scope.loginData.email, $scope.loginData.password)
 			.success(function(data) {
-			
+
 				if (data.message === "Invalid Password") {
 					console.log(data.message)
 					Materialize.toast('Invalid Password', 1000)
-					
+
 				} else {
-		
+
 		loginService.getUser()
 			.then(function(data) {
 				console.log(data)
 				});
 
 				$scope.processing = false;
-				$rootScope.loggedIn = true; 
-				
-					$state.go('dashboard'); 
+				$rootScope.loggedIn = true;
+
+					$state.go('dashboard');
 				}
 			});
 	}
@@ -38,22 +38,22 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 
 		loginService.loginRest($scope.loginData.email, $scope.loginData.password)
 			.success(function(data) {
-			
+
 				if (data.message === "Invalid Password") {
 					console.log(data.message)
 					Materialize.toast('Invalid Password', 1000)
-					
+
 				} else {
-		
-		loginService.getRest()
-			.then(function(data) {
-				console.log(data)
-				});
+
+				loginService.getRest()
+					.then(function(data) {
+						console.log(data)
+					});
 
 				$scope.processing = false;
-				$rootScope.loggedIn = true; 
-				
-					$state.go('RestaurantLanding'); 
+				$rootScope.loggedIn = true;
+
+					$state.go('RestaurantLanding');
 
 				 }
 			});
@@ -61,9 +61,8 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 
 	$scope.doLogout = function() {
 		loginService.logout();
-		$rootScope.loggedIn = false; 
+		$rootScope.loggedIn = false;
 
-		$state.go('home'); 
+		$state.go('home');
 	}
 });
-

@@ -1,13 +1,16 @@
 var app = angular.module('QueuePlate')
 
 app.service('loginService', function($http, $q, $state, $rootScope, authTokenService, $cookies) {
-		
+	var restData;
+	this.getRestData = function(){
+		return restData
+	}
 	this.login = function(email, password) {
-		
+
 		return $http.post('/api/users/login', {
-			email: email, 
+			email: email,
 			password: password
-		
+
 		})
 		.success(function(data) {
 
@@ -22,46 +25,56 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 			authTokenService.setToken(data.token)
 
 			$cookies.putObject("userName", data.firstName)
+			$cookies.putObject("lastName", data.lastName)
 			$cookies.putObject("role", data.role)
+
+			$cookies.putObject("addLine1", data.addLine1)
+			$cookies.putObject("addLine2", data.addLine2)
+			$cookies.putObject("addCity", data.addCity)
+			$cookies.putObject("addState", data.addState)
+			$cookies.putObject("addZip", data.addZip)
+			$cookies.putObject("phoneNumber", data.phoneNumber)
+
 
 			$state.go('dashboard')
 			return data
-			
+
 	        }
 	    })
    }
 
 	this.loginRest = function(email, password) {
-		
+
 		return $http.post('/api/rests/login', {
-			email: email, 
+			email: email,
 			password: password
-		
+
 		})
 		.success(function(data) {
 
 			console.log(data)
+			restData = data;
 
 			if (data.success === false) {
 				alert("Please Check your email to confirm your account")
 				$rootScope.loggedIn = false;
 				$state.go('loginBoth')
 			} else {
-			authTokenService.setToken(data.token)
+				authTokenService.setToken(data.token);
+				$cookies.putObject("restFirstName", data.firstName)
+				$cookies.putObject("restRole", data.role)
 
-			$cookies.putObject("restFirstName", data.firstName)
-			$cookies.putObject("restRole", data.role)
-		
-			$rootScope.loggedIn = true;
-			return data
+				$rootScope.loggedIn = true;
 
-			  }
+				return data;
+
+			}
 		})
 	}
 
 	this.logout = function() {
 		authTokenService.setToken();
-		
+
 	}
 
 	this.isLoggedIn = function() {
@@ -127,5 +140,3 @@ app.factory('AuthInterceptor', function($q, authTokenService) {
 
 	return interceptorService;
 });
-
-
