@@ -25,6 +25,7 @@ user by id ---> api/users/:userid
 
 all restaurants ---> api/rests/
 restaurants by id ---> api/rests/:restid
+restaurants by cuisine ---> api/rests/:restid/type/:cuisine
 
 ----------  SECTIONS ---------- 
 
@@ -51,7 +52,8 @@ orderItem by id --->  api/orders/item/:itemid
 orders by userid ---> api/user/:userid 
 
 ----------  FAVORITE ODERS ---------- 
+:::POST:::
+new favorite order ---> api/users/fav/:userid/:orderid
 
-
-
-
+:::GET:::
+all favorite orders by user ---> api/users/fav/:userid
