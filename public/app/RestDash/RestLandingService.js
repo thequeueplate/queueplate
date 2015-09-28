@@ -2,6 +2,7 @@ var app = angular.module('QueuePlate')
 
 app.service('restLandingService', function($http, $q) {
   this.currentOrder;
+  this.orderUser;
   this.getOrders = function(id) {
     var dfd = $q.defer();
     $http({
@@ -13,6 +14,18 @@ app.service('restLandingService', function($http, $q) {
       return dfd.promise;
   };
 
+  //http://localhost:3000/api/users?id=1
+  this.getOrderUser = function(userId) {
+    var dfd = $q.defer();
+    $http({
+      method: 'GET',
+      url: '/api/users?id=' + userId
+    }).then(function(response) {
+      this.orderUser = response.data[0];
+      dfd.resolve(response);
+    })
+    return dfd.promise;
+  }
 
   this.sampleOrders = [
     {

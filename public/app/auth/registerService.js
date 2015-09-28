@@ -18,12 +18,15 @@ app.service('registerService', function($http, $q, $rootScope) {
 	this.register = function(user, UID) {
 		var deferred = $q.defer()
 
+		console.log(deferred)
+
 		$http.put('/api/users/' + UID + '/pref', {
 			firstName: user.firstName,
 			lastName: user.lastName,
 			age: user.age,
 			gender: user.gender,
 			addLine1: user.addLine1,
+			addLine2: user.addLine2,
 			addCity: user.addCity,
 			addZip: user.addZip,
 			addState: user.addState,
@@ -34,11 +37,14 @@ app.service('registerService', function($http, $q, $rootScope) {
 
 		})
 		.then(function(data) {
+			console.log(data)
 			deferred.resolve(data) //this passes everything back to controller
+			console.log(data)
 
 		});
 
 		return deferred.promise
+		console.log()
 	}
 
 	this.checkVerifiedRestaurant = function(id) {
@@ -57,14 +63,19 @@ app.service('registerService', function($http, $q, $rootScope) {
 		var deferred = $q.defer()
 
 		$http.put('/api/rests/' + RID + '/pref', {
+			name: rest.name,
 			firstName: rest.firstName,
 			lastName: rest.lastName,
-			age: rest.age,
-			gender: rest.gender,
+			contactPhone: rest.contactPhone,
 			addLine1: rest.addLine1,
+			addLine2: rest.addLine2,
 			addCity: rest.addCity,
 			addZip: rest.addZip,
 			addState: rest.addState,
+			tables: rest.tables,
+			businessEmail: rest.businessEmail, 
+			stripeAccount: rest.stripeAccount,
+			cuisine: rest.cuisine, 
 			phoneNumber: rest.phoneNumber
 			// cardNumber: cardNumber,
 			// securityDigits: securityDigits,

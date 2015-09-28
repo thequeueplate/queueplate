@@ -25,3 +25,18 @@
 <md-button type="submit" ng-click="find(restaurants)" class="md-raised md-primary">Find</button>
 
 
+<h4>Type of Cuisine</h4>
+<div layout="row">
+    <div flex="50" flex-md="100" layout="column">
+      <fieldset class="standard" flex="">
+        <div layout="row" layout-wrap="">
+          <div flex="50" ng-repeat="cuisine in cuisines">
+            <md-checkbox ng-model="rest.cuisine" ng-click="toggle(cuisine)">
+              {{ cuisine }} <span ng-if="exists(cuisine)"></span>
+            </md-checkbox>
+
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>

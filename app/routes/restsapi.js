@@ -175,6 +175,17 @@ module.exports = function(app, express) {
         })
     });
 
+	//GET RESTAURANTS BY CUISINE
+    api.get('/type/:cuisine', function(req,res) {
+    	models.Restaurant.findAll({
+    		where: { cuisine: req.params.cuisine }
+    	}).then(function(rests) {
+    		res.send(rests);
+    	}).catch(function(err) {
+    		res.send({message: 'Could not find restaurants.', error: err});
+    	})
+    })
+
 	//CREATE MENU
     api.post('/:restid/menu', function(req, res) {
     	models.Menu.create({
@@ -199,8 +210,6 @@ module.exports = function(app, express) {
     		res.send({message: 'Section not created', error: err});
     	})
     });
-
-    api.put('/:restid')
 
     //CREATE MENUITEM
     api.post('/:restid/items/:sectionid', function(req,res) {

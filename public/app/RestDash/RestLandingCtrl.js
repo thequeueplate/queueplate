@@ -25,12 +25,18 @@ app.controller('RestLandingCtrl', function($scope, $cookies, $rootScope, registe
   //   console.log(order);
   // };
 
+  //This boi sets the current order AND the current user.
   $scope.selectedOrders = function(order) {
-    console.log(order)
-    restLandingService.setCurrentOrder(order)
+    console.log("this is the order!", order)
+    restLandingService.getOrderUser(order.UserId)
       .then(function(response){
-        console.log(response);
-        $state.go('RestaurantLanding.orderDetails', {orderId: order.id});
+        $scope.user = response.data[0]
+        console.log(response.data[0])
+        restLandingService.setCurrentOrder(order)
+          .then(function(response){
+            console.log(response);
+            $state.go('RestaurantLanding.orderDetails', {orderId: order.id});
+          })
       })
   };
 
