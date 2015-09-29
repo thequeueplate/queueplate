@@ -44,16 +44,17 @@
 		<input ng-model="user.addCity">
 	</md-input-container>
 
-	<md-input-container>
-		<label>Zip Code</label>
-		<input type="Number" ng-model="user.addZip">
-	</md-input-container>
 
 	<md-input-container>
 		<label>State</label>
 		<md-select ng-model="user.addState">
 			<md-option ng-repeat="state in states" ng-value="state.type">{{state.type}}</md-option>
 		</md-select>
+	</md-input-container>
+	
+	<md-input-container>
+		<label>Zip Code</label>
+		<input type="Number" ng-model="user.addZip">
 	</md-input-container>
 
 	<md-input-container>
