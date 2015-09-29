@@ -20,14 +20,15 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 		loginService.getUser()
 			.then(function(data) {
 				console.log(data)
-				});
-
-				$scope.processing = false;
 				$rootScope.loggedIn = true;
-
-					$state.go('dashboard');
+				if (data.role === "Restaurant") {
+					$state.go("RestaurantLanding")
+				} else {
+					$state.go('dashboard')
 				}
 			});
+	             }
+	     })
 	}
 
 	$scope.doLoginRest = function() {
