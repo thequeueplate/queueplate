@@ -1,6 +1,6 @@
 var app = angular.module('QueuePlate')
 
-app.controller('registerCtrl', function(publishData, UID, registerService, $state, $scope, loginService, $cookies) {
+app.controller('registerCtrl', function(registerService, UID, publishData, $state, $scope, loginService, $cookies) {
 
 	
 	$scope.checkVerifiedUser = function() {

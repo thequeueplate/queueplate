@@ -36,8 +36,16 @@ $urlRouterProvider.otherwise('/');
   .state('registerRestaurant', {
     url: '/registerRestaurant/:id',
     templateUrl: 'app/auth/registerRestaurant.html',
-    controller: 'registerCtrl'
-    })
+    controller: 'registerCtrl',
+     resolve: {
+      UID: function($stateParams) {
+        return $stateParams.id
+      },
+      publishData: function(registerService, $stateParams) {
+        return registerService.checkVerified($stateParams.id)
+      }
+    }
+  })
 
   .state('RestaurantLanding', {
    url: '/RestaurantLanding',
