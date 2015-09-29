@@ -85,7 +85,7 @@ $urlRouterProvider.otherwise('/');
     templateUrl: 'app/auth/registerCustomer.html',
     controller: 'registerCtrl',
     resolve: {
-      UID: function(registerService, $stateParams) {
+      UID: function($stateParams) {
         return $stateParams.id
       },
       publishData: function(registerService, $stateParams) {
@@ -95,7 +95,6 @@ $urlRouterProvider.otherwise('/');
     }
 
   })
-
 
   .state('verify', {
       url: '/verify',
@@ -119,7 +118,7 @@ $urlRouterProvider.otherwise('/');
     url: '/discover',
     templateUrl: 'app/customer/discover/discover.html',
     controller: 'discoverCtrl'
-  })
+   })
 
     .state('shoppingCart', {
     url: '/shoppingCart',
@@ -150,7 +149,13 @@ $urlRouterProvider.otherwise('/');
 
   .state('RestaurantMenu', {
     url: '/Restaurant/:restid/Menu',
-    templateUrl: 'app/RestDash/RestaurantMenu.html'
+    templateUrl: 'app/customer/menu/RestaurantMenu.html', 
+    controller: 'RestaurantMenuCtrl',
+     resolve: {
+      RID: function($stateParams) {
+        return $stateParams.restid
+      }
+    }
   })
 
 $locationProvider.html5Mode(true);

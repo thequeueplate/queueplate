@@ -1,0 +1,14 @@
+<h1>Public Menu<h1>
+
+ 
+<div ng-repeat="section in menu.Sections">
+
+{{section.name}}
+	<div ng-repeat="item in section.MenuItems">
+	{{item.name}}
+	{{item.price}}
+	{{item.description}}
+	</div>
+<hr>
+
+</div>
