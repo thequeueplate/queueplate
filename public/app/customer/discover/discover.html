@@ -2,27 +2,23 @@
 
 <input type="text" placeholder="search">
 
-<h5>Filter By:</h5>
-<md-checkbox ng-model="filter">
-  <label>Restaurant Name</label>
-</md-checkbox>
-
-<md-checkbox ng-model="filter">
-  <label>Cuisine</label>
-</md-checkbox>
-
-<md-checkbox ng-model="filter">
-  <label>Location</label>
-</md-checkbox>
-
+<div>
+<md-input-container>
+  <label></label>
+  <md-select ng-model="rest.filter">
+    <md-option ng-repeat="filter in filters" ng-value="filter.type">{{filter.type}}</md-option>
+  </md-select>
+</md-input-container>
+</div>
 
 <div ng-repeat="rest in restaurants">
 
-	<div><h2 ng-click="takeToMenu()"><a href="#">{{rest.firstName}}</a><h2></div>
+	<div><h2 ng-click="takeToMenu($index, restId)"><a href="#">{{rest.firstName}}</a><h2></div>
 	<div><h4>{{rest.addCity}}</h4></div>
 	<div><h4>{{rest.cuisine}}</h4></div>
+	<div><h4>{{rest.id}}</h4></div>
 </div>
-<md-button type="submit" ng-click="find(restaurants)" class="md-raised md-primary">Find</button>
+
 
 
 <h4>Type of Cuisine</h4>
@@ -31,8 +27,8 @@
       <fieldset class="standard" flex="">
         <div layout="row" layout-wrap="">
           <div flex="50" ng-repeat="cuisine in cuisines">
-            <md-checkbox ng-model="rest.cuisine" ng-click="toggle(cuisine)">
-              {{ cuisine }} <span ng-if="exists(cuisine)"></span>
+            <md-checkbox ng-model="rest.cuisine" ng-click="toggle(cuisine, selected)">
+              {{ cuisine }} <span ng-if="exists(cuisine, selected)"></span>
             </md-checkbox>
 
           </div>
@@ -40,3 +36,6 @@
       </fieldset>
     </div>
   </div>
+
+
+<md-button type="submit" ng-click="find(restaurants)" class="md-raised md-primary">Find</button>

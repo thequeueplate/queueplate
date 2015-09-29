@@ -80,7 +80,24 @@
 
 
 
-
+<div class="container">
+    <div class="favorite dishes">
+      <form class="form-favorite-dishes">
+        <md-input-container>
+          <label>Email</label>
+          <input type="text" name="dish" class="form-control" ng-model="loginData.email"></input>
+        </md-input-container>
+        <md-input-container>
+          <label>Password</label>
+          <input type="text" name="" class="form-control" ng-model="loginData.password"></input>
+        </md-input-container>
+        <div>
+        <md-button type="submit" class="md-raised md-primary" ng-click="doLogin()">Login</button>
+        </div>
+        <br>
+      </form>
+    </div>
+</div>
 
 
 
