@@ -1,6 +1,55 @@
 var app = angular.module('QueuePlate')
 
 app.service('loginService', function($http, $q, $state, $rootScope, authTokenService, $cookies) {
+
+		this.register = function(user, UID) {
+		var deferred = $q.defer()
+
+		console.log(deferred)
+
+		$http.put('/api/users/' + UID + '/pref', {
+			firstName: user.firstName,
+			lastName: user.lastName,
+			age: user.age,
+			gender: user.gender,
+			addLine1: user.addLine1,
+			addLine2: user.addLine2,
+			addCity: user.addCity,
+			addZip: user.addZip,
+			addState: user.addState,
+			phoneNumber: user.phoneNumber
+			// cardNumber: cardNumber,
+			// securityDigits: securityDigits,
+			// dateOfExp: dateOfExp,
+
+		})
+		.then(function(data) {
+			console.log(data)
+			deferred.resolve(data) //this passes everything back to controller
+			console.log(data)
+
+		});
+
+		return deferred.promise
+		console.log()
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 	var restData;
 	this.getRestData = function(){
 		return restData
