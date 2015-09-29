@@ -1,4 +1,5 @@
-angular.module('QueuePlate').controller('MenuController', function($scope, $state, loginService, MenuService, restData){
+angular.module('QueuePlate').controller('MenuController', function($cookies, $scope, $state, loginService, MenuService, restData){
+
 
  var getMenuData = function() {
    MenuService.getMenu(restData.id)

@@ -37,6 +37,7 @@
     <li ng-if="!$root.loggedIn"><a ui-sref="loginBoth">Login</a></li>
     <li ng-if="!$root.loggedIn"><a ui-sref="signUpBoth">Signup</a></li>
     <li ng-if="$root.loggedIn"><a ui-sref="dashboard">Dashboard</a></li>
+    <li ng-if="$root.loggedIn"><a ui-sref="discover">Discover</a></li>
     <li ng-if="$root.loggedIn"><a ui-sref="home" ng-click="doLogout()">Logout</a></li>
    </ul>
 
@@ -77,7 +78,7 @@
 
   <script type="text/javascript" src="app/customer/checkout/checkoutService.js"></script>
   <script type="text/javascript" src="app/RestDash/RestLandingService.js"></script>
-
+  <script type="text/javascript" src="app/customer/menu/RestaurantMenuService.js"></script>
 
                                 <!-- CUSTOMER -->
   <script type="text/javascript" src="app/customer/checkout/checkoutService.js"></script>
@@ -101,7 +102,6 @@
   <script type="text/javascript" src="app/RestDash/MenuCtrl.js"></script>
   <script type="text/javascript" src="app/RestDash/MenuItemsCtrl.js"></script>
   <script type="text/javascript" src="app/RestDash/MenuService.js"></script>
-  <script type="text/javascript" src="app/RestDash/RestaurantCtrl.js"></script>
 
 
 
@@ -110,6 +110,8 @@
   <script type="text/javascript" src="app/customer/discover/discoverCtrl.js"></script>
   <script type="text/javascript" src="app/customer/shoppingCart/shoppingCartCtrl.js"></script>
   <script type="text/javascript" src="app/customer/dashboard/dashboardCtrl.js"></script>
+   <script type="text/javascript" src="app/customer/menu/RestaurantMenuCtrl.js"></script>
+
 
                <!-- STRIPE (move to customers checkout controller) -->
 

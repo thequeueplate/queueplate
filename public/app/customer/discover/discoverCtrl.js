@@ -20,7 +20,8 @@ app.controller('discoverCtrl', function(discoverService, $scope, $state) {
 	]
 
 	$scope.cuisines = ["American", "Cajun", "Caribbean", "Chinese", "French", "German", "Greek", "Indian", "Italian", "Korean", "Lebanese", "Mediterranean", "Mexican", "Moroccan", "Soul", "Thai", "Turkish", "Vietnamese", "Other"]
-	 $scope.selected = [];
+	
+  $scope.selected = [];
 
       $scope.toggle = function (cuisine, list) {
         var idx = list.indexOf(cuisine);
@@ -39,15 +40,15 @@ app.controller('discoverCtrl', function(discoverService, $scope, $state) {
 
      		$scope.restId.id = $scope.restaurants[index].id;
 
-
      		console.log($scope.restId.id); 
 
      		$state.go("RestaurantMenu", {restid: $scope.restId.id })
 
-   		// discoverService.getMenu($scope.restId.id).then(function(res) {
-   		// 	console.log(res);
+        // discoverService.getMenu(rest, RID).then(function(response) {
+        //     console.log(response)
 
-   		// });
-      }
+        // })
+    }
 
-})
+});
+

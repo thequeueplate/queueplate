@@ -17,6 +17,7 @@ app.controller('dashboardCtrl', function($scope, $cookies, dashboardService) {
    $scope.addState = $cookies.getObject("addState")
    $scope.addZip = $cookies.getObject("addZip")
    $scope.phoneNumber = $cookies.getObject("phoneNumber")
+   $scope.id = $cookies.getObject("userid")
 
 
 //   function DemoCtrl ($timeout, $q) {
