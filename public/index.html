@@ -37,6 +37,7 @@
     <li ng-if="!$root.loggedIn"><a ui-sref="loginBoth">Login</a></li>
     <li ng-if="!$root.loggedIn"><a ui-sref="signUpBoth">Signup</a></li>
     <li ng-if="$root.loggedIn"><a ui-sref="dashboard">Dashboard</a></li>
+    <li ng-if="$root.loggedIn"><a ui-sref="discover">Discover</a></li>
     <li ng-if="$root.loggedIn"><a ui-sref="home" ng-click="doLogout()">Logout</a></li>
    </ul>
 

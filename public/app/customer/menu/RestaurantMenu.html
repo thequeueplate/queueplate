@@ -3,9 +3,11 @@
  
 <div ng-repeat="section in menu.Sections">
 
-{{section.name}}
+{{section.name}} <br>
+{{section.comments}}
+<br><br>
 	<div ng-repeat="item in section.MenuItems">
-	{{item.name}}
+	<a href="#">{{item.name}}</a>
 	{{item.price}}
 	{{item.description}}
 	</div>
