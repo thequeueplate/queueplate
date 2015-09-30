@@ -251,5 +251,6 @@ module.exports = function(app, express) {
  	api.get('/info/me', function(req, res) {
 		res.json(req.session.decoded);
  	});
+ 	
 return api;
 }

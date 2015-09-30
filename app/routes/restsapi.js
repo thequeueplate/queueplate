@@ -216,7 +216,7 @@ module.exports = function(app, express) {
 	})
 
 	//RESTAURANT LOGOUT - DESTROY SESSION
-	api.get('/auth/logout', function(req,res) {
+	api.get('/auth/logout', function(req, res) {
 		console.log('rest logout');
 		req.session.destroy(function() {
 			res.send('Session destroyed');
@@ -240,7 +240,7 @@ module.exports = function(app, express) {
  			res.status(403).send({success: false, message: "No Token Provided" });
  		}
 	});
-	
+
  	//GET DECODED SESSION/TOKEN FOR CURRENT RESTAURANT
  	api.get('/info/me', function(req, res) {
 		res.json(req.session.decoded);
