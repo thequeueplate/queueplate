@@ -15,7 +15,6 @@ app.controller('OrderDetailsCtrl', function($scope, restLandingService, loginSer
   $scope.checkSwitches = function(arr, id){
   	for(var i = 0; i < arr.length; i++){
   		if(!arr[i].complete && $scope.currentOrder.status !== "Completed"){
-  			console.log("nooooop.")
   			return
   		}
   		if(i === (arr.length - 1)){

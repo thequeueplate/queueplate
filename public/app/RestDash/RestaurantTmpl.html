@@ -9,15 +9,15 @@
 
   </div>
     <div class="dashboard-container">
-      <div class="incoming-orders-container">
+      <md-card class="md-padding">
 
-            <h2 class="md-display-1">Current Orders</h2>
-            <div class="incoming-orders-list" ng-repeat="order in orders" ng-click="selectedOrder(order)">
+            <md-card-header class="md-display-1">Current Orders</md-card-header>
+            <md-card-content class="incoming-orders-list" ng-repeat="order in orders" ng-click="selectedOrder(order)">
               <p>Order #{{order.id}}, {{order.status}} @ {{order.updatedAt | date: "shortTime"}}</p>
               <hr>
-            </div>
+            </md-card-content>
 
-      </div>
+      </md-card>
       <div ui-view></div>
     </div>
 </div>

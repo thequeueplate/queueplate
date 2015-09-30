@@ -25,11 +25,12 @@ h1, h2, h3 {
 .container {
   margin: 0 auto;
   width: 90% !important;
+/*  height: calc(100% - 50px);*/
 }
 
-div.container {
+/*div.container {
   height: 100%;
-}
+}*/
 
 /*//// HEADER ////*/
 
@@ -91,7 +92,7 @@ footer p {
   position: relative;
   top: 19px;
 }*/
-
+background-color: #cbcbcb;
 /**************************************
 FOOTER
 **************************************/
