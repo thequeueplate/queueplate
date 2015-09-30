@@ -2,12 +2,10 @@ var app = angular.module('QueuePlate')
 app.controller('OrderDetailsCtrl', function($scope, restLandingService, loginService, cust) {
   console.log(cust);
   $scope.cust = cust.data;
-  // $scope.currentOrder = restLandingService.currentOrder;
 
   $scope.updateStatus = function(id, str) {
   	restLandingService.updateStatus(id, str)
   		.then(function(response){
-  			console.log("PUTTY PUTTY PUTTY", response);
   			updateOrders(str);
   		})
   }
@@ -20,7 +18,6 @@ app.controller('OrderDetailsCtrl', function($scope, restLandingService, loginSer
   		if(i === (arr.length - 1)){
   			restLandingService.updateStatus(id, "Completed")
   				.then(function(response){
-  					console.log("AWWWWW YEAH, BOI! PUTTY MCNUTTY!!!!", response)
   					updateOrders('Completed');
   				})
   		}

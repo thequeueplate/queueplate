@@ -13,8 +13,10 @@
 
             <md-card-header class="md-display-1">Current Orders</md-card-header>
             <md-card-content class="incoming-orders-list" ng-repeat="order in orders" ng-click="selectedOrder(order)">
-              <p>Order #{{order.id}}, {{order.status}} @ {{order.updatedAt | date: "shortTime"}}</p>
-              <hr>
+              <div ng-if="order.status !== 'Delivered'">
+                Order #{{order.id}}, {{order.status}} @ {{order.updatedAt | date: "shortTime"}}
+                <hr>
+              </div>
             </md-card-content>
 
       </md-card>
