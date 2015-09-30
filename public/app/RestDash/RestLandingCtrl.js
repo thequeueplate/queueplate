@@ -3,13 +3,6 @@ var app = angular.module('QueuePlate')
 app.controller('RestLandingCtrl', function($scope, $cookies, $rootScope, registerService, $state, loginService, restLandingService, restData, orders){
   console.log("THIS REST IS THE BEST",restData);
   console.log("ORDERS ORDASDFIPOJ", orders);
-
-  
-   
-
-
-
-
   $scope.goManage = function(){
     $state.go('ManageMenu')
   }
@@ -26,7 +19,11 @@ app.controller('RestLandingCtrl', function($scope, $cookies, $rootScope, registe
   $scope.phoneNumber = $cookies.getObject("phoneNumber")
   $scope.id = $cookies.getObject("userid")
 
-  $scope.incomingOrders = orders;
+
+  restLandingService.getOrders(restData.id)
+    .then(function(results){
+      $scope.orders = results;
+    })
 
   // $scope.order = {
   //   name: order.name,
@@ -41,19 +38,19 @@ app.controller('RestLandingCtrl', function($scope, $cookies, $rootScope, registe
   //   console.log(order);
   // };
 
-  //This boi sets the current order AND the current user.
-  $scope.selectedOrders = function(order) {
-    console.log("this is the order!", order)
-    restLandingService.getOrderUser(order.UserId)
+  $scope.selectedOrder = function(order) {
+    console.log("ORDER ORDER ORDER ORDER", order)
+    restLandingService.setCurrentOrder(order)
       .then(function(response){
-        $scope.user = response.data[0]
-        console.log(response.data[0])
-        restLandingService.setCurrentOrder(order)
-          .then(function(response){
-            console.log(response);
-            $state.go('RestaurantLanding.orderDetails', {orderId: order.id});
-          })
+        console.log(response);
+        $scope.currentOrder = response
+        $state.go('RestaurantLanding.orderDetails', {orderId: order.id});
       })
   };
+
+  // $scope.orders = restLandingService.getOrders()
+
+  // $scope.sampleOrders = restLandingService.sampleOrders;
+
 
 })

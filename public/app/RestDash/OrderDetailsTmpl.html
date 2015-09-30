@@ -2,14 +2,14 @@
   <h2>Order Details</h2>
   <div class="order-details">
     <h3>Name:</h3>
-    <p>{{selectedOrder.name}}</p>
+    <p>{{cust}}</p>
     <h3>Address:</h3>
     <p>{{selectedOrder.address}}</p>
     <h3>Order:</h3>
     <p ng-repeat="dish in selectedOrder.dishes">{{dish}}</p>
     <h3>Comments:</h3>
     <p>{{selectedOrder.comments}}</p>
-    <md-button class="md-raised md-primary" type="button" name="start-order-button">Start Order</md-button>
-    <md-button class="md-raised md-primary" type="button" name="order-complete-button">Order Complete</md-button>
+    <md-button class="md-raised md-primary" type="button" name="start-order-button" ng-hide="">Start Order</md-button>
+    <md-button class="md-raised md-primary" type="button" name="order-complete-button" ng-show="">Order Complete</md-button>
   </div>
 </div>
