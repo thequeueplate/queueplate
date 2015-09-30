@@ -33,7 +33,7 @@
         </ul>
       </div>
     </div>
-    <md-button class="md-raised md-primary" type="button" name="start-order-button" ng-click="updateStatus(currentOrder.id, 'Started')" ng-if="currentOrder.status === 'Placed' || 'Received'">Start Order</md-button>
+     <md-button class="md-raised md-primary" type="button" name="start-order-button" ng-click="updateStatus(currentOrder.id, 'Started')" ng-if="currentOrder.status === 'Placed' || currentOrder.id === 'Received'">Start Order</md-button>
     <md-button class="md-raised md-primary" type="button" name="order-complete-button" ng-show="">Order Complete</md-button>
   </div>
   </md-card-content>

@@ -100,7 +100,13 @@ FOOTER
   color: #ff0000;
 }
 footer {
-  height: 80px;
+  height: 50px;
+  width: 100%;
+  color: #0084bb;
+  background-color: #cbcbcb;
+  text-align: center;
+  font-size: 12px;
+  /*height: 80px;
   position: fixed;
   right: 0;
   bottom: 0;
@@ -109,10 +115,11 @@ footer {
   background-color: #e7e7e7;
   text-align: center;
   font-weight: bold;
-  font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;*/
 }
 .footerText {
-  margin-top: 20px;
+  position: relative;
+  top: 19px;
 }
 
 
@@ -242,9 +249,9 @@ footer {
 
 /*////// Login Page //////*/
 
-.login {
+/*.login {
   margin: 120px 0;
-}
+}*/
 
 /*///// Restaurant Dashboard /////*/
 
