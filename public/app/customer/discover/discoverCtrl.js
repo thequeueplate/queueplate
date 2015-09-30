@@ -44,10 +44,6 @@ app.controller('discoverCtrl', function(discoverService, $scope, $state) {
 
      		$state.go("RestaurantMenu", {restid: $scope.restId.id })
 
-        // discoverService.getMenu(rest, RID).then(function(response) {
-        //     console.log(response)
-
-        // })
     }
 
 });

@@ -2,28 +2,24 @@ var app = angular.module('QueuePlate')
 
 app.service('dashboardService', function($http, $q) {
 
-	this.getFavDishes = function(uid) {
-		return $http.get('/api/users/:userid/', user);
+	this.UID; 
+
+	this.setUID = function(UID) {
+		this.UID = UID
 	}
 
-	this.addFavDish = function(dish) {
-		return $http.post('/api/users/:userid/', dish);
-	}
+	this.FavDish = function(UID) {
+		console.log("FDJLS:JFKLFKJSL:DJFL:SKDFJ:LSFJLS:KDFJL:", UID)
 
-	this.editFavDish = function(dish) {
-		return $http.put('/api/users/signup', dish);
+     var deferred = $q.defer();
+		$http({
+			method: "GET",
+			url: 'api/orders/user/' + UID.id
+		}).then(function(response) {
+			deferred.resolve(response.data)
+		})
+		console.log(deferred.promise)
+		return deferred.promise
 	}
-
-	this.deleteFavPlate = function(dish) {
-		return $http.delete('/api/rests/signup', dish); 
-	}
-
-	this.addToOrder = function(dish) {
-		return $http.post('/api/rests/signup', dish); 
-	}
-
-	this.deleteOrder = function(order) {
-		return $http.delete('/api/rests/signup', order); 
-	}
-
 })
+

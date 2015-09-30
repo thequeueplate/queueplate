@@ -1,15 +1,13 @@
 <h1>Discover New Restaurants</h1>
 
-<input type="text" placeholder="search">
-
-<div>
-<md-input-container>
-  <label></label>
-  <md-select ng-model="rest.filter">
+  
+  <md-select ng-model="searchFilter">
     <md-option ng-repeat="filter in filters" ng-value="filter.type">{{filter.type}}</md-option>
   </md-select>
 </md-input-container>
 </div>
+
+<input type="text" placeholder="search">
 
 <div ng-repeat="rest in restaurants">
 

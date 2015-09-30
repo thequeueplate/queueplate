@@ -1,4 +1,8 @@
 <h1>{{rest.name}}'s Menu</h1>
+
+<div>
+	<md-button type="submit" class="md-raised md-alarm" ng-click="createOrder()">CREATE ORDER</button>
+</div>
  
 <div ng-repeat="section in menu.Sections">
 
@@ -7,14 +11,17 @@
 <h4>{{section.comments}}</h4>
 
 	<div ng-repeat="item in section.MenuItems">
-	<h3><a href="#">{{item.name}}</a></h3>
+	<h3><a href="#" ng-click="isOrderFormOpen = !isOrderFormOpen">{{item.name}}</a></h3>
+	<div ng-show="isOrderFormOpen">
+	<div style="height: 50px; width: 50px; margin: 20px"> <input type="number"></div>
+	 	<div>
+			<md-button type="submit" class="md-raised md-primary">Add to Order</button>
+		</div>
+	</div>
 	<h4>{{item.description}}</h4>
 	<h5>${{item.price}}<h5>
-
 	<div ng-repeat="item in section.MenuItems">
 	<img ng-src="{{item.pictureURL}}" ng-style="{'max-width': '200px', 'min-width': '200px'}" /> <br>
-
-	</div>
 <hr>
 
 </div>
