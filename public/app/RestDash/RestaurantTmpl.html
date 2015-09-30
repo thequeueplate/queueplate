@@ -1,4 +1,4 @@
-<div class="container">
+<div>
   <!-- <h1>{{restFirst}}'s Restaurant</h1> -->
 
   <h1 class="md-display-2">{{restData.name}} Dashboard</h1>
@@ -15,11 +15,16 @@
       <md-card class="md-padding">
 
             <md-card-header class="md-display-1">Current Orders</md-card-header>
-            <md-card-content class="incoming-orders-list" ng-repeat="order in orders" ng-click="selectedOrder(order)">
-              <div ng-if="order.status !== 'Delivered'">
-                Order #{{order.id}}, {{order.status}} @ {{order.updatedAt | date: "shortTime"}}
-                <hr>
-              </div>
+              <md-card-content>
+              <md-list ng-if="order.status !== 'Delivered'">
+                <md-list-item class="md-3-line incoming-orders-list" ng-repeat="order in orders" ng-click="selectedOrder(order)">
+                  <div class="md-list-item-text" layout="column">
+                    <h3 class="md-title">Order #{{order.id}}</h3>
+                    <h4 class="md-subhead">Placed: {{order.createdAt | date: "shortTime"}}</h4>
+                    <h4 class="md-subhead">{{order.status}}: {{order.updatedAt | date: "shortTime"}}</h4>
+                  </div>
+                </md-list-item>
+              </md-list>
             </md-card-content>
 
       </md-card>

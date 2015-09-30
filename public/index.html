@@ -1,123 +1,96 @@
 <!DOCTYPE html>
-
 <html ng-app="QueuePlate">
+
 <head>
   <base href='/'>
   <title>QueuePlate</title>
-
   <!-- CSS -->
   <link rel="stylesheet" href="styles/styles.css">
   <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
-   <!-- JQUERY -->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
-
+  
   <!-- MATERIALIZE -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+</head>
+
+<body>
+  <header>
+    <ul ng-controller="loginCtrl">
+      <a ui-sref="home"><img src="assets/qlogo.png" /></a>
+      <li ng-show="!loggedIn"><a ui-sref="loginBoth">Login</a></li>
+      <li ng-show="!loggedIn"><a ui-sref="signUpBoth">Signup</a></li>
+      <li ng-show="loggedIn && role === 'customer'"><a ui-sref="dashboard">Dashboard</a></li>
+      <li ng-show="loggedIn && role === 'customer'" <a ui-sref="discover">Discover</a>
+      </li>
+      <li ng-show="loggedIn"><a ui-sref="home" ng-click="doLogout()">Logout</a></li>
+      <li ng-show="loggedIn && role === 'restaurant'"><a ui-sref="ManageMenu">Manage Menu</a></li>
+    </ul>
+  </header>
+  <div class="container">
+    <div ui-view></div>
+  </div>
+  <footer>
+    <p class="footerText"> <a class="footerCredit">&copy 2015 - QueuePlate</a></p>
+  </footer>
+  <!-- JQUERY -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+  <!-- ANGULAR -->
+  <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+  <!-- ANGULAR UI-ROUTER -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+  <!-- ANGULAR MATERIAL -->
+  <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
+  <script type="text/javascript" src="bower_components/angular-aria/angular-aria.js"></script>
+  <script type="text/javascript" src="bower_components/angular-material/angular-material.js"></script>
+  <!-- MATERIALIZE -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-
-
   <!-- STRIPE -->
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
   <script type="text/javascript">
   // This identifies your website in the createToken call below
   Stripe.setPublishableKey('pk_test_FxAxWIRgqdOHZVz8zNH1F21p');
   // ...
-</script>
-
-  <!-- ANGULAR -->
-  <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script> -->
-</head>
-
-<body>
-<header>
-
-  <ul ng-controller="loginCtrl">
-    <a ui-sref="home"><img src="assets/qlogo.png" /></a>
-    <li ng-show="!loggedIn"><a ui-sref="loginBoth">Login</a></li>
-    <li ng-show="!loggedIn"><a ui-sref="signUpBoth">Signup</a></li>
-    <li ng-show="loggedIn && role === 'customer'"><a ui-sref="dashboard">Dashboard</a></li>
-    <li ng-show="loggedIn && role === 'customer'"<a ui-sref="discover">Discover</a></li>
-    <li ng-show="loggedIn"><a ui-sref="home" ng-click="doLogout()">Logout</a></li>
-    <li ng-show="loggedIn && role === 'restaurant'"><a ui-sref="ManageMenu">Manage Menu</a></li>
-   </ul>
-
-</header>
-
-
-    <div class="container">
-        <div ui-view></div>
-    </div>
-  <footer>
-    <p class="footerText"> <a class="footerCredit">&copy 2015 - QueuePlate</a></p>
-  </footer>
-
-  <!-- ANGULAR-MATERIAL -->
-  <script type="text/javascript" src="bower_components/angular/angular.js"></script>
-  <!-- ANGULAR UI-ROUTER -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
-  <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
-  <script type="text/javascript" src="bower_components/angular-aria/angular-aria.js"></script>
-  <script type="text/javascript" src="bower_components/angular-material/angular-material.js"></script>
+  </script>
   <!-- angular-ui-utils -->
   <script type="text/javascript" src="bower_components/angular-ui-mask/dist/mask.js"></script>
   <!-- ANGULAR COOKIES-->
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-cookies.js"></script>
-
   <!-- JAVASCRIPT FILES -->
   <script type="text/javascript" src="app/app.js"></script>
-
   <!-- ============================  SERVICES  ===================================== -->
-
-                                  <!-- AUTH -->
+  <!-- AUTH -->
   <script type="text/javascript" src="app/auth/loginService.js"></script>
   <script type="text/javascript" src="app/auth/signupService.js"></script>
   <script type="text/javascript" src="app/auth/registerService.js"></script>
-
-
-                               <!-- RESTAURANT -->
- <!--  // <script type="text/javascript" src="app/dashboard/RestLandingService.js"></script> -->
-
+  <!-- RESTAURANT -->
+  <!--  // <script type="text/javascript" src="app/dashboard/RestLandingService.js"></script> -->
   <script type="text/javascript" src="app/customer/checkout/checkoutService.js"></script>
   <script type="text/javascript" src="app/RestDash/RestLandingService.js"></script>
   <script type="text/javascript" src="app/customer/menu/RestaurantMenuService.js"></script>
-
-                                <!-- CUSTOMER -->
+  <!-- CUSTOMER -->
   <script type="text/javascript" src="app/customer/checkout/checkoutService.js"></script>
   <script type="text/javascript" src="app/customer/discover/discoverService.js"></script>
   <script type="text/javascript" src="app/customer/dashboard/dashboardService.js"></script>
-
   <script type="text/javascript" src="app/RestDash/RestLandingService.js"></script>
-
-
   <!-- ===========================  CONTROLLERS  ===================================== -->
-
-                                  <!-- AUTH -->
+  <!-- AUTH -->
   <script type="text/javascript" src="app/auth/registerCtrl.js"></script>
   <script type="text/javascript" src="app/auth/loginCtrl.js"></script>
   <script type="text/javascript" src="app/auth/signupCtrl.js"></script>
   <script type="text/javascript" src="app/auth/registerCtrl.js"></script>
-
-                                <!-- RESTAURANT -->
+  <!-- RESTAURANT -->
   <script type="text/javascript" src="app/RestDash/RestLandingCtrl.js"></script>
   <script type="text/javascript" src="app/RestDash/MenuCtrl.js"></script>
   <script type="text/javascript" src="app/RestDash/MenuItemsCtrl.js"></script>
   <script type="text/javascript" src="app/RestDash/MenuService.js"></script>
-
-
-
-                                <!-- CUSTOMER -->
+  <!-- CUSTOMER -->
   <script type="text/javascript" src="app/customer/checkout/checkoutCtrl.js"></script>
   <script type="text/javascript" src="app/customer/discover/discoverCtrl.js"></script>
   <script type="text/javascript" src="app/customer/dashboard/dashboardCtrl.js"></script>
-   <script type="text/javascript" src="app/customer/menu/RestaurantMenuCtrl.js"></script>
-
-
-               <!-- STRIPE (move to customers checkout controller) -->
-
+  <script type="text/javascript" src="app/customer/menu/RestaurantMenuCtrl.js"></script>
+  <!-- STRIPE (move to customers checkout controller) -->
   <script type="text/javascript" src="app/RestDash/OrderDetailsCtrl.js"></script>
   <script type="text/javascript" src="app/RestDash/OrderDetailsCtrl.js"></script>
-  
+</body>
 
-  </body>
 </html>
