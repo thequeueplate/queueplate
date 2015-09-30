@@ -28,7 +28,7 @@ module.exports = function(app, express) {
 
 		//IF ADMIN...
 
-		var adminArray = ['rspicer@razegroup.com', 'lindseybrown4@gmail.com','bunker.logan@gmail.com', 'markkeysor@gmail.com']
+		var adminArray = ['rspicer@razegroup.com', 'lindseybrown4@gmail.com','bunker.logan@gmail.com']
 		if (adminArray.indexOf(req.body.email) !== -1) {
 			models.User.create({
 				email: req.body.email.toLowerCase(),
@@ -209,6 +209,7 @@ module.exports = function(app, express) {
 		})
 	})
 
+	//FIND ALL FAVORITE ORDERS BY USERID
 	api.get('/fav/:userid', function(req, res) {
 		models.FavoriteOrder.findAll({
 			where: { UserId: req.params.userid },
@@ -218,6 +219,13 @@ module.exports = function(app, express) {
 		}).catch(function(err) {
 			res.send({message: 'Favorites not found', error: err});
 		})
+	})
+
+	//USER LOGOUT - DESTROY SESSION
+	api.get('/auth/logout', function(req,res) {
+		console.log(req.session);
+		req.session.destroy();
+		res.end();
 	})
 
 	//MIDDLEWARE - CHECKS TOKENS
@@ -230,7 +238,7 @@ module.exports = function(app, express) {
  					res.status(403).send({ success: false, message: "Failed to authenticate user" });
  				} else {
  					//
- 					req.decoded = decoded;
+ 					req.session.decoded = decoded;
  					next();
  				}
  			});
@@ -239,9 +247,9 @@ module.exports = function(app, express) {
  		}
 	});
 
- 	//GET INDIVIDUAL USER FROM FRONTEND ??
- 	api.get('/me', function(req, res) {
-		res.json(req.decoded);
+ 	//GET TOKEN/SESSION FOR CURRENT USER
+ 	api.get('/info/me', function(req, res) {
+		res.json(req.session.decoded);
  	});
 return api;
 }
