@@ -1,14 +1,17 @@
-<div class="order-container">
+<md-card class="order-container">
+  <md-content>
   <h2>Order #{{currentOrder.id}} - {{currentOrder.status}} @ {{currentOrder.updatedAt | date: 'shortTime' }}</h2>
   <div class="order-details">
     <h3 ng-if="currentOrder.status === 'Completed'">Ready For Delivery!</h3>
-    <div ng-if="currentOrder.status === 'Completed'">
-      <h4>    {{cust.lastName}}, {{cust.firstName}}</h4>
-      <h4>    {{cust.addLine1}}</h4>
-      <!-- <h4>{{cust.addLine2}}</h4> -->
-      <h4>    {{cust.addCity}}, {{cust.addState}} {{cust.addZip}}</h4>
-      <h4>    {{cust.phoneNumber}}</h4>
-    </div>
+    <md-card ng-if="currentOrder.status === 'Completed'" class="address-card">
+      <md-content>
+        <h4>    {{cust.lastName}}, {{cust.firstName}}</h4>
+        <h4>    {{cust.addLine1}}</h4>
+        <!-- <h4>{{cust.addLine2}}</h4> -->
+        <h4>    {{cust.addCity}}, {{cust.addState}} {{cust.addZip}}</h4>
+        <h4>    {{cust.phoneNumber}}</h4>
+      </md-content>
+    </md-card>
 
     <h4>Order:</h4>
     <div ng-repeat="dish in currentOrder.OrderItems">
@@ -19,4 +22,5 @@
     <md-button class="md-raised md-primary" type="button" name="start-order-button" ng-click="updateStatus(currentOrder.id, 'Started')" ng-if="currentOrder.status === 'Placed' || 'Received'">Start Order</md-button>
     <md-button class="md-raised md-primary" type="button" name="order-complete-button" ng-show="">Order Complete</md-button>
   </div>
-</div>
+  </md-content>
+</md-card>>

@@ -1,23 +1,25 @@
 <div class="container">
-  <h1>{{restFirst}}'s Restaurant</h1>
-  <h1>{{name}}</h1>
+  <!-- <h1>{{restFirst}}'s Restaurant</h1> -->
+  <h1>{{restData.name}} Dashboard</h1>
   <div class="add-menu-button">
 
-    <md-button ng-click="goManage()">
+    <md-button ng-click="goManage()" class="md-primary md-raised">
+
       Manage Menu
     </md-button>
 
   </div>
     <div class="dashboard-container">
       <div class="incoming-orders-container">
-        <h2>Current Orders</h2>
-        <div class="incoming-orders-list" ng-repeat="order in orders" ng-click="selectedOrder(order)">
-          <p>Order #{{order.id}}, {{order.status}} @ {{order.updatedAt | date: "shortTime"}}</p>
-          <hr>
-        </div>
+
+            <h2>Current Orders</h2>
+            <div class="incoming-orders-list" ng-repeat="order in orders" ng-click="selectedOrder(order)">
+              <p>Order #{{order.id}}, {{order.status}} @ {{order.updatedAt | date: "shortTime"}}</p>
+              <hr>
+            </div>
+
       </div>
       <div ui-view></div>
-
     </div>
 </div>
 

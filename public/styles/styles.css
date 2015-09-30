@@ -251,6 +251,10 @@ footer p {
   border-style: solid;
   border-width: 1px; }
 
+.address-card {
+  padding-left: 20px;
+}
+
 
 /*
 .chipsdemoContactChips md-content.autocomplete {
