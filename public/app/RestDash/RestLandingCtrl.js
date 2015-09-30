@@ -3,6 +3,7 @@ var app = angular.module('QueuePlate')
 app.controller('RestLandingCtrl', function($scope, $cookies, $rootScope, registerService, $state, loginService, restLandingService, restData, orders){
   console.log("THIS REST IS THE BEST",restData);
   console.log("ORDERS ORDASDFIPOJ", orders);
+  $scope.restData = restData
   $scope.goManage = function(){
     $state.go('ManageMenu')
   }
