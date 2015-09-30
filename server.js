@@ -7,8 +7,11 @@ var stripe = require("stripe")("sk_test_GOrufKljADFLhu6YHA75r0AB");
 var request = require('request');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
+var cookieParser = require('cookie-parser');
 
 var app = express();
+
+app.use(cookieParser());
 
 app.use(session({ store: new RedisStore({
   host:'127.0.0.1',

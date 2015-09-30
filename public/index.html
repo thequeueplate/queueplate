@@ -14,21 +14,24 @@
 </head>
 
 <body>
-  <header>
-    <ul ng-controller="loginCtrl">
-      <a ui-sref="home"><img src="assets/qlogo.png" /></a>
-      <li ng-show="!loggedIn"><a ui-sref="loginBoth">Login</a></li>
-      <li ng-show="!loggedIn"><a ui-sref="signUpBoth">Signup</a></li>
-      <li ng-show="loggedIn && role === 'customer'"><a ui-sref="dashboard">Dashboard</a></li>
-      <li ng-show="loggedIn && role === 'customer'" <a ui-sref="discover">Discover</a>
-      </li>
-      <li ng-show="loggedIn"><a ui-sref="home" ng-click="doLogout()">Logout</a></li>
-      <li ng-show="loggedIn && role === 'restaurant'"><a ui-sref="ManageMenu">Manage Menu</a></li>
-    </ul>
-  </header>
-  <div class="container">
-    <div ui-view></div>
-  </div>
+<header>
+
+  <ul ng-controller="loginCtrl">
+    <a ui-sref="home"><img src="assets/qlogo.png" /></a>
+    <li ng-show="!$root.loggedIn"><a ui-sref="loginBoth">Login</a></li>
+    <li ng-show="!$root.loggedIn"><a ui-sref="signUpBoth">Signup</a></li>
+    <li ng-show="$root.loggedIn && $root.role === 'customer'"><a ui-sref="dashboard">Dashboard</a></li>
+    <li ng-show="$root.loggedIn && $root.role === 'customer'"<a ui-sref="discover">Discover</a></li>
+    <li ng-show="$root.loggedIn"><a ui-sref="home" ng-click="doLogout()">Logout</a></li>
+    <li ng-show="$root.loggedIn && $root.role === 'restaurant'"><a ui-sref="ManageMenu">Manage Menu</a></li>
+   </ul>
+
+</header>
+
+
+    <div class="container">
+        <div ui-view></div>
+    </div>
   <footer>
     <p class="footerText"> <a class="footerCredit">&copy 2015 - QueuePlate</a></p>
   </footer>
