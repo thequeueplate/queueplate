@@ -10,13 +10,21 @@ a {
   color: inherit;
 }
 
+/*h1 {
+  font-size: 2 rem !important;
+}
+
+h2 {
+  font-size: 1.5 rem !important;
+}*/
+
 h1, h2, h3 {
   color: #666;
 }
 
 .container {
   margin: 0 auto;
-  width: 80%;
+  width: 90% !important;
 }
 
 /*//// HEADER ////*/
@@ -79,6 +87,7 @@ footer p {
   position: relative;
   top: 19px;
 }
+
 
 /*//// HOME PAGE ////*/
 
@@ -215,6 +224,7 @@ footer p {
 /*///// Restaurant Dashboard /////*/
 
 .dashboard-container {
+  width: 100%;
   display: inline-flex;
 }
 

@@ -28,6 +28,13 @@ app.controller('OrderDetailsCtrl', function($scope, restLandingService, loginSer
   	}
   }
 
+  $scope.outForDelivery = function(id) {
+  	restLandingService.updateStatus(id, "Delivery")
+  		.then(function(response){
+  			updateOrders('Delivery')
+  		})
+  }
+
   function updateOrders(str){
 		$scope.currentOrder.status = str;
 		restLandingService.getOrders(loginService.getRestData().id)

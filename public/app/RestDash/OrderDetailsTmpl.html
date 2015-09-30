@@ -1,19 +1,25 @@
 <md-card class="order-container">
   <md-content>
-  <h2>Order #{{currentOrder.id}} - {{currentOrder.status}} @ {{currentOrder.updatedAt | date: 'shortTime' }}</h2>
+  <h2 class="md-display-1">Order #{{currentOrder.id}} - {{currentOrder.status}} @ {{currentOrder.updatedAt | date: 'shortTime' }}</h2>
   <div class="order-details">
-    <h3 ng-if="currentOrder.status === 'Completed'">Ready For Delivery!</h3>
+    <h3 class="md-display-2" ng-if="currentOrder.status === 'Completed'">Ready For Delivery!</h3>
     <md-card ng-if="currentOrder.status === 'Completed'" class="address-card">
       <md-content>
-        <h4>    {{cust.lastName}}, {{cust.firstName}}</h4>
-        <h4>    {{cust.addLine1}}</h4>
+        <h4 class="md-subhead">    {{cust.lastName}}, {{cust.firstName}}</h4>
+        <h4 class="md-subhead">    {{cust.addLine1}}</h4>
         <!-- <h4>{{cust.addLine2}}</h4> -->
-        <h4>    {{cust.addCity}}, {{cust.addState}} {{cust.addZip}}</h4>
-        <h4>    {{cust.phoneNumber}}</h4>
+        <h4 class="md-subhead">    {{cust.addCity}}, {{cust.addState}} {{cust.addZip}}</h4>
+        <h4 class="md-subhead">    {{cust.phoneNumber}}</h4>
       </md-content>
+        <md-button ng-click="outForDelivery(currentOrder.id)">Out for Delivery</md-button>
     </md-card>
 
-    <h4>Order:</h4>
+    <div ng-if="currentOrder.status === 'Delivery'">
+      <h3 class="md-display-2">OUT FOR DELIVERY</h3>
+      <md-button>Delivered</md-button>
+    </div>
+
+    <h4 class="md-headline">Order:</h4>
     <div ng-repeat="dish in currentOrder.OrderItems">
       <md-switch ng-model="dish.complete" ng-change="checkSwitches(currentOrder.OrderItems, currentOrder.id)">
         <p>{{dish.quantity}} {{dish.MenuItem.name}}<span ng-if="dish.comments">  ({{dish.comments}})</span></p>
@@ -23,4 +29,4 @@
     <md-button class="md-raised md-primary" type="button" name="order-complete-button" ng-show="">Order Complete</md-button>
   </div>
   </md-content>
-</md-card>>
+</md-card>
