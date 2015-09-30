@@ -68,7 +68,6 @@ module.exports = function(app, express) {
 		})
 	})
 
-
 	api.get('/user/:userid', function(req, res) {
 		models.Order.findAll({
 			where: { UserId: req.params.userid },
