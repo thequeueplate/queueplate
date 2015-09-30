@@ -11,7 +11,7 @@ function createToken(user) {
 
 	var token = jsonwebtoken.sign({
 		id: user._id,
-		email: user.email
+		email: user.email.toLowerCase()
 	}, secretKey, {
 		expiresInMinute: 1440
 	});
@@ -31,14 +31,14 @@ module.exports = function(app, express) {
 		var adminArray = ['rspicer@razegroup.com', 'lindseybrown4@gmail.com','bunker.logan@gmail.com', 'markkeysor@gmail.com']
 		if (adminArray.indexOf(req.body.email) !== -1) {
 			models.User.create({
-				email: req.body.email,
+				email: req.body.email.toLowerCase(),
 				password: req.body.password,
 				role: 'admin'
 			}).then(function(user){
 			console.log('success hit')
 				var email = new sendgrid.Email({
 
-				  to:       'markkeysor@gmail.com',
+				  to:       'rspicer@razegroup.com',
 				  from:     'queueplate.com@gmail.com',
 				  subject:  'Welcome to QueuePlate!',
 				  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + user.id
@@ -67,7 +67,7 @@ module.exports = function(app, express) {
 		//ELSE, IF REGULAR CUSTOMER...
 		else {
 		models.User.create({
-			email: req.body.email,
+			email: req.body.email.toLowerCase(),
 			password: req.body.password,
 			role: 'customer',
 			verify: 'false'
@@ -75,7 +75,7 @@ module.exports = function(app, express) {
 			console.log('success hit')
 				var email = new sendgrid.Email({
 
-				  to:       'lindseybrown4@gmail.com',
+				  to:       'rspicer@razegroup.com',
 				  from:     'queueplate.com@gmail.com',
 				  subject:  'Welcome to QueuePlate!',
 				  text:     'Click on the link to confirm your registration http://localhost:3000/registerCustomer/' + user.id
@@ -131,7 +131,7 @@ module.exports = function(app, express) {
 
 	//USER LOGIN
 	api.post('/login', function(req, res) {
-		models.User.find({ where: { email: req.body.email }})
+		models.User.find({ where: { email: req.body.email.toLowerCase() }})
 		.then(function(user) {
 
 			if (!user.verify) {
@@ -238,9 +238,9 @@ module.exports = function(app, express) {
  		}
 	});
 
- 	//GET INDIVIDUAL USER FROM FRONTEND ??
- 	api.get('/me', function(req, res) {
-		res.json(req.decoded);
- 	});
+ 	// //GET INDIVIDUAL USER FROM FRONTEND ??
+ 	// api.get('/me', function(req, res) {
+		// res.json(req.decoded);
+ 	// });
 return api;
 }

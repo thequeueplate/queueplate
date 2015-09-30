@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         Order.hasMany(models.OrderItem);
-        // Order.belongsTo(models.FavoriteOrder);
+        Order.belongsTo(models.FavoriteOrder);
       }
     }
   }
