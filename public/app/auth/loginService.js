@@ -34,22 +34,6 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 		console.log()
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 	var restData;
 	this.getRestData = function(){
 		return restData

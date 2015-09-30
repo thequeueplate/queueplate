@@ -4,15 +4,7 @@ app.controller('RestLandingCtrl', function($scope, $cookies, $rootScope, registe
   console.log("THIS REST IS THE BEST",restData);
   console.log("ORDERS ORDASDFIPOJ", orders);
 
-  
-   
-
-
-
-
-  $scope.goManage = function(){
-    $state.go('ManageMenu')
-  }
+  $scope.id = $cookies.getObject("id")
   $scope.name = $cookies.getObject("name")
   $scope.restFirst = $cookies.getObject("restFirstName");
   $scope.role = $cookies.getObject("restRole")

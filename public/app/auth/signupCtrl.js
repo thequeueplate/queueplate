@@ -15,12 +15,11 @@ app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 
 				if(!response.data.success) {
 
-					alert('username is already taken')
+					Materialize.toast('username is already taken', 2000)
 
 				} else {
 
 				$state.go('verify');
-				// $window.localStorage.setItem('token', response.data.token);
 
 				}
 			})
@@ -43,12 +42,11 @@ app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 
 				if(!response.data.success) {
 
-					alert('Restaraunt username is already taken')
+					Materialize.toast('Restaraunt username is already taken', 2000)
 
 				} else {
 
 				$state.go('verify');
-				// $window.localStorage.setItem('token', response.data.token);
 
 				}
 			})
@@ -64,12 +62,12 @@ app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 	        if (p == "") {
 
 
-	            alert("Enter password user validate");
+	            Materialize.toast("Please enter a password", 1000);
 	            var passwordconfirmed = false;
 	        }
 
 	        if (cp !== p || cp == "") {
-					alert("Confirm Password doesn't match user validate");
+					Materialize.toast("confirm Password does not match password", 2000);
 					var passwordconfirmed = false;
 
 			} else if (cp === p) {
@@ -91,12 +89,12 @@ app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 
 	        if (pr == "") {
 
-	            alert("Enter password signUP CTRL line 95!");
+	            Materialize.toast("Enter password", 1500);
 	            var passwordrestconfirmed = false;
 	        }
 
 	        if (cpw !== pr || cpw == "") {
-					alert("Confirm Password doesn't match signUP CTRL line 100");
+					Materialize.toast("Confirm password does not match password", 2000);
 					var passwordrestconfirmed = false;
 
 			} else if (cpw === pr) {

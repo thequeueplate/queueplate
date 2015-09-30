@@ -65,5 +65,7 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 		$rootScope.loggedIn = false;
 
 		$state.go('home');
+
+		
 	}
 });
