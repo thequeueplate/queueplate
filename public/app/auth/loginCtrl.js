@@ -1,6 +1,25 @@
 var app = angular.module('QueuePlate')
 
-app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
+app.controller('loginCtrl', function($window, $state, loginService, $scope, $cookies) {
+
+
+	$scope.loggedIn = false
+	 if ($cookies.getObject("role"))
+	 $scope.loggedIn = true
+	 $scope.name = $cookies.getObject("name") 
+	 $scope.userName = $cookies.getObject("userName")
+	 $scope.lastName =  $cookies.getObject("lastName")
+	 $scope.role = $cookies.getObject("role")
+	 $scope.addLine1 = $cookies.getObject("addLine1")
+	 $scope.addLine2 = $cookies.getObject("addLine2")
+	 $scope.addCity = $cookies.getObject("addCity")
+	 $scope.addState = $cookies.getObject("addState")
+	 $scope.addZip = $cookies.getObject("addZip")
+	 $scope.phoneNumber = $cookies.getObject("phoneNumber")
+	 $scope.id = $cookies.getObject("userid")
+	 console.log($scope.loggedIn)
+   	 console.log($scope.role)
+
 
 	$scope.doLogin = function() {
 
@@ -9,8 +28,22 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 		$scope.error = '';
 
 		loginService.login($scope.loginData.email, $scope.loginData.password)
-			.success(function(data) {
+			.then(function(data) {
 
+				$scope.loggedIn = true; 
+				 $scope.userName = $cookies.getObject("userName")
+   				 $scope.lastName =  $cookies.getObject("lastName")
+   				 $scope.role = $cookies.getObject("role")
+   				 $scope.addLine1 = $cookies.getObject("addLine1")
+   				 $scope.addLine2 = $cookies.getObject("addLine2")
+   				 $scope.addCity = $cookies.getObject("addCity")
+   				 $scope.addState = $cookies.getObject("addState")
+   				 $scope.addZip = $cookies.getObject("addZip")
+   				 $scope.phoneNumber = $cookies.getObject("phoneNumber")
+   				 $scope.id = $cookies.getObject("userid")
+   				 console.log($scope.loggedIn)
+   				 console.log($scope.role)
+				 
 				if (data.message === "Invalid Password") {
 					console.log(data.message)
 					Materialize.toast('Invalid Password', 1000)
@@ -20,13 +53,14 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 		loginService.getUser()
 			.then(function(data) {
 				console.log(data)
-				$rootScope.loggedIn = true;
-				if (data.role === "Restaurant") {
+				
+				if (data.role === "restaurant") {
 					$state.go("RestaurantLanding")
 				} else {
 					$state.go('dashboard')
 				}
 			});
+
 	             }
 	     })
 	}
@@ -40,6 +74,19 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 		loginService.loginRest($scope.loginData.email, $scope.loginData.password)
 			.success(function(data) {
 
+				 $scope.loggedIn = true
+				 $scope.name = $cookies.getObject("name")
+   				 $scope.role = $cookies.getObject("role")
+   				 $scope.addLine1 = $cookies.getObject("addLine1")
+   				 $scope.addLine2 = $cookies.getObject("addLine2")
+   				 $scope.addCity = $cookies.getObject("addCity")
+   				 $scope.addState = $cookies.getObject("addState")
+   				 $scope.addZip = $cookies.getObject("addZip")
+   				 $scope.phoneNumber = $cookies.getObject("phoneNumber")
+   				 $scope.id = $cookies.getObject("userid")
+   				 console.log($scope.loggedIn)
+   				 console.log($scope.role)
+
 				if (data.message === "Invalid Password") {
 					console.log(data.message)
 					Materialize.toast('Invalid Password', 1000)
@@ -52,7 +99,6 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 					});
 
 				$scope.processing = false;
-				$rootScope.loggedIn = true;
 
 					$state.go('RestaurantLanding');
 
@@ -62,10 +108,12 @@ app.controller('loginCtrl', function($rootScope, $state, loginService, $scope) {
 
 	$scope.doLogout = function() {
 		loginService.logout();
-		$rootScope.loggedIn = false;
+		$scope.loggedIn = false
+
+
 
 		$state.go('home');
 
-		
+
 	}
 });

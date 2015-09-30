@@ -173,6 +173,7 @@ module.exports = function(app, express) {
 		})
 	})
 
+
 	//GET ALL USERS
 	api.get('/', function(req, res) {
 		models.User.findAll()
@@ -239,8 +240,8 @@ module.exports = function(app, express) {
 	});
 
  	//GET INDIVIDUAL USER FROM FRONTEND ??
- 	// api.get('/me', function(req, res) {
-		// res.json(req.decoded);
- 	// });
+ 	api.get('/me', function(req, res) {
+		res.json(req.decoded);
+ 	});
 return api;
 }
