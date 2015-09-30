@@ -25,8 +25,7 @@ h1, h2, h3 {
 .container {
   margin: 0 auto;
   width: 90% !important;
-/*  height: calc(100% - 50px);*/
-}
+
 
 /*div.container {
   height: 100%;
