@@ -30,7 +30,7 @@ HTML PSEUDO CODE:
         manage section items button -> change route to the manageItemsPage
 -->
 
-<div>
+<!-- <div>
    <div>
      <md-content>
        <md-input-container>
@@ -54,24 +54,45 @@ HTML PSEUDO CODE:
  <div ng-repeat="Section in menu.Sections">
    Section Name: {{Section.name}} -- Section Comments: {{Section.comments}}
  </div>
- <md-divider></md-divider>
-
-<md-content>
-   <md-list>
-     <md-list-item class="md-2-line" ng-repeat="Section in menu.Sections">
-       <div class="md-list-item-text">
-         <div class="md-display-1">
-           {{Section.name}}
-         </div>
-         <div class="md-subhead">
-           {{Section.comments}}
-         </div>
-       </div>
-       <md-divider></md-divider>
-     </md-list-item>
-   </md-list>
- </md-content>
+ <md-divider></md-divider> -->
 
 
 
 
+  <div>
+    <div>
+      <md-content>
+        <md-input-container>
+          <label>Menu Section</label>
+          <input ng-model="section.name"></input>
+        </md-input-container>
+        <md-input-container>
+          <label>Section Comments</label>
+          <input ng-model="section.comments">
+        </md-input-container>
+      </md-content>
+    </div>
+  </div>
+  <md-button ng-click="addSection()" class="md-primary md-raised">
+    Add Section
+  </md-button>
+  <md-button ng-click="goToItems()" class="md-primary md-raised">
+    Manage Menu Items
+  </md-button>
+  <md-divider></md-divider>
+
+  <md-content>
+    <md-list>
+      <md-list-item class="md-2-line" ng-repeat="Section in menu.Sections">
+        <div class="md-list-item-text">
+          <div class="md-display-1">
+            {{Section.name}}
+          </div>
+          <div class="md-subhead">
+            {{Section.comments}}
+          </div>
+        </div>
+        <md-divider></md-divider>
+      </md-list-item>
+    </md-list>
+  </md-content>

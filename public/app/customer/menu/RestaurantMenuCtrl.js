@@ -1,7 +1,8 @@
 var app = angular.module('QueuePlate')
 
-app.controller('RestaurantMenuCtrl', function($scope, $stateParams, RID, RestaurantMenuService) {
+app.controller('RestaurantMenuCtrl', function($cookies, $scope, $stateParams, RID, RestaurantMenuService) {
 	
+	$scope.role = $cookies.getObject("role")
 	console.log(RID)
 
 	RestaurantMenuService.setRID(RID)

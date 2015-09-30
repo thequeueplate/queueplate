@@ -173,6 +173,7 @@ module.exports = function(app, express) {
 		})
 	})
 
+
 	//GET ALL USERS
 	api.get('/', function(req, res) {
 		models.User.findAll()

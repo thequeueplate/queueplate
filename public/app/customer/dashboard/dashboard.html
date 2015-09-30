@@ -19,85 +19,27 @@
     </div>
 </div>
 
-
-
-<!-- 
 <h1>{{role}}</h1>
 <h2>{{userName}}&nbsp{{lastName}}</h2>
 <h2>{{phoneNumber}}</h2>
 <h2>{{addLine1}}&nbsp{{addLine2}}</h2>
 <h2>{{addCity}},&nbsp{{addState}}&nbsp{{addZip}}</h2>
- -->
+
  <div>
 <md-button type="submit" class="md-raised md-primary">Add New </button>
 </div>
          
 
-
 <div>
     <md-button type="submit" class="md-raised md-warn"> Submit Order</button>
 </div>
 
-<!--//////////////////////////////-->
-<div ng-controller="dashboardCtrl" layout="column" class="chipsdemoContactChips" ng-app="QueuePlate">
-
-  <md-content class="md-padding autocomplete" layout="column">
-    <md-contact-chips ng-model="ctrl.contacts" md-contacts="ctrl.querySearch($query)" md-contact-name="name" md-contact-image="image" md-contact-email="email" md-require-match="true" md-highlight-flags="i" filter-selected="ctrl.filterSelected" placeholder="To">
-    </md-contact-chips>
-
-    <md-list class="fixedRows">
-      <md-subheader class="md-no-sticky">Contacts</md-subheader>
-      <md-list-item class="md-2-line contact-item" ng-repeat="(index, contact) in ctrl.allContacts" ng-if="ctrl.contacts.indexOf(contact) < 0">
-        <img ng-src="{{contact.image}}" class="md-avatar" alt="{{contact.name}}">
-        <div class="md-list-item-text compact">
-          <h3>{{contact.name}}</h3>
-          <p>{{contact.email}}</p>
-        </div>
-      </md-list-item>
-      <md-list-item class="md-2-line contact-item selected" ng-repeat="(index, contact) in ctrl.contacts">
-        <img ng-src="{{contact.image}}" class="md-avatar" alt="{{contact.name}}">
-        <div class="md-list-item-text compact">
-          <h3>{{rest.firstName}}</h3>
-          <p>{{rest.addCity}}</p>
-        </div>
-      </md-list-item>
-    </md-list>
-
-  </md-content>
-</div>
 
 </body>
 
 
-         
-<div ng-repeat="rest in restaurants">
-
-  <div><h2 ng-click="takeToMenu()"><a href="#">{{rest.firstName}}</a><h2></div>
-  <div><h4>{{rest.addCity}}</h4></div>
-  <div><h4>{{rest.cuisine}}</h4></div>
-</div>
-<md-butt
 
 
-
-<div class="container">
-    <div class="favorite dishes">
-      <form class="form-favorite-dishes">
-        <md-input-container>
-          <label>Email</label>
-          <input type="text" name="dish" class="form-control" ng-model="loginData.email"></input>
-        </md-input-container>
-        <md-input-container>
-          <label>Password</label>
-          <input type="text" name="" class="form-control" ng-model="loginData.password"></input>
-        </md-input-container>
-        <div>
-        <md-button type="submit" class="md-raised md-primary" ng-click="doLogin()">Login</button>
-        </div>
-        <br>
-      </form>
-    </div>
-</div>
 
 
 

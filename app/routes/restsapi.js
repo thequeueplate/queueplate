@@ -240,12 +240,12 @@ module.exports = function(app, express) {
  			res.status(403).send({success: false, message: "No Token Provided" });
  		}
 	});
-
+	
  	//GET DECODED SESSION/TOKEN FOR CURRENT RESTAURANT
  	api.get('/info/me', function(req, res) {
 		res.json(req.session.decoded);
 		console.log(req)
-
  	});
+
 return api;
 }
