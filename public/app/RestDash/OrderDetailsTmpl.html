@@ -6,11 +6,10 @@
 <!--     <h4>Address:</h4>
     <p>{{selectedOrder.address}}</p> -->
     <h4>Order:</h4>
-    <div ng-repeat="dish in currentOrder.OrderItems"
-      <p><input type="checkbox" />{{dish.quantity}} {{dish.MenuItem.name}}<span ng-if="dish.comments">  ({{dish.comments}})</span></p>
-<!--       <div ng-if="dish.comments">  
-        <p>Comments: {{dish.comments}}</p>
-      </div> -->
+    <div ng-repeat="dish in currentOrder.OrderItems">
+      <md-switch ng-model="dish.complete" ng-change="checkSwitches(currentOrder.OrderItems, currentOrder.id)">
+        <p>{{dish.quantity}} {{dish.MenuItem.name}}<span ng-if="dish.comments">  ({{dish.comments}})</span></p>
+      </md-switch>
     </div>
     <md-button class="md-raised md-primary" type="button" name="start-order-button" ng-click="updateStatus(currentOrder.id, 'Started')">Start Order</md-button>
     <md-button class="md-raised md-primary" type="button" name="order-complete-button" ng-show="">Order Complete</md-button>

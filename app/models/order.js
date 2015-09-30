@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     status: {
       type: DataTypes.ENUM,
-      values: ['Placed', 'Received', 'Started', ,'Completed', 'Out For Delivery', 'Delivered']
+      values: ['Placed', 'Received', 'Started', 'Completed', 'Delivery', 'Delivered']
     }
   }, {
     classMethods: {
