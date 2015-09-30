@@ -13,8 +13,8 @@
 
   <!-- MATERIALIZE -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 
 
   <!-- STRIPE -->
@@ -33,12 +33,12 @@
 
   <ul ng-controller="loginCtrl">
     <a ui-sref="home"><img src="assets/qlogo.png" /></a>
-    <li ng-if="!$root.loggedIn"><a ui-sref="loginBoth">Login</a></li>
-    <li ng-if="!$root.loggedIn"><a ui-sref="signUpBoth">Signup</a></li>
-    <li ng-if="$root.loggedIn"><a ui-sref="dashboard">Dashboard</a></li>
-    <li ng-if="$root.loggedIn"><a ui-sref="discover">Discover</a></li>
-    <li ng-if="$root.loggedIn"><a ui-sref="home" ng-click="doLogout()">Logout</a></li>
-     <li ng-if="$root.loggedIn"><a ui-sref="ManageMenu">Manage Menu</a></li>
+    <li ng-show="!loggedIn"><a ui-sref="loginBoth">Login</a></li>
+    <li ng-show="!loggedIn"><a ui-sref="signUpBoth">Signup</a></li>
+    <li ng-show="loggedIn && role === 'customer'"><a ui-sref="dashboard">Dashboard</a></li>
+    <li ng-show="loggedIn && role === 'customer'"<a ui-sref="discover">Discover</a></li>
+    <li ng-show="loggedIn"><a ui-sref="home" ng-click="doLogout()">Logout</a></li>
+    <li ng-show="loggedIn && role === 'restaurant'"><a ui-sref="ManageMenu">Manage Menu</a></li>
    </ul>
 
 </header>
@@ -83,7 +83,6 @@
                                 <!-- CUSTOMER -->
   <script type="text/javascript" src="app/customer/checkout/checkoutService.js"></script>
   <script type="text/javascript" src="app/customer/discover/discoverService.js"></script>
-  <script type="text/javascript" src="app/customer/shoppingCart/shoppingCartService.js"></script>
   <script type="text/javascript" src="app/customer/dashboard/dashboardService.js"></script>
 
   <script type="text/javascript" src="app/RestDash/RestLandingService.js"></script>
@@ -108,7 +107,6 @@
                                 <!-- CUSTOMER -->
   <script type="text/javascript" src="app/customer/checkout/checkoutCtrl.js"></script>
   <script type="text/javascript" src="app/customer/discover/discoverCtrl.js"></script>
-  <script type="text/javascript" src="app/customer/shoppingCart/shoppingCartCtrl.js"></script>
   <script type="text/javascript" src="app/customer/dashboard/dashboardCtrl.js"></script>
    <script type="text/javascript" src="app/customer/menu/RestaurantMenuCtrl.js"></script>
 

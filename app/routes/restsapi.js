@@ -260,11 +260,11 @@ module.exports = function(app, express) {
  		}
 	});
 
-	// //GET INDIVIDUAL USER FROM FRONTEND ??
- // 	api.get('/me', function(req, res) {
-	// 	res.json(req.decoded);
-	// 	console.log(req)
+	//GET INDIVIDUAL USER FROM FRONTEND ??
+ 	api.get('/me', function(req, res) {
+		res.json(req.decoded);
+		console.log(req)
 
- // 	});
+ 	});
 return api;
 }

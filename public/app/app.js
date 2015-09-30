@@ -189,10 +189,11 @@ app.run(function($state, $rootScope, $window, loginService) {
          if (!token) {
            console.log('protected state, no token')
            event.preventDefault();
-            $rootScope.loggedIn = false;
+            // $rootScope.loggedIn = false;
+           
            return $state.go('loginBoth');
          } else {
-          $rootScope.loggedIn = true;
+          // $rootScope.loggedIn = true;
           loginService.getUser()
           .then(function(data) {
 
@@ -203,19 +204,3 @@ app.run(function($state, $rootScope, $window, loginService) {
    });
 })
 
-// app.filter.('phoneNumber', function() {
-//   return function(input, uppercase) {
-//     input = input || '';
-//     var phoneNumber = "";
-//     for (var i = 0; i < input.length; i++) {
-//       phoneNumber = input.charAt(0) + "(";
-//       phoneNumber = input.charAt(3) + ")"
-//       phoneNumber = input.charAt()
-//     }
-//     // conditional based on optional argument
-//     if (uppercase) {
-//       out = out.toUpperCase();
-//     }
-//     return out;
-//   };
-// })
