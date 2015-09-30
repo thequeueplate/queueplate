@@ -4,6 +4,34 @@ module.exports = function(app, express) {
 
 	var api = express.Router();
 
+	//CREATE NEW ORDER
+	api.post('/user/:restid/:userid', function(req, res){
+		models.Order.create({
+			RestaurantId: req.params.restid,
+			UserId: req.params.userid,
+			status: req.body.status
+		}).then(function(order) {
+			res.send(order);
+		}).catch(function(err){
+			res.send({message: 'Order not created.', error: err})
+
+		})
+	})
+
+	//UPDATE ORDER STATUS
+	api.put('/order/:orderid', function(req, res) {
+		models.Order.update({
+			status: req.body.status
+		},
+		{where: { id: req.params.orderid }})
+		.then(function(order) {
+			res.send(order);
+		}).catch(function(err) {
+			res.send({message: 'Order status not updated', error: err});
+		})
+	})
+
+	//CREATE NEW ORDER ITEM, BY ORDERID PASS IN ITEMID
 	api.post('/item/:orderid/:itemid', function(req, res) {
 		models.OrderItem.create({
 			MenuItemId: req.params.itemid,
@@ -17,6 +45,7 @@ module.exports = function(app, express) {
 		})
 	})
 
+	//FIND ALL ITEMS BY ITEMID - Probably not used
 	api.get('/item/:itemid', function(req, res) {
 		models.OrderItem.findAll({
 			where: { id: req.params.itemid },
@@ -28,31 +57,7 @@ module.exports = function(app, express) {
 		})
 	})
 
-	api.post('/rest/:restid/:userid', function(req, res){
-		models.Order.create({
-			RestaurantId: req.params.restid,
-			UserId: req.params.userid,
-			status: req.body.status
-		}).then(function(order) {
-			res.send(order);
-		}).catch(function(err){
-			res.send({message: 'Order not created.', error: err})
-
-		})
-	})
-
-	api.put('/order/:orderid', function(req, res) {
-		models.Order.update({
-			status: req.body.status
-		},
-		{where: { id: req.params.orderid }})
-		.then(function(order) {
-			res.send(order);
-		}).catch(function(err) {
-			res.send({message: 'Order status not updated', error: err});
-		})
-	})
-
+	//FIND ALL ORDERS BY RESTAURANT
 	api.get('/rest/:restid', function(req, res) {
 		models.Order.findAll({
 			where: { RestaurantId: req.params.restid },
@@ -68,7 +73,7 @@ module.exports = function(app, express) {
 		})
 	})
 
-
+	//FIND ALL ORDERS BY USER
 	api.get('/user/:userid', function(req, res) {
 		models.Order.findAll({
 			where: { UserId: req.params.userid },

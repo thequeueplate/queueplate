@@ -60,7 +60,7 @@ module.exports = function(app, express) {
 			})
 	});
 
-	//RESTAURANT REGISTRATION - WIP
+	//RESTAURANT REGISTRATION
 	api.put('/:restid/pref', function(req, res) {
         models.Restaurant.update(
 	        	{
@@ -89,33 +89,6 @@ module.exports = function(app, express) {
         })
 
 	//RESTAURANT LOGIN
-	// api.post('/login', function(req, res) {
-	// 	models.Restaurant.find({ where: { email: req.body.email }})
-	// 	.then(function(rest) {
-	// 		var validPasswordRest = rest.comparePasswordRest(req.body.passwordRest);
-	// 		console.log('login hit');
-
-	// 		if(!validPasswordRest) {
-	// 			console.log('not valid pw');
-	// 			res.send({message: 'Invalid Password'});
-	// 		} else {
-
-	// 			var token = createToken(rest);
-
-	// 			res.json({
-	// 				success: true,
-	// 				message: "Successful login!",
-	// 				token: token,
-	// 				id: rest.id
-	// 			})
-	// 		}
-	// 		console.log(err)
-	// 	}).catch(function(err) {
-	// 		res.send({message: "Can't login error", err})
-	// 		console.log(err)
-	// 	})
-	// })
-
 	api.post('/login', function(req, res) {
 		models.Restaurant.find({ where: { email: req.body.email.toLowerCase() }})
 		.then(function(rest) {
@@ -242,6 +215,14 @@ module.exports = function(app, express) {
 		})
 	})
 
+	//RESTAURANT LOGOUT - DESTROY SESSION
+	api.get('/auth/logout', function(req,res) {
+		console.log('rest logout');
+		req.session.destroy(function() {
+			res.send('Session destroyed');
+		})
+	})
+
 	//MIDDLEWARE - CHECKS TOKEN
  	api.use(function(req, res, next) {
  		console.log("Somebody just came to our app!");
@@ -251,7 +232,7 @@ module.exports = function(app, express) {
 				if(err) {
  					res.status(403).send({ success: false, message: "Failed to authenticate restaurant" });
  				} else {
- 					req.decoded = decoded;
+ 					req.session.decoded = decoded;
  					next();
  				}
  			});
@@ -260,11 +241,11 @@ module.exports = function(app, express) {
  		}
 	});
 
-	// //GET INDIVIDUAL USER FROM FRONTEND ??
- // 	api.get('/me', function(req, res) {
-	// 	res.json(req.decoded);
-	// 	console.log(req)
+ 	//GET DECODED SESSION/TOKEN FOR CURRENT RESTAURANT
+ 	api.get('/info/me', function(req, res) {
+		res.json(req.session.decoded);
+		console.log(req)
 
- // 	});
+ 	});
 return api;
 }
