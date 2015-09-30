@@ -10,26 +10,14 @@ a {
   color: inherit;
 }
 
-/*h1 {
-  font-size: 2 rem !important;
-}
-
-h2 {
-  font-size: 1.5 rem !important;
-}*/
-
 h1, h2, h3 {
   color: #666;
 }
 
 .container {
   margin: 0 auto;
-  width: 90% !important;
-
-
-/*div.container {
-  height: 100%;
-}*/
+  width: 80%;
+}
 
 /*//// HEADER ////*/
 
@@ -78,7 +66,7 @@ header img:hover {
 
 /*//// FOOTER ////*/
 
-/*footer {
+footer {
   height: 50px;
   width: 100%;
   color: #0084bb;
@@ -90,37 +78,7 @@ header img:hover {
 footer p {
   position: relative;
   top: 19px;
-}*/
-background-color: #cbcbcb;
-/**************************************
-FOOTER
-**************************************/
-.footerCredit {
-  color: #ff0000;
 }
-footer {
-  height: 50px;
-  width: 100%;
-  color: #0084bb;
-  background-color: #cbcbcb;
-  text-align: center;
-  font-size: 12px;
-  /*height: 80px;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-  background-color: #e7e7e7;
-  text-align: center;
-  font-weight: bold;
-  font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;*/
-}
-.footerText {
-  position: relative;
-  top: 19px;
-}
-
 
 /*//// HOME PAGE ////*/
 
@@ -172,6 +130,8 @@ footer {
   flex-wrap: wrap;
   margin: 65px 0px;
 }
+
+
 
 .hungrypath {
   display: inline-block;
@@ -248,14 +208,13 @@ footer {
 
 /*////// Login Page //////*/
 
-/*.login {
+.login {
   margin: 120px 0;
-}*/
+}
 
 /*///// Restaurant Dashboard /////*/
 
 .dashboard-container {
-  width: 100%;
   display: inline-flex;
 }
 
@@ -291,10 +250,6 @@ footer {
 .checkboxdemoSyncing fieldset.standard {
   border-style: solid;
   border-width: 1px; }
-
-.address-card {
-  padding-left: 20px;
-}
 
 
 /*
