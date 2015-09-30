@@ -2,7 +2,7 @@ var app = angular.module('QueuePlate')
 
 app.service('loginService', function($http, $q, $state, $rootScope, authTokenService, $cookies) {
 
-		this.register = function(user, UID) {
+	this.register = function(user, UID) {
 		var deferred = $q.defer()
 
 		console.log(deferred)
@@ -33,22 +33,6 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 		return deferred.promise
 		console.log()
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 	var restData;
 	this.getRestData = function(){

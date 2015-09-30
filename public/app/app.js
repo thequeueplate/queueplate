@@ -54,9 +54,6 @@ $urlRouterProvider.otherwise('/');
    resolve: {
      restData: function(loginService){
        return loginService.getRestData();
-     },
-     orders: function(restLandingService, loginService){
-       return restLandingService.getOrders(loginService.getRestData().id);
      }
    }
   })
