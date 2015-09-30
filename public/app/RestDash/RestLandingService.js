@@ -12,7 +12,6 @@ app.service('restLandingService', function($http, $q) {
       dfd.resolve(response.data);
     })
       return dfd.promise;
-      console.log(dfd.promise);
   };
 
   this.setCurrentOrder = function(order) {
@@ -27,14 +26,12 @@ app.service('restLandingService', function($http, $q) {
   }
 
   this.updateStatus = function(id, status){
-    console.log("BOINK", id, status)
     var dfd = $q.defer();
     $http({
       method: "PUT",
       url: "api/orders/order/" + id,
       data: {status: status}
     }).then(function(response){
-      console.log(response);
       dfd.resolve(response);
     })
     return dfd.promise;

@@ -42,13 +42,11 @@ module.exports = function(app, express) {
 	})
 
 	api.put('/order/:orderid', function(req, res) {
-		console.log("asd;lfjkasdpofijaopsdijfapoisjdfpoiajsdfpoiajsdpofijasdpoifjaspodifj", req.body)
 		models.Order.update({
 			status: req.body.status
 		},
 		{where: { id: req.params.orderid }})
 		.then(function(order) {
-			console.log(order)
 			res.send(order);
 		}).catch(function(err) {
 			res.send({message: 'Order status not updated', error: err});

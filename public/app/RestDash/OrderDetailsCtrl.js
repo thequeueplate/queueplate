@@ -19,7 +19,11 @@ app.controller('OrderDetailsCtrl', function($scope, restLandingService, loginSer
   			return
   		}
   		if(i === (arr.length - 1)){
-  			updateOrders("Completed");
+  			restLandingService.updateStatus(id, "Completed")
+  				.then(function(response){
+  					console.log("AWWWWW YEAH, BOI! PUTTY MCNUTTY!!!!", response)
+  					updateOrders('Completed');
+  				})
   		}
   	}
   }
@@ -28,10 +32,8 @@ app.controller('OrderDetailsCtrl', function($scope, restLandingService, loginSer
 		$scope.currentOrder.status = str;
 		restLandingService.getOrders(loginService.getRestData().id)
 			.then(function(response){
-				$scope.orders = str;
+				$scope.orders = response;
 			})
   }
-
-  console.log($scope.krang)
 
 });
