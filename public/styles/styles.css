@@ -27,6 +27,10 @@ h1, h2, h3 {
   width: 90% !important;
 }
 
+div.container {
+  height: 100%;
+}
+
 /*//// HEADER ////*/
 
 header {
@@ -74,7 +78,7 @@ header img:hover {
 
 /*//// FOOTER ////*/
 
-footer {
+/*footer {
   height: 50px;
   width: 100%;
   color: #0084bb;
@@ -86,6 +90,28 @@ footer {
 footer p {
   position: relative;
   top: 19px;
+}*/
+
+/**************************************
+FOOTER
+**************************************/
+.footerCredit {
+  color: #ff0000;
+}
+footer {
+  height: 80px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #e7e7e7;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+.footerText {
+  margin-top: 20px;
 }
 
 

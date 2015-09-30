@@ -1,9 +1,9 @@
-<md-card class="order-container">
+<md-card class="order-container" layout-padding>
   <md-content>
   <h2 class="md-display-1">Order #{{currentOrder.id}} - {{currentOrder.status}} @ {{currentOrder.updatedAt | date: 'shortTime' }}</h2>
   <div class="order-details">
     <h3 class="md-display-2" ng-if="currentOrder.status === 'Completed'">Ready For Delivery!</h3>
-    <md-card ng-if="currentOrder.status === 'Completed'" class="address-card">
+    <md-card ng-if="currentOrder.status === 'Completed'" class="address-card" layout-margin layout-padding>
       <md-content>
         <h4 class="md-subhead">    {{cust.lastName}}, {{cust.firstName}}</h4>
         <h4 class="md-subhead">    {{cust.addLine1}}</h4>
