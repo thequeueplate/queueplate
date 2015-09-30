@@ -11,7 +11,7 @@ function createToken(rest) {
 
 	var token = jsonwebtoken.sign({
 		id: rest._id,
-		email: rest.email
+		email: rest.email.toLowerCase()
 	}, secretKey, {
 		expiresInMinute: 1440
 	});
@@ -26,7 +26,7 @@ module.exports = function(app, express) {
 	//RESTAURANT SIGNUP
 	api.post('/signup', function(req, res) {
 		models.Restaurant.create({
-			email: req.body.email,
+			email: req.body.email.toLowerCase(),
 			password: req.body.passwordRest
 		}).then(function(rest){
 			console.log('success hit')
@@ -117,7 +117,7 @@ module.exports = function(app, express) {
 	// })
 
 	api.post('/login', function(req, res) {
-		models.Restaurant.find({ where: { email: req.body.email }})
+		models.Restaurant.find({ where: { email: req.body.email.toLowerCase() }})
 		.then(function(rest) {
 
 			if (!rest.verify) {
@@ -260,11 +260,11 @@ module.exports = function(app, express) {
  		}
 	});
 
-	//GET INDIVIDUAL USER FROM FRONTEND ??
- 	api.get('/me', function(req, res) {
-		res.json(req.decoded);
-		console.log(req)
+	// //GET INDIVIDUAL USER FROM FRONTEND ??
+ // 	api.get('/me', function(req, res) {
+	// 	res.json(req.decoded);
+	// 	console.log(req)
 
- 	});
+ // 	});
 return api;
 }

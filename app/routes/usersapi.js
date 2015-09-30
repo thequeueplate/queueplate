@@ -11,7 +11,7 @@ function createToken(user) {
 
 	var token = jsonwebtoken.sign({
 		id: user._id,
-		email: user.email
+		email: user.email.toLowerCase()
 	}, secretKey, {
 		expiresInMinute: 1440
 	});
@@ -31,7 +31,7 @@ module.exports = function(app, express) {
 		var adminArray = ['rspicer@razegroup.com', 'lindseybrown4@gmail.com','bunker.logan@gmail.com', 'markkeysor@gmail.com']
 		if (adminArray.indexOf(req.body.email) !== -1) {
 			models.User.create({
-				email: req.body.email,
+				email: req.body.email.toLowerCase(),
 				password: req.body.password,
 				role: 'admin'
 			}).then(function(user){
@@ -67,7 +67,7 @@ module.exports = function(app, express) {
 		//ELSE, IF REGULAR CUSTOMER...
 		else {
 		models.User.create({
-			email: req.body.email,
+			email: req.body.email.toLowerCase(),
 			password: req.body.password,
 			role: 'customer',
 			verify: 'false'
@@ -131,7 +131,7 @@ module.exports = function(app, express) {
 
 	//USER LOGIN
 	api.post('/login', function(req, res) {
-		models.User.find({ where: { email: req.body.email }})
+		models.User.find({ where: { email: req.body.email.toLowerCase() }})
 		.then(function(user) {
 
 			if (!user.verify) {
@@ -238,9 +238,9 @@ module.exports = function(app, express) {
  		}
 	});
 
- 	//GET INDIVIDUAL USER FROM FRONTEND ??
- 	api.get('/me', function(req, res) {
-		res.json(req.decoded);
- 	});
+ 	// //GET INDIVIDUAL USER FROM FRONTEND ??
+ 	// api.get('/me', function(req, res) {
+		// res.json(req.decoded);
+ 	// });
 return api;
 }
