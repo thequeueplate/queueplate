@@ -1,29 +1,19 @@
-<<<<<<< HEAD
-=======
 <h1>{{rest.name}}'s Menu</h1>
->>>>>>> e5ab3f1ca416791ccff58d6084f16809c6fe2824
-
-{{role})
  
 <div ng-repeat="section in menu.Sections">
 
 <h2>{{section.name}}</h2>
-<<<<<<< HEAD
+
 <h4>{{section.comments}}</h4>
 
 	<div ng-repeat="item in section.MenuItems">
 	<h3><a href="#">{{item.name}}</a></h3>
 	<h4>{{item.description}}</h4>
 	<h5>${{item.price}}<h5>
-	
-=======
-<h3>{{section.comments}}<h3>
+
 	<div ng-repeat="item in section.MenuItems">
-	<a href="#">{{item.name}}</a><br>
 	<img ng-src="{{item.pictureURL}}" ng-style="{'max-width': '200px', 'min-width': '200px'}" /> <br>
-	{{item.description}}<br>
-	${{item.price}}<br>&nbsp;<br>
->>>>>>> e5ab3f1ca416791ccff58d6084f16809c6fe2824
+
 	</div>
 <hr>
 

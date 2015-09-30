@@ -51,4 +51,3 @@ app.controller('discoverCtrl', function(discoverService, $scope, $state) {
     }
 
 });
-

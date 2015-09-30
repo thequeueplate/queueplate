@@ -55,8 +55,9 @@ $urlRouterProvider.otherwise('/');
      restData: function(loginService){
        return loginService.getRestData();
      },
-     orders: function(restLandingService, loginService){
-       return restLandingService.getOrders(loginService.getRestData().id);
+     orders: function(restData, restLandingService){
+
+      return restLandingService.getOrders(restData.id);
      }
    }
   })
@@ -64,7 +65,12 @@ $urlRouterProvider.otherwise('/');
   .state('RestaurantLanding.orderDetails', {
     url: '/:orderId',
     templateUrl: 'app/RestDash/OrderDetailsTmpl.html',
-    controller: 'OrderDetailsCtrl'
+    controller: 'OrderDetailsCtrl',
+    resolve: {
+      cust: function(restLandingService, $stateParams){
+        return restLandingService.getOrderCust()
+      }
+    }
     // resolve: {
     //   currentOrder: function(RestLandingService, $stateParams) {
     //     return RestLandingService($stateParams);

@@ -33,7 +33,7 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 		return deferred.promise
 		console.log()
 	}
-
+	
 	var restData;
 	this.getRestData = function(){
 		return restData

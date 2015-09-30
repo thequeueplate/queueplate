@@ -239,9 +239,9 @@ module.exports = function(app, express) {
  		}
 	});
 
- 	// //GET INDIVIDUAL USER FROM FRONTEND ??
- 	// api.get('/me', function(req, res) {
-		// res.json(req.decoded);
- 	// });
+ 	//GET INDIVIDUAL USER FROM FRONTEND ??
+ 	api.get('/me', function(req, res) {
+		res.json(req.decoded);
+ 	});
 return api;
 }
