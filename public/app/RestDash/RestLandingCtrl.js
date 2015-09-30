@@ -20,37 +20,20 @@ app.controller('RestLandingCtrl', function($scope, $cookies, $rootScope, registe
   $scope.id = $cookies.getObject("userid")
 
 
-  restLandingService.getOrders(restData.id)
-    .then(function(results){
-      $scope.orders = results;
-    })
+  $scope.orders = orders;
 
-  // $scope.order = {
-  //   name: order.name,
-  //   address: order.address,
-  //   phone: order.phone,
-  //   dishes: [],
-  //   comments: order.comments
-  // };
-
-  // $scope.selectedOrders = function(order) {
-  //   $scope.sampleOrders = order;
-  //   console.log(order);
-  // };
+  $scope.krang = "krang"
 
   $scope.selectedOrder = function(order) {
     console.log("ORDER ORDER ORDER ORDER", order)
     restLandingService.setCurrentOrder(order)
       .then(function(response){
-        console.log(response);
-        $scope.currentOrder = response
-        $state.go('RestaurantLanding.orderDetails', {orderId: order.id});
+        $scope.currentOrder = restLandingService.currentOrder;
       })
-  };
-
-  // $scope.orders = restLandingService.getOrders()
-
-  // $scope.sampleOrders = restLandingService.sampleOrders;
+        .then(function(){
+          $state.go('RestaurantLanding.orderDetails', {orderId: order.id});
+        })
+};
 
 
 })

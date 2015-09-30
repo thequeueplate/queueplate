@@ -15,30 +15,23 @@ app.service('restLandingService', function($http, $q) {
       console.log(dfd.promise);
   };
 
-  // this.sampleOrders = [
-  //   {
-  //     name: 'Mark Keysor',
-  //     address: '649 S. 300 E.',
-  //     phone: '8018311058',
-  //     dishes: ['Blooming Onion'],
-  //     comments: 'Keep em coming!',
-  //     id: 1
-  //   },
-  //   {
-  //     name: 'Eric Richards',
-  //     address: 'Dumb S. Stupid E.',
-  //     phone: '8011234567',
-  //     dishes: ['Burger Bunz', 'Fry Bunz'],
-  //     comments: 'I love them burger bunz!',
-  //     id: 2
-  //   }
-  // ]
-
   this.setCurrentOrder = function(order) {
     var dfd = $q.defer();
     this.currentOrder = order;
     dfd.resolve("i done it.")
     return dfd.promise;
+  }
+
+  this.getOrderCust = function(){
+    return $http.get('api/users/' + this.currentOrder.UserId)
+  }
+
+  this.updateStatus = function(id, status){
+    return $http({
+      method: "PUT",
+      url: "api/orders/order/" + id,
+      data: {status: status}
+    })
   }
 
 

@@ -1,15 +1,18 @@
 <div class="order-container">
-  <h2>Order Details</h2>
+  <h2>Order #{{currentOrder.id}} - {{currentOrder.status}} @ {{currentOrder.updatedAt | date: 'shortTime' }}</h2>
   <div class="order-details">
-    <h3>Name:</h3>
-    <p>{{cust}}</p>
-    <h3>Address:</h3>
-    <p>{{selectedOrder.address}}</p>
-    <h3>Order:</h3>
-    <p ng-repeat="dish in selectedOrder.dishes">{{dish}}</p>
-    <h3>Comments:</h3>
-    <p>{{selectedOrder.comments}}</p>
-    <md-button class="md-raised md-primary" type="button" name="start-order-button" ng-hide="">Start Order</md-button>
+    
+    <h4>Name: {{cust.lastName}}, {{cust.firstName}}</h4>
+<!--     <h4>Address:</h4>
+    <p>{{selectedOrder.address}}</p> -->
+    <h4>Order:</h4>
+    <div ng-repeat="dish in currentOrder.OrderItems"
+      <p><input type="checkbox" />{{dish.quantity}} {{dish.MenuItem.name}}<span ng-if="dish.comments">  ({{dish.comments}})</span></p>
+<!--       <div ng-if="dish.comments">  
+        <p>Comments: {{dish.comments}}</p>
+      </div> -->
+    </div>
+    <md-button class="md-raised md-primary" type="button" name="start-order-button" ng-click="updateStatus(currentOrder.id, 'Started')">Start Order</md-button>
     <md-button class="md-raised md-primary" type="button" name="order-complete-button" ng-show="">Order Complete</md-button>
   </div>
 </div>
