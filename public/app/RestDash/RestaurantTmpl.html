@@ -1,30 +1,29 @@
-<div class="container">
-  <!-- <h1>{{restFirst}}'s Restaurant</h1> -->
-
+<div>
   <h1 class="md-display-2">{{restData.name}} Dashboard</h1>
-
   <div class="add-menu-button">
-
     <md-button ng-click="goManage()" class="md-primary md-raised">
       Manage Menu
     </md-button>
-
   </div>
-    <div class="dashboard-container">
-
+  <div class="dashboard-container" layout="row">
+    <div flex="33" class="incoming-orders-container">
       <md-card class="md-padding">
-
-            <md-card-header class="md-display-1">Current Orders</md-card-header>
-            <md-card-content class="incoming-orders-list" ng-repeat="order in orders" ng-click="selectedOrder(order)">
-              <div ng-if="order.status !== 'Delivered'">
-                Order #{{order.id}}, {{order.status}} @ {{order.updatedAt | date: "shortTime"}}
-                <hr>
+        <md-card-header class="md-display-1">Current Orders</md-card-header>
+        <md-card-content>
+          <md-list ng-if="order.status !== 'Delivered'">
+            <md-list-item class="md-3-line incoming-orders-list" ng-repeat="order in orders" ng-click="selectedOrder(order)">
+              <div class="md-list-item-text" layout="column">
+                <h3 class="md-title">Order #{{order.id}}</h3>
+                <h4 class="md-subhead">Placed: {{order.createdAt | date: "shortTime"}}</h4>
+                <h4 class="md-subhead">{{order.status}}: {{order.updatedAt | date: "shortTime"}}</h4>
               </div>
-            </md-card-content>
-
+            </md-list-item>
+          </md-list>
+        </md-card-content>
       </md-card>
-      <div ui-view></div>
     </div>
+    <div flex="66" ui-view></div>
+  </div>
 </div>
 
 
