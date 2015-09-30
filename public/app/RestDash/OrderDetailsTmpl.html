@@ -26,9 +26,13 @@
 
       <h4 class="md-headline">Order:</h4>
       <div ng-repeat="dish in currentOrder.OrderItems">
-        <md-switch ng-model="dish.complete" ng-if="currentOrder.status !== 'Delivery'" ng-change="checkSwitches(currentOrder.OrderItems, currentOrder.id)">
-          <p>{{dish.quantity}} {{dish.MenuItem.name}}<span ng-if="dish.comments">  ({{dish.comments}})</span></p>
-        </md-switch>
+        <md-list>
+          <md-list-item>
+              <p>{{dish.quantity}} {{dish.MenuItem.name}}<span ng-if="dish.comments">  ({{dish.comments}})</span></p>
+              <md-switch ng-model="dish.complete" ng-if="currentOrder.status !== 'Delivery'" ng-change="checkSwitches(currentOrder.OrderItems, currentOrder.id)">
+              </md-switch>
+          </md-list-item>
+        </md-list>
         <div ng-if="currentOrder.status === 'Delivery'">
           <ul>
             <li>{{dish.quantity}} {{dish.MenuItem.name}}<span ng-if="dish.comments">  ({{dish.comments}})</span></li>
