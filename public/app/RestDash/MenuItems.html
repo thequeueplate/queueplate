@@ -1,6 +1,6 @@
 <!--
 OWNER: LOGAN
-BACKING CONTROLLER: MenuItemsCtrl
+BACKING CONTROLLER: menuItemsCtrl
 TODO:
 - Show new menu item
     - Save new Menu Item
@@ -36,53 +36,59 @@ HTML PSEUDO CODE:
 -->
 
 <div>
- <div>
-   <md-content>
-     <md-input-container>
-       <label>Menu Section</label>
-       <md-select ng-model="newItem.section">
-         <md-option ng-repeat="Section in menu.Sections" ng-value="Section.id">{{Section.name}}</md-option>
-       </md-select>
-     </md-input-container>
+  <div>
+    <md-content>
+      <md-input-container>
+        <label>Menu Section</label>
+        <md-select ng-model="newItem.section">
+          <md-option ng-repeat="Sectin in menu.Sections" ng-value="Section.id">{{Section.name}}</md-option>
+        </md-select>
+      </md-input-container>
 
-     <md-input-container>
-       <label>Menu Item Name</label>
-       <input ng-model="newItem.name">
-     </md-input-container>
-     <md-input-container>
-       <label>Menu Item Description</label>
-       <input ng-model="newItem.description">
-     </md-input-container>
-     <md-input-container>
-       <label>Price</label>
-       <input type="Number" ng-model="newItem.price">
-     </md-input-container>
-     <md-button ng-click="removemenuItem(idx)">
-       Remove Menu Item
-     </md-button>
-   </md-content>
- </div>
+      <md-input-container>
+        <label>Menu Item Name</label>
+        <input ng-model="newItem.name">
+      </md-input-container>
+      <md-input-container>
+        <label>Menu Item Description</label>
+        <input ng-model="newItem.description">
+      </md-input-container>
+      <md-input-container>
+        <label>Price</label>
+        <input type="Number" ng-model="newItem.price">
+      </md-input-container>
+    </md-content>
+  </div>
 </div>
 <md-button ng-click="addMenuItem()" class="md-primary md-raised">
- Add Menu Item
+  Add Menu Item
 </md-button>
 <md-divider></md-divider>
+
+<!-- <div ng-repeat="Section in menu.Sections">
+  <h1>{{Section.name}}</h1>
+  <div ng-repeat="MenuItem in Section.MenuItems">
+    <h3>{{MenuItem.name}} - ${{MenuItem.price}}</h3>
+    <p>{{MenuItem.description}}</p>
+  </div>
+</div> -->
+
 <md-content>
- <md-list>
-   <md-list-item class="md-4-line" ng-repeat="Section in menu.Sections">
-     <div class="md-list-item-text">
-       <div class="md-display-1">
-         {{Section.name}}
-       </div>
-       <hr style="border-top: dashed 1px;">
-       <div ng-repeat="MenuItem in Section.MenuItems">
-         <div class="md-headline">{{MenuItem.name}}</div>
-         <div class="md-subhead">${{MenuItem.price}}</div>
-         <p>{{MenuItem.description}}</p>
-         <hr class="md-accent" style="border-top: dotted 1px;">
-       </div>
-     </div>
-     <md-divider></md-divider>
-   </md-list-item>
- </md-list>
+  <md-list>
+    <md-list-item class="md-4-line" ng-repeat="Section in menu.Sections">
+      <div class="md-list-item-text">
+        <div class="md-display-1">
+          {{Section.name}}
+        </div>
+        <hr style="border-top: dashed 1px;">
+        <div ng-repeat="MenuItem in Section.MenuItems">
+          <div class="md-headline">{{MenuItem.name}}</div>
+          <div class="md-subhead">${{MenuItem.price}}</div>
+          <p>{{MenuItem.description}}</p>
+          <hr class="md-accent" style="border-top: dotted 1px;">
+        </div>
+      </div>
+      <md-divider></md-divider>
+    </md-list-item>
+  </md-list>
 </md-content>

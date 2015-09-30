@@ -2,31 +2,19 @@
   <h1>{{restFirst}}'s Restaurant</h1>
   <h1>{{name}}<h1>
   <div class="add-menu-button">
-    <md-button class="md-raised md-primary" type="button" name="button">Add New Menu</md-button>
     <md-button ng-click="goManage()">
-      Manage Your Freaking Life
+      Manage Menu
     </md-button>
   </div>
     <div class="dashboard-container">
       <div class="incoming-orders-container">
-        <h2>Incoming Orders</h2>
-        <div class="incoming-orders-list" ng-repeat="order in incomingOrders" ng-click="selectedOrders(order)">
-          <p>{{order.id}} - {{order.status}}</p>
+        <h2>Current Orders</h2>
+        <div class="incoming-orders-list" ng-repeat="order in orders" ng-click="selectedOrder(order)">
+          <p>Order #{{order.id}}, {{order.status}} @ {{order.updatedAt}}</p>
           <hr>
         </div>
       </div>
       <div ui-view></div>
-      <!-- <div class="order-container">
-        <h2>Order Details</h2>
-        <div class="order-details" ng-repeat="selected in selectedOrders">
-          <p>{{selected.name}}</p>
-          <p>{{selected.address}}</p>
-          <p>{{selected.dishes}}</p>
-          <p>{{selected.comments}}</p>
-          <md-button class="md-raised md-primary" type="button" name="start-order-button" ng-hide="">Start Order</md-button>
-          <md-button class="md-raised md-primary" type="button" name="order-complete-button" ng-show="">Order Complete</md-button>
-        </div>
-      </div> -->
 
     </div>
 </div>
