@@ -20,4 +20,16 @@ app.service('RestaurantMenuService', function($http, $q) {
 		    return deferred.promise
 		    console.log(deferred.promise)
 	}
+	
+	this.getRest = function(RID) {
+		var deferred = $q.defer();
+		$http({
+			method: "GET",
+			url: "api/rests/" + RID
+		}).then(function(response) {
+			deferred.resolve(response.data)
+		})
+		return deferred.promise
+		console.log(deferred.promise)
+	}
 })

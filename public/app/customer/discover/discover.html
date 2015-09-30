@@ -14,9 +14,8 @@
 <div ng-repeat="rest in restaurants">
 
 	<div><h2 ng-click="takeToMenu($index, restId)"><a href="#">{{rest.name}}</a><h2></div>
-	<div><h4>{{rest.addCity}}</h4></div>
-	<div><h4>{{rest.cuisine}}</h4></div>
-	<div><h4>{{rest.id}}</h4></div>
+	<div><h4>{{rest.addCity}}, {{rest.addState}}</h4></div>
+	<div><h4>Cuisine Type: {{rest.cuisine}}</h4></div>
 </div>
 
 
