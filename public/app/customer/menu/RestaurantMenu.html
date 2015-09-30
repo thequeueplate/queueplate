@@ -1,0 +1,20 @@
+<h1>{{rest.name}}'s Menu</h1>
+ 
+<div ng-repeat="section in menu.Sections">
+
+<h2>{{section.name}}</h2>
+
+<h4>{{section.comments}}</h4>
+
+	<div ng-repeat="item in section.MenuItems">
+	<h3><a href="#">{{item.name}}</a></h3>
+	<h4>{{item.description}}</h4>
+	<h5>${{item.price}}<h5>
+
+	<div ng-repeat="item in section.MenuItems">
+	<img ng-src="{{item.pictureURL}}" ng-style="{'max-width': '200px', 'min-width': '200px'}" /> <br>
+
+	</div>
+<hr>
+
+</div>

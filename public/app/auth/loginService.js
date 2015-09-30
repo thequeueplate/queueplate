@@ -39,28 +39,17 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 		return restData
 	}
 	this.login = function(email, password) {
+		var d = $q.defer();
 
-		return $http.post('/api/users/login', {
+	    $http.post('/api/users/login', {
 			email: email,
 			password: password
 
 		})
 		.success(function(data) {
-
-			console.log(data)
-
-			if (data.success === false) {
-				alert("Please Check your email to confirm your account")
-				$rootScope.loggedIn = false;
-				$state.go('loginBoth')
-			} else {
-
-			authTokenService.setToken(data.token)
-
 			$cookies.putObject("userName", data.firstName)
 			$cookies.putObject("lastName", data.lastName)
 			$cookies.putObject("role", data.role)
-
 			$cookies.putObject("addLine1", data.addLine1)
 			$cookies.putObject("addLine2", data.addLine2)
 			$cookies.putObject("addCity", data.addCity)
@@ -68,13 +57,26 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 			$cookies.putObject("addZip", data.addZip)
 			$cookies.putObject("phoneNumber", data.phoneNumber)
 
+			console.log(data)
+
+			d.resolve(data)
+
+			if (data.success === false) {
+				alert("Please Check your email to confirm your account")
+				$state.go('loginBoth')
+			} else {
+
+			authTokenService.setToken(data.token)
 
 			$state.go('dashboard')
-			return data
-
+	
 	        }
+	    }).error(function(err){
+	    	d.reject(err)
 	    })
-   }
+	  return d.promise; 
+    }
+
 
 	this.loginRest = function(email, password) {
 
@@ -85,18 +87,25 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 		})
 		.success(function(data) {
 
-			console.log(data)
+			$cookies.putObject("role", data.role)
+			$cookies.putObject("addLine1", data.addLine1)
+			$cookies.putObject("addLine2", data.addLine2)
+			$cookies.putObject("addCity", data.addCity)
+			$cookies.putObject("addState", data.addState)
+			$cookies.putObject("addZip", data.addZip)
+			$cookies.putObject("name", data.name)
+
+			console.log(data.role)
 			restData = data;
 
 			if (data.success === false) {
 				alert("Please Check your email to confirm your account")
-				$rootScope.loggedIn = false;
 				$state.go('loginBoth')
 			} else {
 				authTokenService.setToken(data.token);
-				$cookies.putObject("restFirstName", data.firstName)
-				$cookies.putObject("restRole", data.role)
-
+			
+			
+				
 				$rootScope.loggedIn = true;
 
 				return data;
@@ -105,8 +114,22 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 		})
 	}
 
+
 	this.logout = function() {
+		
+		$cookies.remove("userName")
+		$cookies.remove("lastName")
+		$cookies.remove("role")
+		$cookies.remove("addLine1")
+		$cookies.remove("addLine2")
+		$cookies.remove("addCity")
+		$cookies.remove("addState")
+		$cookies.remove("addZip")
+		$cookies.remove("phoneNumber")
+		$cookies.remove("userid")
+
 		authTokenService.setToken();
+
 
 	}
 
@@ -142,9 +165,10 @@ app.service('authTokenService', function($window) {
 
 	this.setToken = function(token) {
 
+
 		if(token)
 			$window.localStorage.setItem('token', token);
-		else
+		else 
 			$window.localStorage.removeItem('token');
 	}
 })

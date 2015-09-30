@@ -9,5 +9,4 @@ app.service('signupService', function($http) {
 	this.createRest = function(restData) {
 		return $http.post('/api/rests/signup', restData);
 	}
-
 });
