@@ -29,6 +29,7 @@
   <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script> -->
 </head>
 
+<body>
 <header>
 
   <ul ng-controller="loginCtrl">
@@ -43,12 +44,13 @@
 
 </header>
 
-   <body>
 
     <div class="container">
         <div ui-view></div>
     </div>
-    <footer><p>&copy 2015 - QueuePlate</p></footer>
+  <footer>
+    <p class="footerText"> <a class="footerCredit">&copy 2015 - QueuePlate</a></p>
+  </footer>
 
   <!-- ANGULAR-MATERIAL -->
   <script type="text/javascript" src="bower_components/angular/angular.js"></script>
