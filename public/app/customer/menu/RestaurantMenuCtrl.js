@@ -13,5 +13,10 @@ app.controller('RestaurantMenuCtrl', function($cookies, $scope, $stateParams, RI
 		$scope.menu = response[0]
 	 	console.log($scope.menu)
 })
+	RestaurantMenuService.getRest(RID)
+	.then(function(response) {
+		$scope.rest = response
+		console.log($scope.rest);
+	})
 
 })

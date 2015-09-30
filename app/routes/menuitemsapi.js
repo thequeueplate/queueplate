@@ -18,7 +18,23 @@ module.exports = function(app, express) {
 			pictureURL: req.body.pictureURL
 		},
 		{ where: { id: req.params.itemid }}
-		)
+		).then(function(item) {
+			res.send(item);
+		}).catch(function(err){
+			res.send({message: "Menu Item not updated.", error: err})
+		})
+	});
+
+	api.put('/pic/:itemid', function(req, res) {
+		models.MenuItem.update({
+			pictureURL: req.body.pictureURL
+		},
+		{ where: { id: req.params.itemid }}
+		).then(function(item) {
+			res.send(item);
+		}).catch(function(err){
+			res.send({message: "Menu Item not updated.", error: err})
+		})
 	});
 	return api;
 }
