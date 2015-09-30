@@ -130,19 +130,19 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 
 		authTokenService.setToken();
 
-
+		return $http.get('/api/users/auth/logout');
 	}
 
 	this.isLoggedIn = function() {
 		if(authTokenService.getToken())
-				return true;
+			return true;
 		else
 			return false;
 	}
 
 	this.getUser = function() {
 		if(authTokenService.getToken())
-			return $http.get('/api/users/me');
+			return $http.get('/api/users/info/me');
 		else
 			return $q.reject({message: "User has no token"})
 	}
@@ -150,7 +150,7 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 	this.getRest = function() {
 
 		if(authTokenService.getToken())
-			return $http.get('/api/rests/me');
+			return $http.get('/api/rests/info/me');
 		else
 			return $q.reject({message: "Rest has no token"})
 

@@ -4,9 +4,6 @@ module.exports = function(app, express) {
 
 	var api = express.Router();
 
-	//GET SINGLE ITEM
-
-
 	//UPDATE SINGLE ITEM
 	api.put('/:itemid', function(req, res) {
 		models.MenuItem.update({
@@ -25,6 +22,7 @@ module.exports = function(app, express) {
 		})
 	});
 
+	//UPDATE MENUITEM PICTURE
 	api.put('/pic/:itemid', function(req, res) {
 		models.MenuItem.update({
 			pictureURL: req.body.pictureURL

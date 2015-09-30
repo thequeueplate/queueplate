@@ -5,8 +5,17 @@ var morgan = require('morgan');
 var config = require('./config');
 var stripe = require("stripe")("sk_test_GOrufKljADFLhu6YHA75r0AB");
 var request = require('request');
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
 
 var app = express();
+
+app.use(session({ store: new RedisStore({
+  host:'127.0.0.1',
+  port:6379,
+  prefix:'sess'
+}), secret: config.session_secret }));
+
 
 ///////     MIDDLEWARE     /////
 app.use(bodyParser.urlencoded({ extended: true })); //extended makes it accept videos and photos and strings etc
