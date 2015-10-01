@@ -1,6 +1,28 @@
 var app = angular.module('QueuePlate', ['ngAnimate', 'ngAria', 'ngMaterial','ui.router', 'ui.mask', 'ngCookies']);
 
-app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
+app.config(function($mdThemingProvider, $httpProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
+
+$mdThemingProvider.theme('default')
+    .primaryPalette('light-blue', {
+      'default': '700',
+      'hue-1' : '400',
+      'hue-2' : '200',
+      'hue-3' : '50'
+    })
+    
+    .accentPalette('deep-orange', {
+      'default' : '700',
+      'hue-1'   : '400',
+      'hue-2'   : '200',
+      'hue-3'   : '50'
+    })
+
+    .warnPalette('red', {
+      'default' : '700',
+      'hue-1'   : '400',
+      'hue-2'   : '200',
+      'hue-3'   : '50'
+    })
 
 $httpProvider.interceptors.push('AuthInterceptor');
 

@@ -10,8 +10,8 @@
       <md-card class="md-padding">
         <md-card-header class="md-display-1">Current Orders</md-card-header>
         <md-card-content>
-          <md-list ng-if="order.status !== 'Delivered'">
-            <md-list-item class="md-3-line incoming-orders-list" ng-repeat="order in orders" ng-click="selectedOrder(order)">
+          <md-list>
+            <md-list-item class="md-accent md-3-line incoming-orders-list" ng-repeat="order in orders" ng-if="order.status !== 'Delivered'" ng-click="selectedOrder(order)">
               <div class="md-list-item-text" layout="column">
                 <h3 class="md-title">Order #{{order.id}}</h3>
                 <h4 class="md-subhead">Placed: {{order.createdAt | date: "shortTime"}}</h4>
