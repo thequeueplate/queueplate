@@ -139,6 +139,7 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 		$cookies.remove("addZip")
 		$cookies.remove("phoneNumber")
 		$cookies.remove("userid")
+		$cookies.remove("orderData")
 
 		authTokenService.setToken();
 
