@@ -1,10 +1,10 @@
 var app = angular.module('QueuePlate')
 
-app.controller('dashboardCtrl', function(UID, $scope, $cookies, dashboardService) {
+app.controller('dashboardCtrl', function(UID, $scope, $rootScope, $cookies, dashboardService) {
 
    $scope.userName = $cookies.getObject("userName")
    $scope.lastName =  $cookies.getObject("lastName")
-   $scope.role = $cookies.getObject("role")
+   $rootScope.role = $cookies.getObject("role")
    $scope.addLine1 = $cookies.getObject("addLine1")
    $scope.addLine2 = $cookies.getObject("addLine2")
    $scope.addCity = $cookies.getObject("addCity")

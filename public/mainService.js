@@ -5,7 +5,7 @@ app.service('mainService', function($http, $q){
     $http({
       method: 'POST',
       url: '/api/restaurant',
-      data: restaurant          ///////// have some people look at this!!!!!
+      data: restaurant
     }).then(function(response) {
       deferred.resolve(response)
     })

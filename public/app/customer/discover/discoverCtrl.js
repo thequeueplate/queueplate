@@ -2,22 +2,23 @@ var app = angular.module('QueuePlate')
 
 app.controller('discoverCtrl', function(discoverService, $scope, $state) {
 
-	$scope.find = function() {
+    discoverService.restaurantsByName($scope.restaurants)
+      .then(function(response) {
+      console.log(response)
 
-		discoverService.restaurantsByName($scope.restaurants)
-			.then(function(response) {
-			$scope.restaurants = response;
-			})
-	}
+      $scope.restaurants = response;
 
-	$scope.filters = [
-		{type: "City"},
-		{type: "Restaurant Name"},
-		{type: "Cuisine"}
-	]
+      })
 
-	$scope.cuisines = ["American", "Cajun", "Caribbean", "Chinese", "French", "German", "Greek", "Indian", "Italian", "Korean", "Lebanese", "Mediterranean", "Mexican", "Moroccan", "Soul", "Thai", "Turkish", "Vietnamese", "Other"]
-	
+
+  $scope.filters = [
+    {type: "City"},
+    {type: "Restaurant Name"},
+    {type: "Cuisine"}
+  ]
+
+  $scope.cuisines = ["American", "Cajun", "Caribbean", "Chinese", "French", "German", "Greek", "Indian", "Italian", "Korean", "Lebanese", "Mediterranean", "Mexican", "Moroccan", "Soul", "Thai", "Turkish", "Vietnamese", "Other"]
+  
   $scope.selected = [];
 
       $scope.toggle = function (cuisine, list) {
@@ -31,9 +32,18 @@ app.controller('discoverCtrl', function(discoverService, $scope, $state) {
       };
 
       $scope.takeToMenu = function(index, restId) {
-      	$scope.restId = {};
-     		$scope.restId.id = $scope.restaurants[index].id;
-     		$state.go("RestaurantMenu", {restid: $scope.restId.id })
+        console.log(index)
+    
+        $scope.restaurantId = restId
+
+        $scope.restId = {};
+
+        $scope.restId.id = $scope.restaurants[index].id;
+
+        console.log($scope.restId.id); 
+
+        $state.go("RestaurantMenu", {restid: $scope.restId.id })
+
     }
 
 });
