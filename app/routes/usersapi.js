@@ -237,9 +237,14 @@ module.exports = function(app, express) {
 				if(err) {
  					res.status(403).send({ success: false, message: "Failed to authenticate user" });
  				} else {
- 					//
+ 					console.log("COMMMMMMMENNNNNNTTTTSSSS", decoded)
+ 					console.log("LLLLLLLLLLLLLLLLLLLL", req.session)
+ 					
+ 					req.session = {}
  					req.session.decoded = decoded;
+
  					next();
+
  				}
  			});
  		} else {

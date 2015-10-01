@@ -51,8 +51,12 @@ $urlRouterProvider.otherwise('/');
   .state('dashboard', {
     url: '/dashboard',
     templateUrl: 'app/customer/dashboard/dashboard.html',
-    controller: 'dashboardCtrl'
-
+    controller: 'dashboardCtrl',
+    resolve: {
+      UID: function(loginService) {
+        return loginService.getUserData();
+      }
+    }
   })
 
   .state('registerRestaurant', {
