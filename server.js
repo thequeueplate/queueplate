@@ -40,24 +40,6 @@ app.get('*', function(req, res) { //the asterisk will make every url go to index
 	res.sendFile(__dirname + '/public/index.html');
 });
 
-// app.post('/charge', function(req, res) {
-//     var stripeToken = req.body.stripeToken;
-//     var amount = 1000;
-
-//     stripe.charges.create({
-//         card: stripeToken,
-//         currency: 'usd',
-//         amount: amount
-//     },
-//     function(err, charge) {
-//         if (err) {
-//             res.send(500, err);
-//         } else {
-//             res.send(204);
-//         }
-//     });
-// });
-
 app.listen(config.port, function(err){
 	if(err) {
 		console.log(err);

@@ -1,8 +1,6 @@
 var app = angular.module('QueuePlate')
 
 app.controller('RestLandingCtrl', function($scope, $cookies, $rootScope, registerService, $state, loginService, restLandingService, restData, orders){
-  console.log("THIS REST IS THE BEST",restData);
-  console.log("ORDERS ORDASDFIPOJ", orders);
 
   $scope.restData = restData
 
@@ -28,7 +26,6 @@ app.controller('RestLandingCtrl', function($scope, $cookies, $rootScope, registe
   $scope.krang = "krang"
 
   $scope.selectedOrder = function(order) {
-    console.log("ORDER ORDER ORDER ORDER", order)
     restLandingService.setCurrentOrder(order)
       .then(function(response){
         $scope.currentOrder = restLandingService.currentOrder;

@@ -1,40 +1,3 @@
-<!--
-OWNER: LOGAN
-BACKING CONTROLLER: menuItemsCtrl
-TODO:
-- Show new menu item
-    - Save new Menu Item
-- Show list of existing menu items
-    - Save menu item changes
-
-DATA ON CONTROLLER:
-    $scope.sectionItems = []
-    sectionItem = {
-        name,
-        price,
-        description,
-        image
-    }
-    $scope.newSectionItem = {
-        //see sectionItem
-    }
-
-HTML PSEUDO CODE:
-    div .newItem
-        input name  ng-model-> newSectionItem.name
-        input description ng-model -> newSection.description
-        //Repeat for other data on sectionItem
-        button Add -> posts newSection to
-
-  div .itemContainer
-      repeat item on sectionItems
-        input name
-        input description
-        //repeat for other data
-        save changes button -> PUTs changes to server (takes in item)
-
--->
-
 <div>
   <div>
     <md-content>
@@ -64,14 +27,6 @@ HTML PSEUDO CODE:
   Add Menu Item
 </md-button>
 <md-divider></md-divider>
-
-<!-- <div ng-repeat="Section in menu.Sections">
-  <h1>{{Section.name}}</h1>
-  <div ng-repeat="MenuItem in Section.MenuItems">
-    <h3>{{MenuItem.name}} - ${{MenuItem.price}}</h3>
-    <p>{{MenuItem.description}}</p>
-  </div>
-</div> -->
 
 <md-content>
   <md-list>

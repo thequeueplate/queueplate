@@ -97,11 +97,6 @@ $urlRouterProvider.otherwise('/');
         return restLandingService.getOrderCust()
       }
     }
-    // resolve: {
-    //   currentOrder: function(RestLandingService, $stateParams) {
-    //     return RestLandingService($stateParams);
-    //   }
-    // }
   })
 
 
@@ -114,10 +109,6 @@ $urlRouterProvider.otherwise('/');
       return loginService.getRestData();
     }
   }
-    //  menu: function(menuService, loginService){
-    //    return menuService.getMenu(loginService.getRestData().id);
-    //  }
-
   })
 
    .state('registerCustomer', {
@@ -209,11 +200,9 @@ app.run(function($state, $rootScope, $window, loginService) {
          if (!token) {
            console.log('protected state, no token')
            event.preventDefault();
-            // $rootScope.loggedIn = false;
            
            return $state.go('loginBoth');
          } else {
-          // $rootScope.loggedIn = true;
           loginService.getUser()
           .then(function(data) {
             

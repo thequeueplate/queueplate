@@ -15,8 +15,6 @@ app.service('MenuService', function($http, $q, loginService){
     }
 
     this.addSection = function(restId, menuId, section){
-      console.log(restId, menuId);
-      console.log("SECTION", section);
       return $http({
         method: 'POST',
         url: '/api/rests/' + restId + '/sections/' + menuId,
