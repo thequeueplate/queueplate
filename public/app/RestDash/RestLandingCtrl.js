@@ -1,6 +1,6 @@
 var app = angular.module('QueuePlate')
 
-app.controller('RestLandingCtrl', function($scope, $cookies, $rootScope, registerService, $state, loginService, restLandingService, restData, orders){
+app.controller('RestLandingCtrl', function($scope, $rootScope, $cookies, $rootScope, registerService, $state, loginService, restLandingService, restData, orders){
 
   $scope.restData = restData
 
