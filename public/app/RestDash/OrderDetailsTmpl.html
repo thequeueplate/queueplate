@@ -4,7 +4,7 @@
     <div class="md-title">{{currentOrder.status}} @ {{currentOrder.updatedAt | date: 'shortTime' }}</div>
     <md-card-content>
     <div class="order-details">
-      <h3 class="md-display-2 md-warning" ng-if="currentOrder.status === 'Completed'">Ready For Delivery!</h3>
+      <h3 class="md-display-2 md-warn" ng-if="currentOrder.status === 'Completed'">Ready For Delivery!</h3>
       <md-card ng-if="currentOrder.status === 'Completed'" class="address-card" layout-margin layout-padding>
         <md-card-header class="md-header">
           Delivery Address
@@ -16,7 +16,7 @@
           <h4 class="md-subhead">    {{cust.addCity}}, {{cust.addState}} {{cust.addZip}}</h4>
           <h4 class="md-subhead">    {{cust.phoneNumber}}</h4>
         </md-card-content>
-          <md-button class="md-warning md-raised" ng-click="outForDelivery(currentOrder.id)">Out for Delivery</md-button>
+          <md-button class="md-warn md-raised" ng-click="outForDelivery(currentOrder.id)">Out for Delivery</md-button>
       </md-card>
 
       <div ng-if="currentOrder.status === 'Delivery'">

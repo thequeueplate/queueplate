@@ -2,8 +2,10 @@ var app = angular.module('QueuePlate')
 app.controller('OrderDetailsCtrl', function($scope, restLandingService, loginService, cust) {
   console.log(cust);
   $scope.cust = cust.data;
-  $scope.disabled = true;
-
+  if($scope.currentOrder.status === 'Placed'){
+  	$scope.disabled = true;
+  }
+  
   $scope.updateStatus = function(id, str) {
   	restLandingService.updateStatus(id, str)
   		.then(function(response){
