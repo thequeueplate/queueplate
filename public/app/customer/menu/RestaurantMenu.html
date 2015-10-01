@@ -1,31 +1,16 @@
 <h1>{{rest.name}}'s Menu</h1>
 
-
-<div>
-	<md-button type="submit" class="md-raised md-alarm" ng-click="createOrder()">CREATE ORDER</button>
-</div>
-
  
 <div ng-repeat="section in menu.Sections">
 
 <h2>{{section.name}}</h2>
-
 <h4>{{section.comments}}</h4>
-
-
 	<div ng-repeat="item in section.MenuItems">
-	<img ng-src="{{item.pictureURL}}" ng-style="{'max-width': '200px', 'min-width': '200px'}" />
-	<h3><a href="#" ng-click="isOrderFormOpen = !isOrderFormOpen">{{item.name}}</a></h3>
-	<div ng-show="isOrderFormOpen">
-	<div style="height: 50px; width: 50px; margin: 20px"> <input type="number" ng-model="item.orderAmount"></div>
-	 	<div>
-			<md-button type="submit" class="md-raised md-primary" ng-click="AddDishToOrder(item.orderAmount, item.id)">Add to Order</button>
-		</div>
+	<h5><a href="#">{{item.name}}</a></h5><br>
+	<img ng-src="{{item.pictureURL}}" ng-style="{'max-width': '200px', 'min-width': '200px'}" /> <br>
+	{{item.description}}<br>
+	${{item.price}}<br>&nbsp;<br>
 	</div>
-	<h4>{{item.description}}</h4>
-	<h5>${{item.price}}<h5>
-	</div>
-
 <hr>
 
 </div>

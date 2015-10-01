@@ -166,12 +166,6 @@ $urlRouterProvider.otherwise('/');
     controller: 'shoppingCartCtrl'
   })
 
-   .state('checkout', {
-    url: '/checkout',
-    templateUrl: 'app/customer/checkout/checkout.html',
-    controller: 'checkoutCtrl'
-  })
-
   .state('MenuItems', {
     url: '/MenuItems',
     templateUrl: 'app/RestDash/MenuItems.html',

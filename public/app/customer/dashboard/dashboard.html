@@ -1,12 +1,11 @@
 <body>
 
-<h4>{{userName}}&nbsp{{lastName}}</h4>
+<h4>{{userName}}&nbsp;{{lastName}}</h4>
 <h5>{{phoneNumber}}</h5>
-<h5>{{addLine1}}&nbsp{{addLine2}}</h5>
-<h5>{{addCity}},&nbsp{{addState}}&nbsp{{addZip}}</h5>
+<h5>{{addLine1}}&nbsp;{{addLine2}}</h5>
+<h5>{{addCity}},&nbsp;{{addState}}&nbsp;{{addZip}}</h5>
          
 <h1>Your Queued Orders</h1>
-
 
 <div ng-repeat="order in orders">
     <div ng-repeat="item in order.OrderItems">
@@ -14,11 +13,9 @@
     <h5>${{item.MenuItem.price}}</h5>
     <h5>Number of Dishes Ordered: {{item.quantity}}<h5>
     <img ng-src={{item.MenuItem.pictureURL}} ng-style="{'max-width': '200px', 'min-width': '200px'}" />
-
   </div>
 </div>
 <div class="container">
- 
     <div class="dashboard-container">
       <div class="favorite-orders-container">
         <div class="favorite-orders-list" ng-click="selectedOrders(order)">
@@ -28,7 +25,6 @@
       </div>
     </div>
 </div>
-
 </body>
 
 

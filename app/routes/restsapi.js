@@ -232,6 +232,7 @@ module.exports = function(app, express) {
 				if(err) {
  					res.status(403).send({ success: false, message: "Failed to authenticate restaurant" });
  				} else {
+ 					req.session = {};
  					req.session.decoded = decoded;
  					next();
  				}
