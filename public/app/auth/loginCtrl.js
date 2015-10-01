@@ -16,7 +16,7 @@ app.controller('loginCtrl', function($window, $state, $rootScope, loginService, 
 	 $scope.addState = $cookies.getObject("addState")
 	 $scope.addZip = $cookies.getObject("addZip")
 	 $scope.phoneNumber = $cookies.getObject("phoneNumber")
-	 $scope.id = $cookies.getObject("userid")
+	 $scope.userid = $cookies.getObject("userid")
 	 console.log($scope.loggedIn)
    	 console.log($scope.role)
 
@@ -56,6 +56,7 @@ app.controller('loginCtrl', function($window, $state, $rootScope, loginService, 
    				 $scope.id = $cookies.getObject("userid")
    				 console.log($scope.loggedIn)
    				 console.log($scope.role)
+   				 console.log($scope.id)
 
 				if (data.role === "restaurant") {
 					$state.go("RestaurantLanding")

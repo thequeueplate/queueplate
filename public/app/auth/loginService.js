@@ -36,8 +36,17 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 	
 	var restData;
 	this.getRestData = function(){
+		console.log("REEEEEEEST DATA", restData)
 		return restData
 	}
+
+	var userData; 
+	this.getUserData = function() {
+		console.log("L:SDfjLSDFJLKSDJF", userData)
+		return userData
+
+	}
+
 	this.login = function(email, password) {
 		var d = $q.defer();
 
@@ -56,12 +65,17 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 			$cookies.putObject("addState", data.addState)
 			$cookies.putObject("addZip", data.addZip)
 			$cookies.putObject("phoneNumber", data.phoneNumber)
+			$cookies.putObject("userid", data.id)
 
 			console.log(data)
 
-			d.resolve(data)
+			userData = data;
 
-			if (data.success === false) {
+			console.log("data", userData)
+
+			d.resolve(userData)
+
+			if (userData.success === false) {
 				alert("Please Check your email to confirm your account")
 				$state.go('loginBoth')
 			} else {
@@ -103,8 +117,6 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 				$state.go('loginBoth')
 			} else {
 				authTokenService.setToken(data.token);
-			
-			
 				
 				$rootScope.loggedIn = true;
 
@@ -131,6 +143,7 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 		authTokenService.setToken();
 
 		return $http.get('/api/users/auth/logout');
+
 	}
 
 	this.isLoggedIn = function() {

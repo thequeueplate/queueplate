@@ -34,7 +34,6 @@ app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 			.then(function(response) {
 				console.log(response)
 
-
 				$scope.restData = {};
 
 				$scope.message = response.data.message;

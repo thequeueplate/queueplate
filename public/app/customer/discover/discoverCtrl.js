@@ -2,8 +2,6 @@ var app = angular.module('QueuePlate')
 
 app.controller('discoverCtrl', function(discoverService, $scope, $state) {
 
-	$scope.find = function() {
-
 		discoverService.restaurantsByName($scope.restaurants)
 			.then(function(response) {
 			console.log(response)
@@ -11,7 +9,7 @@ app.controller('discoverCtrl', function(discoverService, $scope, $state) {
 			$scope.restaurants = response;
 
 			})
-	}
+
 
 	$scope.filters = [
 		{type: "City"},
@@ -36,6 +34,8 @@ app.controller('discoverCtrl', function(discoverService, $scope, $state) {
       $scope.takeToMenu = function(index, restId) {
       	console.log(index)
     
+        $scope.restaurantId = restId
+
       	$scope.restId = {};
 
      		$scope.restId.id = $scope.restaurants[index].id;
@@ -44,10 +44,6 @@ app.controller('discoverCtrl', function(discoverService, $scope, $state) {
 
      		$state.go("RestaurantMenu", {restid: $scope.restId.id })
 
-        // discoverService.getMenu(rest, RID).then(function(response) {
-        //     console.log(response)
-
-        // })
     }
 
 });
