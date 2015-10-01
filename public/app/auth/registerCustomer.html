@@ -1,67 +1,67 @@
 <h1>Welcome to QueuePlate!</h1>
 
-
 <div class="container">
 	<div class="row">
 		<div>
 		<h1 class="grey-text darken-2">Register Customer</h1>
+
 			<form class="form-register" ng-submit="registerUser(user)">
 
-	<md-input-container>
-		<label>First Name</label>
-		<input ng-model="user.firstName">
-	</md-input-container>
+			<md-input-container>
+				<label>First Name</label>
+				<input ng-model="user.firstName">
+			</md-input-container>
 
-	<md-input-container>
-		<label>Last Name</label>
-		<input ng-model="user.lastName">
-	</md-input-container>
+			<md-input-container>
+				<label>Last Name</label>
+				<input ng-model="user.lastName">
+			</md-input-container>
 
-	<md-input-container>
-		<label>Age</label>
-		<input type="Number" ng-model="user.age">
-	</md-input-container>
+			<md-input-container>
+				<label>Age</label>
+				<input type="Number" ng-model="user.age">
+			</md-input-container>
 
-	<md-input-container>
-		<label>Gender</label>
-		<md-select ng-model="user.gender">
-			<md-option ng-repeat="gender in genders" ng-value="gender.type">{{gender.type}}</md-option>
-		</md-select>
-	</md-input-container>
+			<md-input-container>
+				<label>Gender</label>
+				<md-select ng-model="user.gender">
+					<md-option ng-repeat="gender in genders" ng-value="gender.type">{{gender.type}}</md-option>
+				</md-select>
+			</md-input-container>
 
-	<md-input-container>
-		<label>Address Line 1</label>
-		<input ng-model="user.addLine1">
-	</md-input-container>
+			<md-input-container>
+				<label>Address Line 1</label>
+				<input ng-model="user.addLine1">
+			</md-input-container>
 
-	<md-input-container>
-		<label>Address Line 2</label>
-		<input ng-model="user.addLine2">
-	</md-input-container>
+			<md-input-container>
+				<label>Address Line 2</label>
+				<input ng-model="user.addLine2">
+			</md-input-container>
 
-	<md-input-container>
-		<label>City</label>
-		<input ng-model="user.addCity">
-	</md-input-container>
+			<md-input-container>
+				<label>City</label>
+				<input ng-model="user.addCity">
+			</md-input-container>
 
-	<md-input-container>
-		<label>State</label>
-		<md-select ng-model="user.addState">
-			<md-option ng-repeat="state in states" ng-value="state.type">{{state.type}}</md-option>
-		</md-select>
-	</md-input-container>
-	
-	<md-input-container>
-		<label>Zip Code</label>
-		<input type="Number" ng-model="user.addZip">
-	</md-input-container>
+			<md-input-container>
+				<label>State</label>
+				<md-select ng-model="user.addState">
+					<md-option ng-repeat="state in states" ng-value="state.type">{{state.type}}</md-option>
+				</md-select>
+			</md-input-container>
+			
+			<md-input-container>
+				<label>Zip Code</label>
+				<input type="Number" ng-model="user.addZip">
+			</md-input-container>
 
-	<md-input-container>
-		<label>Phone</label>
-		<input type="tel" ng-model="user.phoneNumber" ui-mask="{{'(999) 999-9999'}}">
-	</md-input-container>
+			<md-input-container>
+				<label>Phone</label>
+				<input type="tel" ng-model="user.phoneNumber" ui-mask="{{'(999) 999-9999'}}">
+			</md-input-container>
 
-				<md-button type="submit" class="btn btn-danger">Register</md-button>
+			<md-button type="submit" class="btn btn-danger">Register</md-button>
 
 			</form>
 		</div>

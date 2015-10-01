@@ -2,7 +2,6 @@ var app = angular.module('QueuePlate')
 
 app.controller('loginCtrl', function($window, $state, $rootScope, loginService, $scope, $cookies) {
 
-
 	$scope.loggedIn = false
 	 if ($cookies.getObject("role"))
 	 $scope.loggedIn = true
@@ -20,7 +19,6 @@ app.controller('loginCtrl', function($window, $state, $rootScope, loginService, 
 	 console.log($scope.loggedIn)
    	 console.log($scope.role)
 
-
 	$scope.doLogin = function() {
 
 		$scope.processing = true;
@@ -29,19 +27,15 @@ app.controller('loginCtrl', function($window, $state, $rootScope, loginService, 
 
 		loginService.login($scope.loginData.email, $scope.loginData.password)
 			.then(function(data) {
-
-				 
+			 
 				if (data.message === "Invalid Password") {
 					console.log(data.message)
 					Materialize.toast('Invalid Password', 1000)
 
 				} else {
 
-
-
 		loginService.getUser()
 			.then(function(data) {
-				console.log(data)
 				
 				$rootScope.loggedIn = true; 
 				 $scope.userName = $cookies.getObject("userName")
@@ -63,15 +57,13 @@ app.controller('loginCtrl', function($window, $state, $rootScope, loginService, 
 				} else {
 					$state.go('dashboard')
 				}
-			});
+		});
 
-	             }
-	     })
+	            }
+	        })
 	}
 
 	$scope.doLoginRest = function() {
-
-	$scope.processing = true;
 
 		$scope.error = '';
 
@@ -88,8 +80,6 @@ app.controller('loginCtrl', function($window, $state, $rootScope, loginService, 
    				 $scope.addZip = $cookies.getObject("addZip")
    				 $scope.phoneNumber = $cookies.getObject("phoneNumber")
    				 $scope.id = $cookies.getObject("userid")
-   				 console.log($scope.loggedIn)
-   				 console.log($scope.role)
 
 				if (data.message === "Invalid Password") {
 					console.log(data.message)
@@ -102,22 +92,13 @@ app.controller('loginCtrl', function($window, $state, $rootScope, loginService, 
 						console.log(data)
 					});
 
-				$scope.processing = false;
-
 					$state.go('RestaurantLanding');
-
 				 }
 			});
 	}
-
 	$scope.doLogout = function() {
 		loginService.logout();
 		$rootScope.loggedIn = false
-
-
-
 		$state.go('home');
-
-
 	}
 });

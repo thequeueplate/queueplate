@@ -51,7 +51,6 @@ app.controller('registerCtrl', function(registerService, UID, publishData, $stat
 		{type: "Other"}
 	]
      
-
 	$scope.genders = [
 		{type: "Male"},
 		{type: "Female"},
@@ -111,8 +110,4 @@ app.controller('registerCtrl', function(registerService, UID, publishData, $stat
 		{type: "WI"},
 		{type: "WY"}
 	]
-
 });
-
-
-

@@ -8,7 +8,7 @@ app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 		signupService.create($scope.userData)
 
 			.then(function(response) {
-			console.log(response)
+
 				$scope.userData = {};
 
 				$scope.message = response.data.message;
@@ -28,7 +28,6 @@ app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 	$scope.signupRestaurant = function() {
 		$scope.message = '';
 
-		console.log($scope.restData)
 		signupService.createRest($scope.restData)
 
 			.then(function(response) {
@@ -37,7 +36,6 @@ app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 				$scope.restData = {};
 
 				$scope.message = response.data.message;
-				console.log($scope.message)
 
 				if(!response.data.success) {
 
@@ -56,7 +54,6 @@ app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 	$scope.passwordCheck = document.getElementById("passwordCheck");
 
 	$scope.validatePassword = function(p, cp){
-
 
 	        if (p == "") {
 
@@ -93,8 +90,9 @@ app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 	        }
 
 	        if (cpw !== pr || cpw == "") {
-					Materialize.toast("Confirm password does not match password", 2000);
-					var passwordrestconfirmed = false;
+
+				Materialize.toast("Confirm password does not match password", 2000);
+				var passwordrestconfirmed = false;
 
 			} else if (cpw === pr) {
 
@@ -127,4 +125,4 @@ app.controller('signupCtrl', function(signupService, $state, $window, $scope) {
 
 	    }
 
-	})
+})

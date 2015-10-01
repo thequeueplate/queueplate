@@ -18,15 +18,10 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 			addZip: user.addZip,
 			addState: user.addState,
 			phoneNumber: user.phoneNumber
-			// cardNumber: cardNumber,
-			// securityDigits: securityDigits,
-			// dateOfExp: dateOfExp,
 
 		})
-		.then(function(data) {
-			console.log(data)
-			deferred.resolve(data) //this passes everything back to controller
-			console.log(data)
+		.then(function(data) {	
+			deferred.resolve(data)
 
 		});
 
@@ -36,15 +31,12 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 	
 	var restData;
 	this.getRestData = function(){
-		console.log("REEEEEEEST DATA", restData)
 		return restData
 	}
 
 	var userData; 
 	this.getUserData = function() {
-		console.log("L:SDfjLSDFJLKSDJF", userData)
 		return userData
-
 	}
 
 	this.login = function(email, password) {
@@ -67,16 +59,12 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 			$cookies.putObject("phoneNumber", data.phoneNumber)
 			$cookies.putObject("userid", data.id)
 
-			console.log(data)
-
 			userData = data;
-
-			console.log("data", userData)
 
 			d.resolve(userData)
 
 			if (userData.success === false) {
-				alert("Please Check your email to confirm your account")
+				Materialize.toast("Please Check your email to confirm your account", 2000)
 				$state.go('loginBoth')
 			} else {
 
@@ -91,13 +79,11 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 	  return d.promise; 
     }
 
-
 	this.loginRest = function(email, password) {
 
 		return $http.post('/api/rests/login', {
 			email: email,
 			password: password
-
 		})
 		.success(function(data) {
 
@@ -109,23 +95,18 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 			$cookies.putObject("addZip", data.addZip)
 			$cookies.putObject("name", data.name)
 
-			console.log(data.role)
 			restData = data;
 
 			if (data.success === false) {
-				alert("Please Check your email to confirm your account")
+				Materialize.toast("Please Check your email to confirm your account", 2000)
 				$state.go('loginBoth')
 			} else {
-				authTokenService.setToken(data.token);
-				
+				authTokenService.setToken(data.token);	
 				$rootScope.loggedIn = true;
-
 				return data;
-
 			}
 		})
 	}
-
 
 	this.logout = function() {
 		
@@ -166,7 +147,6 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 			return $http.get('/api/rests/info/me');
 		else
 			return $q.reject({message: "Rest has no token"})
-
 	}
 });
 
@@ -177,7 +157,6 @@ app.service('authTokenService', function($window) {
 	}
 
 	this.setToken = function(token) {
-
 
 		if(token)
 			$window.localStorage.setItem('token', token);
@@ -207,6 +186,6 @@ app.factory('AuthInterceptor', function($q, authTokenService) {
 
 		return $q.reject(response);
 	}
-
+	
 	return interceptorService;
 });

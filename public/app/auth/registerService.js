@@ -31,16 +31,12 @@ app.service('registerService', function($http, $q, $rootScope) {
 			addZip: user.addZip,
 			addState: user.addState,
 			phoneNumber: user.phoneNumber
-			// cardNumber: cardNumber,
-			// securityDigits: securityDigits,
-			// dateOfExp: dateOfExp,
 
 		})
 		.then(function(data) {
 			console.log(data)
-			deferred.resolve(data) //this passes everything back to controller
+			deferred.resolve(data) 
 			console.log(data)
-
 		});
 
 		return deferred.promise

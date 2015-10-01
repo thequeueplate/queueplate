@@ -37,42 +37,43 @@
 
 				</form>
 		</div>
+		
 		<div class="restaurant-sign-up">
-					<h2 class="grey-text darken-2">Restaurant Sign Up</h2>
-						<form class="form-signin" method="post" ng-submit="validatePasswordRest(restData.passwordRest, confirmrestpassword)">
+			<h2 class="grey-text darken-2">Restaurant Sign Up</h2>
+				<form class="form-signin" method="post" ng-submit="validatePasswordRest(restData.passwordRest, confirmrestpassword)">
 
-							<md-input-container type="email">
-								<label>Email</label>
-								<input ng-model="restData.email"></input>
-							</md-input-container>
+					<md-input-container type="email">
+						<label>Email</label>
+						<input ng-model="restData.email"></input>
+					</md-input-container>
 
-							<md-input-container ng-show="showpasswordRest">
-								<label>Password</label>
-								<input type="text" id="passwordRest" ng-model="restData.passwordRest"></input>
-							</md-input-container>
+					<md-input-container ng-show="showpasswordRest">
+						<label>Password</label>
+						<input type="text" id="passwordRest" ng-model="restData.passwordRest"></input>
+					</md-input-container>
 
-							<md-input-container ng-show="!showpasswordRest">
-								<label>Password</label>
-								<input  type="password" id="passwordRest" ng-model="restData.passwordRest"></input>
-							</md-input-container>
+					<md-input-container ng-show="!showpasswordRest">
+						<label>Password</label>
+						<input  type="password" id="passwordRest" ng-model="restData.passwordRest"></input>
+					</md-input-container>
 
-							<md-input-container ng-show="showpasswordRest">
-								<label>Confirm Password</label>
-								<input type="text" id="passwordCheckRest" name="passwordCheckRest" class="form-control" ng-model="confirmrestpassword"></input>
-							</md-input-container>
+					<md-input-container ng-show="showpasswordRest">
+						<label>Confirm Password</label>
+						<input type="text" id="passwordCheckRest" name="passwordCheckRest" class="form-control" ng-model="confirmrestpassword"></input>
+					</md-input-container>
 
-							<md-input-container ng-show="!showpasswordRest">
-								<label>Confirm Password</label>
-								<input type="password" id= "passwordCheckRest" name="passwordCheckRest" class="form-control" ng-model="confirmrestpassword"></input>
-							</md-input-container>
+					<md-input-container ng-show="!showpasswordRest">
+						<label>Confirm Password</label>
+						<input type="password" id= "passwordCheckRest" name="passwordCheckRest" class="form-control" ng-model="confirmrestpassword"></input>
+					</md-input-container>
 
 
-							<a href="#"><i class="material-icons eye" title="show password" name="show password" ng-click="seeRest()">visibility</i></a>
-							<a href="#"><i class="material-icons eye" title="hide password" ng-click="hideRest()">visibility_off</i></a> <br><br>
+					<a href="#"><i class="material-icons eye" title="show password" name="show password" ng-click="seeRest()">visibility</i></a>
+					<a href="#"><i class="material-icons eye" title="hide password" ng-click="hideRest()">visibility_off</i></a> <br><br>
 
-							<md-button type="submit" class="md-raised md-primary">Sign Up</button>
+					<md-button type="submit" class="md-raised md-primary">Sign Up</button>
 
-						</form>
+				</form>
 		</div>
 	</div>
 </div>
