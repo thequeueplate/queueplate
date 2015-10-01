@@ -6,6 +6,7 @@ app.service('RestaurantMenuService', function($http, $q, $cookies) {
 
 	this.RID; 
 	
+
 	this.setRID = function(RID) {
 		this.RID = RID
 	}
@@ -19,6 +20,7 @@ app.service('RestaurantMenuService', function($http, $q, $cookies) {
 			deferred.resolve(response.data)
 		   })
 		    return deferred.promise
+		    console.log(deferred.promise)
 	}
 	
 	this.getRest = function(RID) {
@@ -30,23 +32,21 @@ app.service('RestaurantMenuService', function($http, $q, $cookies) {
 			deferred.resolve(response.data)
 		})
 		return deferred.promise
+		console.log(deferred.promise)
 	}
 
 	this.order = function(RID) {
 		return $http.post('api/orders/user/' + RID + '/' + this.UID + '/', {
 			status: "Placed"
 		})
+
 	}
 
 	this.addToOrder = function(orderAmount, ITEMID, ORDERID) {
+		console.log(orderAmount)
 	    return $http.post('api/orders/item/' + ORDERID + '/' + ITEMID + '/', {
 	    	quantity: orderAmount
 	    })
     }
 })
-
-
-
-
-
 
