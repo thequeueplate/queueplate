@@ -1,20 +1,16 @@
 var app = angular.module('QueuePlate')
 
-app.service('dashboardService', function($http, $q) {
+app.service('dashboardService', function($http, $q, $cookies) {
 
-	this.UID; 
+	this.UID = $cookies.getObject("userid")
 
-	this.setUID = function(UID) {
-		this.UID = UID
-	}
-
-	this.FavDish = function(UID) {
-		console.log("FDJLS:JFKLFKJSL:DJFL:SKDFJ:LSFJLS:KDFJL:", UID)
+	this.FavDish = function() {
+		console.log("FDJLS:JFKLFKJSL:DJFL:SKDFJ:LSFJLS:KDFJL:", this.UID)
 
      var deferred = $q.defer();
 		$http({
 			method: "GET",
-			url: 'api/orders/user/' + UID.id
+			url: 'api/orders/user/' + this.UID
 		}).then(function(response) {
 			deferred.resolve(response.data)
 		})

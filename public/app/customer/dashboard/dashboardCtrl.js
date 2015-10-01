@@ -14,8 +14,6 @@ app.controller('dashboardCtrl', function(UID, $scope, $cookies, dashboardService
    $scope.addZip = $cookies.getObject("addZip")
    $scope.phoneNumber = $cookies.getObject("phoneNumber")
    $scope.id = $cookies.getObject("userid")
-
-   dashboardService.setUID(UID)
     
    // $scope.orders = dashboardService.FavDish()
 
@@ -23,6 +21,12 @@ app.controller('dashboardCtrl', function(UID, $scope, $cookies, dashboardService
       console.log(data)
       $scope.orders = data
    })
+
+   // for (var i = 0; i < $scope.orders.length; i++) {
+   //    for (var a = 0; a < $scope.orders[i].OrderItems.length; a++) {
+   //       $scope.orders[i].OrderItems[a].quantity
+   //    }
+   // }
  });
 
 

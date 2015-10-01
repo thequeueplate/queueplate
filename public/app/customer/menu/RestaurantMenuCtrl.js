@@ -1,16 +1,28 @@
 var app = angular.module('QueuePlate')
 
-app.controller('RestaurantMenuCtrl', function($cookies, $scope, $stateParams, RID, UID, RestaurantMenuService) {
+app.controller('RestaurantMenuCtrl', function($cookies, $scope, $stateParams, RID, RestaurantMenuService) {
 	
-	
+	$scope.AddDishToOrder = function(orderAmount, id) {
+		if(!$scope.orderData) {
+			$scope.orderData = $cookies.getObject("orderData")
+		}
+		
+		RestaurantMenuService.addToOrder(orderAmount, id, $scope.orderData.data.id).then(function(){
+			Materialize.toast("You have added a dish to your order!", 2000)
+		})
+	}
+
 	$scope.createOrder = function() {
 		
-		RestaurantMenuService.order(RID, UID)
+		console.log(RID)
+
+		RestaurantMenuService.order(RID)
 
 			.then(function(response) {
 				console.log(response)
 
-				$scope.orderData = {};
+				$scope.orderData = response
+				$cookies.putObject("orderData", response)
 
 			})
 	}

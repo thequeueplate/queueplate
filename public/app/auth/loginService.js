@@ -65,7 +65,7 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 			$cookies.putObject("addState", data.addState)
 			$cookies.putObject("addZip", data.addZip)
 			$cookies.putObject("phoneNumber", data.phoneNumber)
-			$cookies.putObject("userid", data.userid)
+			$cookies.putObject("userid", data.id)
 
 			console.log(data)
 
@@ -142,18 +142,20 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 
 		authTokenService.setToken();
 
+		return $http.get('/api/users/auth/logout');
+
 	}
 
 	this.isLoggedIn = function() {
 		if(authTokenService.getToken())
-				return true;
+			return true;
 		else
 			return false;
 	}
 
 	this.getUser = function() {
 		if(authTokenService.getToken())
-			return $http.get('/api/users/me');
+			return $http.get('/api/users/info/me');
 		else
 			return $q.reject({message: "User has no token"})
 	}
@@ -161,7 +163,7 @@ app.service('loginService', function($http, $q, $state, $rootScope, authTokenSer
 	this.getRest = function() {
 
 		if(authTokenService.getToken())
-			return $http.get('/api/rests/me');
+			return $http.get('/api/rests/info/me');
 		else
 			return $q.reject({message: "Rest has no token"})
 

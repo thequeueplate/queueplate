@@ -172,9 +172,6 @@ $urlRouterProvider.otherwise('/');
      resolve: {
       RID: function($stateParams) {
         return $stateParams.restid
-      },
-      UID: function(loginService) {
-        return loginService.getUserData();
       }
     }
   })
@@ -189,9 +186,9 @@ app.run(function($state, $rootScope, $window, loginService) {
 
        var safeStates = ['home', 'signUpBoth', 'loginBoth', 'verify', 'registerCustomer', 'registerRestaurant', 'signUpCustomer', 'signUpRestaurant', 'RestaurantLanding', 'ManageMenu', 'RestaurantMenu'];
 
-       var protected = safeStates.indexOf(toState.name) === -1;
+       var protectedState = safeStates.indexOf(toState.name) === -1;
 
-     if (protected) {
+     if (protectedState) {
       var token = $window.localStorage.token
          if (!token) {
            console.log('protected state, no token')
@@ -203,7 +200,7 @@ app.run(function($state, $rootScope, $window, loginService) {
           // $rootScope.loggedIn = true;
           loginService.getUser()
           .then(function(data) {
-
+            
           });
 
          }

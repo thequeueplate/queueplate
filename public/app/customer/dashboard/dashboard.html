@@ -12,6 +12,7 @@
     <div ng-repeat="item in order.OrderItems">
     <h3>{{item.MenuItem.name}}</h3>
     <h5>${{item.MenuItem.price}}</h5>
+    <h5>Number of Dishes Ordered: {{item.quantity}}<h5>
     <img ng-src={{item.MenuItem.pictureURL}} ng-style="{'max-width': '200px', 'min-width': '200px'}" />
 
   </div>
