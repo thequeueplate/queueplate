@@ -68,18 +68,23 @@ header img:hover {
 
 /*//// FOOTER ////*/
 
-footer {
-    height: 50px;
-    width: 100%;
-    color: #0084bb;
-    background-color: #cbcbcb;
-    text-align: center;
-    font-size: 12px;
+.footerCredit {
+  color: #666;
 }
 
-footer p {
-    position: relative;
-    top: 19px;
+footer {
+  height: 80px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+.footerText {
+  margin-top: 20px;
 }
 
 
